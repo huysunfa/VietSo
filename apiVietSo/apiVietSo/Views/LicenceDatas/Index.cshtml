@@ -1,0 +1,69 @@
+﻿@model IEnumerable<apiVietSo.Models.LicenceData>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@if (!string.IsNullOrEmpty(ViewBag.Licence))
+{
+    <h1>Licence bạn đã tạo : @ViewBag.Licence</h1>
+}
+
+<h2>Quản lý licence</h2>
+<style>
+    .table td, .table th {
+        BORDER: 1px solid #6c757d;
+    }
+</style>
+<p>
+<a href="/LicenceDatas/Create" class="btn btn-sm btn-primary">Thêm Licence thủ công</a> 
+<a href="/LicenceDatas/CreateAuto" class="btn btn-sm btn-success">Thêm Licence tự động</a></p>
+<hr />
+
+<table class="table">
+    <tr style="background-color:lightgray">
+        <th>
+            @Html.DisplayNameFor(model => model.Licence)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IP_Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date_Active)
+        </th> 
+           <th>
+            @Html.DisplayNameFor(model => model.ExpiryDate)
+        </th> 
+        
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Licence)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IP_Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date_Active)
+        </td> 
+          <td>
+            @Html.DisplayFor(modelItem => item.ExpiryDate)
+        </td> 
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedDate)
+        </td>
+        <td>
+              @Html.ActionLink("Delete", "Delete", new { id=item.ID })|
+              @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

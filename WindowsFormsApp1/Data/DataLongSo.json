@@ -1,0 +1,940 @@
+[
+  {
+    "LoaiSo": "CẦU AN",
+    "TenSo": "Hộ thai bảo đồng",
+    "ChuGiai": "An thần định thể",
+    "FileName": "CAHoThaiBaoDong",
+    "ID": "47"
+  },
+  {
+    "LoaiSo": "CẦU AN",
+    "TenSo": "Tôn hương bản mệnh",
+    "ChuGiai": "Thần thông đệ nhất",
+    "FileName": "CATonHuongBanMenh",
+    "ID": "48"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Đức ông",
+    "ChuGiai": "Tối tú tối linh",
+    "FileName": "CTPDucOng",
+    "ID": "33"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Ngũ hổ",
+    "ChuGiai": "Nhân vi vạn vật",
+    "FileName": "CTPNguHo",
+    "ID": "34"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Sớ hầu hán văn",
+    "ChuGiai": "Thánh nhân phi diểu",
+    "FileName": "CTPSoHauHanVan",
+    "ID": "49"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Sớ vọng",
+    "ChuGiai": "Thánh đức nguy nguy",
+    "FileName": "CTPSoVong",
+    "ID": "51"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Sơn trang",
+    "ChuGiai": "Nhất phát thanh sơn",
+    "FileName": "CTPSonTrang",
+    "ID": "50"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Tán đồng trình trầu",
+    "ChuGiai": "Thánh trạch hoằng thâm",
+    "FileName": "CTPTanDongTrinhTrau",
+    "ID": "52"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Tứ phủ",
+    "ChuGiai": "Chí tôn chí đại",
+    "FileName": "CTPTuPhu",
+    "ID": "53"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Tứ Phủ Cầu Hôn",
+    "ChuGiai": "",
+    "FileName": "CTPTuPhuCauHon",
+    "ID": "118"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Tứ phủ cầu tài",
+    "ChuGiai": "Dụng lực do nhân",
+    "FileName": "CTPTuPhuCauTai",
+    "ID": "54"
+  },
+  {
+    "LoaiSo": "CẦU TỨ PHỦ",
+    "TenSo": "Tứ phủ cầu tự",
+    "ChuGiai": "Thiên đạo chi đại",
+    "FileName": "CTPTuPhuCauTu",
+    "ID": "55"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Bách nhật",
+    "ChuGiai": "Tam tôn pháp tòa",
+    "FileName": "C49BachNhat",
+    "ID": "35"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Biểu Âm",
+    "ChuGiai": "Như lai thùy giáo",
+    "FileName": "C49BieuAm",
+    "ID": "29"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Cát táng",
+    "ChuGiai": "Pháp thân thường trụ",
+    "FileName": "C49CatTang",
+    "ID": "30"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Chiêu hồn",
+    "ChuGiai": "Truy tiến chiêu hồn",
+    "FileName": "C49ChieuHon",
+    "ID": "36"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Điệp Cấp",
+    "ChuGiai": "Kim tiên phổ độ",
+    "FileName": "C49DiepCap",
+    "ID": "39"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Điệp phục hồn",
+    "ChuGiai": "Khải kiến tam nhật",
+    "FileName": "C49DiepPhucHon",
+    "ID": "40"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Nhập Liệm",
+    "ChuGiai": "Như lai ứng thế",
+    "FileName": "C49NhapLiem",
+    "ID": "41"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Nhị thánh",
+    "ChuGiai": "Thiền thiên hạo đãng",
+    "FileName": "C49NhiThanh",
+    "ID": "42"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Phật Âm",
+    "ChuGiai": "",
+    "FileName": "C49PhatAm",
+    "ID": "96"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Thập điện",
+    "ChuGiai": "Bảo tòa nguy nga",
+    "FileName": "C49ThapDien",
+    "ID": "43"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Tiếp Linh",
+    "ChuGiai": "Khải kiến minh dương",
+    "FileName": "C49TiepLinh",
+    "ID": "44"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Trạng mã",
+    "ChuGiai": "Giới đương lệnh tiết",
+    "FileName": "C49TrangMa",
+    "ID": "45"
+  },
+  {
+    "LoaiSo": "CÚNG 49",
+    "TenSo": "Triệu Linh",
+    "ChuGiai": "Kim tiên phổ độ",
+    "FileName": "C49TrieuLinh",
+    "ID": "46"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Biểu Di Đà Tôn Sư",
+    "ChuGiai": "",
+    "FileName": "Bieu_Di_Da_Ton_Su",
+    "ID": "102"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cầu công danh - Cư quyết vị trị",
+    "ChuGiai": "Cư quyết vị trị",
+    "FileName": "CPCauCongDanh_CuQuyetViTri",
+    "ID": "56"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cầu công danh - Quốc gia dĩ khảo",
+    "ChuGiai": "Quốc gia dĩ khảo",
+    "FileName": "CPCauCongDanh_QuocGiaDiKhao",
+    "ID": "57"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cầu sự dĩ thành lễ tạ Phật",
+    "ChuGiai": "Tinh chiếu quang thiên",
+    "FileName": "CPCauSuDiThanhLeTaPhat",
+    "ID": "60"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cầu tài",
+    "ChuGiai": "Dụng lực do nhân",
+    "FileName": "CPCauTai",
+    "ID": "58"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cầu thi đỗ đạt",
+    "ChuGiai": "Y khoa dĩ đức",
+    "FileName": "CPCauThiDoDat",
+    "ID": "61"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cầu tự",
+    "ChuGiai": "Thiên đạo chi đại",
+    "FileName": "CPCauTu",
+    "ID": "59"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Chúng sinh",
+    "ChuGiai": "Phật từ quảng đại",
+    "FileName": "CPChungSinh",
+    "ID": "62"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cúng cơm mới",
+    "ChuGiai": "Mạch huệ hoàng hoàng",
+    "FileName": "CPCungComMoi",
+    "ID": "63"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cúng Phật Cầu hôn",
+    "ChuGiai": "Tác hợp tự thiên",
+    "FileName": "CPCungPhatCauHon",
+    "ID": "64"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cúng Phật Phóng sinh",
+    "ChuGiai": "Phật từ quảng đại",
+    "FileName": "CPCungPhatPhongSinh",
+    "ID": "65"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Cúng Phật Sám hối",
+    "ChuGiai": "Đại tạo nguy nguy",
+    "FileName": "CPCungPhatSamHoi",
+    "ID": "66"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Điệp Mông Sơn",
+    "ChuGiai": "",
+    "FileName": "Diep_Mong_Son",
+    "ID": "103"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Dược sư biểu - Thiên linh bẩm mệnh",
+    "ChuGiai": "Thiên linh bẩm mệnh",
+    "FileName": "CPDuocSuBieu_ThienLinhBamMenh",
+    "ID": "67"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Húy Nhật Tôn Sư Cúng Phật",
+    "ChuGiai": "",
+    "FileName": "Huy_Nhat_Ton_Su_Cung_Phat",
+    "ID": "104"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Lễ Phật",
+    "ChuGiai": "lòng sớ mặc định",
+    "FileName": "LePhat",
+    "ID": "93"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Lễ Sao",
+    "ChuGiai": "lòng sớ mặc định",
+    "FileName": "LeSao",
+    "ID": "94"
+  },
+  {
+    "LoaiSo": "CÚNG PHẬT",
+    "TenSo": "Phúc Thọ",
+    "ChuGiai": "lòng sớ mặc định",
+    "FileName": "PhucTho",
+    "ID": "95"
+  },
+  {
+    "LoaiSo": "GIẢI HẠN ÁCH",
+    "TenSo": "Giải tam tai",
+    "ChuGiai": "Thượng đế hảo sinh",
+    "FileName": "GHAGiaiTamTai",
+    "ID": "68"
+  },
+  {
+    "LoaiSo": "GIẢI HẠN ÁCH",
+    "TenSo": "Sớ đảo bệnh",
+    "ChuGiai": "Thiên chi hữu tứ",
+    "FileName": "GHASoDaoBenh",
+    "ID": "69"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Âm Điệp",
+    "ChuGiai": "",
+    "FileName": "Am_Diep",
+    "ID": "107"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Bắc Đẩu",
+    "ChuGiai": "",
+    "FileName": "Bac_Dau",
+    "ID": "108"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Bán Khoán",
+    "ChuGiai": "",
+    "FileName": "Ban_Khoan",
+    "ID": "109"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Biểu Dược Sư Khánh Trạch",
+    "ChuGiai": "",
+    "FileName": "Bieu_Duoc_Su_Khanh_Trach",
+    "ID": "110"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Biểu Tấu",
+    "ChuGiai": "",
+    "FileName": "Bieu_Tau",
+    "ID": "111"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cáo Trấn Trạch",
+    "ChuGiai": "",
+    "FileName": "Cao_Tran_Trach",
+    "ID": "112"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cấp Vong",
+    "ChuGiai": "",
+    "FileName": "Cap_Vong",
+    "ID": "113"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cắt Đoạn Nam Thương Yểu Tử",
+    "ChuGiai": "",
+    "FileName": "Cat_Doan_Nam_Thuong_Yeu_Tu",
+    "ID": "114"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cắt Đoạn Phản Kiếp Luân Hồi",
+    "ChuGiai": "",
+    "FileName": "Cat_Doan_Phan_Kiep_Luan_Hoi",
+    "ID": "115"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cắt Đoạn Thông Dụng",
+    "ChuGiai": "",
+    "FileName": "Cat_Doan_Thong_Dung",
+    "ID": "116"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cắt Đoạn Tinh Tổ Thần Truyền",
+    "ChuGiai": "",
+    "FileName": "Cat_Doan_Tinh_Tho_Than_Truyen",
+    "ID": "143"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cắt Đoạn Trừ Trùng",
+    "ChuGiai": "",
+    "FileName": "Cat_Doan_Tru_Trung",
+    "ID": "142"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cất Nóc",
+    "ChuGiai": "",
+    "FileName": "Cat_Noc",
+    "ID": "141"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Cúng Phật Cắt Đoạn",
+    "ChuGiai": "",
+    "FileName": "Cung_Phat_Cat_Doan",
+    "ID": "139"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Điệp Tấu 1",
+    "ChuGiai": "",
+    "FileName": "Diep_Tau_1",
+    "ID": "138"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Điệp Tấu 2",
+    "ChuGiai": "",
+    "FileName": "Diep_Tau_2",
+    "ID": "137"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Điệp Thỉnh Vong Cầu Siêu",
+    "ChuGiai": "",
+    "FileName": "Diep_Thinh_Vong_Cau_Sieu",
+    "ID": "136"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Đơn Tấu",
+    "ChuGiai": "",
+    "FileName": "Don_Tau",
+    "ID": "135"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Khai Phương",
+    "ChuGiai": "",
+    "FileName": "Khai_Phuong",
+    "ID": "134"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Kì Thiên Đế Thích Biểu",
+    "ChuGiai": "",
+    "FileName": "Ki_Thien_De_Thich_Bieu",
+    "ID": "133"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Lễ Mẫu",
+    "ChuGiai": "",
+    "FileName": "Le_Mau",
+    "ID": "132"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Minh Dương Thục Án",
+    "ChuGiai": "",
+    "FileName": "Minh_Duong_Thuc_An",
+    "ID": "131"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Nhiếp Triệu Vong Hồn",
+    "ChuGiai": "Lòng sớ của thầy Tuấn anh",
+    "FileName": "Nhiep_Trieu_Vong_Hon",
+    "ID": "146"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Phá Ngục",
+    "ChuGiai": "",
+    "FileName": "Pha_Nguc",
+    "ID": "129"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Phá Ngục Xá Tội",
+    "ChuGiai": "",
+    "FileName": "Pha_Nguc_Xa_Toi",
+    "ID": "144"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Phát Tấu",
+    "ChuGiai": "",
+    "FileName": "Phat_Tau",
+    "ID": "130"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Quan Xá",
+    "ChuGiai": "",
+    "FileName": "Quan_Xa",
+    "ID": "128"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Tam Phủ Thục Mệnh",
+    "ChuGiai": "",
+    "FileName": "Tam_Phu_Thuc_Menh",
+    "ID": "126"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Thỉnh Phù Khánh Trạch",
+    "ChuGiai": "",
+    "FileName": "Thinh_Phu_Khanh_Trach",
+    "ID": "125"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Thỉnh Xá",
+    "ChuGiai": "",
+    "FileName": "Thinh_Xa",
+    "ID": "124"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Thủy Phủ",
+    "ChuGiai": "",
+    "FileName": "Thuy_Phu",
+    "ID": "123"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Tiếp Linh",
+    "ChuGiai": "Lòng sớ của thầy Tuấn Anh",
+    "FileName": "Tiep_Linh",
+    "ID": "148"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Tiểu Xá Thư",
+    "ChuGiai": "",
+    "FileName": "Tieu_Xa_Thu",
+    "ID": "122"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Tôn Hương Lập Điện",
+    "ChuGiai": "",
+    "FileName": "TonHuongLapDien",
+    "ID": "121"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Trạng Mã Cắt Đoạn",
+    "ChuGiai": "",
+    "FileName": "Trang_Ma_Cat_Doan",
+    "ID": "120"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Trừ Phục Tội Diễn",
+    "ChuGiai": "Lòng sớ của thầy Tuấn Anh",
+    "FileName": "Tru_Phuc_Toi_Dien",
+    "ID": "147"
+  },
+  {
+    "LoaiSo": "Khác",
+    "TenSo": "Trừ Tịch 30",
+    "ChuGiai": "",
+    "FileName": "Tru_Tich_30",
+    "ID": "119"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "An Tâm Tượng Sớ",
+    "ChuGiai": "Thế tự bản linh",
+    "FileName": "AnTamTuongSo",
+    "ID": "11"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Biểu dược sư khánh trạch",
+    "ChuGiai": "Ô luân kiểu kiểu",
+    "FileName": "BieuDuocSuKhanhTrach",
+    "ID": "12"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Điền hoàn long mạch",
+    "ChuGiai": "Thích ca như lai",
+    "FileName": "DienHoanLongMach",
+    "ID": "18"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Khánh trạch thí thực cô hồn",
+    "ChuGiai": "Liên trì hội thượng",
+    "FileName": "KhanhTrachThiThucCoHon",
+    "ID": "13"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Lễ gia tiên",
+    "ChuGiai": "Mộc chi hữu bản",
+    "FileName": "LeGiaTien",
+    "ID": "15"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Lễ thổ công khánh trạch",
+    "ChuGiai": "Tại thiên thành tượng",
+    "FileName": "LeThoCongKhanhTrach",
+    "ID": "16"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Phần sài trấn trạch",
+    "ChuGiai": "",
+    "FileName": "PhanSaiTranTrach",
+    "ID": "19"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Sám hối thổ thần",
+    "ChuGiai": "Hoàng thiên sắc mệnh",
+    "FileName": "SamHoiThoThan",
+    "ID": "21"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Tạ đất",
+    "ChuGiai": "Chí thành khả cách",
+    "FileName": "TaDat",
+    "ID": "17"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Thành hoàng",
+    "ChuGiai": "Tọa thượng tôn nghiêm",
+    "FileName": "ThanhHoang",
+    "ID": "20"
+  },
+  {
+    "LoaiSo": "KHÁNH TRẠCH",
+    "TenSo": "Thiên quan khánh trạch",
+    "ChuGiai": "Huyền diệu vô ngôn",
+    "FileName": "ThianQuanKhanhTrach",
+    "ID": "22"
+  },
+  {
+    "LoaiSo": "KHOÁN",
+    "TenSo": "Bán Khoán",
+    "ChuGiai": "Nguy nguy diệu tướng",
+    "FileName": "BanKhoan",
+    "ID": "14"
+  },
+  {
+    "LoaiSo": "KHOÁN",
+    "TenSo": "Chuộc khoán",
+    "ChuGiai": "Thích ca như lai",
+    "FileName": "ChuocKhoan",
+    "ID": "70"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Chúc phúc mùng một",
+    "ChuGiai": "Xuân phong thúc chí",
+    "FileName": "STChucPhucMungMot",
+    "ID": "74"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Động thổ",
+    "ChuGiai": "Lòng sớ động thổ",
+    "FileName": "STDongTho",
+    "ID": "24"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Gia tiên",
+    "ChuGiai": "Tiên tổ thi hoàng",
+    "FileName": "STGiaTien",
+    "ID": "27"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Giải đất",
+    "ChuGiai": "Khải kiến pháp diên",
+    "FileName": "STGiaiDat",
+    "ID": "76"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Giao thừa",
+    "ChuGiai": "Đế mệnh vạn phương",
+    "FileName": "STGiaoThua",
+    "ID": "26"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Hóa vàng tiễn gia tiên",
+    "ChuGiai": "Tinh bình pháp thủy",
+    "FileName": "STHoaVangTienGiaTien",
+    "ID": "77"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Mãnh cô",
+    "ChuGiai": "Thiết cúng hoàn nguyện",
+    "FileName": "STManhCo",
+    "ID": "38"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Mộ phồn",
+    "ChuGiai": "Khải kiến pháp diên",
+    "FileName": "STMoPhon",
+    "ID": "78"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Nhất tâm",
+    "ChuGiai": "Nhất tâm bái đảo",
+    "FileName": "STNhatTam",
+    "ID": "79"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Sám Tạ Cuối Năm",
+    "ChuGiai": "",
+    "FileName": "STSamTaCuoiNam",
+    "ID": "106"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Sám Tạ Cuối Năm 2",
+    "ChuGiai": "",
+    "FileName": "SamTaCuoiNam",
+    "ID": "127"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Tài thần",
+    "ChuGiai": "Thiết cúng tài thần",
+    "FileName": "STTaiThan",
+    "ID": "37"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Tất niên",
+    "ChuGiai": "Thánh công tham tán",
+    "FileName": "STTatNien",
+    "ID": "80"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Thổ công",
+    "ChuGiai": "Chí thành khả cách",
+    "FileName": "STThoCong",
+    "ID": "25"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Tiến hình - Diệu tướng viên minh",
+    "ChuGiai": "Diệu tướng viên minh",
+    "FileName": "STTienHinhDieuTuongVienMinh",
+    "ID": "83"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Tiến hình - Lục lục quần lê",
+    "ChuGiai": "Lục lục quần lê",
+    "FileName": "STTienHinhLucLucQuanLe",
+    "ID": "84"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Tiễn Táo Quân 23",
+    "ChuGiai": "Tuế trừ đông lạp",
+    "FileName": "STTienTaoQuan23",
+    "ID": "82"
+  },
+  {
+    "LoaiSo": "SỚ TẾT",
+    "TenSo": "Trần triều",
+    "ChuGiai": "Đông A khải thánh",
+    "FileName": "STTranTrieu",
+    "ID": "81"
+  },
+  {
+    "LoaiSo": "TẠ MỘ",
+    "TenSo": "Cầu Siêu",
+    "ChuGiai": "",
+    "FileName": "CauSieu",
+    "ID": "140"
+  },
+  {
+    "LoaiSo": "TẠ MỘ",
+    "TenSo": "Cầu Siêu độ gia tiên",
+    "ChuGiai": "sớ Cầu Siêu độ gia tiên 15-7",
+    "FileName": "CauSieuDoGiaTien",
+    "ID": "101"
+  },
+  {
+    "LoaiSo": "TẠ MỘ",
+    "TenSo": "Gia tiên",
+    "ChuGiai": "Tiên tổ thị hoàng",
+    "FileName": "TMGiaTien",
+    "ID": "23"
+  },
+  {
+    "LoaiSo": "TẠ MỘ",
+    "TenSo": "Tạ Mộ - Thần thông hữu cảm",
+    "ChuGiai": "Thần thông hữu cảm",
+    "FileName": "TMTaMo_ThanThongHuuCam",
+    "ID": "31"
+  },
+  {
+    "LoaiSo": "TẠ MỘ",
+    "TenSo": "Tạ Mộ - Thiên địa an bài",
+    "ChuGiai": "Thiên địa an bài",
+    "FileName": "TMTaMo_ThienDiaAnBai",
+    "ID": "32"
+  },
+  {
+    "LoaiSo": "TAM PHỦ THỤC MỆNH",
+    "TenSo": "An bản mệnh sớ",
+    "ChuGiai": "Thích ca như lai",
+    "FileName": "TPTMAnBanMenhSo",
+    "ID": "71"
+  },
+  {
+    "LoaiSo": "TAM PHỦ THỤC MỆNH",
+    "TenSo": "Bắc đẩu",
+    "ChuGiai": "Đẩu cư li khảm",
+    "FileName": "TPTMBacDau",
+    "ID": "72"
+  },
+  {
+    "LoaiSo": "TAM PHỦ THỤC MỆNH",
+    "TenSo": "Di Cung Hoán Số",
+    "ChuGiai": "",
+    "FileName": "Di_Cung_Hoan_So",
+    "ID": "105"
+  },
+  {
+    "LoaiSo": "TAM PHỦ THỤC MỆNH",
+    "TenSo": "Nam tào",
+    "ChuGiai": "Đẩu cư li khảm",
+    "FileName": "TPTMNamTao",
+    "ID": "73"
+  },
+  {
+    "LoaiSo": "TÀO QUAN",
+    "TenSo": "Công cứ Tào Quan",
+    "ChuGiai": "",
+    "FileName": "TQCongCuTaoQuan",
+    "ID": "97"
+  },
+  {
+    "LoaiSo": "TÀO QUAN",
+    "TenSo": "Cúng Phật Tào Quan",
+    "ChuGiai": "Sắc thân nan bảo",
+    "FileName": "TQCungPhatTaoQuan",
+    "ID": "85"
+  },
+  {
+    "LoaiSo": "TÀO QUAN",
+    "TenSo": "Điền hoàn Tào Quan",
+    "ChuGiai": "",
+    "FileName": "TQDienHoanTaoQuan",
+    "ID": "98"
+  },
+  {
+    "LoaiSo": "TÀO QUAN",
+    "TenSo": "Điệp âm Tào Quan",
+    "ChuGiai": "",
+    "FileName": "TQDiepAmTaoQuan",
+    "ID": "99"
+  },
+  {
+    "LoaiSo": "TÀO QUAN",
+    "TenSo": "Điệp dương Tào Quan",
+    "ChuGiai": "",
+    "FileName": "TQDiepDuongTaoQuan",
+    "ID": "100"
+  },
+  {
+    "LoaiSo": "TIỄN CĂN",
+    "TenSo": "Biểu dược sư cầu an",
+    "ChuGiai": "Ô luân kiểu kiểu",
+    "FileName": "TCBieuDuocSuCauAn",
+    "ID": "86"
+  },
+  {
+    "LoaiSo": "TIỄN CĂN",
+    "TenSo": "Cúng Phật tiễn căn",
+    "ChuGiai": "Huyền diệu vô ngôn",
+    "FileName": "TCCungPhatTienCan",
+    "ID": "87"
+  },
+  {
+    "LoaiSo": "TIỄN CĂN",
+    "TenSo": "Tiến hình thế mạng",
+    "ChuGiai": "Diệu tương viên minh",
+    "FileName": "TCTienHinhTheMang",
+    "ID": "88"
+  },
+  {
+    "LoaiSo": "TIỄN CĂN",
+    "TenSo": "Tứ phủ tiễn căn",
+    "ChuGiai": "Huyền diệu vô ngôn",
+    "FileName": "TCTuPhuTienCan",
+    "ID": "89"
+  },
+  {
+    "LoaiSo": "TỨ PHỦ THÁNH ĐẾ",
+    "TenSo": "Địa phủ",
+    "ChuGiai": "Khôn duy bác hậu",
+    "FileName": "TPTDDiaPhu",
+    "ID": "90"
+  },
+  {
+    "LoaiSo": "TỨ PHỦ THÁNH ĐẾ",
+    "TenSo": "Nhạc phủ",
+    "ChuGiai": "Súc súc cẩm phong",
+    "FileName": "TPTDNhacPhu",
+    "ID": "91"
+  },
+  {
+    "LoaiSo": "TỨ PHỦ THÁNH ĐẾ",
+    "TenSo": "Thiên phủ",
+    "ChuGiai": "Chí tôn chí đại",
+    "FileName": "TPTDThienPhu",
+    "ID": "92"
+  }
+]

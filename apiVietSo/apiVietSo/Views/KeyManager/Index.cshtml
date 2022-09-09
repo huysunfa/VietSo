@@ -1,0 +1,35 @@
+﻿@model IEnumerable<string>
+<hr />
+<a id="btnAdd" class="btn btn-primary">Add key</a>
+<table class="table-bordered col-md-12">
+    <tr>
+        <th>KEY</th>
+        <th>Ngày tạo</th>
+    </tr>
+  @foreach (var item in Model)
+  {
+      var it = item.Split('|');
+   <tr>
+       <td>@it.FirstOrDefault()</td>
+       <td>@it.LastOrDefault()</td>
+   </tr>
+}
+</table>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $("#btnAdd").click(function (e) {
+        e.preventDefault();
+        var r = confirm("Bạn có chắc chắn muốn tạo key");
+        if (r) {
+            $.ajax({
+                type: "POST",
+                url: "/KeyManager/AddKey",
+                dataType: "json",
+                success: function (response) {
+                    var abc = prompt("Key của bạn", response);
+                    window.location.reload();
+                }
+            });
+        }
+    });
+</script>

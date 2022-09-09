@@ -1,0 +1,211 @@
+﻿#navbarCollapse .navbar-nav .nav-link {
+    display: inline-grid !important;
+    text-align: center !important;
+    padding: 1px 3px !important;
+    margin-right: 3px !important;
+    color: white !important;
+    border-bottom: 1px solid;
+    border-top-left-radius: 4PX;
+    border-top-right-radius: 4PX;
+    font-weight: bold;
+}
+
+    #navbarCollapse .navbar-nav .nav-link span {
+        font-size: 13px !important
+    }
+
+.navbar {
+    box-shadow: 0PX 0PX 5PX #428bca, 0PX 0PX 5PX #222222;
+    background: #009688;
+    padding-bottom: 2px;
+}
+
+.navbar-light .navbar-brand, .navbar-light .navbar-nav .nav-link {
+    color: white !important;
+    font-weight: bold !important;
+}
+
+.navbar-nav {
+    -webkit-flex-direction: unset !important;
+    -ms-flex-direction: unset !important;
+    flex-direction: unset !important;
+}
+
+.navbar-brand {
+    PADDING-RIGHT: 5PX;
+    BORDER-RIGHT: 3px solid;
+    border-color: white;
+}
+
+/*----------------------------------------------------------------------------------------------*/
+body {
+    font-size: 13px !important
+}
+
+table.dataTable thead th, table.dataTable thead td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #111;
+}
+
+.note-editor {
+    background: white !important
+}
+
+
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 1px !important
+}
+
+.dataTables_wrapper .dataTables_info {
+    padding: 0
+}
+
+table.dataTable tbody th, table.dataTable tbody td, table.dataTable thead th, table.dataTable thead td {
+    padding: 5PX;
+}
+
+.table tr:hover {
+    background-color: #DEE2E5;
+}
+
+.btnCurdEdit, .btnCurdDelete {
+    cursor: pointer
+}
+
+
+table.dataTable thead th, table.dataTable tfoot th {
+    font-weight: normal !important
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    width: 300px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    BORDER: 1px solid #212529;
+}
+
+.table td, .table th {
+    border-top: 1px solid #f8f9fa;
+}
+
+#context-menu {
+    z-index: 9999
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.hidden {
+    display: none
+}
+
+
+.dx-datagrid-headers .dx-header-row .dx-datagrid-drag-action {
+    color: #fafafa;
+    background-color: #009688;
+}
+
+.dx-datagrid-headers .dx-header-row .dx-datagrid-action {
+    color: #fafafa;
+    background-color: #009688;
+}
+
+.dx-datagrid .dx-header-filter-empty {
+    color: #fff;
+}
+
+
+#TabMenu a:hover {
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.dx-datagrid-headers .dx-header-row .dx-datagrid-drag-action {
+    color: #fafafa;
+    background-color: #009688;
+}
+
+.dx-datagrid-headers .dx-header-row .dx-datagrid-action {
+    color: #fafafa;
+    background-color: #009688;
+}
+
+.dx-datagrid .dx-header-filter-empty {
+    color: #fff;
+}
+
+.ViewCT {
+    cursor: pointer !important
+}
+
+
+hr {
+    margin: 5px !important
+}
+
+.has-treeview {
+    border-top: 0.1px solid #ddd;
+}
+
+.nav-link.active {
+    background-color: #ffffff !important;
+}
+
+    .nav-link.active span {
+        color: #009688 !important
+    }
+
+.dx-scrollable-scroll-content {
+    background-color: #009688 !important
+}
+
+.dx-item.dx-toolbar-item.dx-toolbar-label {
+    float: right !important
+}
+
+.main-footer a {
+    color: #009688 !important
+}
+
+.row {
+    margin: 0 !important
+}
+
+.card-body {
+    padding: 5px !important;
+}
+
+.col-form-label {
+    font-weight: bold !important
+}
+
+.select2-container .select2-selection--single {
+    height: unset !important;
+    font-size: 16px
+}
+
+.select2-results__option {
+    font-size: 16px
+}
+
+.table td, .table th {
+    padding: 5px !important;
+}
+
+#ManagerWTS .form-group, #ManagerWTS label {
+    margin-bottom: 0 !important;
+}
+
+.navbar {
+    padding: 3px 3px
+}
+
+.form-control {
+    height: calc(2rem + 0px);
+}
+.select2-container--default .select2-selection--single {
+padding:3px
+}

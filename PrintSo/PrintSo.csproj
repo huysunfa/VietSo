@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C649960E-5621-4E93-AAD1-B1E0AB9976EB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>PrintSo</RootNamespace>
+    <AssemblyName>PrintSo</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>PrintSo.ico</ApplicationIcon>
+    <StartupObject>PrintSo.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonModel">
+      <HintPath>..\..\..\..\..\..\Bibe\CommonModel.dll</HintPath>
+    </Reference>
+    <Reference Include="DataModel">
+      <HintPath>..\..\..\..\..\..\Bibe\Backup\DataModel.dll</HintPath>
+    </Reference>
+    <Reference Include="DataText">
+      <HintPath>..\..\..\..\..\..\Bibe\DataText.dll</HintPath>
+    </Reference>
+    <Reference Include="PrintDoc">
+      <HintPath>..\..\..\..\..\..\Bibe\PrintDoc.dll</HintPath>
+    </Reference>
+    <Reference Include="PrintHelper">
+      <HintPath>..\..\..\..\..\..\Bibe\PrintHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="unvell.ReoGrid">
+      <HintPath>..\..\..\..\..\..\Bibe\unvell.ReoGrid.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationRunningHelper.cs" />
+    <Compile Include="ComboboxItem.cs" />
+    <Compile Include="DirectionEnum.cs" />
+    <Compile Include="FrmDanhSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDanhSach.Designer.cs">
+      <DependentUpon>FrmDanhSach.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDanhSachTinChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDanhSachTinChu.Designer.cs">
+      <DependentUpon>FrmDanhSachTinChu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDownloadLoaiSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDownloadLoaiSo.Designer.cs">
+      <DependentUpon>FrmDownloadLoaiSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmEditChua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditChua.Designer.cs">
+      <DependentUpon>FrmEditChua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNewLongSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNewLongSo.Designer.cs">
+      <DependentUpon>FrmNewLongSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmNgachSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNgachSo.Designer.cs">
+      <DependentUpon>FrmNgachSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPerson.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPerson.Designer.cs">
+      <DependentUpon>FrmPerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPersonSelectPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPersonSelectPrint.Designer.cs">
+      <DependentUpon>FrmPersonSelectPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPreview.Designer.cs">
+      <DependentUpon>FrmPreview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrintNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrintNo.Designer.cs">
+      <DependentUpon>FrmPrintNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrintProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrintProcess.Designer.cs">
+      <DependentUpon>FrmPrintProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProgressOne.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProgressOne.Designer.cs">
+      <DependentUpon>FrmProgressOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSetupPaper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSetupPaper.Designer.cs">
+      <DependentUpon>FrmSetupPaper.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmThietLapTinChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmThietLapTinChu.Designer.cs">
+      <DependentUpon>FrmThietLapTinChu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWelcome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWelcome.Designer.cs">
+      <DependentUpon>FrmWelcome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LogError.cs" />
+    <Compile Include="PanelBibe.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <DependentUpon>Settings.settings</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="RefreshPbx.cs" />
+    <Compile Include="ShareFun.cs" />
+    <Compile Include="ToolTipCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UHasNewVersionNote.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="USupportInfo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmDanhSach.resources" />
+    <EmbeddedResource Include="FrmDanhSachTinChu.resources" />
+    <EmbeddedResource Include="FrmDownloadLoaiSo.resources" />
+    <EmbeddedResource Include="FrmEditChua.resources" />
+    <EmbeddedResource Include="FrmNewLongSo.resources" />
+    <EmbeddedResource Include="FrmNgachSo.resources" />
+    <EmbeddedResource Include="FrmPerson.resources" />
+    <EmbeddedResource Include="FrmPerson.resx">
+      <DependentUpon>FrmPerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPersonSelectPrint.resources" />
+    <EmbeddedResource Include="FrmPersonSelectPrint.resx">
+      <DependentUpon>FrmPersonSelectPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPreview.resources" />
+    <EmbeddedResource Include="FrmPreview.resx">
+      <DependentUpon>FrmPreview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrintNo.resources" />
+    <EmbeddedResource Include="FrmPrintProcess.resources" />
+    <EmbeddedResource Include="FrmProgressOne.resources" />
+    <EmbeddedResource Include="FrmSetupPaper.resources" />
+    <EmbeddedResource Include="FrmThietLapTinChu.resources" />
+    <EmbeddedResource Include="FrmWelcome.resources" />
+    <EmbeddedResource Include="Properties\Resources.resources" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <DependentUpon>Resources.cs</DependentUpon>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UHasNewVersionNote.resources" />
+    <EmbeddedResource Include="USupportInfo.resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
