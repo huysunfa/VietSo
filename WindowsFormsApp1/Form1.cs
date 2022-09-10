@@ -321,7 +321,17 @@ namespace WindowsFormsApp1
                 var val = ActiveData.Get(bm);
                 if (val == null)
                 {
-                    showSugget(bm, t);
+                    if (frmTinChu.keys.Contains(bm))
+                    {
+                        frmTinChu frm = new frmTinChu();
+                        frm.ShowDialog();
+                        setText(Row, Col, bm, val);
+
+                    }
+                    else
+                    {
+                        showSugget(bm, t);
+                    }
                 }
                 else
                 {
@@ -1020,6 +1030,7 @@ namespace WindowsFormsApp1
             }
             else
             {
+
 
                 var frm = new frmSugget(key, t);
                 frm.ShowDialog();
