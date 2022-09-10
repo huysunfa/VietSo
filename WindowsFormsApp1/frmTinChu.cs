@@ -68,6 +68,15 @@ namespace WindowsFormsApp1
         {
             DataTable dt = new DataTable();
             dt = (DataTable)dataGridView1.DataSource;
+            if (dt.Rows.Count == 1)
+            {
+                var item = dataGridView1.Rows[0];
+                foreach (var it in keys)
+                {
+                    SaveCellValue(item, it);
+                }
+
+            }
             CsvExtentions.ToCSV(dt, Util.getTinChuPath);
             this.Visible = false;
         }

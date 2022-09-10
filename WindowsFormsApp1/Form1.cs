@@ -1110,7 +1110,7 @@ namespace WindowsFormsApp1
                    
                     var Data = item.Data + "";
                     var Tag = item.Tag + "";
-                    var Comment = item.Comment;
+                    var Comment = item.Comment+"";
                     if (Data == Comment || Tag.StartsWith("@"))
                     {
                         sheet.SetRangeStyles(item.Address, new unvell.ReoGrid.WorksheetRangeStyle
@@ -1132,6 +1132,8 @@ namespace WindowsFormsApp1
                     }
                     else
                     {
+                        sheet.AutoFitColumnWidth(item.Column, false);
+
                         sheet.SetRangeStyles(item.Address, new unvell.ReoGrid.WorksheetRangeStyle
                         {
                             Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,
@@ -1152,7 +1154,7 @@ namespace WindowsFormsApp1
 
                 }
             }
-
+          
             SaveData();
         }
 
@@ -1203,11 +1205,10 @@ namespace WindowsFormsApp1
 
         public void SaveData()
         {
-            if (rbSongNgu.Checked)
+            if (!rbSongNgu.Checked)
             {
-        //        MessageBox.Show("Vui lòng chuyển sang chế độ chỉ chữ HÁN hoặc chữ Việt để lưu");
-                return;
-            }
+      
+          
             var LgSo = new Dictionary<int, Dictionary<int, CellData>>();
 
             var sheet = reoGridControl1.CurrentWorksheet;
@@ -1244,6 +1245,8 @@ namespace WindowsFormsApp1
                 }
             }
             Util.LongSoHienTai.LgSo = LgSo;
+            }
+
             float.TryParse(cbfsizeCN.Text, out float fsizeCN);
             float.TryParse(cbfsizeVN.Text, out float fsizeVN);
 
