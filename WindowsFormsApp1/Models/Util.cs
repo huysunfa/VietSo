@@ -13,12 +13,15 @@ namespace WindowsFormsApp1.Models
   public  class Util
     {
         public static LongSoData LongSoHienTai;
+        public static string NameLongSoHienTai;
         public static string domain = "";
         public static string mainURL = "http://103.28.36.121/plesk-site-preview/api.vietso.3sgroup.vn/";
         public static string getTempPath = Path.GetTempPath();
         public static string getDataPath = System.IO.Directory.GetCurrentDirectory()+"/Data/";
         public static string getNgachSoPath = "Data/NgachSo.Config";
         public static string getTinChuPath = "Data/TinChu.Config";
+        public static string getDictionaryPath = "Data/Dictionary.Config";
+        public static string getDictionaryNguCanhPath = "Data/DictionaryNguCanh.Config";
         public static float DefaultFontSize = 16;
 		public static string strDataSugget;
 		// Token: 0x06000078 RID: 120 RVA: 0x000050A8 File Offset: 0x000032A8

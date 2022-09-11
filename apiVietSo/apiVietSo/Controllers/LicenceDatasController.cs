@@ -12,7 +12,7 @@ namespace apiVietSo.Controllers
 {
     public class LicenceDatasController : BaseController
     {
-        private VietSoEntities1 db = new VietSoEntities1();
+        private vietsoEntities  db = new vietsoEntities();
 
         // GET: LicenceDatas
         public ActionResult Index()

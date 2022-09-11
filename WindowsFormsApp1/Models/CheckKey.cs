@@ -47,7 +47,7 @@ namespace WindowsFormsApp1.Models
             var mac = CheckKey.getMac();
 
             var data = SqlModule.GetDataTable($@" SELECT [ExpiryDate]
-  FROM [VietSo].[dbo].[LicenceData] where Licence='{key}'");
+  FROM [LicenceData] where Licence='{key}'");
             if (data.Rows.Count > 0)
             {
                 DateTime.TryParse(data.Rows[0]["ExpiryDate"].ToString(), out DateTime result);

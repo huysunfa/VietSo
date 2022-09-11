@@ -36,7 +36,7 @@ namespace apiVietSo.Controllers
         public ActionResult Index(string TAIKHOAN, string MATKHAU)
         {
             var mk = MATKHAU;// PasswordExtentions.EncryptPassword(MATKHAU);
-            using (Models.VietSoEntities1 db = new VietSoEntities1())
+            using (Models.vietsoEntities db = new vietsoEntities())
             {
                 string StaffID = null;
 

@@ -1,24 +1,48 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WindowsFormsApp1.Models;
 
 namespace WindowsFormsApp1
 {
     public class CNDictionary
     {
         public static Dictionary<string, string> database;
+        public static DataTable databaseNguCanh;
         public static void loadDatabase()
         {
-            database = new Dictionary<string, string>();
-            var data = SqlModule.GetDataTable($@"select vn,chinese from (select vn,chinese,ROW_NUMBER() over(partition by VN ORDER BY ID ) as RN from VnChinese) a1
-where rn = 1");
-            foreach (DataRow item in data.Rows)
+            if (File.Exists(Util.getDictionaryPath))
             {
-                database.Add((item["vn"] + "").ToLower(), item["chinese"] + "");
+                database = JsonConvert.DeserializeObject<Dictionary<string, string>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryPath)));
+                databaseNguCanh = JsonConvert.DeserializeObject<DataTable>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryNguCanhPath)));
             }
+            if (database == null)
+            {
+                #region database
+                database = new Dictionary<string, string>();
+                var data = SqlModule.GetDataTable($@"select vn,chinese from (select vn,chinese,ROW_NUMBER() over(partition by VN ORDER BY ID ) as RN from VnChinese) a1
+                where rn = 1");
+                foreach (DataRow item in data.Rows)
+                {
+                    database.Add((item["vn"] + "").ToLower(), item["chinese"] + "");
+                }
+                var output = Newtonsoft.Json.JsonConvert.SerializeObject(database);
+                output = Security.Encrypt(output);
+                System.IO.File.WriteAllText(Util.getDictionaryPath, output);
+                #endregion
+
+                #region databaseNguCanh
+                databaseNguCanh = SqlModule.GetDataTable($"SELECT vn,chinese,used,nguCanh FROM VnChinese WHERE  ISNULL(nguCanh,'')!='' order by used");
+                System.IO.File.WriteAllText(Util.getDictionaryNguCanhPath, Security.Encrypt(Newtonsoft.Json.JsonConvert.SerializeObject(databaseNguCanh)));
+                #endregion
+            }
+
+
         }
         public static string getCN(string vn)
         {
@@ -39,7 +63,7 @@ where rn = 1");
                 {
 
                     result = result + " " + database[key];
-                } 
+                }
             }
             if (result == "")
             {
@@ -47,37 +71,33 @@ where rn = 1");
             }
 
             return result;
-        }
-
-        public static string getCN(string vn, string nguCanh)
+        }   
+        public static string getVN(string cn)
         {
-            if (string.IsNullOrEmpty(vn))
+            if (string.IsNullOrEmpty(cn))
             {
-                return vn;
+                return cn;
             }
-            if (!string.IsNullOrEmpty(nguCanh))
-            {
-                nguCanh = nguCanh.Replace("$", "").Replace("@", "").Replace("*", "").ToLower();
-            }
+
             var result = "";
-            foreach (var item in vn.Split(' '))
+            foreach (var item in cn.Split(' '))
             {
-                if (string.IsNullOrEmpty(item))
+                var key = item;
+                if (string.IsNullOrEmpty(key))
                 {
                     continue;
                 }
-                var data = SqlModule.GetDataTable($"select   chinese from VnChinese   where vn=N'{item}' order by ( case when nguCanh='{nguCanh}' then 1 else 0 end )");
-                if (data.Rows.Count > 0)
+                if (database.ContainsValue(key))
                 {
-                    result = result + " " + data.Rows[0]["chinese"].ToString();
+                    result = result + " " + database.Where(v=>v.Value==key).Select(z=>z.Key).FirstOrDefault();
                 }
             }
             if (result == "")
             {
-                result = vn;
+                result = cn;
             }
 
-            return result;
+            return result.Trim();
         }
 
         public static string getChuNomDD(string A_0)

@@ -10,7 +10,7 @@ namespace WindowsFormsApp1
 {
     public class SqlModule
     {
-        static string StrConnection = @"Data Source=.\SQLEXPRESS;Initial Catalog=VietSo;Trusted_Connection=True;";
+        static string StrConnection = @"Data Source=112.78.2.154;Initial Catalog=lts43636_vietso;;User ID=lts43636_vietso;Password=Vietso123;";
         public static DataTable GetDataTable(string sql, params object[] parameters)
         {
             DataTable result = new DataTable();

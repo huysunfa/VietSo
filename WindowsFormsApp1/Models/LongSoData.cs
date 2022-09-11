@@ -27,15 +27,16 @@ namespace WindowsFormsApp1.Models
         public Dictionary<int, Dictionary<int, CellData>> LgSo;
         public object fnameCN { get; set; }
         public float fsizeCN { get; set; }
-        public int fstyleCN { get; set; }
+        public string fstyleCN { get; set; }
         public object fnameVN { get; set; }
         public float fsizeVN { get; set; }
-        public int fstyleVN { get; set; }
+        public string fstyleVN { get; set; }
         public LongSo LSo { get; set; }
         public string PrinterName { get; set; }
         public float ScaleFactor { get; set; }
         public static LongSoData get(string filename, LongSo LSo)
         {
+            
             var json = System.IO.File.ReadAllText(@"Data\" + filename + ConstData.ExtentionsFile);
             json = Security.Decrypt(json);
             json = json.Replace("$", "@");
@@ -47,6 +48,7 @@ namespace WindowsFormsApp1.Models
                 float scale = (float)SystemParameters.VirtualScreenWidth / (float)result.PageWidth ;
                 result.ScaleFactor = scale;
             }
+
             return result;
         }
         public static void save(LongSoData item)

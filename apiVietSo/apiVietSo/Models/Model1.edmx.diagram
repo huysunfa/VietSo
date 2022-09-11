@@ -4,10 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f4503f0ff3364553896e7af046d51935" Name="Diagram1">
-        <EntityTypeShape EntityType="VietSoModel.StaffInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VietSoModel.VnChinese" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VietSoModel.LicenceData" Width="1.5" PointX="0.75" PointY="4.75" />
+      <Diagram DiagramId="0645550930e94f4cac50bfffc68ad17d" Name="Diagram1">
+        <EntityTypeShape EntityType="lts43636_vietsoModel.LicenceData" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lts43636_vietsoModel.StaffInfo" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lts43636_vietsoModel.VnChinese" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

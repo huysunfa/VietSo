@@ -117,7 +117,7 @@ namespace WindowsFormsApp1
                     int width = printDialog.PrinterSettings.DefaultPageSettings.PaperSize.Width;
                     Util.LongSoHienTai.PrinterName = printDialog.PrinterSettings.PrinterName;
                     label12.Text = Util.LongSoHienTai.PrinterName;
-
+                    LongSoData.save(Util.LongSoHienTai);
                 }
             }
             catch (Exception ex)

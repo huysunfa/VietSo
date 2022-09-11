@@ -56,31 +56,24 @@ namespace WindowsFormsApp1
         PrivateFontCollection pfc = new PrivateFontCollection();
         public void loadFont()
         {
-            //string[] fileEntries = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/fontCN");
-            //foreach (var item in fileEntries)
-            //{
-            //    pfc.AddFontFile(item);
-            //}
+
+
             pfc = LoadInMemoryFonts();
+
             foreach (var item in pfc.Families)
             {
                 cbfnameCN.Items.Add(item.Name);
-                cbfnameVN.Items.Add(item.Name);
 
             }
-            //using (InstalledFontCollection col = new InstalledFontCollection())
-            //{
-            //    foreach (FontFamily fa in col.Families)
-            //    {
-            //        cbfnameCN.Items.Add(fa.Name);
-            //        cbfnameVN.Items.Add(fa.Name);
-            //    }
-            //}
-            cbfnameCN.SelectedItem = "CN-Khai";
-            cbfnameVN.SelectedIndex = 0;
-            cbfstyleCN.SelectedIndex = 2;
-            cbfstyleVN.SelectedIndex = 2;
+            foreach (FontFamily font in System.Drawing.FontFamily.Families)
+            {
+                cbfnameVN.Items.Add(font.Name);
+            }
+
         }
+
+
+
 
         FlowLayoutPanel dynamicPanel = new FlowLayoutPanel();
         public void addMenuContext()
@@ -159,12 +152,13 @@ namespace WindowsFormsApp1
             TSMItemDelCol.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemDelCol.Text = "Xóa cột";
             TSMItemDelCol.Click += TSMItemDelCol_Click;
+            TSMItemDelCel.ShortcutKeys =  Keys.Delete;
             TSMItemDelCel.Image = global::WindowsFormsApp1.Properties.Resources.Delete;
             TSMItemDelCel.Name = "TSMItemDelCel";
             TSMItemDelCel.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemDelCel.Text = "Xóa ô";
             TSMItemDelCel.Click += TSMItemDelCel_Click;
-          //  TSMItemThemChuSauTinChu.Image = global::WindowsFormsApp1.Properties.Resources.edit;
+            //  TSMItemThemChuSauTinChu.Image = global::WindowsFormsApp1.Properties.Resources.edit;
             //TSMItemThemChuSauTinChu.Name = "TSMItemThemChuSauTinChu";
             //TSMItemThemChuSauTinChu.Size = new global::System.Drawing.Size(0x134, 0x1A);
             //TSMItemThemChuSauTinChu.Text = "Khuôn mẫu Tín chủ";
@@ -247,16 +241,51 @@ namespace WindowsFormsApp1
         {
             var text = Clipboard.GetText();
 
+            var input = text.Split('\n');
             var worksheet = reoGridControl1.CurrentWorksheet;
             var select = worksheet.SelectionRange;
-            for (int i = select.Row; i <= select.EndRow; i++)
+            int Col = worksheet.UsedRange.EndCol;
+            int Row = worksheet.UsedRange.EndRow;
+            for (int i = 0; i < input.Length; i++)
             {
-                for (int j = select.Col; j <= select.EndCol; j++)
+                var row = input[i].Split('\t');
+                for (int j = 0; j < row.Length; j++)
                 {
-                    worksheet.Cells[i, j].Data = text;
+                    if (select.Row + i > Row)
+                    {
+                        continue;
+                    }
+
+                    if (select.Col + j > Col)
+                    {
+                        continue;
+                    }
+                    var cell = worksheet.Cells[select.Row + i, select.Col + j];
+                    cell.Data = row[j];
+
+                    if ((string)cell.DataFormatArgs == "TextVN")
+                    {
+                        cell.Tag = row[j];
+                        cell.Comment = CNDictionary.getCN(row[j]);
+                    }
+                    else
+                    {
+                        cell.Comment = row[j];
+                        cell.Tag = CNDictionary.getVN(row[j]);
+                    }
+
 
                 }
             }
+            //for (int i = select.Row; i <= select.EndRow; i++)
+            //{
+            //    for (int j = select.Col; j <= select.EndCol; j++)
+            //    {
+            //        worksheet.Cells[i, j].Data = text;
+
+            //    }
+            //}
+            SaveData();
         }
 
         // Token: 0x060000D0 RID: 208 RVA: 0x0000E6B4 File Offset: 0x0000C8B4
@@ -266,7 +295,7 @@ namespace WindowsFormsApp1
             var worksheet = reoGridControl1.CurrentWorksheet;
             var cnt = worksheet.SelectionRange.Row;
             worksheet.InsertRows(cnt, 1);
-            reoGridControl1.ShowBolder(true);
+            reoGridControl1.ShowBolder(false);
 
         }
 
@@ -276,7 +305,7 @@ namespace WindowsFormsApp1
             var worksheet = reoGridControl1.CurrentWorksheet;
             var cnt = worksheet.SelectionRange.Col;
             worksheet.InsertColumns(cnt, 1);
-            reoGridControl1.ShowBolder(true);
+            reoGridControl1.ShowBolder(false);
 
         }
 
@@ -307,8 +336,11 @@ namespace WindowsFormsApp1
                 for (int j = select.Col; j <= select.EndCol; j++)
                 {
                     worksheet.Cells[i, j].Data = "";
+                    worksheet.Cells[i, j].Comment = "";
+                    worksheet.Cells[i, j].Tag = "";
                 }
             }
+            SaveData();
         }
         private void addTextLongSo(string bm, string t)
         {
@@ -425,6 +457,7 @@ namespace WindowsFormsApp1
         }
         private void Form1_Load(object sender, EventArgs e)
         {
+            cbCanChuViet.SelectedItem = "RIGHT";
             addMenuContext();
 
             loadFont();
@@ -441,7 +474,7 @@ namespace WindowsFormsApp1
             dynamicPanel.Name = "Panel1";
             dynamicPanel.Visible = false;
             dynamicPanel.TabIndex = 9999;
-            dynamicPanel.Size = new System.Drawing.Size(300, 200);
+            dynamicPanel.Size = new System.Drawing.Size(400, 200);
             dynamicPanel.BackColor = Color.LightBlue;
 
             Controls.Add(dynamicPanel);
@@ -449,9 +482,36 @@ namespace WindowsFormsApp1
             worksheet.CellEditTextChanging += (s, r1) =>
             {
                 var txt = r1.Text.ToString().ToUpper();
-                //r1.Cell.Tag = txt;
-                //r1.Cell.Comment = CNDictionary.getCN(txt);
                 loaddd(txt);
+            };
+
+            worksheet.AfterCellEdit += (s, r1) =>
+            {
+                if (r1.NewData != r1.Cell)
+                {
+                    if ((string)r1.NewData == (string)r1.Cell.Tag || (string)r1.NewData == r1.Cell.Comment)
+                    {
+                        return;
+                    }
+                    string TextVN = r1.NewData + "";
+                    string TextCN = r1.NewData + "";
+                    if (dynamicPanel.Controls.Count > 0)
+                    {
+                        TextVN = dynamicPanel.Controls[0].Tag + "";
+                        TextCN = dynamicPanel.Controls[0].Text;
+                    }
+                    setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN);
+                    if ((string)r1.Cell.DataFormatArgs == "TextCN")
+                    {
+                        r1.NewData = TextCN;
+                    }
+                    else
+                    {
+                        r1.NewData = TextVN;
+                    }
+
+
+                }
             };
 
 
@@ -463,7 +523,7 @@ namespace WindowsFormsApp1
             worksheet.Scaled += (s, r1) =>
             {
                 Util.LongSoHienTai.ScaleFactor = worksheet.ScaleFactor;
-
+                SaveData();
             };
 
             rbChuHan.Checked = true;
@@ -472,6 +532,7 @@ namespace WindowsFormsApp1
             var key = CheckKey.LocalKey();
             this.Text += $" Bản quyền {key} sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
             labelLicence.Text = $"Bản quyền sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
+            ReLoad(sender, e);
         }
         void loaddd(string txt = "")
         {
@@ -486,7 +547,9 @@ namespace WindowsFormsApp1
             {
                 dynamicPanel.Controls.RemoveAt(i);
             }
-            var input = Program.dataSuggets.Where(z => txt != "" && z.Key.Contains(txt)).ToList();
+            dynamicPanel.Controls.Clear();
+
+            var input = CNDictionary.database.Where(z => txt != "" && z.Key.ToLower().StartsWith(txt.ToLower())).OrderBy(v => v.Key.Length).ToList();
 
             int stt = 0;
             foreach (var it in input)
@@ -495,27 +558,27 @@ namespace WindowsFormsApp1
                 {
                     break;
                 }
-                foreach (var item in it.Value)
+
+
+                Button textBox1 = new Button();
+                textBox1.Location = new Point(10, 10);
+                textBox1.Text = it.Value;
+                var size = it.Value.Length * 50;
+                if (size < 70)
                 {
-
-
-                    Button textBox1 = new Button();
-                    textBox1.Location = new Point(10, 10);
-                    textBox1.Text = item;
-
-                    textBox1.Size = new Size(70, 40);
-                    textBox1.Click += new EventHandler(DynamicButton_Click);
-
-                    ///var font = pfc.Families.Where(z => z.Name == cbfnameCN.Text).FirstOrDefault();
-                    textBox1.Font = new Font(cbfnameCN.Text, 16);
-                    var from = it.Key.IndexOf('<') + 1;
-                    var to = it.Key.IndexOf('>');
-                    textBox1.Tag = it.Key.Substring(from, to - from);
-
-
-                    dynamicPanel.Controls.Add(textBox1);
-                    stt++;
+                    size = 70;
                 }
+                textBox1.Size = new Size(size, 40);
+                textBox1.Click += new EventHandler(DynamicButton_Click);
+
+                textBox1.Font = new Font(cbfnameCN.Text, 16);
+
+                textBox1.Tag = it.Key;
+
+
+                dynamicPanel.Controls.Add(textBox1);
+                stt++;
+
             }
             dynamicPanel.Visible = true;
 
@@ -528,9 +591,10 @@ namespace WindowsFormsApp1
             //LongSoData.save(Util.LongSoHienTai);
 
             worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].EndEdit();
-            worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].Data = TextCN;
+
             worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].Comment = TextCN;
             worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].Tag = TextVN;
+            RenderStyle();
         }
         private void DynamicButton_Click(object sender, EventArgs e)
         {
@@ -541,10 +605,7 @@ namespace WindowsFormsApp1
 
             setText(Row, Col, name.Tag.ToString(), name.Text);
 
-            if (rbChuViet.Checked == true)
-            {
-                worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].Data = name.Tag;
-            }
+
             dynamicPanel.Visible = false;
 
 
@@ -567,31 +628,16 @@ namespace WindowsFormsApp1
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //float.TryParse(cbfsizeCN.Text, out float val);
 
-            //if (val == 0)
-            //{
-            //    return;
-            //}
-            //var sheet = reoGridControl1.CurrentWorksheet;
-
-            //sheet.SetRangeStyles(sheet.UsedRange, new unvell.ReoGrid.WorksheetRangeStyle
-            //{
-            //    Flag = unvell.ReoGrid.PlainStyleFlag.FontAll,
-            //    FontSize = val
-            //});
-            RenderStyle();
+            //   RenderStyle();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ReLoad(sender, e);
-
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            ReLoad(sender, e);
+            if (((RadioButton)sender).Checked)
+            {
+                ReLoad(sender, e);
+            }
         }
 
 
@@ -600,30 +646,18 @@ namespace WindowsFormsApp1
 
             FrmDownloadLoaiSo frm = new FrmDownloadLoaiSo();
             frm.ShowDialog();
-            ReLoad(sender, e);
+            // ReLoad(sender, e);
         }
         public void ReLoad(object sender, EventArgs e)
         {
+            loadDataLongSo();
+
+            loadSettingFont();
             var Data = Util.LongSoHienTai;
             if (Data == null || Data.LgSo == null)
             {
                 return;
             }
-            #region Setting Font
-            Data.fsizeCN = Data.fsizeCN == 0 && !string.IsNullOrEmpty(cbfsizeCN.Text) ? float.Parse(cbfsizeCN.Text) : Data.fsizeCN;
-            Data.fsizeVN = Data.fsizeVN == 0 && !string.IsNullOrEmpty(cbfsizeVN.Text) ? float.Parse(cbfsizeVN.Text) : Data.fsizeVN;
-            Data.fsizeCN = Data.fsizeCN == 0 ? Util.DefaultFontSize : Data.fsizeCN;
-            Data.fsizeVN = Data.fsizeVN == 0 ? Util.DefaultFontSize : Data.fsizeVN;
-
-            txtLoaiSo.Text = Util.LongSoHienTai.LSo.TenSo;
-            cbfsizeCN.SelectedItem = Data.fsizeCN + "";
-            cbfsizeVN.SelectedItem = Data.fsizeVN + "";
-            //cbfnameVN.SelectedItem = Data.fnameVN + "";
-            //cbfnameCN.SelectedItem = Data.fnameCN + "";
-            cbfstyleCN.SelectedItem = LongSoData.fstyleToString(Data.fstyleCN);
-            cbfstyleVN.SelectedItem = LongSoData.fstyleToString(Data.fstyleVN);
-            #endregion
-
 
             var worksheet = reoGridControl1.CurrentWorksheet;
             worksheet.Reset();
@@ -633,7 +667,15 @@ namespace WindowsFormsApp1
             int r = Data.LgSo.Select(z => z.Value.Count).Max(z => z);
             if (rbSongNgu.Checked)
             {
-                c = c * 2;
+                if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
+                {
+                    c = c * 2;
+                }
+                if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
+                {
+                    r = r * 2;
+                }
+
             }
 
             ShowFontChange();
@@ -654,54 +696,58 @@ namespace WindowsFormsApp1
 
                     }
                     var numcol = item.Key;
+                    var numrow = it.Key;
+                    var row2 = 0;
+                    var col2 = 0;
                     // nếu là song ngữ thì tách cột ra
                     if (rbSongNgu.Checked)
                     {
-                        numcol = numcol * 2 + 1;
+                        if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
+                        {
+                            numcol = numcol * 2 + 1;
+                            col2 = 1;
+                        }
+                        if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
+                        {
+                            numrow = numrow * 2 + 1;
+                            row2 = 1;
+                        }
                     }
-                    var cnt = worksheet.ColumnCount;
-                    if (cnt <= numcol || worksheet.RowCount <= it.Key)
+
+                    if (worksheet.ColumnCount <= numcol || worksheet.RowCount <= numrow)
                     {
                         continue;
                     }
-                    var col = new CellPosition() { Col = numcol, Row = it.Key };
+                    var col = new CellPosition() { Col = numcol, Row = numrow };
                     worksheet.Cells[col].Tag = it.Value.TextVN;
                     worksheet.Cells[col].Comment = it.Value.TextCN;
-                    var fname = it.Value.fnameCN ?? Data.fnameCN;
-                    var fsize = it.Value.fsizeCN == 0 ? Data.fsizeCN : it.Value.fsizeCN;
-                    var fstyle = it.Value.fstyleCN;
+
                     #region Hiển thị dữ liệu theo hạng mục người dùng chọn
                     if (rbChuViet.Checked)
                     {
-                        worksheet.Cells[col].Data = it.Value.TextVN;
-                        fname = it.Value.fnameVN;
-                        fsize = it.Value.fsizeVN;
-                        fstyle = it.Value.fstyleVN;
+                        worksheet.Cells[col].DataFormatArgs = "TextVN";
                     }
                     if (rbChuHan.Checked)
                     {
-                        worksheet.Cells[col].Data = it.Value.TextCN;
+                        worksheet.Cells[col].DataFormatArgs = "TextCN";
                     }
                     if (rbSongNgu.Checked)
                     {
-                        worksheet.Cells[col].Data = it.Value.TextVN;
+                        if (cbCanChuViet.Text == "LEFT" || cbCanChuViet.Text == "TOP") worksheet.Cells[col].DataFormatArgs = "TextCN";
+                        if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "BOTTOM") worksheet.Cells[col].DataFormatArgs = "TextVN";
 
-                        if (numcol > 0)
-                        {
-                            var col2 = new CellPosition() { Col = numcol - 1, Row = it.Key };
-                            worksheet.Cells[col2].Data = it.Value.TextCN;
-                            worksheet.Cells[col2].Tag = it.Value.TextVN;
-                            worksheet.Cells[col2].Comment = it.Value.TextCN;
-                            //var FontName = it.Value.fnameVN ?? Data.fnameVN;
-                            //var FontSize = it.Value.fsizeVN == 0 ? Data.fsizeVN : it.Value.fsizeVN;
 
-                            //worksheet.SetRangeStyles(col2.ToAddress(), new WorksheetRangeStyle()
-                            //{
-                            //    Flag = PlainStyleFlag.FontStyleAll,
-                            //    FontName = FontName + "",
-                            //    FontSize = FontSize
-                            //});
-                        }
+
+                        if (numcol == 0) continue;
+
+                        var cell2 = new CellPosition() { Col = numcol - col2, Row = numrow - row2 };
+
+                        worksheet.Cells[cell2].Tag = it.Value.TextVN;
+                        worksheet.Cells[cell2].Comment = it.Value.TextCN;
+
+                        if (cbCanChuViet.Text == "LEFT" || cbCanChuViet.Text == "TOP") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
+                        if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "BOTTOM") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
+
                     }
                     #endregion
 
@@ -710,97 +756,6 @@ namespace WindowsFormsApp1
 
             #endregion
 
-            ////#endregion
-            //var pos = worksheet.UsedRange.ToAddress();
-            //worksheet.SetRangeStyles(pos, new WorksheetRangeStyle
-            //{
-            //    Flag = PlainStyleFlag.HorizontalAlign,
-            //    HAlign = ReoGridHorAlign.Center,
-            //});
-            //if (rbChuHan.Checked == true)
-            //{
-
-
-            //    worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //    {
-            //        Flag = PlainStyleFlag.FontSize,
-            //        FontSize = Util.LongSoHienTai.fsizeCN,
-            //    });
-            //    switch (Util.LongSoHienTai.fstyleCN)
-            //    {
-            //        case 1:
-            //            worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //            {
-            //                Flag = PlainStyleFlag.FontStyleBold,
-            //                Bold = true,
-            //            });
-            //            ; break;
-
-            //        case 2:
-            //            worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //            {
-            //                Flag = PlainStyleFlag.FontStyleItalic,
-            //                Italic = true,
-            //            });
-            //            ; break;
-            //        case 3:
-            //            worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //            {
-            //                Flag = PlainStyleFlag.FontStyleAll,
-            //                Italic = false,
-            //                Bold = false
-            //            });
-            //            ; break;
-            //    }
-            //}
-
-            //if (rbChuViet.Checked == true)
-            //{
-
-            //    worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //    {
-            //        Flag = PlainStyleFlag.FontSize,
-            //        FontSize = Util.LongSoHienTai.fsizeVN,
-            //    });
-            //    switch (Util.LongSoHienTai.fstyleVN)
-            //    {
-            //        case 1:
-            //            worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //            {
-            //                Flag = PlainStyleFlag.FontStyleBold,
-            //                Bold = true,
-            //            });
-            //            ; break;
-
-            //        case 2:
-            //            worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //            {
-            //                Flag = PlainStyleFlag.FontStyleItalic,
-            //                Italic = true,
-            //            });
-            //            ; break;
-            //        case 3:
-            //            worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            //            {
-            //                Flag = PlainStyleFlag.FontStyleAll,
-            //                Italic = false,
-            //                Bold = false
-            //            });
-            //            ; break;
-            //    }
-            //}
-
-            //LongSoData.save(Util.LongSoHienTai);
-            ////var heso = (float)Width / (float)Util.LongSoHienTai.PageWidth;
-            ////heso = heso / ((float)1.5);
-            ////heso = heso > 1 ? heso : 1;
-            ////worksheet.SetScale(heso);
-            //worksheet.SetRangeStyles(pos, new WorksheetRangeStyle
-            //{
-            //    // style item flag
-            //    Flag = PlainStyleFlag.BackColor,
-            //    BackColor = Color.White,
-            //});
 
             worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
             RenderStyle();
@@ -832,6 +787,66 @@ namespace WindowsFormsApp1
                 labelVN.Visible = true;
                 cbfstyleVN.Visible = true;
             }
+
+            cbCanChuViet.Visible = rbSongNgu.Checked;
+            lbCanChuViet.Visible = rbSongNgu.Checked;
+
+
+        }
+        public string GetDefault()
+        {
+            var path = System.AppDomain.CurrentDomain.BaseDirectory + "/Data";
+            if (Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).Count() == 0)
+            {
+                ExchangeLongSo.downloadFile("LePhat");
+            }
+            var macdinh = Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).OrderByDescending(z => new FileInfo(z).CreationTime).FirstOrDefault();
+            if (!String.IsNullOrEmpty(macdinh))
+            {
+                var file = new FileInfo(macdinh);
+                var name = file.Name.Split('.').FirstOrDefault();
+                return name;
+            }
+            else
+            {
+
+            }
+            return null;
+        }
+        public void loadDataLongSo()
+        {
+            if (string.IsNullOrEmpty(Util.NameLongSoHienTai))
+            {
+                Util.NameLongSoHienTai = GetDefault();
+            }
+            var LSo = new LongSo();
+            LSo.FileName = Util.NameLongSoHienTai;
+            LSo.TenSo = Util.NameLongSoHienTai;
+            Util.LongSoHienTai = LongSoData.get(LSo.FileName, LSo);
+
+
+        }
+        public void loadSettingFont()
+        {
+            var Data = Util.LongSoHienTai;
+            #region Setting Font
+            Data.fsizeCN = Data.fsizeCN == 0 && !string.IsNullOrEmpty(cbfsizeCN.Text) ? float.Parse(cbfsizeCN.Text) : Data.fsizeCN;
+            Data.fsizeVN = Data.fsizeVN == 0 && !string.IsNullOrEmpty(cbfsizeVN.Text) ? float.Parse(cbfsizeVN.Text) : Data.fsizeVN;
+            Data.fsizeCN = Data.fsizeCN == 0 ? Util.DefaultFontSize : Data.fsizeCN;
+            Data.fsizeVN = Data.fsizeVN == 0 ? Util.DefaultFontSize : Data.fsizeVN;
+
+            txtLoaiSo.Text = Util.LongSoHienTai.LSo.TenSo;
+            cbfsizeCN.SelectedItem = Data.fsizeCN + "";
+            cbfsizeVN.SelectedItem = Data.fsizeVN + "";
+            cbfstyleCN.Text = Data.fstyleCN;
+            cbfstyleVN.Text = Data.fstyleVN;
+
+            if (string.IsNullOrEmpty(Data.fnameCN + "")) Data.fnameCN = "CN-Khai";
+            if (string.IsNullOrEmpty(Data.fnameVN + "")) Data.fnameVN = "Times New Roman";
+
+            cbfnameCN.SelectedItem = Data.fnameCN + "";
+            cbfnameVN.SelectedItem = Data.fnameVN + "";
+            #endregion
         }
         private void button5_Click(object sender, EventArgs e)
         {
@@ -864,34 +879,8 @@ namespace WindowsFormsApp1
         private void cbfnameCN_SelectedIndexChanged(object sender, EventArgs e)
         {
             RenderStyle();
-            return;
-            if (Util.LongSoHienTai == null)
-            {
-                return;
-            }
-            var worksheet = reoGridControl1.CurrentWorksheet;
-            var pos = worksheet.UsedRange.ToAddress();
-            var pfcff = pfc.Families.Where(z => z.Name == cbfnameCN.Text).FirstOrDefault();
-
-            reoGridControl1.Font = new Font(pfcff, 12);
-            button1.Font = new Font(pfcff, 12);
-
-
-
-            worksheet.SetRangeStyles(pos, new WorksheetRangeStyle()
-            {
-                Flag = PlainStyleFlag.FontName,
-                FontName = pfcff.Name,
-            });
-            Util.LongSoHienTai.fnameCN = cbfnameCN.Text;
-            LongSoData.save(Util.LongSoHienTai);
-
         }
 
-        private void cbfnameCN_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void cbfnameVN_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -902,19 +891,7 @@ namespace WindowsFormsApp1
 
         private void cbfstyleCN_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RenderStyle();
-            return;
-            var val = cbfstyleCN.Text;
-            var check = LongSoData.StringTofstyle(val);
-            var sheet = reoGridControl1.CurrentWorksheet;
-
-
-            sheet.SetRangeStyles(sheet.UsedRange, new unvell.ReoGrid.WorksheetRangeStyle
-            {
-                Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,
-                Bold = check == 1 ? true : false,
-                Italic = check == 2 ? true : false,
-            });
+            //RenderStyle();
 
         }
 
@@ -922,6 +899,7 @@ namespace WindowsFormsApp1
         {
             frmNgachSo frm = new frmNgachSo();
             frm.ShowDialog();
+            RenderStyle();
         }
 
         private void button1_Click_1(object sender, EventArgs e)
@@ -977,9 +955,10 @@ namespace WindowsFormsApp1
             if (macdinh == 1)
             {
                 MessageBox.Show("Không thể xóa lòng sớ cuối cùng !");
+                return;
             }
             File.Delete("data/" + Util.LongSoHienTai.LSo.FileName + ConstData.ExtentionsFile);
-            Program.GetDefault();
+            Util.NameLongSoHienTai = null;
             ReLoad(sender, e);
         }
 
@@ -1014,8 +993,8 @@ namespace WindowsFormsApp1
                 {
                     showSugget(Tag, Tag);
                 }
+                RenderStyle();
             }
-            RenderStyle();
         }
         public void showSugget(string key, string t)
         {
@@ -1049,18 +1028,21 @@ namespace WindowsFormsApp1
         {
 
         }
-
+        public void LogOutput(string input)
+        {
+            if (richTextBox1.Visible)
+            {
+                richTextBox1.Text = input + ":" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") + "\n" + richTextBox1.Text;
+            }
+        }
         public void RenderStyle()
         {
+            LogOutput("RenderStyle");
 
             var sheet = reoGridControl1.CurrentWorksheet;
             var position = sheet.UsedRange;
 
-            sheet.SetRangeBorders(position, BorderPositions.All, new unvell.ReoGrid.RangeBorderStyle
-            {
-                Style = BorderLineStyle.Solid,
-                Color = Color.WhiteSmoke
-            });
+            reoGridControl1.ShowBolder(false);
             sheet.SetRangeStyles(position, new WorksheetRangeStyle
             {
                 // style item flag
@@ -1073,20 +1055,16 @@ namespace WindowsFormsApp1
                 HAlign = ReoGridHorAlign.Center,
             });
 
-            var fnameCN = cbfnameCN.Text;
-            var fnameVN = cbfnameVN.Text;
+            string Status = "";
+            if (rbChuViet.Checked) Status = "TextVN";
+            if (rbChuHan.Checked) Status = "TextCN";
+            if (rbSongNgu.Checked) Status = "TextSN";
 
+            if (Status != "TextSN")
+            {
+                ChangeFontAndSize(sheet, Status, sheet.UsedRange.ToAddress());
+            }
 
-            var BoldCN = LongSoData.StringTofstyle(cbfstyleCN.Text) == 1 ? true : false;
-            var ItalicCN = LongSoData.StringTofstyle(cbfstyleCN.Text) == 2 ? true : false;
-            float.TryParse(cbfsizeCN.Text, out float fsizeCN);
-
-            var BoldVN = LongSoData.StringTofstyle(cbfstyleVN.Text) == 1 ? true : false;
-            var ItalicVN = LongSoData.StringTofstyle(cbfstyleVN.Text) == 2 ? true : false;
-            float.TryParse(cbfsizeVN.Text, out float fsizeVN);
-
-            fsizeCN = fsizeCN == 0 ? 14 : fsizeCN;
-            fsizeVN = fsizeVN == 0 ? 14 : fsizeVN;
 
 
             for (int i = position.Row; i <= position.EndRow; i++)
@@ -1104,60 +1082,95 @@ namespace WindowsFormsApp1
                             // style item
                             BackColor = Color.SkyBlue,
                         });
-                        item.Data = CNDictionary.getCN(ActiveData.Get(item.Tag + ""));
-                    }
-
-                   
-                    var Data = item.Data + "";
-                    var Tag = item.Tag + "";
-                    var Comment = item.Comment+"";
-                    if (Data == Comment || Tag.StartsWith("@"))
-                    {
-                        sheet.SetRangeStyles(item.Address, new unvell.ReoGrid.WorksheetRangeStyle
+                        if ((String)item.DataFormatArgs == "TextVN")
                         {
-                            Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,
-                            Bold = BoldCN,
-                            Italic = ItalicCN,
-                        });
-                        sheet.SetRangeStyles(item.Address, new unvell.ReoGrid.WorksheetRangeStyle
+                            item.Data = CNDictionary.getVN(ActiveData.Get(item.Tag + ""));
+                        }
+                        else
                         {
-                            Flag = unvell.ReoGrid.PlainStyleFlag.FontSize,
-                            FontSize = fsizeCN
-                        });
-                        sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle()
-                        {
-                            Flag = PlainStyleFlag.FontName,
-                            FontName = fnameCN,
-                        });
+                            item.Data = ActiveData.Get(item.Tag + "");
+                        }
                     }
                     else
                     {
-                        sheet.AutoFitColumnWidth(item.Column, false);
-
-                        sheet.SetRangeStyles(item.Address, new unvell.ReoGrid.WorksheetRangeStyle
+                        switch (Status)
                         {
-                            Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,
-                            Bold = BoldVN,
-                            Italic = ItalicVN,
-                        });
-                        sheet.SetRangeStyles(item.Address, new unvell.ReoGrid.WorksheetRangeStyle
-                        {
-                            Flag = unvell.ReoGrid.PlainStyleFlag.FontSize,
-                            FontSize = fsizeVN
-                        });
-                        sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle()
-                        {
-                            Flag = PlainStyleFlag.FontName,
-                            FontName = fnameVN,
-                        });
+                            case "TextVN": item.Data = item.Tag; break;
+                            case "TextCN": item.Data = item.Comment; break;
+                            case "TextSN": item.Data = ((string)item.DataFormatArgs == "TextVN") ? item.Tag : item.Comment; break;
+                            default:
+                                break;
+                        }
                     }
+
+
+                    if (rbSongNgu.Checked) ChangeFontAndSize(sheet, (string)item.DataFormatArgs, item.Address);
+
 
                 }
             }
-          
+            ChangeWidthSize(sheet);
             SaveData();
         }
+        public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
+        {
 
+            var FontName = "";
+            var Bold = false;
+            var Italic = false;
+            float FontSize = 16;
+            if (Data == "TextCN")
+            {
+                FontName = cbfnameCN.Text;
+                Bold = LongSoData.StringTofstyle(cbfstyleCN.Text) == 1 ? true : false;
+                Italic = LongSoData.StringTofstyle(cbfstyleCN.Text) == 2 ? true : false;
+                float.TryParse(cbfsizeCN.Text, out FontSize);
+            }
+            if (Data == "TextVN")
+            {
+
+                FontName = cbfnameVN.Text;
+                Bold = LongSoData.StringTofstyle(cbfstyleVN.Text) == 1 ? true : false;
+                Italic = LongSoData.StringTofstyle(cbfstyleVN.Text) == 2 ? true : false;
+                float.TryParse(cbfsizeVN.Text, out FontSize);
+
+
+            }
+            //  item.Data = item.Tag;
+            //     sheet.AutoFitColumnWidth(item.Column, false);
+
+            sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
+            {
+                Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,
+                Bold = Bold,
+                Italic = Italic,
+            });
+            sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
+            {
+                Flag = unvell.ReoGrid.PlainStyleFlag.FontSize,
+                FontSize = FontSize
+            });
+            sheet.SetRangeStyles(Address, new WorksheetRangeStyle()
+            {
+                Flag = PlainStyleFlag.FontName,
+                FontName = FontName,
+            });
+
+        }
+
+        public void ChangeWidthSize(Worksheet sheet)
+        {
+            sheet = reoGridControl1.CurrentWorksheet;
+
+            if (rbSongNgu.Checked)
+            {
+                for (int i = 1; i < sheet.ColumnCount; i = i + 2)
+                {
+                    sheet.AutoFitColumnWidth(i, false);
+                }
+            }
+
+        }
         private void cbfstyleVN_SelectedIndexChanged(object sender, EventArgs e)
         {
             var val = cbfstyleVN.Text;
@@ -1181,21 +1194,8 @@ namespace WindowsFormsApp1
 
         private void cbfsizeVN_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RenderStyle();
-            //float.TryParse(cbfsizeVN.Text, out float val);
+            //  RenderStyle();
 
-            //if (val == 0)
-            //{
-            //    return;
-            //}
-            //var sheet = reoGridControl1.CurrentWorksheet;
-
-
-            //sheet.SetRangeStyles(sheet.UsedRange, new unvell.ReoGrid.WorksheetRangeStyle
-            //{
-            //    Flag = unvell.ReoGrid.PlainStyleFlag.FontAll,
-            //    FontSize = val
-            //});
         }
 
         private void button8_Click_1(object sender, EventArgs e)
@@ -1205,83 +1205,110 @@ namespace WindowsFormsApp1
 
         public void SaveData()
         {
+            LogOutput("SaveData");
             if (!rbSongNgu.Checked)
             {
-      
-          
-            var LgSo = new Dictionary<int, Dictionary<int, CellData>>();
 
-            var sheet = reoGridControl1.CurrentWorksheet;
-            var position = sheet.UsedRange;
-            if (position.Cols<=1)
-            {
-                return;
-            }
-            for (int i = 0; i <= position.Cols; i++)
-            {
-                LgSo.Add(i, new Dictionary<int, CellData>());
-                for (int j = 0; j < position.Rows ; j++)
+
+                var LgSo = new Dictionary<int, Dictionary<int, CellData>>();
+
+                var sheet = reoGridControl1.CurrentWorksheet;
+                var position = sheet.UsedRange;
+                if (position.Cols <= 1)
                 {
-
-
-                    CellData value = new CellData();
-                    if (sheet.MaxContentCol >= i)
+                    return;
+                }
+                for (int i = 0; i <= position.Cols; i++)
+                {
+                    LgSo.Add(i, new Dictionary<int, CellData>());
+                    for (int j = 0; j < position.Rows; j++)
                     {
 
-                        var item = sheet.Cells[j, i];
 
-                        var Data = item.Data;
-                        var Tag = item.Tag;
-                        var Comment = item.Comment;
+                        CellData value = new CellData();
+                        if (sheet.MaxContentCol >= i)
+                        {
 
-                        //value.Value = Data;
-                        value.TextCN = Comment;
-                        value.TextVN = Tag + "";
+                            var item = sheet.Cells[j, i];
+
+                            var Data = item.Data;
+                            var Tag = item.Tag;
+                            var Comment = item.Comment;
+
+                            //value.Value = Data;
+                            value.TextCN = Comment;
+                            value.TextVN = Tag + "";
+
+                        }
+
+                        LgSo[i].Add(j, value);
 
                     }
-
-                    LgSo[i].Add(j, value);
-
                 }
-            }
-            Util.LongSoHienTai.LgSo = LgSo;
+                Util.LongSoHienTai.LgSo = LgSo;
             }
 
             float.TryParse(cbfsizeCN.Text, out float fsizeCN);
             float.TryParse(cbfsizeVN.Text, out float fsizeVN);
 
-            if (fsizeCN!=0) Util.LongSoHienTai.fsizeCN = fsizeCN;
+            if (fsizeCN != 0) Util.LongSoHienTai.fsizeCN = fsizeCN;
             if (fsizeVN != 0) Util.LongSoHienTai.fsizeVN = fsizeVN;
 
             Util.LongSoHienTai.fnameCN = cbfnameCN.Text;
             Util.LongSoHienTai.fnameVN = cbfnameVN.Text;
+
+            Util.LongSoHienTai.fstyleCN = cbfstyleCN.Text;
+            Util.LongSoHienTai.fstyleVN = cbfstyleVN.Text;
 
             LongSoData.save(Util.LongSoHienTai);
         }
 
         private void button9_Click(object sender, EventArgs e)
         {
-            SaveData();
-            ReLoad(sender, e);
+            // SaveData();
+            // ReLoad(sender, e);
             //SaveData();
             //ReLoad(sender, e);
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            RenderStyle();
+            richTextBox1.Visible = true;
+            richTextBox1.Text = "";
         }
 
         private void button8_Click_2(object sender, EventArgs e)
         {
             frmCreateNew frm = new frmCreateNew();
             frm.ShowDialog();
-            ReLoad(sender, e);
+         ReLoad(sender, e);
         }
 
         private void labelLicence_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void RenderFontSizeChanged(object sender, EventArgs e)
+        {
+
+            SaveData();
+            RenderStyle();
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            ChangeWidthSize(reoGridControl1.CurrentWorksheet);
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_DropDownClosed(object sender, EventArgs e)
+        {
+            ReLoad(sender, e);
         }
     }
 }

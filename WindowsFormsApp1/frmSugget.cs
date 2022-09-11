@@ -27,7 +27,9 @@ namespace WindowsFormsApp1
             var data = new DataTable();
             if (_key == "thang" || _key == "mua")
             {
-                data = SqlModule.GetDataTable($"SELECT vn,chinese,used FROM VnChinese WHERE nguCanh = '{_key}' order by used");
+           
+               data = CNDictionary.databaseNguCanh.Select("nguCanh = '" + _key + "'"  ).CopyToDataTable();
+                data.Columns.Remove("nguCanh");
 
             }
             if (_key == "ngay")
@@ -36,7 +38,7 @@ namespace WindowsFormsApp1
             }
 
             data.Columns.Add("Chk", typeof(bool));
-            dataGridView1.DataSource = data;
+             dataGridView1.DataSource = data;
 
         }
 
@@ -49,7 +51,7 @@ namespace WindowsFormsApp1
             for (int i = 1; i < 32; i++)
             {
                 var xx = CNDictionary.getChuNomDD(i.ToString());
-                var cn = CNDictionary.getCN(xx, "");
+                var cn = CNDictionary.getCN(xx);
                 var it = dt.NewRow();
                 it["vn"] = xx;
                 it["used"] = i;

@@ -149,7 +149,7 @@ namespace WindowsFormsApp1
                 LSo.TenSo = TenSo;
                 if (File.Exists(Util.getDataPath + FName + ConstData.ExtentionsFile) || File.Exists(Util.getDataPath + FName + ".cus"))
                 {
-                    Util.LongSoHienTai = LongSoData.get(FName, LSo);
+                    Util.NameLongSoHienTai = FName;
                     base.DialogResult = DialogResult.OK;
                     return;
                 }
@@ -160,7 +160,7 @@ namespace WindowsFormsApp1
                         //object value2 = dataGridViewRow.Cells["TenSo"].Value;
                         //this.updateTenSo(((value2 != null) ? value2.ToString() : null) ?? "");
                         base.DialogResult = DialogResult.OK;
-                        Util.LongSoHienTai = LongSoData.get(FName, LSo);
+                        Util.NameLongSoHienTai = FName;
                         return;
                     }
                     MessageBox.Show("Tải file thất bại. Xin hãy kiểm tra kết nối internet, hoặc liên hệ với Bibe.vn", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -198,7 +198,7 @@ namespace WindowsFormsApp1
                             var LSo = new LongSo();
                             LSo.FileName = value;
                             LSo.TenSo = TenSo;
-                            Util.LongSoHienTai = LongSoData.get(value, LSo);
+                            Util.NameLongSoHienTai = FName;
 
                             MessageBox.Show("Tải file thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         }

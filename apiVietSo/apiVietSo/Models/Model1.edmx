@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="VietSoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="lts43636_vietsoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LicenceData">
           <Key>
             <PropertyRef Name="Licence" />
@@ -28,7 +28,7 @@
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VietSo.dbo.VnChinese' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VnChinese">
           <Key>
             <PropertyRef Name="ID" />
@@ -42,7 +42,7 @@ warning 6002: The table/view 'VietSo.dbo.VnChinese' does not have a primary key 
           <Property Name="UpdateDT" Type="nvarchar" MaxLength="50" />
           <Property Name="syncTime" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <EntityContainer Name="VietSoModelStoreContainer">
+        <EntityContainer Name="lts43636_vietsoModelStoreContainer">
           <EntitySet Name="LicenceData" EntityType="Self.LicenceData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffInfo" EntityType="Self.StaffInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VnChinese" EntityType="Self.VnChinese" store:Type="Tables" store:Schema="dbo">
@@ -58,10 +58,22 @@ warning 6002: The table/view 'VietSo.dbo.VnChinese' does not have a primary key 
     FROM [dbo].[VnChinese] AS [VnChinese]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="VietSoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="lts43636_vietsoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="LicenceData">
+          <Key>
+            <PropertyRef Name="Licence" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Licence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IP_Active" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date_Active" Type="DateTime" Precision="3" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+        </EntityType>
         <EntityType Name="StaffInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -86,30 +98,31 @@ warning 6002: The table/view 'VietSo.dbo.VnChinese' does not have a primary key 
           <Property Name="UpdateDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="syncTime" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="VietSoEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="vietsoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="LicenceDatas" EntityType="Self.LicenceData" />
           <EntitySet Name="StaffInfoes" EntityType="Self.StaffInfo" />
           <EntitySet Name="VnChinese" EntityType="Self.VnChinese" />
-          <EntitySet Name="LicenceDatas" EntityType="VietSoModel.LicenceData" />
         </EntityContainer>
-        <EntityType Name="LicenceData">
-          <Key>
-            <PropertyRef Name="Licence" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Licence" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IP_Active" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Date_Active" Type="DateTime" Precision="3" />
-          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
-          <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
-        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="VietSoModelStoreContainer" CdmEntityContainer="VietSoEntities1">
+        <EntityContainerMapping StorageEntityContainer="lts43636_vietsoModelStoreContainer" CdmEntityContainer="vietsoEntities">
+          <EntitySetMapping Name="LicenceDatas">
+            <EntityTypeMapping TypeName="lts43636_vietsoModel.LicenceData">
+              <MappingFragment StoreEntitySet="LicenceData">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Licence" ColumnName="Licence" />
+                <ScalarProperty Name="IP_Active" ColumnName="IP_Active" />
+                <ScalarProperty Name="Date_Active" ColumnName="Date_Active" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="StaffInfoes">
-            <EntityTypeMapping TypeName="VietSoModel.StaffInfo">
+            <EntityTypeMapping TypeName="lts43636_vietsoModel.StaffInfo">
               <MappingFragment StoreEntitySet="StaffInfo">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
@@ -121,7 +134,7 @@ warning 6002: The table/view 'VietSo.dbo.VnChinese' does not have a primary key 
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="VnChinese">
-            <EntityTypeMapping TypeName="VietSoModel.VnChinese">
+            <EntityTypeMapping TypeName="lts43636_vietsoModel.VnChinese">
               <MappingFragment StoreEntitySet="VnChinese">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="vn" ColumnName="vn" />
@@ -131,18 +144,6 @@ warning 6002: The table/view 'VietSo.dbo.VnChinese' does not have a primary key 
                 <ScalarProperty Name="nguCanh" ColumnName="nguCanh" />
                 <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
                 <ScalarProperty Name="syncTime" ColumnName="syncTime" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="LicenceDatas">
-            <EntityTypeMapping TypeName="VietSoModel.LicenceData">
-              <MappingFragment StoreEntitySet="LicenceData">
-                <ScalarProperty Name="ExpiryDate" ColumnName="ExpiryDate" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="Date_Active" ColumnName="Date_Active" />
-                <ScalarProperty Name="IP_Active" ColumnName="IP_Active" />
-                <ScalarProperty Name="Licence" ColumnName="Licence" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

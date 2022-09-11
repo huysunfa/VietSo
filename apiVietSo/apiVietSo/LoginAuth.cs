@@ -55,7 +55,7 @@ namespace apiVietSo
                 StaffID = Decrypt(StaffID);
             }
 
-            using (Models.VietSoEntities1 db = new Models.VietSoEntities1())
+            using (Models.vietsoEntities db = new Models.vietsoEntities())
             {
                 return db.StaffInfoes.Where(z => z.StaffID == StaffID).FirstOrDefault();
             }

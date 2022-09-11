@@ -13,10 +13,10 @@ namespace apiVietSo.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VietSoEntities1 : DbContext
+    public partial class vietsoEntities : DbContext
     {
-        public VietSoEntities1()
-            : base("name=VietSoEntities1")
+        public vietsoEntities()
+            : base("name=vietsoEntities")
         {
         }
     
@@ -25,8 +25,8 @@ namespace apiVietSo.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<LicenceData> LicenceDatas { get; set; }
         public virtual DbSet<StaffInfo> StaffInfoes { get; set; }
         public virtual DbSet<VnChinese> VnChinese { get; set; }
-        public virtual DbSet<LicenceData> LicenceDatas { get; set; }
     }
 }

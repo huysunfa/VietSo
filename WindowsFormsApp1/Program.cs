@@ -15,7 +15,6 @@ namespace WindowsFormsApp1
         /// The main entry point for the application.
         /// </summary>
   		public static UserSetting Stg;
-        public static Dictionary<string, List<string>> dataSuggets;
         [STAThread]
         static void Main()
         {
@@ -40,9 +39,8 @@ namespace WindowsFormsApp1
 
             if (check)
             {
-                dataSuggets = new Suggets().get();
 
-                GetDefault();
+                
                 CheckKey.UpdateKeyOnline(value);
 
 
@@ -58,11 +56,6 @@ namespace WindowsFormsApp1
                 Application.Exit();
                 return;
             }
-
-
-
-
-
         }
         public static DialogResult InputBox(string title, string promptText, ref string value)
         {
@@ -107,15 +100,6 @@ namespace WindowsFormsApp1
             return dialogResult;
         }
 
-        public static void GetDefault()
-        {
-            var macdinh = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data", "*" + ConstData.ExtentionsFile).OrderByDescending(z => new FileInfo(z).CreationTime).FirstOrDefault();
-            if (!String.IsNullOrEmpty(macdinh))
-            {
-                var file = new FileInfo(macdinh);
-                var name = file.Name.Split('.').FirstOrDefault();
-                Models.Util.LongSoHienTai = Models.LongSoData.get(name, new Models.LongSo() { FileName = name, TenSo = name });
-            }
-        }
+        
     }
 }

@@ -39,7 +39,7 @@ namespace WindowsFormsApp1
                 }
             }
             LongSoData.save(item);
-            Util.LongSoHienTai = item;
+            Util.NameLongSoHienTai = item.LSo.FileName;
             this.Visible = false;
         }
     }
