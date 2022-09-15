@@ -45,7 +45,7 @@ namespace WindowsFormsApp1.Models
             double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
             num2 -= (double)(num5 + num6);
             ushort height = (ushort)System.Math.Floor(num2 / (double)(row+2));
-            sheet.SetRows(row);
+            sheet.SetRows(row-1);
             sheet.SetCols(col - 1);
             sheet.SetRowsHeight(0, sheet.RowCount, height);
             ushort width = (ushort)System.Math.Floor(num7 / (double)(col + 1));

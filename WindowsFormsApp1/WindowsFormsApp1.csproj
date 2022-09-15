@@ -87,6 +87,12 @@
     <Compile Include="FrmDownloadLoaiSo.Designer.cs">
       <DependentUpon>FrmDownloadLoaiSo.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKeyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKeyInfo.Designer.cs">
+      <DependentUpon>frmKeyInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNgachSo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,12 @@
     <Compile Include="ReoGridExtentions.cs" />
     <Compile Include="SqlModule.cs" />
     <Compile Include="Suggets.cs" />
+    <Compile Include="UploadToServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadToServer.Designer.cs">
+      <DependentUpon>UploadToServer.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -152,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDownloadLoaiSo.resx">
       <DependentUpon>FrmDownloadLoaiSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmKeyInfo.resx">
+      <DependentUpon>frmKeyInfo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmNgachSo.resx">
       <DependentUpon>frmNgachSo.cs</DependentUpon>
@@ -178,6 +193,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UploadToServer.resx">
+      <DependentUpon>UploadToServer.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="bin\Debug\Data\fontCN\UVNButLong1.TTF" />
     <None Include="Data\App.set">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

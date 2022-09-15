@@ -152,7 +152,7 @@ namespace WindowsFormsApp1
             TSMItemDelCol.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemDelCol.Text = "Xóa cột";
             TSMItemDelCol.Click += TSMItemDelCol_Click;
-            TSMItemDelCel.ShortcutKeys =  Keys.Delete;
+            TSMItemDelCel.ShortcutKeys = Keys.Delete;
             TSMItemDelCel.Image = global::WindowsFormsApp1.Properties.Resources.Delete;
             TSMItemDelCel.Name = "TSMItemDelCel";
             TSMItemDelCel.Size = new global::System.Drawing.Size(0x134, 0x1A);
@@ -296,7 +296,8 @@ namespace WindowsFormsApp1
             var cnt = worksheet.SelectionRange.Row;
             worksheet.InsertRows(cnt, 1);
             reoGridControl1.ShowBolder(false);
-
+            SaveData();
+            ReLoad(sender, e);
         }
 
         // Token: 0x060000D1 RID: 209 RVA: 0x0000E710 File Offset: 0x0000C910
@@ -306,7 +307,8 @@ namespace WindowsFormsApp1
             var cnt = worksheet.SelectionRange.Col;
             worksheet.InsertColumns(cnt, 1);
             reoGridControl1.ShowBolder(false);
-
+            SaveData();
+            ReLoad(sender, e);
         }
 
         // Token: 0x060000D2 RID: 210 RVA: 0x0000E76C File Offset: 0x0000C96C
@@ -315,6 +317,8 @@ namespace WindowsFormsApp1
             var worksheet = reoGridControl1.CurrentWorksheet;
             var cnt = worksheet.SelectionRange.Row;
             worksheet.DeleteRows(cnt, 1);
+            SaveData();
+            ReLoad(sender, e);
         }
 
         // Token: 0x060000D3 RID: 211 RVA: 0x0000E7C8 File Offset: 0x0000C9C8
@@ -323,7 +327,8 @@ namespace WindowsFormsApp1
             var worksheet = reoGridControl1.CurrentWorksheet;
             var cnt = worksheet.SelectionRange.Col;
             worksheet.DeleteColumns(cnt, 1);
-
+            SaveData();
+            ReLoad(sender, e);
         }
 
         // Token: 0x060000D4 RID: 212 RVA: 0x0000E824 File Offset: 0x0000CA24
@@ -1221,12 +1226,12 @@ namespace WindowsFormsApp1
                 for (int i = 0; i <= position.Cols; i++)
                 {
                     LgSo.Add(i, new Dictionary<int, CellData>());
-                    for (int j = 0; j < position.Rows; j++)
+                    for (int j = 0; j <= position.Rows; j++)
                     {
 
 
                         CellData value = new CellData();
-                        if (sheet.MaxContentCol >= i)
+                        if (sheet.MaxContentCol >= i && sheet.MaxContentRow >= j)
                         {
 
                             var item = sheet.Cells[j, i];
@@ -1265,7 +1270,7 @@ namespace WindowsFormsApp1
 
         private void button9_Click(object sender, EventArgs e)
         {
-            // SaveData();
+            SaveData();
             // ReLoad(sender, e);
             //SaveData();
             //ReLoad(sender, e);
@@ -1281,12 +1286,13 @@ namespace WindowsFormsApp1
         {
             frmCreateNew frm = new frmCreateNew();
             frm.ShowDialog();
-         ReLoad(sender, e);
+            ReLoad(sender, e);
         }
 
         private void labelLicence_Click(object sender, EventArgs e)
         {
-
+            var frm = new frmKeyInfo();
+            frm.ShowDialog();
         }
 
         private void RenderFontSizeChanged(object sender, EventArgs e)
@@ -1309,6 +1315,11 @@ namespace WindowsFormsApp1
         private void comboBox1_DropDownClosed(object sender, EventArgs e)
         {
             ReLoad(sender, e);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -39,16 +39,15 @@ namespace WindowsFormsApp1
             this.ctextMenuS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lbCanChuViet = new System.Windows.Forms.Label();
+            this.cbCanChuViet = new System.Windows.Forms.ComboBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.rbSongNgu = new System.Windows.Forms.RadioButton();
             this.rbChuViet = new System.Windows.Forms.RadioButton();
             this.rbChuHan = new System.Windows.Forms.RadioButton();
             this.cbHideGridLine = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button3 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
@@ -57,11 +56,8 @@ namespace WindowsFormsApp1
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.button6 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.txtLoaiSo = new System.Windows.Forms.ToolStripButton();
             this.labelCN = new System.Windows.Forms.ToolStripLabel();
             this.cbfnameCN = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -73,17 +69,19 @@ namespace WindowsFormsApp1
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
-            this.cbCanChuViet = new System.Windows.Forms.ComboBox();
-            this.lbCanChuViet = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.txtLoaiSo = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip2
@@ -130,24 +128,23 @@ namespace WindowsFormsApp1
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.Location = new System.Drawing.Point(0, 35);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.splitContainer1.Margin = new System.Windows.Forms.Padding(2);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button8);
-            this.splitContainer1.Panel1.Controls.Add(this.button9);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel1.Controls.Add(this.cbHideGridLine);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button1);
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.button7);
             this.splitContainer1.Panel1.Controls.Add(this.button5);
-            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(8);
             // 
             // splitContainer1.Panel2
             // 
@@ -166,8 +163,8 @@ namespace WindowsFormsApp1
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.Transparent;
-            this.button8.Location = new System.Drawing.Point(10, 473);
-            this.button8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button8.Location = new System.Drawing.Point(10, 397);
+            this.button8.Margin = new System.Windows.Forms.Padding(2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(152, 36);
             this.button8.TabIndex = 22;
@@ -175,25 +172,6 @@ namespace WindowsFormsApp1
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click_2);
-            // 
-            // button9
-            // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.BackColor = System.Drawing.Color.Teal;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.Transparent;
-            this.button9.Location = new System.Drawing.Point(10, 320);
-            this.button9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(152, 34);
-            this.button9.TabIndex = 21;
-            this.button9.Text = "Lưu dữ liệu";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Visible = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // groupBox2
             // 
@@ -206,18 +184,42 @@ namespace WindowsFormsApp1
             this.groupBox2.Controls.Add(this.rbChuHan);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox2.Location = new System.Drawing.Point(8, 8);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(2);
             this.groupBox2.Size = new System.Drawing.Size(156, 174);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
+            // 
+            // lbCanChuViet
+            // 
+            this.lbCanChuViet.AutoSize = true;
+            this.lbCanChuViet.Location = new System.Drawing.Point(3, 128);
+            this.lbCanChuViet.Name = "lbCanChuViet";
+            this.lbCanChuViet.Size = new System.Drawing.Size(67, 13);
+            this.lbCanChuViet.TabIndex = 22;
+            this.lbCanChuViet.Text = "Căn chữ việt";
+            // 
+            // cbCanChuViet
+            // 
+            this.cbCanChuViet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCanChuViet.FormattingEnabled = true;
+            this.cbCanChuViet.Items.AddRange(new object[] {
+            "TOP",
+            "BOTTOM",
+            "LEFT",
+            "RIGHT"});
+            this.cbCanChuViet.Location = new System.Drawing.Point(3, 148);
+            this.cbCanChuViet.Name = "cbCanChuViet";
+            this.cbCanChuViet.Size = new System.Drawing.Size(148, 21);
+            this.cbCanChuViet.TabIndex = 21;
+            this.cbCanChuViet.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(16, 15);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(81, 17);
             this.checkBox1.TabIndex = 20;
@@ -228,7 +230,7 @@ namespace WindowsFormsApp1
             // 
             this.rbSongNgu.AutoSize = true;
             this.rbSongNgu.Location = new System.Drawing.Point(16, 88);
-            this.rbSongNgu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbSongNgu.Margin = new System.Windows.Forms.Padding(2);
             this.rbSongNgu.Name = "rbSongNgu";
             this.rbSongNgu.Size = new System.Drawing.Size(71, 17);
             this.rbSongNgu.TabIndex = 19;
@@ -241,7 +243,7 @@ namespace WindowsFormsApp1
             // 
             this.rbChuViet.AutoSize = true;
             this.rbChuViet.Location = new System.Drawing.Point(16, 37);
-            this.rbChuViet.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbChuViet.Margin = new System.Windows.Forms.Padding(2);
             this.rbChuViet.Name = "rbChuViet";
             this.rbChuViet.Size = new System.Drawing.Size(64, 17);
             this.rbChuViet.TabIndex = 17;
@@ -253,7 +255,7 @@ namespace WindowsFormsApp1
             // 
             this.rbChuHan.AutoSize = true;
             this.rbChuHan.Location = new System.Drawing.Point(16, 63);
-            this.rbChuHan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.rbChuHan.Margin = new System.Windows.Forms.Padding(2);
             this.rbChuHan.Name = "rbChuHan";
             this.rbChuHan.Size = new System.Drawing.Size(65, 17);
             this.rbChuHan.TabIndex = 18;
@@ -265,7 +267,7 @@ namespace WindowsFormsApp1
             // 
             this.cbHideGridLine.AutoSize = true;
             this.cbHideGridLine.Location = new System.Drawing.Point(23, 187);
-            this.cbHideGridLine.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbHideGridLine.Margin = new System.Windows.Forms.Padding(2);
             this.cbHideGridLine.Name = "cbHideGridLine";
             this.cbHideGridLine.Size = new System.Drawing.Size(90, 17);
             this.cbHideGridLine.TabIndex = 17;
@@ -281,8 +283,8 @@ namespace WindowsFormsApp1
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Transparent;
-            this.button4.Location = new System.Drawing.Point(10, 432);
-            this.button4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button4.Location = new System.Drawing.Point(10, 356);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(152, 36);
             this.button4.TabIndex = 16;
@@ -290,37 +292,6 @@ namespace WindowsFormsApp1
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(8, 516);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(156, 67);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
-            // button3
-            // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.Teal;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(10, 284);
-            this.button3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(152, 34);
-            this.button3.TabIndex = 14;
-            this.button3.Text = "Danh sách đoàn";
-            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click_1);
             // 
             // button1
             // 
@@ -331,7 +302,7 @@ namespace WindowsFormsApp1
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Transparent;
             this.button1.Location = new System.Drawing.Point(10, 206);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(152, 34);
             this.button1.TabIndex = 12;
@@ -349,7 +320,7 @@ namespace WindowsFormsApp1
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Transparent;
             this.button2.Location = new System.Drawing.Point(10, 245);
-            this.button2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(152, 34);
             this.button2.TabIndex = 13;
@@ -367,12 +338,12 @@ namespace WindowsFormsApp1
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.Transparent;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(10, 398);
-            this.button7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button7.Location = new System.Drawing.Point(10, 322);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(152, 29);
             this.button7.TabIndex = 9;
-            this.button7.Text = "Reload";
+            this.button7.Text = "Tải lại dữ liệu";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.UseVisualStyleBackColor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
@@ -385,8 +356,8 @@ namespace WindowsFormsApp1
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Transparent;
-            this.button5.Location = new System.Drawing.Point(10, 359);
-            this.button5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button5.Location = new System.Drawing.Point(10, 283);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(152, 34);
             this.button5.TabIndex = 7;
@@ -401,7 +372,7 @@ namespace WindowsFormsApp1
             this.panel1.Controls.Add(this.reoGridControl1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(8, 0);
-            this.panel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel1.Margin = new System.Windows.Forms.Padding(2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1031, 583);
             this.panel1.TabIndex = 3;
@@ -410,7 +381,7 @@ namespace WindowsFormsApp1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.richTextBox1.Location = new System.Drawing.Point(0, 504);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(1031, 79);
             this.richTextBox1.TabIndex = 3;
@@ -425,7 +396,6 @@ namespace WindowsFormsApp1
             this.bindingNavigator1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.bindingNavigator1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButton1,
-            this.button6,
             this.toolStripSeparator2,
             this.toolStripLabel3,
             this.txtLoaiSo,
@@ -453,24 +423,6 @@ namespace WindowsFormsApp1
             this.bindingNavigator1.TabIndex = 4;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = global::WindowsFormsApp1.Properties.Resources.print;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(56, 24);
-            this.toolStripButton1.Text = "In sớ";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // button6
-            // 
-            this.button6.Image = global::WindowsFormsApp1.Properties.Resources.print;
-            this.button6.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(120, 24);
-            this.button6.Text = "In nhiều gia đình";
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 50, 0);
@@ -483,17 +435,6 @@ namespace WindowsFormsApp1
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Size = new System.Drawing.Size(45, 24);
             this.toolStripLabel3.Text = "Loại sớ";
-            // 
-            // txtLoaiSo
-            // 
-            this.txtLoaiSo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtLoaiSo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.txtLoaiSo.Image = ((System.Drawing.Image)(resources.GetObject("txtLoaiSo.Image")));
-            this.txtLoaiSo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.txtLoaiSo.Name = "txtLoaiSo";
-            this.txtLoaiSo.Size = new System.Drawing.Size(62, 24);
-            this.txtLoaiSo.Text = ".................";
-            this.txtLoaiSo.Click += new System.EventHandler(this.txtLoaiSo_Click);
             // 
             // labelCN
             // 
@@ -827,34 +768,63 @@ namespace WindowsFormsApp1
             // 
             // labelLicence
             // 
+            this.labelLicence.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelLicence.ForeColor = System.Drawing.Color.Red;
             this.labelLicence.Name = "labelLicence";
-            this.labelLicence.Size = new System.Drawing.Size(86, 25);
+            this.labelLicence.Size = new System.Drawing.Size(92, 24);
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
-            // cbCanChuViet
+            // button3
             // 
-            this.cbCanChuViet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCanChuViet.FormattingEnabled = true;
-            this.cbCanChuViet.Items.AddRange(new object[] {
-            "TOP",
-            "BOTTOM",
-            "LEFT",
-            "RIGHT"});
-            this.cbCanChuViet.Location = new System.Drawing.Point(3, 148);
-            this.cbCanChuViet.Name = "cbCanChuViet";
-            this.cbCanChuViet.Size = new System.Drawing.Size(148, 21);
-            this.cbCanChuViet.TabIndex = 21;
-            this.cbCanChuViet.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackColor = System.Drawing.Color.Teal;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Transparent;
+            this.button3.Location = new System.Drawing.Point(10, 437);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(152, 36);
+            this.button3.TabIndex = 23;
+            this.button3.Text = "Chia sẻ";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
-            // lbCanChuViet
+            // pictureBox1
             // 
-            this.lbCanChuViet.AutoSize = true;
-            this.lbCanChuViet.Location = new System.Drawing.Point(3, 128);
-            this.lbCanChuViet.Name = "lbCanChuViet";
-            this.lbCanChuViet.Size = new System.Drawing.Size(67, 13);
-            this.lbCanChuViet.TabIndex = 22;
-            this.lbCanChuViet.Text = "Căn chữ việt";
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(8, 516);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(156, 67);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = global::WindowsFormsApp1.Properties.Resources.print;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(56, 24);
+            this.toolStripButton1.Text = "In sớ";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // txtLoaiSo
+            // 
+            this.txtLoaiSo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtLoaiSo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.txtLoaiSo.Image = ((System.Drawing.Image)(resources.GetObject("txtLoaiSo.Image")));
+            this.txtLoaiSo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.txtLoaiSo.Name = "txtLoaiSo";
+            this.txtLoaiSo.Size = new System.Drawing.Size(62, 24);
+            this.txtLoaiSo.Text = ".................";
+            this.txtLoaiSo.Click += new System.EventHandler(this.txtLoaiSo_Click);
             // 
             // Form1
             // 
@@ -864,7 +834,7 @@ namespace WindowsFormsApp1
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.bindingNavigator1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Phần mềm viết sớ";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
@@ -876,11 +846,11 @@ namespace WindowsFormsApp1
             this.splitContainer1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -907,12 +877,10 @@ namespace WindowsFormsApp1
         private ToolStripComboBox cbfstyleVN;
         private ToolStripLabel toolStripLabel3;
         private ToolStripButton txtLoaiSo;
-        private ToolStripButton button6;
         private ToolStripSeparator toolStripSeparator2;
         private Button button2;
         private Button button1;
         private ToolStripButton toolStripButton1;
-        private Button button3;
         private PictureBox pictureBox1;
         private Button button4;
         private CheckBox cbHideGridLine;
@@ -922,12 +890,12 @@ namespace WindowsFormsApp1
         private RadioButton rbSongNgu;
         private RadioButton rbChuViet;
         private RadioButton rbChuHan;
-        private Button button9;
         private Button button8;
         private ToolStripLabel labelLicence;
         private RichTextBox richTextBox1;
         private ComboBox cbCanChuViet;
         private Label lbCanChuViet;
+        private Button button3;
     }
 }
 

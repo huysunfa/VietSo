@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -41,6 +42,13 @@ namespace WindowsFormsApp1.Models
             SqlModule.ExcuteCommand($@"update LicenceData set IP_Active ='{mac}',Date_Active = getdate() where  Licence ='{key}'");
 
         }
+          public static void UpdateKeyInfoOnline(string key, string hoten,string diachi,string sdt)
+        {
+            var mac = CheckKey.getMac();
+
+            SqlModule.ExcuteCommand($@"update LicenceData set hoten =N'{hoten}',DIACHI=N'{diachi}',SDT=N'{sdt}' WHERE Licence =N'{key}'");
+
+        }
 
         public static DateTime infoKey(string key)
         {
@@ -55,7 +63,14 @@ namespace WindowsFormsApp1.Models
             }
             return new DateTime(2000, 1, 1);
         }
+        public static DataTable FullinfoKey(string key)
+        {
 
+            var data = SqlModule.GetDataTable($@" SELECT * FROM [LicenceData] where Licence='{key}'");
+
+            return data;
+
+        }
         public static string LocalKey()
         {
             string value = "";

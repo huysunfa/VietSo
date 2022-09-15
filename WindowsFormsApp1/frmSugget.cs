@@ -35,6 +35,10 @@ namespace WindowsFormsApp1
             if (_key == "ngay")
             {
                 data = getMonth();
+            }    
+            if (_key == "nam")
+            {
+                data = getYear();
             }
 
             data.Columns.Add("Chk", typeof(bool));
@@ -60,6 +64,29 @@ namespace WindowsFormsApp1
             }
             return dt;
         }
+        
+        public DataTable getYear()
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("vn");
+            dt.Columns.Add("chinese");
+            dt.Columns.Add("used");
+            for (var i = DateTime.Now.AddYears(-100); i < DateTime.Now.AddYears(5); i=i.AddYears(1))
+            {
+             
+                var CanChi = Util.getCanChiVN(i.Year);
+                var cn = CNDictionary.getCN(CanChi);
+                var it = dt.NewRow();
+                it["vn"] = CanChi;
+                it["used"] = i.Year.ToString();
+                it["chinese"] = cn;
+                dt.Rows.Add(it);
+            }
+            dt.DefaultView.Sort = "used DESC";
+            dt = dt.DefaultView.ToTable();
+            return dt;
+        }
+      
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dataGridView1.Columns[e.ColumnIndex].Name == "Chk")
