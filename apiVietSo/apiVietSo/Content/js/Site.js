@@ -34,6 +34,4 @@ $(document).ajaxStop(function () {
 
 
 
-$(document).ready(function () {
-    $("#ShowNotifyPanel").load("/Notifys/Shownotify");
-});
+ 

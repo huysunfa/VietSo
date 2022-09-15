@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="lts43636_vietsoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="lts43636_vietsoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="LicenceData">
           <Key>
             <PropertyRef Name="Licence" />
@@ -15,6 +15,30 @@
           <Property Name="Date_Active" Type="datetime" />
           <Property Name="CreatedDate" Type="datetime" />
           <Property Name="ExpiryDate" Type="date" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="250" />
+          <Property Name="SDT" Type="nvarchar" MaxLength="50" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ListLongSo">
+          <Key>
+            <PropertyRef Name="SoID" />
+          </Key>
+          <Property Name="SoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LoaiSo" Type="nvarchar" MaxLength="150" />
+          <Property Name="TenSo" Type="nvarchar" MaxLength="150" />
+          <Property Name="ChuGiai" Type="nvarchar" MaxLength="150" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="UpdatedBy" Type="nvarchar" MaxLength="50" />
+          <Property Name="Updated" Type="datetime" />
+        </EntityType>
+        <EntityType Name="LoaiSo">
+          <Key>
+            <PropertyRef Name="LoaiSoID" />
+          </Key>
+          <Property Name="LoaiSoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TenLoaiSo" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="StaffInfo">
           <Key>
@@ -44,6 +68,8 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
         </EntityType>
         <EntityContainer Name="lts43636_vietsoModelStoreContainer">
           <EntitySet Name="LicenceData" EntityType="Self.LicenceData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ListLongSo" EntityType="Self.ListLongSo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LoaiSo" EntityType="Self.LoaiSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffInfo" EntityType="Self.StaffInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VnChinese" EntityType="Self.VnChinese" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -58,8 +84,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
     FROM [dbo].[VnChinese] AS [VnChinese]</DefiningQuery>
           </EntitySet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="lts43636_vietsoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -73,6 +98,9 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <Property Name="Date_Active" Type="DateTime" Precision="3" />
           <Property Name="CreatedDate" Type="DateTime" Precision="3" />
           <Property Name="ExpiryDate" Type="DateTime" Precision="0" />
+          <Property Name="HoTen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SDT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StaffInfo">
           <Key>
@@ -102,7 +130,30 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <EntitySet Name="LicenceDatas" EntityType="Self.LicenceData" />
           <EntitySet Name="StaffInfoes" EntityType="Self.StaffInfo" />
           <EntitySet Name="VnChinese" EntityType="Self.VnChinese" />
+          <EntitySet Name="ListLongSoes" EntityType="lts43636_vietsoModel.ListLongSo" />
+          <EntitySet Name="LoaiSoes" EntityType="lts43636_vietsoModel.LoaiSo" />
         </EntityContainer>
+        <EntityType Name="ListLongSo">
+          <Key>
+            <PropertyRef Name="SoID" />
+          </Key>
+          <Property Name="SoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoaiSo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TenSo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ChuGiai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Created" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Updated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LoaiSo">
+          <Key>
+            <PropertyRef Name="LoaiSoID" />
+          </Key>
+          <Property Name="LoaiSoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TenLoaiSo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -112,6 +163,9 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <EntitySetMapping Name="LicenceDatas">
             <EntityTypeMapping TypeName="lts43636_vietsoModel.LicenceData">
               <MappingFragment StoreEntitySet="LicenceData">
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="SDT" ColumnName="SDT" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Licence" ColumnName="Licence" />
                 <ScalarProperty Name="IP_Active" ColumnName="IP_Active" />
@@ -144,6 +198,29 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
                 <ScalarProperty Name="nguCanh" ColumnName="nguCanh" />
                 <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
                 <ScalarProperty Name="syncTime" ColumnName="syncTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ListLongSoes">
+            <EntityTypeMapping TypeName="lts43636_vietsoModel.ListLongSo">
+              <MappingFragment StoreEntitySet="ListLongSo">
+                <ScalarProperty Name="Updated" ColumnName="Updated" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="ChuGiai" ColumnName="ChuGiai" />
+                <ScalarProperty Name="TenSo" ColumnName="TenSo" />
+                <ScalarProperty Name="LoaiSo" ColumnName="LoaiSo" />
+                <ScalarProperty Name="SoID" ColumnName="SoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoaiSoes">
+            <EntityTypeMapping TypeName="lts43636_vietsoModel.LoaiSo">
+              <MappingFragment StoreEntitySet="LoaiSo">
+                <ScalarProperty Name="TenLoaiSo" ColumnName="TenLoaiSo" />
+                <ScalarProperty Name="LoaiSoID" ColumnName="LoaiSoID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

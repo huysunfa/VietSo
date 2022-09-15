@@ -12,16 +12,16 @@ namespace apiVietSo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LicenceData
+    public partial class ListLongSo
     {
-        public int ID { get; set; }
-        public string Licence { get; set; }
-        public string IP_Active { get; set; }
-        public Nullable<System.DateTime> Date_Active { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.DateTime> ExpiryDate { get; set; }
-        public string HoTen { get; set; }
-        public string SDT { get; set; }
-        public string DiaChi { get; set; }
+        public int SoID { get; set; }
+        public string LoaiSo { get; set; }
+        public string TenSo { get; set; }
+        public string ChuGiai { get; set; }
+        public string FileName { get; set; }
+        public string CreatedBy { get; set; }
+        public Nullable<System.DateTime> Created { get; set; }
+        public string UpdatedBy { get; set; }
+        public Nullable<System.DateTime> Updated { get; set; }
     }
 }

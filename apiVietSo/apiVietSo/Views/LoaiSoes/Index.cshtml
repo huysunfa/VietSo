@@ -1,0 +1,38 @@
+﻿@model IEnumerable<apiVietSo.Models.LoaiSo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lý loại sớ</h2>
+
+<a href="/LoaiSoes/Create" class="btn btn-sm btn-primary">Thêm loại sớ</a> 
+
+<table class="table">
+    <tr style="background-color:lightgray">
+     
+        <th>
+            @Html.DisplayNameFor(model => model.TenLoaiSo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenLoaiSo)
+        </td>
+     <td>
+            <a class="btn btn-sm btn-success" href="/LoaiSoes/Edit/@item.LoaiSoID">Sửa</a> |
+             <a class="btn btn-sm btn-danger" href="/LoaiSoes/Delete/@item.LoaiSoID">Xóa</a>
+        </td>
+    </tr>
+}
+
+</table>
+<style>
+    .table td, .table th {
+        BORDER: 1px solid #6c757d;
+    }
+</style>

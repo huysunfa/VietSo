@@ -28,5 +28,7 @@ namespace apiVietSo.Models
         public virtual DbSet<LicenceData> LicenceDatas { get; set; }
         public virtual DbSet<StaffInfo> StaffInfoes { get; set; }
         public virtual DbSet<VnChinese> VnChinese { get; set; }
+        public virtual DbSet<ListLongSo> ListLongSoes { get; set; }
+        public virtual DbSet<LoaiSo> LoaiSoes { get; set; }
     }
 }

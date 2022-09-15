@@ -12,16 +12,9 @@ namespace apiVietSo.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class LicenceData
+    public partial class LoaiSo
     {
-        public int ID { get; set; }
-        public string Licence { get; set; }
-        public string IP_Active { get; set; }
-        public Nullable<System.DateTime> Date_Active { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.DateTime> ExpiryDate { get; set; }
-        public string HoTen { get; set; }
-        public string SDT { get; set; }
-        public string DiaChi { get; set; }
+        public int LoaiSoID { get; set; }
+        public string TenLoaiSo { get; set; }
     }
 }

@@ -146,12 +146,20 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KeyManagerController.cs" />
     <Compile Include="Controllers\LicenceDatasController.cs" />
+    <Compile Include="Controllers\ListLongSoesController.cs" />
+    <Compile Include="Controllers\LoaiSoesController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LoginAuth.cs" />
     <Compile Include="Models\LicenceData.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ListLongSo.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LoaiSo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LongSo.cs" />
@@ -765,6 +773,16 @@
     <Content Include="Views\LicenceDatas\Details.cshtml" />
     <Content Include="Views\LicenceDatas\Edit.cshtml" />
     <Content Include="Views\LicenceDatas\Index.cshtml" />
+    <Content Include="Views\LoaiSoes\Create.cshtml" />
+    <Content Include="Views\LoaiSoes\Delete.cshtml" />
+    <Content Include="Views\LoaiSoes\Details.cshtml" />
+    <Content Include="Views\LoaiSoes\Edit.cshtml" />
+    <Content Include="Views\LoaiSoes\Index.cshtml" />
+    <Content Include="Views\ListLongSoes\Create.cshtml" />
+    <Content Include="Views\ListLongSoes\Delete.cshtml" />
+    <Content Include="Views\ListLongSoes\Details.cshtml" />
+    <Content Include="Views\ListLongSoes\Edit.cshtml" />
+    <Content Include="Views\ListLongSoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
