@@ -1169,7 +1169,7 @@ namespace WindowsFormsApp1
 
             if (rbSongNgu.Checked)
             {
-                for (int i = 1; i < sheet.ColumnCount; i = i + 2)
+                for (int i = 1; i < sheet.ColumnCount; i = i + 1)
                 {
                     sheet.AutoFitColumnWidth(i, false);
                 }
