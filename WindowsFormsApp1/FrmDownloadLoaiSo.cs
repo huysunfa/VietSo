@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
 
                 int index2 = this.dgvLongSo.Rows.Add();
                 DataGridViewRow dataGridViewRow = this.dgvLongSo.Rows[index2];
-                dataGridViewRow.Cells["ID"].Value = longSo.ID;
+                dataGridViewRow.Cells["ID"].Value = longSo.SoID;
                 dataGridViewRow.Cells["LoaiSo1"].Value = longSo.LoaiSo;
                 dataGridViewRow.Cells["TenSo"].Value = longSo.TenSo;
                 dataGridViewRow.Cells["ChuGiai"].Value = longSo.ChuGiai;
@@ -142,12 +142,13 @@ namespace WindowsFormsApp1
             {
                 DataGridViewRow dataGridViewRow = this.dgvLongSo.SelectedRows[0];
                 string FName = dataGridViewRow.Cells["FileName"].Value.ToString();
+              //  FName = CovertFileName(FName);
                 string TenSo = dataGridViewRow.Cells["TenSo"].Value.ToString();
 
                 var LSo = new LongSo();
                 LSo.FileName = FName;
                 LSo.TenSo = TenSo;
-                if (File.Exists(Util.getDataPath + FName + ConstData.ExtentionsFile) || File.Exists(Util.getDataPath + FName + ".cus"))
+                if (File.Exists(Util.getDataPath + FName ))
                 {
                     Util.NameLongSoHienTai = FName;
                     base.DialogResult = DialogResult.OK;
@@ -163,7 +164,7 @@ namespace WindowsFormsApp1
                         Util.NameLongSoHienTai = FName;
                         return;
                     }
-                    MessageBox.Show("Tải file thất bại. Xin hãy kiểm tra kết nối internet, hoặc liên hệ với Bibe.vn", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show("Tải file thất bại. Xin hãy kiểm tra kết nối internet, hoặc gọi tớ số : "+ Util.sdtSupport,"", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
                 }
             }
@@ -172,7 +173,11 @@ namespace WindowsFormsApp1
                 MessageBox.Show("Xin hãy click chọn lòng sớ", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
-
+        private string CovertFileName(string input)
+        {
+            input = input.Split('@').LastOrDefault().Split('.').FirstOrDefault();
+            return input;
+        }
         // Token: 0x06000078 RID: 120 RVA: 0x00009748 File Offset: 0x00007948
         private void dgvLongSo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -193,6 +198,7 @@ namespace WindowsFormsApp1
                         {
                             object value2 = dataGridViewRow.Cells["TenSo"].Value;
                             string FName = dataGridViewRow.Cells["FileName"].Value.ToString();
+                        //    FName = CovertFileName(FName);
                             string TenSo = dataGridViewRow.Cells["TenSo"].Value.ToString();
 
                             var LSo = new LongSo();

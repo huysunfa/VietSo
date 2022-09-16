@@ -37,7 +37,7 @@ namespace WindowsFormsApp1.Models
         public static LongSoData get(string filename, LongSo LSo)
         {
             
-            var json = System.IO.File.ReadAllText(@"Data\" + filename + ConstData.ExtentionsFile);
+            var json = System.IO.File.ReadAllText(@"Data\" + filename);
             json = Security.Decrypt(json);
             json = json.Replace("$", "@");
             var result = JsonConvert.DeserializeObject<LongSoData>(json);
@@ -55,7 +55,7 @@ namespace WindowsFormsApp1.Models
         {
             var result = JsonConvert.SerializeObject(item);
             result = Security.Encrypt(result);
-            File.WriteAllText("Data/" + item.LSo.FileName + ConstData.ExtentionsFile, result);
+            File.WriteAllText("Data/" + item.LSo.FileName, result);
         }
 
         public static string fstyleToString(int fstyleCN)

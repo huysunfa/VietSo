@@ -3,30 +3,33 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var LoaiSoes = (List<apiVietSo.Models.LoaiSo>)ViewBag.LoaiSoes;
 }
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
+<form method="post" enctype="multipart/form-data">
     <div class="form-horizontal">
-        <h4>ListLongSo</h4>
+        <h4>Thông tin lòng sớm</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.SoID)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.LoaiSo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="LoaiSo">Loại sớ</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.LoaiSo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LoaiSo, "", new { @class = "text-danger" })
+                <select class="form-control" name="LoaiSo">
+
+                    @foreach (var item in LoaiSoes)
+                    {
+                        <option value="@item.TenLoaiSo" @(Model.LoaiSo==item.TenLoaiSo ? "selected": "") >@item.TenLoaiSo</option>
+                    }
+                </select>
+           
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenSo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="LoaiSo">Tên sớ</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenSo, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenSo, "", new { @class = "text-danger" })
@@ -34,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.ChuGiai, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="LoaiSo">Chú giải</label>
             <div class="col-md-10">
                 @Html.EditorFor(model => model.ChuGiai, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.ChuGiai, "", new { @class = "text-danger" })
@@ -42,44 +45,15 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <label class="control-label col-md-2" for="LoaiSo">FileName</label>
             <div class="col-md-10">
-                @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="file" name="FileName" accept=".hc" />
+                <hr />
+                <input disabled class="form-control text-box single-line" id="FileName" name="FileName" type="text" value="@Model.FileName">
                 @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.CreatedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Created, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Created, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Created, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.UpdatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UpdatedBy, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UpdatedBy, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Updated, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Updated, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Updated, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -87,7 +61,8 @@
             </div>
         </div>
     </div>
-}
+</form>
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")

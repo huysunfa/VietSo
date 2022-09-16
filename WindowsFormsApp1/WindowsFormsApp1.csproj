@@ -146,7 +146,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReoGridExtentions.cs" />
-    <Compile Include="SqlModule.cs" />
     <Compile Include="Suggets.cs" />
     <Compile Include="UploadToServer.cs">
       <SubType>Form</SubType>
@@ -198,15 +197,6 @@
       <DependentUpon>UploadToServer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\Data\fontCN\UVNButLong1.TTF" />
-    <None Include="Data\App.set">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\DataLongSo.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\dataSugget.csv">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
     <None Include="Data\fontCN\Arialuni.TTF" />
     <None Include="Data\fontCN\BWEI00BU.TTF" />
     <None Include="Data\fontCN\CHUCOTU.ttf" />
@@ -276,6 +266,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Data\FileUpload\" />
     <Folder Include="Data\fontCN\Temp\" />
   </ItemGroup>
   <ItemGroup>

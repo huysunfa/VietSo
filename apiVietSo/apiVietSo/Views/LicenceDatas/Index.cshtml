@@ -10,18 +10,15 @@
 }
 
 <h2>Quản lý licence</h2>
-<style>
-    .table td, .table th {
-        BORDER: 1px solid #6c757d;
-    }
-</style>
+ 
 <p>
 <a href="/LicenceDatas/Create" class="btn btn-sm btn-primary">Thêm Licence thủ công</a> 
 <a href="/LicenceDatas/CreateAuto" class="btn btn-sm btn-success">Thêm Licence tự động</a></p>
 <hr />
 
 <table class="table">
-    <tr style="background-color:lightgray">
+<thead>
+        <tr style="background-color:lightgray">
         <th>
             @Html.DisplayNameFor(model => model.Licence)
         </th>
@@ -41,6 +38,8 @@
         <th></th>
     </tr>
 
+</thead><tbody>
+    
 @foreach (var item in Model) {
     <tr>
         <td>
@@ -60,10 +59,16 @@
             @Html.DisplayFor(modelItem => item.CreatedDate)
         </td>
         <td>
-              @Html.ActionLink("Delete", "Delete", new { id=item.ID })|
-              @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+           
+                <a class="btn btn-sm btn-success" href="/LicenceDatas/Edit/@item.ID">Sửa</a> |
+             <a class="btn btn-sm btn-danger" href="/LicenceDatas/Delete/@item.ID">Xóa</a>
         </td>
     </tr>
 }
-
+</tbody>
 </table>
+ 
+<script>
+ 
+    $('.table').DataTable();
+</script>

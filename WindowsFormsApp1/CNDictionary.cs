@@ -25,8 +25,10 @@ namespace WindowsFormsApp1
             {
                 #region database
                 database = new Dictionary<string, string>();
-                var data = SqlModule.GetDataTable($@"select vn,chinese from (select vn,chinese,ROW_NUMBER() over(partition by VN ORDER BY ID ) as RN from VnChinese) a1
-                where rn = 1");
+                var json = getDataFromUrl(Util.mainURL + "/AppSync/GetDictionary");
+
+                var data = JsonConvert.DeserializeObject<DataTable>(json);
+
                 foreach (DataRow item in data.Rows)
                 {
                     database.Add((item["vn"] + "").ToLower(), item["chinese"] + "");
@@ -37,12 +39,22 @@ namespace WindowsFormsApp1
                 #endregion
 
                 #region databaseNguCanh
-                databaseNguCanh = SqlModule.GetDataTable($"SELECT vn,chinese,used,nguCanh FROM VnChinese WHERE  ISNULL(nguCanh,'')!='' order by used");
+                databaseNguCanh = JsonConvert.DeserializeObject<DataTable>(getDataFromUrl(Util.mainURL + "/AppSync/GetDictionaryNguCanh"));
                 System.IO.File.WriteAllText(Util.getDictionaryNguCanhPath, Security.Encrypt(Newtonsoft.Json.JsonConvert.SerializeObject(databaseNguCanh)));
                 #endregion
             }
 
 
+        }
+        public static string getDataFromUrl(string inputURL)
+        {
+            using (var webClient = new System.Net.WebClient())
+            {
+                var result = webClient.DownloadData(inputURL);
+                var htmlCode = Encoding.UTF8.GetString(result);
+                return htmlCode;
+
+            }
         }
         public static string getCN(string vn)
         {
@@ -71,7 +83,7 @@ namespace WindowsFormsApp1
             }
 
             return result;
-        }   
+        }
         public static string getVN(string cn)
         {
             if (string.IsNullOrEmpty(cn))
@@ -89,7 +101,7 @@ namespace WindowsFormsApp1
                 }
                 if (database.ContainsValue(key))
                 {
-                    result = result + " " + database.Where(v=>v.Value==key).Select(z=>z.Key).FirstOrDefault();
+                    result = result + " " + database.Where(v => v.Value == key).Select(z => z.Key).FirstOrDefault();
                 }
             }
             if (result == "")

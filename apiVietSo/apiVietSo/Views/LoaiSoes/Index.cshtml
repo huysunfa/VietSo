@@ -10,15 +10,18 @@
 <a href="/LoaiSoes/Create" class="btn btn-sm btn-primary">Thêm loại sớ</a> 
 
 <table class="table">
-    <tr style="background-color:lightgray">
+ <thead>
+        <tr style="background-color:lightgray">
      
         <th>
             @Html.DisplayNameFor(model => model.TenLoaiSo)
         </th>
-        <th></th>
+        <th style="width:100px"></th>
     </tr>
+ </thead>
 
-@foreach (var item in Model) {
+<tbody>
+    @foreach (var item in Model) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.TenLoaiSo)
@@ -30,9 +33,10 @@
     </tr>
 }
 
+</tbody>
 </table>
-<style>
-    .table td, .table th {
-        BORDER: 1px solid #6c757d;
-    }
-</style>
+ 
+<script>
+ 
+    $('.table').DataTable();
+</script>

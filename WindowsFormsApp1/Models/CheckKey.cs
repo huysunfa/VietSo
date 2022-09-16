@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -23,30 +24,28 @@ namespace WindowsFormsApp1.Models
         {
             var mac = CheckKey.getMac();
 
-            var data = SqlModule.GetDataTable($@"select * from LicenceData where Licence ='{key}'
-                and ISNULL(ExpiryDate, getdate()) >= CONVERT(date, getdate()) and isnull(IP_Active,'{mac}') ='{mac}' ");
+            var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/checkOnline?key=" + key + "&mac=" + mac);
 
-            if (data.Rows.Count > 0)
-            {
-                return true;
-            }
-
-            return false;
-
+            return json == "OK" ? true : false;
         }
 
         public static void UpdateKeyOnline(string key)
         {
             var mac = CheckKey.getMac();
 
-            SqlModule.ExcuteCommand($@"update LicenceData set IP_Active ='{mac}',Date_Active = getdate() where  Licence ='{key}'");
+            CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/UpdateKeyOnline?key=" + key + "&mac=" + mac);
 
         }
-          public static void UpdateKeyInfoOnline(string key, string hoten,string diachi,string sdt)
+        public static void UpdateKeyInfoOnline(string key, string hoten, string diachi, string sdt)
         {
             var mac = CheckKey.getMac();
 
-            SqlModule.ExcuteCommand($@"update LicenceData set hoten =N'{hoten}',DIACHI=N'{diachi}',SDT=N'{sdt}' WHERE Licence =N'{key}'");
+            CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/UpdateKeyInfoOnline?key=" + key
+                + "&mac=" + mac
+                + "&hoten=" + hoten
+                + "&diachi=" + diachi
+                + "&sdt=" + sdt
+                );
 
         }
 
@@ -54,8 +53,7 @@ namespace WindowsFormsApp1.Models
         {
             var mac = CheckKey.getMac();
 
-            var data = SqlModule.GetDataTable($@" SELECT [ExpiryDate]
-  FROM [LicenceData] where Licence='{key}'");
+            var data = FullinfoKey(key);
             if (data.Rows.Count > 0)
             {
                 DateTime.TryParse(data.Rows[0]["ExpiryDate"].ToString(), out DateTime result);
@@ -65,9 +63,8 @@ namespace WindowsFormsApp1.Models
         }
         public static DataTable FullinfoKey(string key)
         {
-
-            var data = SqlModule.GetDataTable($@" SELECT * FROM [LicenceData] where Licence='{key}'");
-
+            var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetLicenceData?key=" + key);
+            var data = JsonConvert.DeserializeObject<DataTable>(json);
             return data;
 
         }
@@ -90,8 +87,6 @@ namespace WindowsFormsApp1.Models
                 }
                 catch
                 {
-
-
                 }
             }
             return null;

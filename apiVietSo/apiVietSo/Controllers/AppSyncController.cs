@@ -1,17 +1,51 @@
 ﻿using apiVietSo.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace apiVietSo.Controllers
 {
     public class AppSyncController : Controller
     {
+        public ContentResult JsonMax(string data)
+        {
+            return new ContentResult
+            {
+                Content = data,
+                ContentType = "application/json",
+                ContentEncoding = Encoding.UTF8
+            };
+        }
+        public string ToJson(DataTable dt, bool ConvertLabel = true)
+        {
+            List<Dictionary<string, object>> lst = new List<Dictionary<string, object>>();
+            Dictionary<string, object> item;
+            foreach (DataRow row in dt.Rows)
+            {
+                item = new Dictionary<string, object>();
+                foreach (DataColumn col in dt.Columns)
+                {
+                    item.Add(col.ColumnName, (Convert.IsDBNull(row[col]) ? null : row[col]));
+                }
+                lst.Add(item);
+            }
+            return JsonConvert.SerializeObject(lst);
+        }
+        public string ToJson<T>(List<T> dt)
+        {
+
+            string sJSONResponse = JsonConvert.SerializeObject(dt);
+            return sJSONResponse;
+        }
         public ActionResult Catalog()
         {
 
@@ -22,13 +56,82 @@ namespace apiVietSo.Controllers
 
             foreach (var item in data)
             {
-                if (fileArray.Where(z=>z.Contains(item.FileName.ToUpper())).Count()>0)
+                if (fileArray.Where(z => z.Contains(item.FileName.ToUpper())).Count() > 0)
                 {
                     result.Add(item);
                 }
             }
- 
-             return Json(result, JsonRequestBehavior.AllowGet);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
         }
+
+        public ActionResult GetDictionary()
+        {
+            var data = SqlModule.GetDataTable($@"select vn,chinese from (select vn,chinese,ROW_NUMBER() over(partition by VN ORDER BY ID ) as RN from VnChinese) a1
+                where rn = 1");
+            var result = ToJson(data);
+            return JsonMax(result);
+        }
+
+        public ActionResult checkOnline(string key, string mac)
+        {
+
+            var data = SqlModule.GetDataTable($@"select * from LicenceData where Licence ='{key}'
+                and ISNULL(ExpiryDate, getdate()) >= CONVERT(date, getdate()) and isnull(IP_Active,'{mac}') ='{mac}' ");
+
+            if (data.Rows.Count > 0)
+            {
+                return JsonMax("OK");
+            }
+
+            return JsonMax("NG");
+
+        }
+
+        public ActionResult UpdateKeyOnline(string key, string mac)
+        {
+
+            SqlModule.ExcuteCommand($@"update LicenceData set IP_Active ='{mac}',Date_Active = getdate() where  Licence ='{key}'");
+            return JsonMax("OK");
+
+        }
+        public ActionResult UpdateKeyInfoOnline(string key, string mac, string hoten, string diachi, string sdt)
+        {
+
+            SqlModule.ExcuteCommand($@"update LicenceData set hoten =N'{hoten}',DIACHI=N'{diachi}',SDT=N'{sdt}' WHERE Licence =N'{key}'");
+            return JsonMax("OK");
+
+        }
+
+        [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
+        public ActionResult GetDictionaryNguCanh()
+        {
+            var data = SqlModule.GetDataTable($"SELECT vn,chinese,used,nguCanh FROM VnChinese WHERE  ISNULL(nguCanh,'')!='' order by used");
+            var result = ToJson(data);
+            return JsonMax(result);
+        }
+        [OutputCache(Duration = 86400, VaryByParam = "key", Location = OutputCacheLocation.Client, NoStore = true)]
+        public ActionResult GetLicenceData(string key)
+        {
+            var data = SqlModule.GetDataTable($@" SELECT * FROM [LicenceData] where Licence='{key}'");
+
+            var result = ToJson(data);
+            return JsonMax(result);
+        }
+        
+        [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
+        public ActionResult GetLongSo()
+        {
+            using (Models.vietsoEntities db = new vietsoEntities())
+            {
+                var data = db.ListLongSoes.ToList();  
+
+                var result = ToJson(data);
+                return JsonMax(result);
+            }
+         
+        }
+
+
     }
 }

@@ -38,16 +38,12 @@ namespace WindowsFormsApp1
                     fileStream.CopyTo(memStream);
                     var fontData = memStream.ToArray();
                     var fontDataPtr = Marshal.AllocCoTaskMem(fontData.Length);
-                    try
-                    {
+                   
                         Marshal.Copy(fontData, 0, fontDataPtr, fontData.Length);
                         fontCollection.AddMemoryFont(fontDataPtr, fontData.Length);
-                        Thread.Sleep(1);
-                    }
-                    finally
-                    {
+                   
                         Marshal.FreeCoTaskMem(fontDataPtr);
-                    }
+                   
 
                 }
             });
@@ -57,18 +53,25 @@ namespace WindowsFormsApp1
         public void loadFont()
         {
 
+           
 
-            pfc = LoadInMemoryFonts();
+                pfc = LoadInMemoryFonts();
 
-            foreach (var item in pfc.Families)
-            {
-                cbfnameCN.Items.Add(item.Name);
-
-            }
-            foreach (FontFamily font in System.Drawing.FontFamily.Families)
-            {
-                cbfnameVN.Items.Add(font.Name);
-            }
+                foreach (var item in pfc.Families)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        cbfnameCN.Items.Add(item.Name);
+                    }));
+                }
+                foreach (FontFamily font in System.Drawing.FontFamily.Families)
+                {
+                    this.Invoke(new Action(() =>
+                    {
+                        cbfnameVN.Items.Add(font.Name);
+                    }));
+                }
+      
 
         }
 
@@ -537,7 +540,7 @@ namespace WindowsFormsApp1
             var key = CheckKey.LocalKey();
             this.Text += $" Bản quyền {key} sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
             labelLicence.Text = $"Bản quyền sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
-            ReLoad(sender, e);
+         //    ReLoad(sender, e);
         }
         void loaddd(string txt = "")
         {
@@ -800,17 +803,16 @@ namespace WindowsFormsApp1
         }
         public string GetDefault()
         {
-            var path = System.AppDomain.CurrentDomain.BaseDirectory + "/Data";
+            var path = System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload/";
             if (Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).Count() == 0)
             {
-                ExchangeLongSo.downloadFile("LePhat");
+                ExchangeLongSo.downloadFile("/FileUpload/LePhat.hc");
             }
             var macdinh = Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).OrderByDescending(z => new FileInfo(z).CreationTime).FirstOrDefault();
             if (!String.IsNullOrEmpty(macdinh))
             {
                 var file = new FileInfo(macdinh);
-                var name = file.Name.Split('.').FirstOrDefault();
-                return name;
+                 return "/FileUpload/"+file.Name;
             }
             else
             {
@@ -826,7 +828,14 @@ namespace WindowsFormsApp1
             }
             var LSo = new LongSo();
             LSo.FileName = Util.NameLongSoHienTai;
-            LSo.TenSo = Util.NameLongSoHienTai;
+            LSo.TenSo = LongSo.GetLongSos().Where(v=>v.FileName== Util.NameLongSoHienTai).Select(v=>v.TenSo).FirstOrDefault() ;
+
+            if (string.IsNullOrEmpty(LSo.TenSo))
+            {
+                LSo.TenSo = LSo.FileName;
+                LSo.TenSo = LSo.TenSo.Split('/').LastOrDefault();
+                LSo.TenSo = LSo.TenSo.Split('.').FirstOrDefault();
+            }
             Util.LongSoHienTai = LongSoData.get(LSo.FileName, LSo);
 
 

@@ -5,14 +5,18 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Quản lý lòng sớ</h2>
+ 
+<a href="/ListLongSoes/edit" class="btn btn-sm btn-primary">Thêm loại sớ</a> 
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
-    <tr>
+   <thead>
+        <tr style="background-color:lightgray">
         <th>
+            @Html.DisplayNameFor(model => model.SoID)
+        </th>  
+        <th>
+            
             @Html.DisplayNameFor(model => model.LoaiSo)
         </th>
         <th>
@@ -36,11 +40,16 @@
         <th>
             @Html.DisplayNameFor(model => model.Updated)
         </th>
-        <th></th>
+        <th style="width:100px"></th>
     </tr>
-
+   </thead>
+    <tbody>
+        
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SoID)
+        </td>  
         <td>
             @Html.DisplayFor(modelItem => item.LoaiSo)
         </td>
@@ -51,7 +60,7 @@
             @Html.DisplayFor(modelItem => item.ChuGiai)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FileName)
+            <a target="_blank" href="@item.FileName">@item.FileName.Split('@').LastOrDefault()</a>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CreatedBy)
@@ -66,11 +75,15 @@
             @Html.DisplayFor(modelItem => item.Updated)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.SoID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SoID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SoID })
+                <a class="btn btn-sm btn-success" href="/ListLongSoes/Edit/@item.SoID">Sửa</a> |
+             <a class="btn btn-sm btn-danger" href="/ListLongSoes/Delete/@item.SoID">Xóa</a>
         </td>
     </tr>
 }
+    </tbody>
 
 </table>
+<script>
+ 
+    $('.table').DataTable();
+</script>

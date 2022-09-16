@@ -24,7 +24,7 @@ namespace WindowsFormsApp1
             var item = new LongSoData();
             item.LSo = new LongSo();
             item.LSo.TenSo = textBox1.Text;
-            item.LSo.FileName = textBox1.Text;
+            item.LSo.FileName = "/FileUpload/" + textBox1.Text+ConstData.ExtentionsFile;
              item.PageWidth = ShareFun.toPaperSize(470);  
             item.PageHeight = ShareFun.toPaperSize(297);  
  

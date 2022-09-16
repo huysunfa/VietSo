@@ -33,10 +33,10 @@ namespace WindowsFormsApp1.Models
 			try
 			{
 				WebClient webClient = new WebClient();
-				string text = Util.getTempPath + fileName + ConstData.ExtentionsFile;
-				string uriString = Util.mainURL + "FileUpload/" + fileName + ConstData.ExtentionsFile;
+				string text = fileName.Split('@').LastOrDefault().Split('/').LastOrDefault(); 
+				string uriString = Util.mainURL + fileName;
 				webClient.DownloadFile(new Uri(uriString), text);
-				string destFileName = Util.getDataPath + fileName + ConstData.ExtentionsFile;
+				string destFileName = Util.getDataPath + fileName;
 				File.Copy(text, destFileName, true);
 				if (File.Exists(text))
 				{
