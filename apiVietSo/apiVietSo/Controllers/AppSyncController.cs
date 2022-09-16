@@ -124,9 +124,22 @@ namespace apiVietSo.Controllers
         {
             using (Models.vietsoEntities db = new vietsoEntities())
             {
-                var data = db.ListLongSoes.ToList();  
+                var path =  Server.MapPath("~/FileUpload/");
+                var files = Directory.GetFiles(path, "*.hc", SearchOption.AllDirectories).Select(z=>z.ToUpper().Split('\\').LastOrDefault()).ToList();
 
-                var result = ToJson(data);
+                var ouput = new List<ListLongSo>();
+                var data = db.ListLongSoes.ToList();
+                foreach (var item in data)
+                {
+                    var url = item.FileName.ToUpper() ;
+                    url = url.Replace('/','\'');
+                    url = url.Split('\'').LastOrDefault();
+                    if (files.Contains(url))
+                    {
+                        ouput.Add(item);
+                    }
+                }
+                var result = ToJson(ouput);
                 return JsonMax(result);
             }
          

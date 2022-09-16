@@ -828,7 +828,7 @@ namespace WindowsFormsApp1
             }
             var LSo = new LongSo();
             LSo.FileName = Util.NameLongSoHienTai;
-            LSo.TenSo = LongSo.GetLongSos().Where(v=>v.FileName== Util.NameLongSoHienTai).Select(v=>v.TenSo).FirstOrDefault() ;
+            LSo.TenSo =LongSo.GetTenSoByFileName(LSo.FileName).TenSo;
 
             if (string.IsNullOrEmpty(LSo.TenSo))
             {

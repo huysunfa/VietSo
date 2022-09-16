@@ -55,7 +55,7 @@ namespace WindowsFormsApp1
                 dataGridViewRow.Cells["TenSo"].Value = longSo.TenSo;
                 dataGridViewRow.Cells["ChuGiai"].Value = longSo.ChuGiai;
                 dataGridViewRow.Cells["FileName"].Value = longSo.FileName;
-                if (File.Exists(Util.getDataPath + longSo.FileName + ConstData.ExtentionsFile))
+                if (File.Exists(Util.getDataPath + longSo.FileName  ))
                 {
                     dataGridViewRow.Cells["btnAction"].Value = "Tải lại";
                 }
@@ -69,6 +69,7 @@ namespace WindowsFormsApp1
                 }
             }
         }
+   
 
         private void dgvParent_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
@@ -85,10 +86,10 @@ namespace WindowsFormsApp1
                         if (text == "SỚ CỦA THẦY")
                         {
 
-                            var listfilelocal = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data", "*" + ConstData.ExtentionsFile).Select(z => new FileInfo(z).Name.Split('.').FirstOrDefault()).ToList();
+                            var listfilelocal = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload", "*" + ConstData.ExtentionsFile).Select(z => new FileInfo(z).Name.Split('.').FirstOrDefault()).ToList();
                             var newdata = listfilelocal.Select(v => new LongSo{                            
-                            TenSo=v,
-                            ChuGiai=v,
+                            TenSo= LongSo.GetTenSoByFileName(v).TenSo,
+                            ChuGiai= LongSo.GetTenSoByFileName(v).ChuGiai,
                             FileName=v,
                             LoaiSo=text
                             }).ToList();

@@ -39,5 +39,15 @@ namespace WindowsFormsApp1.Models
           
             return data;
         }
+
+        public static LongSo GetTenSoByFileName(string FileName)
+        {
+          var  output = LongSo.GetLongSos().Where(v => v.FileName.Contains(FileName)).FirstOrDefault();
+            if (output==null)
+            {
+                return new LongSo() { FileName= FileName,TenSo= FileName };
+            }
+            return output;
+        }
     }
 }
