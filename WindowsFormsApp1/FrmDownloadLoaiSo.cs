@@ -133,8 +133,19 @@ namespace WindowsFormsApp1
         {
 
             string text = this.txt.Text.Trim().ToLower();
-            var newdata = data.Where(z => z.TenSo.ToLower().Contains(text)).ToList();
-            setDatagrid(newdata, text);
+            var newdata = data.ToList();
+            var output = new List<LongSo>();
+            foreach (var item in newdata)
+            {
+                var name = item.TenSo.ToLower();
+                int check = name.IndexOf(text);
+                if (check >= 0)
+                {
+
+                    output.Add(item);
+                }
+            }
+             setDatagrid(output, text);
         }
 
         // Token: 0x06000077 RID: 119 RVA: 0x00009620 File Offset: 0x00007820
