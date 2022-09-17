@@ -97,8 +97,9 @@ namespace WindowsFormsApp1
         {
             var fontCollection = new PrivateFontCollection();
             string[] fileEntries = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/fontCN");
-            Array.ForEach(fileEntries, fontFile =>
+            foreach (var fontFile in fileEntries)
             {
+ 
                 using (var fileStream = new FileStream(fontFile, FileMode.Open, FileAccess.Read))
                 {
                     var memStream = new MemoryStream();
@@ -112,8 +113,8 @@ namespace WindowsFormsApp1
                     Marshal.FreeCoTaskMem(fontDataPtr);
 
 
-                }
-            });
+                } 
+            }
             return fontCollection;
         }
     }

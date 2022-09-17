@@ -31,7 +31,8 @@ namespace WindowsFormsApp1
         public void loadListFont()
         {
 
-
+            var lastVN = cbfnameVN.Text;
+            var lastCN = cbfnameCN.Text;
 
             cbfnameCN.Items.Clear();
             cbfnameVN.Items.Clear();
@@ -44,7 +45,8 @@ namespace WindowsFormsApp1
             {
                 cbfnameVN.Items.Add(item);
             }
-
+            cbfnameVN.Text = lastVN;
+            cbfnameCN.Text = lastCN;
         }
 
 
@@ -1291,7 +1293,7 @@ namespace WindowsFormsApp1
             var frm = new frmDownloadFont();
             frm.ShowDialog();
             loadFont.loadListFontCN(true);
-            loadListFont();
+            MessageBox.Show("Vui lòng tắt phần mềm đi mở lại để sử dụng những font vừa download !");
         }
     }
 }

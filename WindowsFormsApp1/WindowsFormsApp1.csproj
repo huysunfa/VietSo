@@ -158,6 +158,11 @@
     <Compile Include="Models\UtilModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="ReoGridExtentions.cs" />
     <Compile Include="Suggets.cs" />
     <Compile Include="UploadToServer.cs">
@@ -204,20 +209,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="UploadToServer.resx">
       <DependentUpon>UploadToServer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\Data\fontCN\UVNButLong1.TTF" />
-    <None Include="Data\fontCN\CN_KHAI.TTF" />
-    <None Include="Data\fontCN\UVNButLong1.TTF" />
+    <None Include="Data\fontCN\CN_KHAI.TTF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\fontCN\UVNButLong1.TTF">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
