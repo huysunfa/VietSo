@@ -90,7 +90,7 @@ namespace WindowsFormsApp1
                             var newdata = listfilelocal.Select(v => new LongSo{                            
                             TenSo= LongSo.GetTenSoByFileName(v).TenSo,
                             ChuGiai= LongSo.GetTenSoByFileName(v).ChuGiai,
-                            FileName=v,
+                            FileName= "/FileUpload/"+v+ConstData.ExtentionsFile,
                             LoaiSo=text
                             }).ToList();
                             

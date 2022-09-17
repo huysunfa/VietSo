@@ -1331,5 +1331,16 @@ namespace WindowsFormsApp1
             var frm = new UploadToServer();
             frm.ShowDialog();
         }
+
+        private void button6_Click_1(object sender, EventArgs e)
+        {
+
+            var listfilelocal = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data", "*.config").ToList();
+            foreach (var item in listfilelocal)
+            {
+                File.Delete(item);
+            }
+            MessageBox.Show("Đã update dữ liệu mới nhất");
+        }
     }
 }
