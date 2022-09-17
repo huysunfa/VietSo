@@ -50,7 +50,7 @@ namespace WindowsFormsApp1
                 value = Security.Encrypt(value);
                 File.WriteAllText("Data/" + "licence", value);
 
-                Application.Run(new Form1());
+                Application.Run(new frmWellCome());
 
             }
             else

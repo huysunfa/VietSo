@@ -1,0 +1,64 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace WindowsFormsApp1
+{
+    public partial class frmWellCome : Form
+    {
+        public frmWellCome()
+        {
+            InitializeComponent();
+        }
+        public void OuputOK(String INPUT)
+        {
+            this.Invoke(new Action(() =>
+            {
+                label1.Text += "\n" + INPUT;
+            }));
+        }
+        private void frmWellCome_Load(object sender, EventArgs e)
+        {
+            label1.Text = "";
+            Task.Run(() =>
+            {
+
+                loadFont.loadListFontCN();
+                OuputOK("1. Tải dữ liệu font chữ hán");
+                loadFont.loadListFontVN();
+                OuputOK("2.  Tải dữ liệu font chữ việt");
+                CNDictionary.loadDatabase();
+                OuputOK("3.  Tải dữ liệu thư viện chữ hán");
+                Models.LongSo.GetLongSos();
+                OuputOK("4.  Tải dữ liệu lòng sớ");
+                OuputOK("5. Mở phần mềm");
+
+                this.Invoke(new Action(() =>
+               {
+
+                   var frm = new Form1();
+                  
+                   Thread.Sleep(500);
+                   this.Hide();
+                   frm.WindowState = FormWindowState.Maximized;
+                   frm.ShowDialog();
+                   this.Close();
+               }));
+
+
+
+            });
+        }
+        public void StartForm()
+        {
+            Application.Run(new Form1());
+        }
+    }
+}

@@ -26,53 +26,24 @@ namespace WindowsFormsApp1
             InitializeComponent();
         }
 
-        public PrivateFontCollection LoadInMemoryFonts()
-        {
-            var fontCollection = new PrivateFontCollection();
-            string[] fileEntries = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/fontCN");
-            Array.ForEach(fileEntries, fontFile =>
-            {
-                using (var fileStream = new FileStream(fontFile, FileMode.Open, FileAccess.Read))
-                {
-                    var memStream = new MemoryStream();
-                    fileStream.CopyTo(memStream);
-                    var fontData = memStream.ToArray();
-                    var fontDataPtr = Marshal.AllocCoTaskMem(fontData.Length);
-                   
-                        Marshal.Copy(fontData, 0, fontDataPtr, fontData.Length);
-                        fontCollection.AddMemoryFont(fontDataPtr, fontData.Length);
-                   
-                        Marshal.FreeCoTaskMem(fontDataPtr);
-                   
 
-                }
-            });
-            return fontCollection;
-        }
         PrivateFontCollection pfc = new PrivateFontCollection();
-        public void loadFont()
+        public void loadListFont()
         {
 
-           
 
-                pfc = LoadInMemoryFonts();
 
-                foreach (var item in pfc.Families)
+
+             
+                foreach (var item in loadFont.loadListFontCN())
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        cbfnameCN.Items.Add(item.Name);
-                    }));
+                    cbfnameCN.Items.Add(item);
                 }
-                foreach (FontFamily font in System.Drawing.FontFamily.Families)
+                foreach (var item in loadFont.loadListFontVN())
                 {
-                    this.Invoke(new Action(() =>
-                    {
-                        cbfnameVN.Items.Add(font.Name);
-                    }));
+                    cbfnameVN.Items.Add(item);
                 }
-      
-
+ 
         }
 
 
@@ -468,7 +439,7 @@ namespace WindowsFormsApp1
             cbCanChuViet.SelectedItem = "RIGHT";
             addMenuContext();
 
-            loadFont();
+            loadListFont();
 
             var worksheet = reoGridControl1.CurrentWorksheet;
             //worksheet.SetRangeBorders(worksheet.PrintableRange, BorderPositions.All, RangeBorderStyle.SilverSolid);
@@ -540,7 +511,7 @@ namespace WindowsFormsApp1
             var key = CheckKey.LocalKey();
             this.Text += $" Bản quyền {key} sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
             labelLicence.Text = $"Bản quyền sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
-         //    ReLoad(sender, e);
+            //    ReLoad(sender, e);
         }
         void loaddd(string txt = "")
         {
@@ -812,7 +783,7 @@ namespace WindowsFormsApp1
             if (!String.IsNullOrEmpty(macdinh))
             {
                 var file = new FileInfo(macdinh);
-                 return "/FileUpload/"+file.Name;
+                return "/FileUpload/" + file.Name;
             }
             else
             {
@@ -828,7 +799,7 @@ namespace WindowsFormsApp1
             }
             var LSo = new LongSo();
             LSo.FileName = Util.NameLongSoHienTai;
-            LSo.TenSo =LongSo.GetTenSoByFileName(LSo.FileName).TenSo;
+            LSo.TenSo = LongSo.GetTenSoByFileName(LSo.FileName).TenSo;
 
             if (string.IsNullOrEmpty(LSo.TenSo))
             {

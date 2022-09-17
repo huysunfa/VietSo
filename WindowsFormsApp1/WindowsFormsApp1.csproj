@@ -124,6 +124,13 @@
     <Compile Include="frmTinChu.Designer.cs">
       <DependentUpon>frmTinChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmWellCome.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmWellCome.Designer.cs">
+      <DependentUpon>frmWellCome.cs</DependentUpon>
+    </Compile>
+    <Compile Include="loadFont.cs" />
     <Compile Include="Models\ActiveData.cs" />
     <Compile Include="Models\CellData.cs" />
     <Compile Include="Models\CheckKey.cs" />
@@ -182,6 +189,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTinChu.resx">
       <DependentUpon>frmTinChu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmWellCome.resx">
+      <DependentUpon>frmWellCome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -282,6 +292,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Capture.ico" />
+    <None Include="Resources\bg.jpg" />
     <None Include="Resources\upArrow.png" />
     <None Include="Resources\undo.png" />
     <None Include="Resources\search.png" />
