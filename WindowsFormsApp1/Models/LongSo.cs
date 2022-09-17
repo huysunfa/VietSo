@@ -39,7 +39,45 @@ namespace WindowsFormsApp1.Models
           
             return data;
         }
+        public static string GetDefault()
+        {
+            var path = System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload/";
+            if (Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).Count() == 0)
+            {
+                ExchangeLongSo.downloadFile("/FileUpload/LePhat.hc");
+            }
+            var macdinh = Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).OrderByDescending(z => new FileInfo(z).CreationTime).FirstOrDefault();
+            if (!String.IsNullOrEmpty(macdinh))
+            {
+                var file = new FileInfo(macdinh);
+                return "/FileUpload/" + file.Name;
+            }
+            else
+            {
 
+            }
+            return null;
+        }
+        public static void loadDataLongSo()
+        {
+            if (string.IsNullOrEmpty(Util.NameLongSoHienTai))
+            {
+                Util.NameLongSoHienTai = GetDefault();
+            }
+            var LSo = new LongSo();
+            LSo.FileName = Util.NameLongSoHienTai;
+            LSo.TenSo = LongSo.GetTenSoByFileName(LSo.FileName).TenSo;
+
+            if (string.IsNullOrEmpty(LSo.TenSo))
+            {
+                LSo.TenSo = LSo.FileName;
+                LSo.TenSo = LSo.TenSo.Split('/').LastOrDefault();
+                LSo.TenSo = LSo.TenSo.Split('.').FirstOrDefault();
+            }
+            Util.LongSoHienTai = LongSoData.get(LSo.FileName, LSo);
+
+
+        }
         public static LongSo GetTenSoByFileName(string FileName)
         {
           var  output = LongSo.GetLongSos().Where(v => v.FileName.Contains(FileName)).FirstOrDefault();

@@ -33,17 +33,18 @@ namespace WindowsFormsApp1
 
 
 
+            cbfnameCN.Items.Clear();
+            cbfnameVN.Items.Clear();
 
-             
-                foreach (var item in loadFont.loadListFontCN())
-                {
-                    cbfnameCN.Items.Add(item);
-                }
-                foreach (var item in loadFont.loadListFontVN())
-                {
-                    cbfnameVN.Items.Add(item);
-                }
- 
+            foreach (var item in loadFont.loadListFontCN())
+            {
+                cbfnameCN.Items.Add(item);
+            }
+            foreach (var item in loadFont.loadListFontVN())
+            {
+                cbfnameVN.Items.Add(item);
+            }
+
         }
 
 
@@ -508,9 +509,18 @@ namespace WindowsFormsApp1
             rbChuHan.Checked = true;
 
             loading = true;
-            var key = CheckKey.LocalKey();
-            this.Text += $" Bản quyền {key} sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
-            labelLicence.Text = $"Bản quyền sử dụng đến ngày : " + CheckKey.infoKey(key).ToString("dd/MM/yyyy");
+            Task.Run(() =>
+            {
+
+                var key = CheckKey.LocalKey();
+                var date = CheckKey.infoKey(key).ToString("dd/MM/yyyy");
+                this.Invoke(new Action(() =>
+                {
+                    this.Text += $" Bản quyền {key} sử dụng đến ngày : " + date;
+                    labelLicence.Text = $"Bản quyền sử dụng đến ngày : " + date;
+                }));
+
+            });
             //    ReLoad(sender, e);
         }
         void loaddd(string txt = "")
@@ -629,8 +639,7 @@ namespace WindowsFormsApp1
         }
         public void ReLoad(object sender, EventArgs e)
         {
-            loadDataLongSo();
-
+             Models.LongSo.loadDataLongSo();
             loadSettingFont();
             var Data = Util.LongSoHienTai;
             if (Data == null || Data.LgSo == null)
@@ -772,45 +781,8 @@ namespace WindowsFormsApp1
 
 
         }
-        public string GetDefault()
-        {
-            var path = System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload/";
-            if (Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).Count() == 0)
-            {
-                ExchangeLongSo.downloadFile("/FileUpload/LePhat.hc");
-            }
-            var macdinh = Directory.GetFiles(path, "*" + ConstData.ExtentionsFile).OrderByDescending(z => new FileInfo(z).CreationTime).FirstOrDefault();
-            if (!String.IsNullOrEmpty(macdinh))
-            {
-                var file = new FileInfo(macdinh);
-                return "/FileUpload/" + file.Name;
-            }
-            else
-            {
-
-            }
-            return null;
-        }
-        public void loadDataLongSo()
-        {
-            if (string.IsNullOrEmpty(Util.NameLongSoHienTai))
-            {
-                Util.NameLongSoHienTai = GetDefault();
-            }
-            var LSo = new LongSo();
-            LSo.FileName = Util.NameLongSoHienTai;
-            LSo.TenSo = LongSo.GetTenSoByFileName(LSo.FileName).TenSo;
-
-            if (string.IsNullOrEmpty(LSo.TenSo))
-            {
-                LSo.TenSo = LSo.FileName;
-                LSo.TenSo = LSo.TenSo.Split('/').LastOrDefault();
-                LSo.TenSo = LSo.TenSo.Split('.').FirstOrDefault();
-            }
-            Util.LongSoHienTai = LongSoData.get(LSo.FileName, LSo);
-
-
-        }
+     
+      
         public void loadSettingFont()
         {
             var Data = Util.LongSoHienTai;
@@ -1312,6 +1284,14 @@ namespace WindowsFormsApp1
                 File.Delete(item);
             }
             MessageBox.Show("Đã update dữ liệu mới nhất");
+        }
+
+        private void button9_Click_1(object sender, EventArgs e)
+        {
+            var frm = new frmDownloadFont();
+            frm.ShowDialog();
+            loadFont.loadListFontCN(true);
+            loadListFont();
         }
     }
 }

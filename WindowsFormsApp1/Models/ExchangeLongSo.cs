@@ -50,5 +50,52 @@ namespace WindowsFormsApp1.Models
 			}
 			return result;
 		}
+		public static bool downloadFileBibe(string fileName)
+		{
+			bool result;
+			try
+			{
+				WebClient webClient = new WebClient();
+				string text = fileName.Split('@').LastOrDefault().Split('/').LastOrDefault(); 
+				string uriString = fileName;
+				webClient.DownloadFile(new Uri(uriString), text);
+				string destFileName = Util.getDataPath + "/FileUpload/" + text;
+				File.Copy(text, destFileName, true);
+				if (File.Exists(text))
+				{
+					File.Delete(text);
+				}
+				result = true;
+			}
+			catch
+			{
+				result = false;
+			}
+			return result;
+		}
+
+		public static bool downloadFileFont(string fileName)
+		{
+			bool result;
+			try
+			{
+				WebClient webClient = new WebClient();
+				string text = fileName.Split('@').LastOrDefault().Split('/').LastOrDefault();
+				string uriString = Util.mainURL + fileName;
+				webClient.DownloadFile(new Uri(uriString), text);
+				string destFileName = Util.getDataPath + "/FontCN/"+text;
+				File.Copy(text, destFileName, true);
+				if (File.Exists(text))
+				{
+					File.Delete(text);
+				}
+				result = true;
+			}
+			catch
+			{
+				result = false;
+			}
+			return result;
+		}
 	}
 }

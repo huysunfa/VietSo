@@ -29,23 +29,24 @@ namespace WindowsFormsApp1
             label1.Text = "";
             Task.Run(() =>
             {
+                OuputOK("1. Tải dữ liệu font chữ hán");
 
                 loadFont.loadListFontCN();
-                OuputOK("1. Tải dữ liệu font chữ hán");
-                loadFont.loadListFontVN();
                 OuputOK("2.  Tải dữ liệu font chữ việt");
-                CNDictionary.loadDatabase();
+                loadFont.loadListFontVN();
                 OuputOK("3.  Tải dữ liệu thư viện chữ hán");
+                CNDictionary.loadDatabase();
+                OuputOK("4.  Tải dữ liệu lòng sớ đang mở");
                 Models.LongSo.GetLongSos();
-                OuputOK("4.  Tải dữ liệu lòng sớ");
-                OuputOK("5. Mở phần mềm");
-
+                OuputOK("5.  DownloadFont");
+                //loadFont.DownloadFont();
+                //OuputOK("6. Mở phần mềm");
                 this.Invoke(new Action(() =>
                {
 
                    var frm = new Form1();
-                  
-                   Thread.Sleep(500);
+
+                   // Thread.Sleep(500);
                    this.Hide();
                    frm.WindowState = FormWindowState.Maximized;
                    frm.ShowDialog();

@@ -43,17 +43,17 @@ namespace WindowsFormsApp1
 
 
         }
-        public static List<string> loadListFontCN()
+        public static List<string> loadListFontCN(bool replace=false)
         {
 
             PrivateFontCollection pfc = new PrivateFontCollection();
-            List<string>  output = null ;
+            List<string> output = null;
             var path = Util.getDicFontCN;
             if (File.Exists(path))
             {
                 output = JsonConvert.DeserializeObject<List<string>>(Security.Decrypt(System.IO.File.ReadAllText(path)));
             }
-            if (output == null)
+            if (output == null || replace == true)
             {
                 #region output
                 output = new List<string>();
@@ -75,6 +75,24 @@ namespace WindowsFormsApp1
 
         }
 
+        public static void DownloadFont()
+        {
+            var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetListFont");
+            var data = JsonConvert.DeserializeObject<List<string>>(json);
+            string[] fileEntries = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/fontCN").Select(v=>v.Split('\\').LastOrDefault().ToUpper()).ToArray();
+            foreach (var item in data)
+            {
+                var name = item;
+                name = name.Replace("\\", "/");
+                name = name.Split('/').LastOrDefault().ToUpper();
+                if (!fileEntries.Contains(name))
+                {
+                    var urldownload = "/FILEUPLOAD/FONTCN/"+name;
+                    ExchangeLongSo.downloadFileFont(urldownload);
+                }
+            }
+
+        }
         public static PrivateFontCollection LoadInMemoryFonts()
         {
             var fontCollection = new PrivateFontCollection();

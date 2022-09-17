@@ -82,6 +82,12 @@
     <Compile Include="frmCreateNew.Designer.cs">
       <DependentUpon>frmCreateNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDownloadFont.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDownloadFont.Designer.cs">
+      <DependentUpon>frmDownloadFont.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDownloadLoaiSo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     <EmbeddedResource Include="frmCreateNew.resx">
       <DependentUpon>frmCreateNew.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDownloadFont.resx">
+      <DependentUpon>frmDownloadFont.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDownloadLoaiSo.resx">
       <DependentUpon>FrmDownloadLoaiSo.cs</DependentUpon>
     </EmbeddedResource>
@@ -207,50 +216,8 @@
       <DependentUpon>UploadToServer.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="bin\Debug\Data\fontCN\UVNButLong1.TTF" />
-    <None Include="Data\fontCN\Arialuni.TTF" />
-    <None Include="Data\fontCN\BWEI00BU.TTF" />
-    <None Include="Data\fontCN\CHUCOTU.ttf" />
-    <None Include="Data\fontCN\Chuhanh_4.TTF" />
-    <None Include="Data\fontCN\Chukhai.TTF" />
-    <None Include="Data\fontCN\Chule.ttf" />
-    <None Include="Data\fontCN\Chunguy_3.TTF" />
-    <None Include="Data\fontCN\Cn_hanh.TTF" />
-    <None Include="Data\fontCN\Cn_hanhkhai.TTF" />
     <None Include="Data\fontCN\CN_KHAI.TTF" />
-    <None Include="Data\fontCN\CN_KHAI_30.TTF" />
-    <None Include="Data\fontCN\CN_NGUYBI.TTF" />
-    <None Include="Data\fontCN\CN_SSKBI.TTF" />
-    <None Include="Data\fontCN\FZKATJW.TTF" />
-    <None Include="Data\fontCN\FZKTJW.TTF" />
-    <None Include="Data\fontCN\FZQTFW.TTF" />
-    <None Include="Data\fontCN\FZSZJW.ttf" />
-    <None Include="Data\fontCN\FZWBFW.ttf" />
-    <None Include="Data\fontCN\FZY1JW.TTF" />
-    <None Include="Data\fontCN\FZY3JW.TTF" />
-    <None Include="Data\fontCN\FZZBHFW.ttf" />
-    <None Include="Data\fontCN\FZZDXFW.TTF" />
-    <None Include="Data\fontCN\HanaMinA.ttf" />
-    <None Include="Data\fontCN\HanaMinB.ttf" />
-    <None Include="Data\fontCN\Hannomcourier.ttf" />
-    <None Include="Data\fontCN\Hannomtimes.ttf" />
-    <None Include="Data\fontCN\HueKhai.ttf" />
-    <None Include="Data\fontCN\HueMinh6.ttf" />
-    <None Include="Data\fontCN\HueTucan.ttf" />
-    <None Include="Data\fontCN\mingliu.ttf" />
-    <None Include="Data\fontCN\Nomkhai.ttf" />
-    <None Include="Data\fontCN\Nomkhaiu.ttf" />
-    <None Include="Data\fontCN\Nomminh.TTF" />
-    <None Include="Data\fontCN\NomMinhU.ttf" />
-    <None Include="Data\fontCN\NomNaTongLight.ttf" />
-    <None Include="Data\fontCN\simfang.ttf" />
-    <None Include="Data\fontCN\stzhongs.ttf" />
-    <None Include="Data\fontCN\Tt19.TTF" />
-    <None Include="Data\fontCN\tt2.ttf" />
     <None Include="Data\fontCN\UVNButLong1.TTF" />
-    <None Include="Data\fontCN\书体坊赵九江钢笔行书体.TTF" />
-    <None Include="Data\fontCN\启体繁.ttf" />
-    <None Include="Data\fontCN\舒体繁.ttf" />
-    <None Include="Data\fontCN\金梅草行字形空心.ttf" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

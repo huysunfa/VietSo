@@ -10,7 +10,7 @@ namespace ToolsConvertBibe
 
     public class CryptoServiceProvider
     {
-        public static string key = "";
+        public static string key = "InSo!@#";
         public static string EncryptPassword(string strEnCrypt)
         {
             try

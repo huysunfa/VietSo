@@ -745,6 +745,50 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="FileUpload\fontCN\Arialuni.TTF" />
+    <Content Include="FileUpload\fontCN\BWEI00BU.TTF" />
+    <Content Include="FileUpload\fontCN\CHUCOTU.ttf" />
+    <Content Include="FileUpload\fontCN\Chuhanh_4.TTF" />
+    <Content Include="FileUpload\fontCN\Chukhai.TTF" />
+    <Content Include="FileUpload\fontCN\Chule.ttf" />
+    <Content Include="FileUpload\fontCN\Chunguy_3.TTF" />
+    <Content Include="FileUpload\fontCN\Cn_hanh.TTF" />
+    <Content Include="FileUpload\fontCN\Cn_hanhkhai.TTF" />
+    <Content Include="FileUpload\fontCN\CN_KHAI.TTF" />
+    <Content Include="FileUpload\fontCN\CN_KHAI_30.TTF" />
+    <Content Include="FileUpload\fontCN\CN_NGUYBI.TTF" />
+    <Content Include="FileUpload\fontCN\CN_SSKBI.TTF" />
+    <Content Include="FileUpload\fontCN\FZKATJW.TTF" />
+    <Content Include="FileUpload\fontCN\FZKTJW.TTF" />
+    <Content Include="FileUpload\fontCN\FZQTFW.TTF" />
+    <Content Include="FileUpload\fontCN\FZSZJW.ttf" />
+    <Content Include="FileUpload\fontCN\FZWBFW.ttf" />
+    <Content Include="FileUpload\fontCN\FZY1JW.TTF" />
+    <Content Include="FileUpload\fontCN\FZY3JW.TTF" />
+    <Content Include="FileUpload\fontCN\FZZBHFW.ttf" />
+    <Content Include="FileUpload\fontCN\FZZDXFW.TTF" />
+    <Content Include="FileUpload\fontCN\HanaMinA.ttf" />
+    <Content Include="FileUpload\fontCN\HanaMinB.ttf" />
+    <Content Include="FileUpload\fontCN\Hannomcourier.ttf" />
+    <Content Include="FileUpload\fontCN\Hannomtimes.ttf" />
+    <Content Include="FileUpload\fontCN\HueKhai.ttf" />
+    <Content Include="FileUpload\fontCN\HueMinh6.ttf" />
+    <Content Include="FileUpload\fontCN\HueTucan.ttf" />
+    <Content Include="FileUpload\fontCN\mingliu.ttf" />
+    <Content Include="FileUpload\fontCN\Nomkhai.ttf" />
+    <Content Include="FileUpload\fontCN\Nomkhaiu.ttf" />
+    <Content Include="FileUpload\fontCN\Nomminh.TTF" />
+    <Content Include="FileUpload\fontCN\NomMinhU.ttf" />
+    <Content Include="FileUpload\fontCN\NomNaTongLight.ttf" />
+    <Content Include="FileUpload\fontCN\simfang.ttf" />
+    <Content Include="FileUpload\fontCN\stzhongs.ttf" />
+    <Content Include="FileUpload\fontCN\Tt19.TTF" />
+    <Content Include="FileUpload\fontCN\tt2.ttf" />
+    <Content Include="FileUpload\fontCN\UVNButLong1.TTF" />
+    <Content Include="FileUpload\fontCN\书体坊赵九江钢笔行书体.TTF" />
+    <Content Include="FileUpload\fontCN\启体繁.ttf" />
+    <Content Include="FileUpload\fontCN\舒体繁.ttf" />
+    <Content Include="FileUpload\fontCN\金梅草行字形空心.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -791,6 +835,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="FileUpload\data\" />
+    <Folder Include="FileUpload\fontCN\Temp\" />
     <Folder Include="Views\APIDATA\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

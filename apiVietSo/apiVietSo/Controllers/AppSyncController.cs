@@ -149,26 +149,40 @@ namespace apiVietSo.Controllers
             TenSo = TenSo.ToUpper();
             using (Models.vietsoEntities db = new vietsoEntities())
             {
-                var data = db.ListLongSo_ChoDuyet.Where(v => v.TenSo.ToUpper() == TenSo).OrderByDescending(z=>z.Created).ToList();
+                var data = db.ListLongSo_ChoDuyet.Where(v => v.TenSo.ToUpper() == TenSo).OrderByDescending(z => z.Created).ToList();
                 var result = ToJson(data);
                 return JsonMax(result);
             }
 
         }
-          public ActionResult AddItemListLongSo(ListLongSo_ChoDuyet item)
+        public ActionResult AddItemListLongSo(ListLongSo_ChoDuyet item)
         {
-             using (Models.vietsoEntities db = new vietsoEntities())
+            using (Models.vietsoEntities db = new vietsoEntities())
             {
                 var old = db.ListLongSo_ChoDuyet.Where(v => v.CreatedBy == item.CreatedBy && item.TenSo == v.TenSo && string.IsNullOrEmpty(v.TrangThai));
                 db.ListLongSo_ChoDuyet.RemoveRange(old);
                 item.Created = DateTime.Now;
-                 db.ListLongSo_ChoDuyet.Add(item);
+                db.ListLongSo_ChoDuyet.Add(item);
                 db.SaveChanges();
                 return JsonMax("OK");
             }
 
         }
 
+        [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
+        public ActionResult GetListFont()
+        {
 
+            var path = Server.MapPath("~/FileUpload/fontCN").ToUpper();
+            var domain = Server.MapPath("~/").ToUpper();
+            var request = Request.Url.Scheme +":"+Request.Url.Authority;
+
+            var files = Directory.GetFiles(path, "*.ttf", SearchOption.AllDirectories).Select(z => request+"\\" +z.ToUpper().Replace(domain, "")).ToList();
+
+            var result = ToJson(files);
+            return JsonMax(result);
+
+
+        }
     }
 }
