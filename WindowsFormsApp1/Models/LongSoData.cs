@@ -48,7 +48,20 @@ namespace WindowsFormsApp1.Models
                 float scale = (float)SystemParameters.VirtualScreenWidth / (float)result.PageWidth ;
                 result.ScaleFactor = scale;
             }
-
+            foreach (var item in result.LgSo)
+            {
+                foreach (var it in item.Value)
+                {
+                    if (string.IsNullOrEmpty(it.Value.TextVN) && !string.IsNullOrEmpty(it.Value.TextCN))
+                    {
+                        it.Value.TextVN = CNDictionary.getVN(it.Value.TextCN);
+                    }
+                    if (!string.IsNullOrEmpty(it.Value.TextVN) &&  string.IsNullOrEmpty(it.Value.TextCN))
+                    {
+                        it.Value.TextCN = CNDictionary.getCN(it.Value.TextVN);
+                    }
+                }
+            }
             return result;
         }
         public static void save(LongSoData item)

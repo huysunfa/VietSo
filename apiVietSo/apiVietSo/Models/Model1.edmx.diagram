@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="lts43636_vietsoModel.VnChinese" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="lts43636_vietsoModel.ListLongSo" Width="1.5" PointX="3.375" PointY="3.75" />
         <EntityTypeShape EntityType="lts43636_vietsoModel.LoaiSo" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="lts43636_vietsoModel.ListLongSo_ChoDuyet" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

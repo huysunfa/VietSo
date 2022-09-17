@@ -118,21 +118,21 @@ namespace apiVietSo.Controllers
             var result = ToJson(data);
             return JsonMax(result);
         }
-        
+
         [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
         public ActionResult GetLongSo()
         {
             using (Models.vietsoEntities db = new vietsoEntities())
             {
-                var path =  Server.MapPath("~/FileUpload/");
-                var files = Directory.GetFiles(path, "*.hc", SearchOption.AllDirectories).Select(z=>z.ToUpper().Split('\\').LastOrDefault()).ToList();
+                var path = Server.MapPath("~/FileUpload/");
+                var files = Directory.GetFiles(path, "*.hc", SearchOption.AllDirectories).Select(z => z.ToUpper().Split('\\').LastOrDefault()).ToList();
 
                 var ouput = new List<ListLongSo>();
                 var data = db.ListLongSoes.ToList();
                 foreach (var item in data)
                 {
-                    var url = item.FileName.ToUpper() ;
-                    url = url.Replace('/','\'');
+                    var url = item.FileName.ToUpper();
+                    url = url.Replace('/', '\'');
                     url = url.Split('\'').LastOrDefault();
                     if (files.Contains(url))
                     {
@@ -142,7 +142,31 @@ namespace apiVietSo.Controllers
                 var result = ToJson(ouput);
                 return JsonMax(result);
             }
-         
+
+        }
+        public ActionResult GetListLongSo_ChoDuyet(string TenSo)
+        {
+            TenSo = TenSo.ToUpper();
+            using (Models.vietsoEntities db = new vietsoEntities())
+            {
+                var data = db.ListLongSo_ChoDuyet.Where(v => v.TenSo.ToUpper() == TenSo).OrderByDescending(z=>z.Created).ToList();
+                var result = ToJson(data);
+                return JsonMax(result);
+            }
+
+        }
+          public ActionResult AddItemListLongSo(ListLongSo_ChoDuyet item)
+        {
+             using (Models.vietsoEntities db = new vietsoEntities())
+            {
+                var old = db.ListLongSo_ChoDuyet.Where(v => v.CreatedBy == item.CreatedBy && item.TenSo == v.TenSo && string.IsNullOrEmpty(v.TrangThai));
+                db.ListLongSo_ChoDuyet.RemoveRange(old);
+                item.Created = DateTime.Now;
+                 db.ListLongSo_ChoDuyet.Add(item);
+                db.SaveChanges();
+                return JsonMax("OK");
+            }
+
         }
 
 

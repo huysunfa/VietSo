@@ -30,5 +30,6 @@ namespace apiVietSo.Models
         public virtual DbSet<VnChinese> VnChinese { get; set; }
         public virtual DbSet<ListLongSo> ListLongSoes { get; set; }
         public virtual DbSet<LoaiSo> LoaiSoes { get; set; }
+        public virtual DbSet<ListLongSo_ChoDuyet> ListLongSo_ChoDuyet { get; set; }
     }
 }
