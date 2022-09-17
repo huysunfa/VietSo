@@ -8,8 +8,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Web.Http;
-using System.Web.Mvc;
+using System.Web;
+ using System.Web.Mvc;
 using System.Web.UI;
 
 namespace apiVietSo.Controllers
@@ -183,6 +183,20 @@ namespace apiVietSo.Controllers
             return JsonMax(result);
 
 
+        }
+
+        [HttpPost]
+        public ActionResult UploadFileData(HttpPostedFileBase file)
+        {
+            // extract only the fielname            
+            var imageName = Path.GetFileName(file.FileName);
+           var path = DateTime.Now.ToString("ddMMyyyy_HHmmss_") + imageName;
+            var imgsrc = Path.Combine(Server.MapPath("~/FileUpload/"), path);
+            string filepathToSave = "/FileUpload/"+ path;
+            file.SaveAs(imgsrc);
+              var request = Request.Url.Scheme + ":" + Request.Url.Authority;
+            var oupt = request + filepathToSave;
+            return JsonMax(oupt);
         }
     }
 }

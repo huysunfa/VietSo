@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -437,8 +439,17 @@ namespace WindowsFormsApp1
         {
             addTextLongSo("@hlinhtho", "Hưởng thọ");
         }
+        
+
+        private void Client_UploadFileCompleted(object sender, UploadFileCompletedEventArgs e)
+        {
+            // Check e.Error for errors
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
+ 
             cbCanChuViet.SelectedItem = "RIGHT";
             addMenuContext();
 
@@ -641,7 +652,7 @@ namespace WindowsFormsApp1
         }
         public void ReLoad(object sender, EventArgs e)
         {
-             Models.LongSo.loadDataLongSo();
+            Models.LongSo.loadDataLongSo();
             loadSettingFont();
             var Data = Util.LongSoHienTai;
             if (Data == null || Data.LgSo == null)
@@ -783,8 +794,8 @@ namespace WindowsFormsApp1
 
 
         }
-     
-      
+
+
         public void loadSettingFont()
         {
             var Data = Util.LongSoHienTai;
