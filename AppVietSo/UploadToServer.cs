@@ -97,5 +97,24 @@ namespace AppVietSo
             UploadToServer_Load(sender, e);
             MessageBox.Show("Gửi duyệt thành công, xin lui lòng đợi kết quả");
         }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void xemSơToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var item = dataGridView1.SelectedRows;
+            if (item!=null)
+            {
+                var file = item[0].Cells["FileName"].Value + "";
+                ExchangeLongSo.downloadFileBibe(file);
+                Util.NameLongSoHienTai = null;
+                var frm = new Form1();
+                frm.ShowDialog();
+            }
+         
+        }
     }
 }

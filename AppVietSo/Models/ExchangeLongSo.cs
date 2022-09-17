@@ -53,12 +53,12 @@ namespace AppVietSo.Models
         public static bool downloadFileBibe(string fileName)
         {
             bool result;
-            try
-            {
+            
+                fileName = fileName.Replace("\\", "//");
                 WebClient webClient = new WebClient();
                 string text = fileName.Split('@').LastOrDefault().Split('/').LastOrDefault();
-                string uriString = fileName;
-                webClient.DownloadFile(new Uri(uriString), text);
+                var uriString = new Uri(fileName).AbsoluteUri;
+                webClient.DownloadFile(uriString, text);
                 string destFileName = Util.getDataPath + "/FileUpload/" + text;
                 File.Copy(text, destFileName, true);
                 if (File.Exists(text))
@@ -66,11 +66,7 @@ namespace AppVietSo.Models
                     File.Delete(text);
                 }
                 result = true;
-            }
-            catch
-            {
-                result = false;
-            }
+            
             return result;
         }
 

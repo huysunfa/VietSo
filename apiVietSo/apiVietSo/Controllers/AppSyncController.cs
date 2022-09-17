@@ -175,7 +175,7 @@ namespace apiVietSo.Controllers
 
             var path = Server.MapPath("~/FileUpload/fontCN").ToUpper();
             var domain = Server.MapPath("~/").ToUpper();
-            var request = Request.Url.Scheme +":"+Request.Url.Authority;
+            var request = Request.Url.Scheme +"://"+Request.Url.Authority;
 
             var files = Directory.GetFiles(path, "*.ttf", SearchOption.AllDirectories).Select(z => request+"\\" +z.ToUpper().Replace(domain, "")).ToList();
 
@@ -194,7 +194,7 @@ namespace apiVietSo.Controllers
             var imgsrc = Path.Combine(Server.MapPath("~/FileUpload/"), path);
             string filepathToSave = "/FileUpload/"+ path;
             file.SaveAs(imgsrc);
-              var request = Request.Url.Scheme + ":" + Request.Url.Authority;
+              var request = Request.Url.Scheme + "://" + Request.Url.Authority;
             var oupt = request + filepathToSave;
             return JsonMax(oupt);
         }

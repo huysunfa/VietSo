@@ -29,16 +29,25 @@ namespace AppVietSo
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.duyêtSơToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tưChôiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xoaYêuCâuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xemSơToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -101,12 +110,67 @@ namespace AppVietSo
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(821, 545);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.duyêtSơToolStripMenuItem,
+            this.tưChôiToolStripMenuItem,
+            this.xoaYêuCâuToolStripMenuItem,
+            this.xemSơToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(148, 92);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // duyêtSơToolStripMenuItem
+            // 
+            this.duyêtSơToolStripMenuItem.Name = "duyêtSơToolStripMenuItem";
+            this.duyêtSơToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.duyêtSơToolStripMenuItem.Text = "Đồng ý";
+            // 
+            // tưChôiToolStripMenuItem
+            // 
+            this.tưChôiToolStripMenuItem.Name = "tưChôiToolStripMenuItem";
+            this.tưChôiToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.tưChôiToolStripMenuItem.Text = "Từ chối";
+            // 
+            // xoaYêuCâuToolStripMenuItem
+            // 
+            this.xoaYêuCâuToolStripMenuItem.Name = "xoaYêuCâuToolStripMenuItem";
+            this.xoaYêuCâuToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.xoaYêuCâuToolStripMenuItem.Text = "Xóa yêu cầu";
+            // 
+            // xemSơToolStripMenuItem
+            // 
+            this.xemSơToolStripMenuItem.Name = "xemSơToolStripMenuItem";
+            this.xemSơToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.xemSơToolStripMenuItem.Text = "Xem sớ";
+            this.xemSơToolStripMenuItem.Click += new System.EventHandler(this.xemSơToolStripMenuItem_Click);
             // 
             // UploadToServer
             // 
@@ -116,6 +180,7 @@ namespace AppVietSo
             this.Controls.Add(this.splitContainer1);
             this.Name = "UploadToServer";
             this.Text = "UploadToServer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.UploadToServer_Load);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -123,6 +188,7 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -134,5 +200,10 @@ namespace AppVietSo
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem duyêtSơToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tưChôiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xoaYêuCâuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem xemSơToolStripMenuItem;
     }
 }
