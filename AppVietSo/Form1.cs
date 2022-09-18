@@ -921,13 +921,13 @@ namespace AppVietSo
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            var macdinh = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data", "*" + ConstData.ExtentionsFile).Count();
+            var macdinh = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload", "*" + ConstData.ExtentionsFile,SearchOption.AllDirectories).Count();
             if (macdinh == 1)
             {
                 MessageBox.Show("Không thể xóa lòng sớ cuối cùng !");
                 return;
             }
-            File.Delete("data/" + Util.LongSoHienTai.LSo.FileName + ConstData.ExtentionsFile);
+            File.Delete("data/" + Util.LongSoHienTai.LSo.FileName );
             Util.NameLongSoHienTai = null;
             ReLoad(sender, e);
         }

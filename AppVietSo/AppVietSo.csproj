@@ -106,12 +106,6 @@
     <Compile Include="frmNgachSo.Designer.cs">
       <DependentUpon>frmNgachSo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPerson.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmPerson.Designer.cs">
-      <DependentUpon>FrmPerson.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmSetupPaper.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,9 +185,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNgachSo.resx">
       <DependentUpon>frmNgachSo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FrmPerson.resx">
-      <DependentUpon>FrmPerson.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSetupPaper.resx">
       <DependentUpon>FrmSetupPaper.cs</DependentUpon>

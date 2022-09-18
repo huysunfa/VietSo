@@ -144,12 +144,12 @@ namespace apiVietSo.Controllers
             }
 
         }
-        public ActionResult GetListLongSo_ChoDuyet(string TenSo)
+        public ActionResult GetListLongSo_ChoDuyet(string TenSo,String CreatedBy)
         {
             TenSo = TenSo.ToUpper();
             using (Models.vietsoEntities db = new vietsoEntities())
             {
-                var data = db.ListLongSo_ChoDuyet.Where(v => v.TenSo.ToUpper() == TenSo).OrderByDescending(z => z.Created).ToList();
+                var data = db.ListLongSo_ChoDuyet.Where(v => v.TenSo.ToUpper() == TenSo && v.CreatedBy== CreatedBy).OrderByDescending(z => z.Created).ToList();
                 var result = ToJson(data);
                 return JsonMax(result);
             }

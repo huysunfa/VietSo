@@ -34,8 +34,10 @@ namespace AppVietSo
         }
         private void UploadToServer_Load(object sender, EventArgs e)
         {
+            var MAC = CheckKey.getMac();
             checkBox1.Text = Util.LongSoHienTai.LSo.TenSo;
-            var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetListLongSo_ChoDuyet?TenSo=" + Util.LongSoHienTai.LSo.TenSo);
+            var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetListLongSo_ChoDuyet?TenSo=" + Util.LongSoHienTai.LSo.TenSo
+                + "&CreatedBy="+ MAC);
             if (json.Length > 10)
             {
                 var data = JsonConvert.DeserializeObject<List<ListLongSo_ChoDuyet>>(json);
@@ -83,7 +85,7 @@ namespace AppVietSo
         private void button1_Click(object sender, EventArgs e)
         {
             var ls = Util.LongSoHienTai.LSo;
-
+            var MAC = CheckKey.getMac();
             string filename = UploadFile(ls.FileName);
             filename = filename.Replace("/", "\\");
             filename = string.IsNullOrEmpty(filename) ? ls.FileName : filename;
@@ -92,6 +94,7 @@ namespace AppVietSo
                 + "&ChuGiai=" + ls.ChuGiai
                 + "&FileName=" + filename
                 + "&SoID=" + ls.SoID
+                + "&CreatedBy=" + MAC
                 );
 
             UploadToServer_Load(sender, e);
