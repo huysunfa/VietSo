@@ -58,7 +58,8 @@ namespace AppVietSo
                 //check select row
                 dataGridView1.CurrentRow.Cells["Chk"].Value = true;
                 Util.strDataSugget = dataGridView1.CurrentRow.Cells["Nội dung"].Value + "";
-                ActiveData.Update("@ngachso", Util.strDataSugget);
+                string vn = dataGridView1.CurrentRow.Cells["Nội dung"].Value + "";
+                ActiveData.Update("@ngachso", Util.strDataSugget+"_"+ vn);
 
                 button1_Click(sender, e);
             }

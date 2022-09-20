@@ -20,7 +20,9 @@ namespace AppVietSo.Models
         public Nullable<System.DateTime> Created { get; set; }
         public string UpdatedBy { get; set; }
         public Nullable<System.DateTime> Updated { get; set; }
-        public static List<LongSo> GetLongSos()
+        public string NameFileOnly { get { return (FileName+"").Replace("\\","/").Split('/').LastOrDefault(); } }
+
+        public static List<LongSo> GetLongSos(bool require =false)
         {
             List<LongSo> data = new List<LongSo>();
 
@@ -28,7 +30,7 @@ namespace AppVietSo.Models
             {
                 data = JsonConvert.DeserializeObject<List<LongSo>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDicLongSoPath)));
             }
-            if (data.Count == 0)
+            if (data.Count == 0 || require)
             {
                 var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetLongSo");
                 data = JsonConvert.DeserializeObject<List<LongSo>>(json);
@@ -80,10 +82,13 @@ namespace AppVietSo.Models
         }
         public static LongSo GetTenSoByFileName(string FileName)
         {
-            var output = LongSo.GetLongSos().Where(v => v.FileName.Contains(FileName)).FirstOrDefault();
+            FileName = FileName.Replace("\\", "/").Split('/').LastOrDefault();
+            var output = LongSo.GetLongSos().Where(v => v.NameFileOnly.Contains(FileName)).FirstOrDefault();
             if (output == null)
             {
-                return new LongSo() { FileName = FileName, TenSo = FileName };
+
+                var tenso = FileName.Replace("\\","/").Split('/').LastOrDefault().Split('.').FirstOrDefault();
+                return new LongSo() { FileName = FileName, TenSo = tenso };
             }
             return output;
         }

@@ -32,24 +32,27 @@ namespace AppVietSo.Models
             string jsonOut = JsonConvert.SerializeObject(result);
             File.WriteAllText(path, jsonOut);
         }
-        public static string Get(string b)
+        public static bool Get(string b,  out string CN, out string VN)
         {
+            VN = null;
+            CN = null;
             var result = new Dictionary<string, string>();
             string path = @"Data\Active";
-            if (!File.Exists(path))
+            if (File.Exists(path))
             {
-                return null;
+
+                var json = System.IO.File.ReadAllText(path);
+
+                result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                if (result.ContainsKey(b))
+                {
+                    CN = result[b].Split('_').FirstOrDefault();
+                    VN = result[b].Split('_').LastOrDefault();
+                    return true;
+
+                }
             }
-            var json = System.IO.File.ReadAllText(path);
-
-            result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
-            if (result.ContainsKey(b))
-            {
-                return result[b];
-
-            }
-            return null;
-
+            return false;
 
         }
     }

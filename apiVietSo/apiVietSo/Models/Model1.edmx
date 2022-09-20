@@ -5,6 +5,14 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="lts43636_vietsoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="LabelText">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Label" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="150" />
+        </EntityType>
         <EntityType Name="LicenceData">
           <Key>
             <PropertyRef Name="Licence" />
@@ -82,6 +90,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <Property Name="syncTime" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityContainer Name="lts43636_vietsoModelStoreContainer">
+          <EntitySet Name="LabelText" EntityType="Self.LabelText" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LicenceData" EntityType="Self.LicenceData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListLongSo" EntityType="Self.ListLongSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListLongSo_ChoDuyet" EntityType="Self.ListLongSo_ChoDuyet" Schema="dbo" store:Type="Tables" />
@@ -149,6 +158,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <EntitySet Name="ListLongSoes" EntityType="lts43636_vietsoModel.ListLongSo" />
           <EntitySet Name="LoaiSoes" EntityType="lts43636_vietsoModel.LoaiSo" />
           <EntitySet Name="ListLongSo_ChoDuyet" EntityType="lts43636_vietsoModel.ListLongSo_ChoDuyet" />
+          <EntitySet Name="LabelTexts" EntityType="lts43636_vietsoModel.LabelText" />
         </EntityContainer>
         <EntityType Name="ListLongSo">
           <Key>
@@ -185,6 +195,14 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <Property Name="Created" Type="DateTime" Precision="3" />
           <Property Name="UpdatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Updated" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="LabelText">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Label" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -269,6 +287,15 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
                 <ScalarProperty Name="TenSo" ColumnName="TenSo" />
                 <ScalarProperty Name="LoaiSo" ColumnName="LoaiSo" />
                 <ScalarProperty Name="SoID" ColumnName="SoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LabelTexts">
+            <EntityTypeMapping TypeName="lts43636_vietsoModel.LabelText">
+              <MappingFragment StoreEntitySet="LabelText">
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

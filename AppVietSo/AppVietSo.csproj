@@ -138,6 +138,7 @@
     <Compile Include="Models\CsvExtentions.cs" />
     <Compile Include="Models\ExchangeLongSo.cs" />
     <Compile Include="Models\IKT.cs" />
+    <Compile Include="Models\LabelText.cs" />
     <Compile Include="Models\LogError.cs" />
     <Compile Include="Models\LongSo.cs" />
     <Compile Include="Models\LongSoData.cs" />

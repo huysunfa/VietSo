@@ -110,7 +110,7 @@ namespace AppVietSo
             }
 
             return result.Trim();
-        }
+        }  
 
         public static string getChuNomDD(string A_0)
         {

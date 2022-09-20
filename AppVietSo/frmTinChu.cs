@@ -107,9 +107,9 @@ namespace AppVietSo
         }
         void SaveCellValue(DataGridViewRow item, string key)
         {
-            var val = item.Cells[key].Value + "";
-            val = CNDictionary.getCN(val);
-            ActiveData.Update(key, val + "");
+            var VN = item.Cells[key].Value + "";
+            var CN = CNDictionary.getCN(VN);
+            ActiveData.Update(key, CN + "_" + VN);
         }
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)

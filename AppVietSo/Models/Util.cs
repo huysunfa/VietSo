@@ -21,11 +21,12 @@ namespace AppVietSo.Models
         public static string getDataPath = System.IO.Directory.GetCurrentDirectory() + "/Data/";
         public static string getNgachSoPath = "Data/NgachSo.Config";
         public static string getDictionaryPath = "Data/Dictionary.Config";
-        public static string getTinChuPath = "Data/TinChu.Config";
+        public static string getTinChuPath = "Data/TinChu";
         public static string getDicLongSoPath = "Data/DicLongSoPath.Config";
         public static string getDictionaryNguCanhPath = "Data/DictionaryNguCanh.Config";
         public static string getDicFontVN = "Data/DicFontVN.Config";
         public static string getDicFontCN = "Data/DicFontCN.Config";
+        public static string getDicLabelText = "Data/DicLabelText.Config";
         public static float DefaultFontSize = 16;
         public static string strDataSugget;
         // Token: 0x06000078 RID: 120 RVA: 0x000050A8 File Offset: 0x000032A8

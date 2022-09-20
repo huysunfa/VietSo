@@ -334,14 +334,14 @@ namespace AppVietSo
 
             if (bm.StartsWith("@"))
             {
-                var val = ActiveData.Get(bm);
-                if (val == null)
+                var val = ActiveData.Get(bm, out string CN, out string VN);
+                if (val)
                 {
                     if (frmTinChu.keys.Contains(bm))
                     {
                         frmTinChu frm = new frmTinChu();
                         frm.ShowDialog();
-                        setText(Row, Col, bm, val);
+                        setText(Row, Col, VN, CN);
 
                     }
                     else
@@ -351,7 +351,7 @@ namespace AppVietSo
                 }
                 else
                 {
-                    setText(Row, Col, bm, val);
+                    setText(Row, Col, bm, CN);
                 }
             }
             else
@@ -722,6 +722,7 @@ namespace AppVietSo
                     var col = new CellPosition() { Col = numcol, Row = numrow };
                     worksheet.Cells[col].Tag = it.Value.TextVN;
                     worksheet.Cells[col].Comment = it.Value.TextCN;
+                    worksheet.Cells[col].DataFormat = unvell.ReoGrid.DataFormat.CellDataFormatFlag.Text;
 
                     #region Hiển thị dữ liệu theo hạng mục người dùng chọn
                     if (rbChuViet.Checked)
@@ -921,13 +922,13 @@ namespace AppVietSo
 
         private void button4_Click_1(object sender, EventArgs e)
         {
-            var macdinh = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload", "*" + ConstData.ExtentionsFile,SearchOption.AllDirectories).Count();
+            var macdinh = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload", "*" + ConstData.ExtentionsFile, SearchOption.AllDirectories).Count();
             if (macdinh == 1)
             {
                 MessageBox.Show("Không thể xóa lòng sớ cuối cùng !");
                 return;
             }
-            File.Delete("data/" + Util.LongSoHienTai.LSo.FileName );
+            File.Delete("data/" + Util.LongSoHienTai.LSo.FileName);
             Util.NameLongSoHienTai = null;
             ReLoad(sender, e);
         }
@@ -1052,13 +1053,14 @@ namespace AppVietSo
                             // style item
                             BackColor = Color.SkyBlue,
                         });
+                        ActiveData.Get(item.Tag + "", out string CN, out string VN);
                         if ((String)item.DataFormatArgs == "TextVN")
                         {
-                            item.Data = CNDictionary.getVN(ActiveData.Get(item.Tag + ""));
+                            item.Data = VN;
                         }
                         else
                         {
-                            item.Data = ActiveData.Get(item.Tag + "");
+                            item.Data = CN;
                         }
                     }
                     else
@@ -1067,19 +1069,20 @@ namespace AppVietSo
                         {
                             case "TextVN": item.Data = item.Tag; break;
                             case "TextCN": item.Data = item.Comment; break;
-                            case "TextSN": item.Data = ((string)item.DataFormatArgs == "TextVN") ? item.Tag : item.Comment; break;
+                            case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? item.Tag : item.Comment; break;
                             default:
                                 break;
                         }
                     }
 
 
-                    if (rbSongNgu.Checked) ChangeFontAndSize(sheet, (string)item.DataFormatArgs, item.Address);
+                    if (rbSongNgu.Checked) ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
 
 
                 }
             }
-            ChangeWidthSize(sheet);
+            if (rbSongNgu.Checked) ChangeWidthSize(sheet, true);
+
             SaveData();
         }
         public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
@@ -1128,18 +1131,14 @@ namespace AppVietSo
 
         }
 
-        public void ChangeWidthSize(Worksheet sheet)
+        public void ChangeWidthSize(Worksheet sheet, bool check)
         {
             sheet = reoGridControl1.CurrentWorksheet;
 
-            if (rbSongNgu.Checked)
+            for (int i = 1; i < sheet.ColumnCount; i = i + 1)
             {
-                for (int i = 1; i < sheet.ColumnCount; i = i + 1)
-                {
-                    sheet.AutoFitColumnWidth(i, false);
-                }
+                sheet.AutoFitColumnWidth(i, check);
             }
-
         }
         private void cbfstyleVN_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -1267,10 +1266,6 @@ namespace AppVietSo
             RenderStyle();
         }
 
-        private void button10_Click(object sender, EventArgs e)
-        {
-            ChangeWidthSize(reoGridControl1.CurrentWorksheet);
-        }
 
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
@@ -1305,6 +1300,36 @@ namespace AppVietSo
             frm.ShowDialog();
             loadFont.loadListFontCN(true);
             MessageBox.Show("Vui lòng tắt phần mềm đi mở lại để sử dụng những font vừa download !");
+        }
+
+        private void button10_Click_1(object sender, EventArgs e)
+        {
+            var openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "HC file|*.hc";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var file = new FileInfo(openFileDialog1.FileName);
+                string destFileName = Util.getDataPath + "FileUpload/" + DateTime.Now.ToString("ddMM_HHmmss") + file.Name;
+
+                File.Copy(openFileDialog1.FileName, destFileName, true);
+                var file2 = new FileInfo(destFileName);
+
+                Util.NameLongSoHienTai = "/FileUpload/" + file2.Name;
+                ReLoad(sender, e);
+            }
+        }
+
+        private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (checkBox2.Checked)
+            {
+                var sheet = reoGridControl1.CurrentWorksheet;
+                ChangeWidthSize(sheet, checkBox2.Checked);
+            }
+            else
+            {
+                ReLoad(sender, e);
+            }
         }
     }
 }

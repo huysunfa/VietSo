@@ -34,7 +34,7 @@ namespace AppVietSo
             {
                 dgvParent.Rows.Add(item);
             }
-            dgvParent.Rows.Add("Sớ của thầy".ToUpper());
+            dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
 
 
         }
@@ -168,7 +168,7 @@ namespace AppVietSo
                     base.DialogResult = DialogResult.OK;
                     return;
                 }
-                if (MessageBox.Show("Lòng sớ Thầy chọn chưa có sẵn trên máy, Thầy có muốn tải về từ internet không?", "Xác nhận tải", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                if (MessageBox.Show(LabelText.Get("LongSoKhongCoTrenMay"), "Xác nhận tải", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
                 {
                     if (ExchangeLongSo.downloadFile(FName))
                     {
@@ -178,7 +178,7 @@ namespace AppVietSo
                         Util.NameLongSoHienTai = FName;
                         return;
                     }
-                    MessageBox.Show("Tải file thất bại. Xin hãy kiểm tra kết nối internet, hoặc gọi tớ số : " + Util.sdtSupport, "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    MessageBox.Show(LabelText.Get("TaiFileThatBai") + Util.sdtSupport, "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     return;
                 }
             }
@@ -208,6 +208,7 @@ namespace AppVietSo
                     else
                     {
                         var value = dataGridViewRow.Cells["FileName"].Value.ToString();
+                        value = value.Replace("\\","/");
                         if (ExchangeLongSo.downloadFile(value))
                         {
                             object value2 = dataGridViewRow.Cells["TenSo"].Value;
@@ -224,8 +225,8 @@ namespace AppVietSo
                         }
                         else
                         {
-                            MessageBox.Show("Tải file thất bại. Xin hãy kiểm tra kết nối internet, hoặc liên hệ với Bibe.vn", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                        }
+                            MessageBox.Show(LabelText.Get("TaiFileThatBai") + Util.sdtSupport, "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                         }
                     }
                 }
             }

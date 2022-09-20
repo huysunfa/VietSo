@@ -37,7 +37,7 @@ namespace AppVietSo
             var MAC = CheckKey.getMac();
             checkBox1.Text = Util.LongSoHienTai.LSo.TenSo;
             var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetListLongSo_ChoDuyet?TenSo=" + Util.LongSoHienTai.LSo.TenSo
-                + "&CreatedBy="+ MAC);
+                + "&CreatedBy=" + MAC);
             if (json.Length > 10)
             {
                 var data = JsonConvert.DeserializeObject<List<ListLongSo_ChoDuyet>>(json);
@@ -87,7 +87,7 @@ namespace AppVietSo
             var ls = Util.LongSoHienTai.LSo;
             var MAC = CheckKey.getMac();
             string filename = UploadFile(ls.FileName);
-            filename = filename.Replace("/", "\\");
+            filename = filename.Replace("\\", "/");
             filename = string.IsNullOrEmpty(filename) ? ls.FileName : filename;
             CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/AddItemListLongSo?TenSo=" + ls.TenSo
                 + "&LoaiSo=" + ls.LoaiSo
@@ -109,7 +109,7 @@ namespace AppVietSo
         private void xemSơToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var item = dataGridView1.SelectedRows;
-            if (item!=null)
+            if (item != null)
             {
                 var file = item[0].Cells["FileName"].Value + "";
                 ExchangeLongSo.downloadFileBibe(file);
@@ -117,7 +117,7 @@ namespace AppVietSo
                 var frm = new Form1();
                 frm.ShowDialog();
             }
-         
+
         }
     }
 }

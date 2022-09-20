@@ -9,7 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Web;
- using System.Web.Mvc;
+using System.Web.Mvc;
 using System.Web.UI;
 
 namespace apiVietSo.Controllers
@@ -52,11 +52,11 @@ namespace apiVietSo.Controllers
             var data = LongSo.GetLongSos();
             var result = new List<LongSo>();
             string path = System.Web.HttpContext.Current.Server.MapPath("~") + @"\FileUpload";
-            var fileArray = Directory.GetFiles(path, "*.hc", SearchOption.AllDirectories).Select(z => z.ToUpper()).ToList();
+            //     var fileArray = Directory.GetFiles(path, "*.hc", SearchOption.AllDirectories).Select(z => z.ToUpper()).ToList();
 
             foreach (var item in data)
             {
-                if (fileArray.Where(z => z.Contains(item.FileName.ToUpper())).Count() > 0)
+                //if (fileArray.Where(z => z.Contains(item.FileName.ToUpper())).Count() > 0)
                 {
                     result.Add(item);
                 }
@@ -125,7 +125,7 @@ namespace apiVietSo.Controllers
             using (Models.vietsoEntities db = new vietsoEntities())
             {
                 var path = Server.MapPath("~/FileUpload/");
-                var files = Directory.GetFiles(path, "*.hc", SearchOption.AllDirectories).Select(z => z.ToUpper().Split('\\').LastOrDefault()).ToList();
+                //var files = Directory.GetFiles(path, "*.hc", SearchOption.AllDirectories).Select(z => z.ToUpper().Split('\\').LastOrDefault()).ToList();
 
                 var ouput = new List<ListLongSo>();
                 var data = db.ListLongSoes.ToList();
@@ -134,22 +134,33 @@ namespace apiVietSo.Controllers
                     var url = item.FileName.ToUpper();
                     url = url.Replace('/', '\'');
                     url = url.Split('\'').LastOrDefault();
-                    if (files.Contains(url))
-                    {
-                        ouput.Add(item);
-                    }
+                    //if (files.Contains(url))
+                    //{
+                    ouput.Add(item);
+                    //}
                 }
                 var result = ToJson(ouput);
                 return JsonMax(result);
             }
 
         }
-        public ActionResult GetListLongSo_ChoDuyet(string TenSo,String CreatedBy)
+        public ActionResult GetListLongSo_ChoDuyet(string TenSo, String CreatedBy)
         {
             TenSo = TenSo.ToUpper();
             using (Models.vietsoEntities db = new vietsoEntities())
             {
-                var data = db.ListLongSo_ChoDuyet.Where(v => v.TenSo.ToUpper() == TenSo && v.CreatedBy== CreatedBy).OrderByDescending(z => z.Created).ToList();
+                var data = db.ListLongSo_ChoDuyet.Where(v => v.TenSo.ToUpper() == TenSo && v.CreatedBy == CreatedBy).OrderByDescending(z => z.Created).ToList();
+                var result = ToJson(data);
+                return JsonMax(result);
+            }
+
+        }
+
+        public ActionResult GetLabelTexts()
+        {
+            using (Models.vietsoEntities db = new vietsoEntities())
+            {
+                var data = db.LabelTexts.ToList();
                 var result = ToJson(data);
                 return JsonMax(result);
             }
@@ -175,9 +186,9 @@ namespace apiVietSo.Controllers
 
             var path = Server.MapPath("~/FileUpload/fontCN").ToUpper();
             var domain = Server.MapPath("~/").ToUpper();
-            var request = Request.Url.Scheme +"://"+Request.Url.Authority;
+            var request = Request.Url.Scheme + "://" + Request.Url.Authority;
 
-            var files = Directory.GetFiles(path, "*.ttf", SearchOption.AllDirectories).Select(z => request+"\\" +z.ToUpper().Replace(domain, "")).ToList();
+            var files = Directory.GetFiles(path, "*.ttf", SearchOption.AllDirectories).Select(z => request + "/" + z.ToUpper().Replace(domain, "")).ToList();
 
             var result = ToJson(files);
             return JsonMax(result);
@@ -190,11 +201,11 @@ namespace apiVietSo.Controllers
         {
             // extract only the fielname            
             var imageName = Path.GetFileName(file.FileName);
-           var path = DateTime.Now.ToString("ddMMyyyy_HHmmss_") + imageName;
+            var path = DateTime.Now.ToString("ddMMyyyy_HHmmss_") + imageName;
             var imgsrc = Path.Combine(Server.MapPath("~/FileUpload/"), path);
-            string filepathToSave = "/FileUpload/"+ path;
+            string filepathToSave = "/FileUpload/" + path;
             file.SaveAs(imgsrc);
-              var request = Request.Url.Scheme + "://" + Request.Url.Authority;
+            var request = Request.Url.Scheme + "://" + Request.Url.Authority;
             var oupt = request + filepathToSave;
             return JsonMax(oupt);
         }

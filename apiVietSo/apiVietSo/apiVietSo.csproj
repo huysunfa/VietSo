@@ -143,6 +143,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AppSyncController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\DanhSachChoDuyetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KeyManagerController.cs" />
     <Compile Include="Controllers\LicenceDatasController.cs" />
@@ -153,6 +154,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="LoginAuth.cs" />
+    <Compile Include="Models\LabelText.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LicenceData.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -831,6 +835,8 @@
     <Content Include="Views\ListLongSoes\Details.cshtml" />
     <Content Include="Views\ListLongSoes\Edit.cshtml" />
     <Content Include="Views\ListLongSoes\Index.cshtml" />
+    <Content Include="Views\DanhSachChoDuyet\Index.cshtml" />
+    <Content Include="Views\DanhSachChoDuyet\danhsachchitiet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

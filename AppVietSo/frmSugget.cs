@@ -93,7 +93,9 @@ namespace AppVietSo
             {
                 try
                 {
-                    Util.strDataSugget = dataGridView1.CurrentRow.Cells["chinese"].Value + "";
+               var vn = dataGridView1.CurrentRow.Cells["vn"].Value + "";
+               var chinese = dataGridView1.CurrentRow.Cells["chinese"].Value + "";
+                    Util.strDataSugget = chinese+"_"+vn;
 
                 }
                 catch

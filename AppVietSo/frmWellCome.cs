@@ -46,9 +46,9 @@ namespace AppVietSo
                 OuputOK("3.  Tải dữ liệu thư viện chữ hán");
                 CNDictionary.loadDatabase();
                 OuputOK("4.  Tải dữ liệu lòng sớ đang mở");
-                Models.LongSo.GetLongSos();
-                OuputOK("5.  DownloadFont");
-                //loadFont.DownloadFont();
+                Models.LongSo.GetLongSos(true);
+                OuputOK("5.  GetLabelTexts");
+                LabelText.GetLabelTexts(true);
                 //OuputOK("6. Mở phần mềm");
                 this.Invoke(new Action(() =>
                {
