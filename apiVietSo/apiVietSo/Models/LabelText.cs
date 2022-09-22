@@ -17,5 +17,7 @@ namespace apiVietSo.Models
         public int ID { get; set; }
         public string Label { get; set; }
         public string Title { get; set; }
+        public string DataType { get; set; }
+        public string Note { get; set; }
     }
 }

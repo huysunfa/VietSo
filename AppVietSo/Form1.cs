@@ -335,12 +335,13 @@ namespace AppVietSo
             if (bm.StartsWith("@"))
             {
                 var val = ActiveData.Get(bm, out string CN, out string VN);
-                if (val)
+                if (!val)
                 {
                     if (frmTinChu.keys.Contains(bm))
                     {
                         frmTinChu frm = new frmTinChu();
                         frm.ShowDialog();
+                        ActiveData.Get(bm, out CN, out VN);
                         setText(Row, Col, VN, CN);
 
                     }
@@ -474,8 +475,26 @@ namespace AppVietSo
             dynamicPanel.BringToFront();
             worksheet.CellEditTextChanging += (s, r1) =>
             {
-                var txt = r1.Text.ToString().ToUpper();
+                var txt = r1.Text;
                 loaddd(txt);
+            };
+            worksheet.BeforeCellEdit += (s, r1) =>
+            {
+               
+                if (r1.Cell != null && (String)r1.Cell.DataFormatArgs == "NO")
+                {
+                    r1.IsCancelled = true;
+                    return;
+                }
+                if (rbSongNgu.Checked)
+                {
+                    if (r1.Cell != null && (String)r1.Cell.DataFormatArgs == "TextCN")
+                    {
+                        r1.IsCancelled = true;
+                        MessageBox.Show("Khi ở chế độ song ngữ, vui lòng chỉ sửa chữ việt, chữ hán việt sẽ đi theo chữ việt");
+                        return;
+                    }
+                }
             };
 
             worksheet.AfterCellEdit += (s, r1) =>
@@ -575,7 +594,7 @@ namespace AppVietSo
 
                 textBox1.Font = new Font(cbfnameCN.Text, 16);
 
-                textBox1.Tag = it.Key;
+                textBox1.Tag = txt;
 
 
                 dynamicPanel.Controls.Add(textBox1);
@@ -604,7 +623,6 @@ namespace AppVietSo
             var Row = worksheet.SelectionRange.Row;
             var Col = worksheet.SelectionRange.Col;
             var name = (Button)sender;
-
             setText(Row, Col, name.Tag.ToString(), name.Text);
 
 
@@ -740,7 +758,7 @@ namespace AppVietSo
 
 
 
-                        if (numcol == 0) continue;
+                        //   if (numcol == 0) continue;
 
                         var cell2 = new CellPosition() { Col = numcol - col2, Row = numrow - row2 };
 
@@ -959,6 +977,8 @@ namespace AppVietSo
                 {
                     frmTinChu frm = new frmTinChu();
                     frm.ShowDialog();
+                    ActiveData.Get(Tag, out string CN, out string VN);
+
                 }
                 else
                 {
@@ -990,6 +1010,27 @@ namespace AppVietSo
             {
                 Util.strDataSugget = t;
             }
+            //var result = Util.strDataSugget.Split('_');
+            //var lgt = result.FirstOrDefault().Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
+            ////for (int i = 0; i < lgt; i++)
+            ////{
+            ////    var cn = result[0].Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToArray()[i];
+            ////    var vn = result[1].Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToArray()[i];
+            ////    if (position.Row + i > reoGridControl1.CurrentWorksheet.UsedRange.EndRow)
+            ////    {
+            ////        position.Col += 1;
+            ////        position.Row -= 1;
+            ////    }
+            ////    if (position.Col > reoGridControl1.CurrentWorksheet.UsedRange.EndCol)
+            ////    {
+            ////        position.Col -= 1;
+            ////        position.Row -= 1;
+            ////    }
+            ////    reoGridControl1.CurrentWorksheet.Cells[position.Row + i, position.Col].Data = cn;
+            ////    reoGridControl1.CurrentWorksheet.Cells[position.Row + i, position.Col].Tag = vn;
+            ////    reoGridControl1.CurrentWorksheet.Cells[position.Row + i, position.Col].Comment = cn;
+            ////}
+
             reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Data = Util.strDataSugget;
             reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Tag = key;
             reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Comment = Util.strDataSugget;
@@ -1004,6 +1045,18 @@ namespace AppVietSo
             if (richTextBox1.Visible)
             {
                 richTextBox1.Text = input + ":" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") + "\n" + richTextBox1.Text;
+            }
+        }
+        public void renderText(Worksheet sheet, string txt, int i, int j)
+        {
+            var cnt = txt.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
+            for (int k = 0; k < cnt.Count; k++)
+            {
+                sheet.Cells[i + k, j].Data = cnt[k];
+                if (k > 0)
+                {
+                    sheet.Cells[i + k, j].DataFormatArgs = "NO";
+                }
             }
         }
         public void RenderStyle()
@@ -1026,6 +1079,8 @@ namespace AppVietSo
                 HAlign = ReoGridHorAlign.Center,
             });
 
+            reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+
             string Status = "";
             if (rbChuViet.Checked) Status = "TextVN";
             if (rbChuHan.Checked) Status = "TextCN";
@@ -1043,8 +1098,9 @@ namespace AppVietSo
                 for (int j = position.Col; j <= position.EndCol; j++)
                 {
                     var item = sheet.Cells[i, j];
+                    item.IsReadOnly = false;
                     // nếu bắt đầu bằng @ thì bôi màu
-                    if ((item.Tag + "").StartsWith("@"))
+                    if ((item.Tag + "").StartsWith("@") || (String)item.DataFormatArgs == "NO")
                     {
                         sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
                         {
@@ -1056,15 +1112,22 @@ namespace AppVietSo
                         ActiveData.Get(item.Tag + "", out string CN, out string VN);
                         if ((String)item.DataFormatArgs == "TextVN")
                         {
-                            item.Data = VN;
+                            renderText(sheet, VN, i, j);
                         }
-                        else
+                        if ((String)item.DataFormatArgs == "TextCN")
                         {
-                            item.Data = CN;
+                            renderText(sheet, CN, i, j);
+                            //    item.Data = CN;
                         }
                     }
                     else
                     {
+                        if ((String)item.DataFormatArgs == "NO")
+                        {
+                            item.IsReadOnly = true;
+                            continue;
+                        }
+
                         switch (Status)
                         {
                             case "TextVN": item.Data = item.Tag; break;

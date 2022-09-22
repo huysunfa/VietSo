@@ -106,7 +106,7 @@ namespace apiVietSo.Controllers
         [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
         public ActionResult GetDictionaryNguCanh()
         {
-            var data = SqlModule.GetDataTable($"SELECT vn,chinese,used,nguCanh FROM VnChinese WHERE  ISNULL(nguCanh,'')!='' order by used");
+            var data = SqlModule.GetDataTable($"SELECT  LABEL vn,TITLE chinese,NOTE used, DATATYPE nguCanh FROM LabelText WHERE keysoft='Sugget'");
             var result = ToJson(data);
             return JsonMax(result);
         }

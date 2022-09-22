@@ -64,17 +64,29 @@ namespace AppVietSo
             }
 
             var result = "";
-            foreach (var item in vn.Split(' '))
-            {
-                var key = item.ToLower();
-                if (string.IsNullOrEmpty(key))
-                {
-                    continue;
-                }
-                if (database.ContainsKey(key))
-                {
+            var newkey = vn.Replace(" ", "").Trim().ToLower();
 
-                    result = result + " " + database[key];
+            if (database.ContainsKey(newkey))
+            {
+
+                result = result + " " + database[newkey];
+            }
+            else
+            {
+
+
+                foreach (var item in vn.Split(' '))
+                {
+                    var key = item.ToLower();
+                    if (string.IsNullOrEmpty(key))
+                    {
+                        continue;
+                    }
+                    if (database.ContainsKey(key))
+                    {
+
+                        result = result + " " + database[key];
+                    }
                 }
             }
             if (result == "")
@@ -110,7 +122,7 @@ namespace AppVietSo
             }
 
             return result.Trim();
-        }  
+        }
 
         public static string getChuNomDD(string A_0)
         {
