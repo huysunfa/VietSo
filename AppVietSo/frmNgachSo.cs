@@ -59,7 +59,8 @@ namespace AppVietSo
                 dataGridView1.CurrentRow.Cells["Chk"].Value = true;
                 Util.strDataSugget = dataGridView1.CurrentRow.Cells["Nội dung"].Value + "";
                 string vn = dataGridView1.CurrentRow.Cells["Nội dung"].Value + "";
-                ActiveData.Update("@ngachso", Util.strDataSugget+"_"+ vn);
+                Util.strDataSugget = CNDictionary.getCN(Util.strDataSugget) + "_" + vn;
+                ActiveData.Update("@ngachso", Util.strDataSugget);
 
                 button1_Click(sender, e);
             }

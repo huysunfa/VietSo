@@ -352,7 +352,7 @@ namespace AppVietSo
                 }
                 else
                 {
-                    setText(Row, Col, bm, CN);
+                    setText(Row, Col, bm, CN + "_" + VN);
                 }
             }
             else
@@ -449,8 +449,6 @@ namespace AppVietSo
         private void Form1_Load(object sender, EventArgs e)
         {
 
-
-
             cbCanChuViet.SelectedItem = "RIGHT";
             addMenuContext();
 
@@ -480,7 +478,7 @@ namespace AppVietSo
             };
             worksheet.BeforeCellEdit += (s, r1) =>
             {
-               
+
                 if (r1.Cell != null && (String)r1.Cell.DataFormatArgs == "NO")
                 {
                     r1.IsCancelled = true;
@@ -696,14 +694,30 @@ namespace AppVietSo
                 }
 
             }
-
+            else
+            {
+                c = c - 1;
+                r = r - 1;
+            }
+     
             ShowFontChange();
             worksheet.SetWidthHeight(r, c);
             #endregion
             #region Hiển thị dữ liệu
             // hiển thị từng cột
 
-            foreach (var item in Data.LgSo)
+            LoadDataToDataGrid(worksheet);
+
+            #endregion
+
+
+            worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
+            RenderStyle();
+
+        }
+        public void LoadDataToDataGrid(Worksheet worksheet)
+        {
+            foreach (var item in Util.LongSoHienTai.LgSo)
             {
                 // hiển thị từng dòng
                 foreach (var it in item.Value)
@@ -773,15 +787,7 @@ namespace AppVietSo
 
                 }
             }
-
-            #endregion
-
-
-            worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
-            RenderStyle();
-
         }
-
         public void ShowFontChange()
         {
             cbfnameCN.Visible = false;
@@ -929,7 +935,8 @@ namespace AppVietSo
                     ppd.Document = session.PrintDocument;
                     ppd.SetBounds(0, 0, Width, Height - 40);
                     float scale = (float)System.Windows.SystemParameters.VirtualScreenWidth / (float)Util.LongSoHienTai.PageWidth;
-                    ppd.PrintPreviewControl.Zoom = scale;
+                    ppd.PrintPreviewControl.Zoom = scale * 0.7;
+                    ppd.WindowState = FormWindowState.Maximized;
                     ppd.Document.PrinterSettings.PrinterName = Util.LongSoHienTai.PrinterName;
                     ppd.ShowDialog(this);
                     RenderStyle();
@@ -964,7 +971,16 @@ namespace AppVietSo
 
         private void ctextMenuS_Opening(object sender, CancelEventArgs e)
         {
-
+            var worksheet = reoGridControl1.CurrentWorksheet;
+            var select = worksheet.SelectionRange;
+            if (rbSongNgu.Checked)
+            {
+                if ((string)worksheet.Cells[select.Row, select.Col].DataFormatArgs == "TextCN")
+                {
+                    e.Cancel = true;
+                    return;
+                };
+            }
         }
 
         private void reoGridControl1_Click_1(object sender, EventArgs e)
@@ -1049,23 +1065,56 @@ namespace AppVietSo
         }
         public void renderText(Worksheet sheet, string txt, int i, int j)
         {
+            if (string.IsNullOrEmpty(txt))
+            {
+                return;
+            }
             var cnt = txt.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
             for (int k = 0; k < cnt.Count; k++)
             {
-                sheet.Cells[i + k, j].Data = cnt[k];
+                var item = sheet.Ranges[new CellPosition() { Row = i, Col = j }.ToAddress()];
+                //           item.Row+=1;
                 if (k > 0)
                 {
-                    sheet.Cells[i + k, j].DataFormatArgs = "NO";
+
+                    if (item.Row >= sheet.UsedRange.EndRow)
+                    {
+                        item.Row = item.EndRow;
+                        if (item.Col >= sheet.UsedRange.EndCol)
+                        {
+                            item.Row = item.Row - 1;
+                        }
+                        else
+                        {
+                            item.Col += 1;
+                        }
+                    }
+                    else
+                    {
+                        item.Row += 1;
+                    }
+                }
+                var row = sheet.Cells[item.Row, item.Col];
+                row.Data = cnt[k];
+                if (k > 0)
+                {
+                    row.DataFormatArgs = "NO";
                 }
             }
         }
         public void RenderStyle()
         {
+             
             LogOutput("RenderStyle");
 
             var sheet = reoGridControl1.CurrentWorksheet;
             var position = sheet.UsedRange;
 
+            if (rbSongNgu.Checked)
+            {
+                SaveData();
+                LoadDataToDataGrid(sheet);
+            }
             reoGridControl1.ShowBolder(false);
             sheet.SetRangeStyles(position, new WorksheetRangeStyle
             {
@@ -1098,6 +1147,7 @@ namespace AppVietSo
                 for (int j = position.Col; j <= position.EndCol; j++)
                 {
                     var item = sheet.Cells[i, j];
+
                     item.IsReadOnly = false;
                     // nếu bắt đầu bằng @ thì bôi màu
                     if ((item.Tag + "").StartsWith("@") || (String)item.DataFormatArgs == "NO")
@@ -1278,6 +1328,69 @@ namespace AppVietSo
                     }
                 }
                 Util.LongSoHienTai.LgSo = LgSo;
+            }
+            if (rbSongNgu.Checked)
+            {
+
+
+                var LgSo = new Dictionary<int, Dictionary<int, CellData>>();
+
+                var sheet = reoGridControl1.CurrentWorksheet;
+                var position = sheet.UsedRange;
+                if (position.Cols <= 1)
+                {
+                    return;
+                }
+                int c = 0;
+                for (int i = 0; i <= position.Cols + 1; i++)
+                {
+                    var row = new Dictionary<int, CellData>();
+                    int k = 0;
+                    for (int j = 0; j <= position.Rows + 1; j++)
+                    {
+
+
+                        CellData value = new CellData();
+                        if (position.EndCol >= i && position.EndRow >= j)
+                        {
+
+                            var item = sheet.Cells[j, i];
+                            if ((string)item.DataFormatArgs == "TextVN")
+                            {
+
+                                var Data = item.Data;
+                                var Tag = item.Tag;
+                                var Comment = item.Comment;
+
+                                //value.Value = Data;
+                                value.TextCN = Comment;
+                                value.TextVN = Tag + "";
+                                row.Add(k, value);
+                                k++;
+                            }
+                        }
+                    }
+                    if (row.Count > 0)
+                    {
+                        LgSo.Add(c, row);
+                        c++;
+                    }
+                }
+                //var LgSoResult = new Dictionary<int, Dictionary<int, CellData>>();
+                //int c = 0;
+                //foreach (var item in LgSo)
+                //{
+                //    int j = 0;
+                //    LgSoResult.Add(c, new Dictionary<int, CellData>());
+                //    foreach (var it in item.Value)
+                //    {
+                //        LgSoResult[c].Add(j, it.Value);
+                //        j++;
+                //    }
+                //    c++;
+
+                //}
+              Util.LongSoHienTai.LgSo = LgSo;
             }
 
             float.TryParse(cbfsizeCN.Text, out float fsizeCN);

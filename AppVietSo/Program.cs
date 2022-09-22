@@ -19,7 +19,7 @@ namespace AppVietSo
          [STAThread]
           static void Main()
         {
-            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+     //       Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(new frmWellCome());
