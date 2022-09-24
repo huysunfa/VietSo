@@ -96,7 +96,7 @@ namespace AppVietSo
             // 
             // reoGridControl1
             // 
-            this.reoGridControl1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.reoGridControl1.BackColor = System.Drawing.Color.Silver;
             this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
             this.reoGridControl1.ContextMenuStrip = this.ctextMenuS;
             this.reoGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;

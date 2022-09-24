@@ -225,10 +225,10 @@ namespace AppVietSo
             var select = worksheet.SelectionRange;
             int Col = worksheet.UsedRange.EndCol;
             int Row = worksheet.UsedRange.EndRow;
-            for (int i = 0; i < input.Length; i++)
+            for (int i = 1; i < input.Length - 1; i++)
             {
                 var row = input[i].Split('\t');
-                for (int j = 0; j < row.Length; j++)
+                for (int j = 1; j < row.Length - 1; j++)
                 {
                     if (select.Row + i > Row)
                     {
@@ -332,6 +332,11 @@ namespace AppVietSo
             var Row = worksheet.SelectionRange.Row;
             var Col = worksheet.SelectionRange.Col;
 
+            var selection = worksheet.Cells[Row, Col].DataFormatArgs + "";
+            if (selection == "NO" || Row == 0 || Col == 0)
+            {
+                return;
+            }
             if (bm.StartsWith("@"))
             {
                 var val = ActiveData.Get(bm, out string CN, out string VN);
@@ -475,6 +480,15 @@ namespace AppVietSo
             {
                 var txt = r1.Text;
                 loaddd(txt);
+            };
+
+            worksheet.BeforeSelectionRangeChange += (s, r1) =>
+            {
+                var limit = new int[] { 0, worksheet.UsedRange.EndRow, worksheet.UsedRange.EndCol };
+                if (limit.Contains(r1.StartRow) || limit.Contains(r1.EndRow) || limit.Contains(r1.StartCol) || limit.Contains(r1.EndCol))
+                {
+                    r1.IsCancelled = true;
+                }
             };
             worksheet.BeforeCellEdit += (s, r1) =>
             {
@@ -671,7 +685,7 @@ namespace AppVietSo
             Models.LongSo.loadDataLongSo();
             loadSettingFont();
             var Data = Util.LongSoHienTai;
-            if (Data == null || Data.LgSo == null)
+            if (Data == null || Data.LgSo == null || Data.LgSo.Count == 0)
             {
                 return;
             }
@@ -687,24 +701,22 @@ namespace AppVietSo
                 if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
                 {
                     c = c * 2;
-                }
+                 }
                 if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
                 {
                     r = r * 2;
                 }
+                c = c + 1;
+            }
+            c = c + 2;
+            r = r + 2;
 
-            }
-            else
-            {
-                c = c - 1;
-                r = r - 1;
-            }
-     
             ShowFontChange();
             worksheet.SetWidthHeight(r, c);
             #endregion
             #region Hiển thị dữ liệu
             // hiển thị từng cột
+
 
             LoadDataToDataGrid(worksheet);
 
@@ -717,10 +729,10 @@ namespace AppVietSo
         }
         public void LoadDataToDataGrid(Worksheet worksheet)
         {
-            foreach (var item in Util.LongSoHienTai.LgSo)
+            foreach (var item in Util.LongSoHienTai.LgSo.OrderBy(z => z.Key))
             {
                 // hiển thị từng dòng
-                foreach (var it in item.Value)
+                foreach (var it in item.Value.OrderBy(z => z.Key))
                 {
                     if (!string.IsNullOrEmpty(it.Value.Value + ""))
                     {
@@ -728,8 +740,8 @@ namespace AppVietSo
                         it.Value.TextVN = it.Value.TextCN;
 
                     }
-                    var numcol = item.Key;
-                    var numrow = it.Key;
+                    var numcol = item.Key + 1;
+                    var numrow = it.Key + 1;
                     var row2 = 0;
                     var col2 = 0;
                     // nếu là song ngữ thì tách cột ra
@@ -747,7 +759,7 @@ namespace AppVietSo
                         }
                     }
 
-                    if (worksheet.ColumnCount <= numcol || worksheet.RowCount <= numrow)
+                    if (worksheet.ColumnCount < numcol + 1 || worksheet.RowCount < numrow + 1)
                     {
                         continue;
                     }
@@ -1104,9 +1116,8 @@ namespace AppVietSo
         }
         public void RenderStyle()
         {
-             
-            LogOutput("RenderStyle");
 
+            LogOutput("RenderStyle");
             var sheet = reoGridControl1.CurrentWorksheet;
             var position = sheet.UsedRange;
 
@@ -1140,11 +1151,9 @@ namespace AppVietSo
                 ChangeFontAndSize(sheet, Status, sheet.UsedRange.ToAddress());
             }
 
-
-
-            for (int i = position.Row; i <= position.EndRow; i++)
+            for (int i = 0; i <= position.EndRow; i++)
             {
-                for (int j = position.Col; j <= position.EndCol; j++)
+                for (int j = 0; j <= position.EndCol; j++)
                 {
                     var item = sheet.Cells[i, j];
 
@@ -1287,6 +1296,7 @@ namespace AppVietSo
 
         public void SaveData()
         {
+
             LogOutput("SaveData");
             if (!rbSongNgu.Checked)
             {
@@ -1300,10 +1310,10 @@ namespace AppVietSo
                 {
                     return;
                 }
-                for (int i = 0; i <= position.Cols; i++)
+                for (int i = 1; i <=  position.EndCol-1; i++)
                 {
-                    LgSo.Add(i, new Dictionary<int, CellData>());
-                    for (int j = 0; j <= position.Rows; j++)
+                    LgSo.Add(i - 1, new Dictionary<int, CellData>());
+                    for (int j = 1; j <=  position.EndRow - 1; j++)
                     {
 
 
@@ -1313,6 +1323,10 @@ namespace AppVietSo
 
                             var item = sheet.Cells[j, i];
 
+                            if ((string)item.DataFormatArgs != "TextVN" && (string)item.DataFormatArgs != "TextCN")
+                            {
+                                continue;
+                            }
                             var Data = item.Data;
                             var Tag = item.Tag;
                             var Comment = item.Comment;
@@ -1323,7 +1337,7 @@ namespace AppVietSo
 
                         }
 
-                        LgSo[i].Add(j, value);
+                        LgSo[i - 1].Add(j - 1, value);
 
                     }
                 }
@@ -1342,11 +1356,11 @@ namespace AppVietSo
                     return;
                 }
                 int c = 0;
-                for (int i = 0; i <= position.Cols + 1; i++)
+                for (int i = 0; i <= position.EndCol + 1; i++)
                 {
                     var row = new Dictionary<int, CellData>();
                     int k = 0;
-                    for (int j = 0; j <= position.Rows + 1; j++)
+                    for (int j = 0; j <= position.EndRow + 1; j++)
                     {
 
 
@@ -1390,7 +1404,7 @@ namespace AppVietSo
                 //    c++;
 
                 //}
-              Util.LongSoHienTai.LgSo = LgSo;
+                Util.LongSoHienTai.LgSo = LgSo;
             }
 
             float.TryParse(cbfsizeCN.Text, out float fsizeCN);
