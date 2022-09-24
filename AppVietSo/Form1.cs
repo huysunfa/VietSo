@@ -239,19 +239,25 @@ namespace AppVietSo
                     {
                         continue;
                     }
-                    var cell = worksheet.Cells[select.Row + i, select.Col + j];
-                    cell.Data = row[j];
+                    var item = worksheet.Cells[select.Row + i, select.Col + j];
+                    item.Data = row[j];
 
-                    if ((string)cell.DataFormatArgs == "TextVN")
+
+                    var cell = item.Tag.getCellData();
+
+
+
+                    if ((string)item.DataFormatArgs == "TextVN")
                     {
-                        cell.Tag = row[j];
-                        cell.Comment = CNDictionary.getCN(row[j]);
+                        cell.TextVN = row[j];
+                        cell.TextCN = CNDictionary.getCN(row[j]);
                     }
                     else
                     {
-                        cell.Comment = row[j];
-                        cell.Tag = CNDictionary.getVN(row[j]);
+                        cell.TextCN = row[j];
+                        cell.TextVN = CNDictionary.getVN(row[j]);
                     }
+                    item.Tag = cell;
 
 
                 }
@@ -320,8 +326,7 @@ namespace AppVietSo
                 for (int j = select.Col; j <= select.EndCol; j++)
                 {
                     worksheet.Cells[i, j].Data = "";
-                    worksheet.Cells[i, j].Comment = "";
-                    worksheet.Cells[i, j].Tag = "";
+                    worksheet.Cells[i, j].Tag = new CellData();
                 }
             }
             SaveData();
@@ -513,7 +518,8 @@ namespace AppVietSo
             {
                 if (r1.NewData != r1.Cell)
                 {
-                    if ((string)r1.NewData == (string)r1.Cell.Tag || (string)r1.NewData == r1.Cell.Comment)
+                    var cell = r1.Cell.Tag.getCellData();
+                    if ((string)r1.NewData == (string)cell.TextVN || (string)r1.NewData == (string)cell.TextCN)
                     {
                         return;
                     }
@@ -622,11 +628,14 @@ namespace AppVietSo
             //Util.LongSoHienTai.LgSo[Col][Row].TextVN = TextVN;
             //Util.LongSoHienTai.LgSo[Col][Row].TextCN = TextCN;
             //LongSoData.save(Util.LongSoHienTai);
+            var item = worksheet.Cells[new CellPosition() { Col = Col, Row = Row }];
+            item.EndEdit();
 
-            worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].EndEdit();
+            var cell = (CellData)item.Tag;
+            cell.TextCN = TextCN;
+            cell.TextVN = TextVN;
+            item.Tag = cell;
 
-            worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].Comment = TextCN;
-            worksheet.Cells[new CellPosition() { Col = Col, Row = Row }].Tag = TextVN;
             RenderStyle();
         }
         private void DynamicButton_Click(object sender, EventArgs e)
@@ -701,7 +710,7 @@ namespace AppVietSo
                 if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
                 {
                     c = c * 2;
-                 }
+                }
                 if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
                 {
                     r = r * 2;
@@ -738,7 +747,6 @@ namespace AppVietSo
                     {
                         it.Value.TextCN = (it.Value.Value + "").ToLower();
                         it.Value.TextVN = it.Value.TextCN;
-
                     }
                     var numcol = item.Key + 1;
                     var numrow = it.Key + 1;
@@ -764,8 +772,9 @@ namespace AppVietSo
                         continue;
                     }
                     var col = new CellPosition() { Col = numcol, Row = numrow };
-                    worksheet.Cells[col].Tag = it.Value.TextVN;
-                    worksheet.Cells[col].Comment = it.Value.TextCN;
+
+                    worksheet.Cells[col].Tag = it.Value;
+
                     worksheet.Cells[col].DataFormat = unvell.ReoGrid.DataFormat.CellDataFormatFlag.Text;
 
                     #region Hiển thị dữ liệu theo hạng mục người dùng chọn
@@ -788,8 +797,7 @@ namespace AppVietSo
 
                         var cell2 = new CellPosition() { Col = numcol - col2, Row = numrow - row2 };
 
-                        worksheet.Cells[cell2].Tag = it.Value.TextVN;
-                        worksheet.Cells[cell2].Comment = it.Value.TextCN;
+                        worksheet.Cells[cell2].Tag = it.Value;
 
                         if (cbCanChuViet.Text == "LEFT" || cbCanChuViet.Text == "TOP") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
                         if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "BOTTOM") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
@@ -998,8 +1006,10 @@ namespace AppVietSo
         private void reoGridControl1_Click_1(object sender, EventArgs e)
         {
             var position = reoGridControl1.CurrentWorksheet.SelectionRange;
-            var Tag = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Tag + "";
-            if (Tag.StartsWith("@"))
+            var cell = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Tag.getCellData();
+
+            var Tag = cell.Value + "";
+            if (Tag.Contains("@"))
             {
                 if (frmTinChu.keys.Contains(Tag))
                 {
@@ -1038,30 +1048,13 @@ namespace AppVietSo
             {
                 Util.strDataSugget = t;
             }
-            //var result = Util.strDataSugget.Split('_');
-            //var lgt = result.FirstOrDefault().Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
-            ////for (int i = 0; i < lgt; i++)
-            ////{
-            ////    var cn = result[0].Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToArray()[i];
-            ////    var vn = result[1].Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToArray()[i];
-            ////    if (position.Row + i > reoGridControl1.CurrentWorksheet.UsedRange.EndRow)
-            ////    {
-            ////        position.Col += 1;
-            ////        position.Row -= 1;
-            ////    }
-            ////    if (position.Col > reoGridControl1.CurrentWorksheet.UsedRange.EndCol)
-            ////    {
-            ////        position.Col -= 1;
-            ////        position.Row -= 1;
-            ////    }
-            ////    reoGridControl1.CurrentWorksheet.Cells[position.Row + i, position.Col].Data = cn;
-            ////    reoGridControl1.CurrentWorksheet.Cells[position.Row + i, position.Col].Tag = vn;
-            ////    reoGridControl1.CurrentWorksheet.Cells[position.Row + i, position.Col].Comment = cn;
-            ////}
 
-            reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Data = Util.strDataSugget;
-            reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Tag = key;
-            reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Comment = Util.strDataSugget;
+            var item = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col];
+            var cell = item.Tag.getCellData();
+            cell.TextCN = Util.strDataSugget;
+            cell.TextVN = key;
+            item.Tag = cell;
+
             ActiveData.Update(key, Util.strDataSugget);
         }
         private void button8_Click(object sender, EventArgs e)
@@ -1159,7 +1152,8 @@ namespace AppVietSo
 
                     item.IsReadOnly = false;
                     // nếu bắt đầu bằng @ thì bôi màu
-                    if ((item.Tag + "").StartsWith("@") || (String)item.DataFormatArgs == "NO")
+                    var cell = item.Tag.getCellData();
+                    if ((cell.Value + "").StartsWith("@") || (String)item.DataFormatArgs == "NO")
                     {
                         sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
                         {
@@ -1168,7 +1162,7 @@ namespace AppVietSo
                             // style item
                             BackColor = Color.SkyBlue,
                         });
-                        ActiveData.Get(item.Tag + "", out string CN, out string VN);
+                        ActiveData.Get(cell.Value + "", out string CN, out string VN);
                         if ((String)item.DataFormatArgs == "TextVN")
                         {
                             renderText(sheet, VN, i, j);
@@ -1186,12 +1180,11 @@ namespace AppVietSo
                             item.IsReadOnly = true;
                             continue;
                         }
-
-                        switch (Status)
+                         switch (Status)
                         {
-                            case "TextVN": item.Data = item.Tag; break;
-                            case "TextCN": item.Data = item.Comment; break;
-                            case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? item.Tag : item.Comment; break;
+                            case "TextVN": item.Data = cell.TextVN; break;
+                            case "TextCN": item.Data = cell.TextCN; break;
+                            case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
                             default:
                                 break;
                         }
@@ -1231,9 +1224,7 @@ namespace AppVietSo
 
 
             }
-            //  item.Data = item.Tag;
-            //     sheet.AutoFitColumnWidth(item.Column, false);
-
+          
             sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
             {
                 Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,
@@ -1310,10 +1301,10 @@ namespace AppVietSo
                 {
                     return;
                 }
-                for (int i = 1; i <=  position.EndCol-1; i++)
+                for (int i = 1; i <= position.EndCol - 1; i++)
                 {
                     LgSo.Add(i - 1, new Dictionary<int, CellData>());
-                    for (int j = 1; j <=  position.EndRow - 1; j++)
+                    for (int j = 1; j <= position.EndRow - 1; j++)
                     {
 
 
@@ -1327,13 +1318,11 @@ namespace AppVietSo
                             {
                                 continue;
                             }
-                            var Data = item.Data;
-                            var Tag = item.Tag;
-                            var Comment = item.Comment;
+                            var cell = item.Tag.getCellData();
 
-                            //value.Value = Data;
-                            value.TextCN = Comment;
-                            value.TextVN = Tag + "";
+                            value.TextCN = cell.TextCN;
+                            value.TextVN = cell.TextVN;
+                            value.Value = cell.Value;
 
                         }
 
@@ -1372,13 +1361,13 @@ namespace AppVietSo
                             if ((string)item.DataFormatArgs == "TextVN")
                             {
 
-                                var Data = item.Data;
-                                var Tag = item.Tag;
-                                var Comment = item.Comment;
+                                var cell = item.Tag.getCellData();
 
-                                //value.Value = Data;
-                                value.TextCN = Comment;
-                                value.TextVN = Tag + "";
+                                value.TextCN = cell.TextCN;
+                                value.TextVN = cell.TextVN;
+                                value.Value = cell.Value;
+
+
                                 row.Add(k, value);
                                 k++;
                             }
