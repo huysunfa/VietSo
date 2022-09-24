@@ -225,10 +225,10 @@ namespace AppVietSo
             var select = worksheet.SelectionRange;
             int Col = worksheet.UsedRange.EndCol;
             int Row = worksheet.UsedRange.EndRow;
-            for (int i = 1; i < input.Length - 1; i++)
+            for (int i = 0; i < input.Length; i++)
             {
                 var row = input[i].Split('\t');
-                for (int j = 1; j < row.Length - 1; j++)
+                for (int j = 0; j < row.Length; j++)
                 {
                     if (select.Row + i > Row)
                     {
@@ -456,8 +456,11 @@ namespace AppVietSo
         {
             // Check e.Error for errors
         }
+ 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+            pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
 
             cbCanChuViet.SelectedItem = "RIGHT";
             addMenuContext();
@@ -622,7 +625,7 @@ namespace AppVietSo
             dynamicPanel.Visible = true;
 
         }
-        public void setText(int Row, int Col, string TextVN="", string TextCN = "")
+        public void setText(int Row, int Col, string TextVN = "", string TextCN = "")
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
             //Util.LongSoHienTai.LgSo[Col][Row].TextVN = TextVN;
@@ -637,7 +640,7 @@ namespace AppVietSo
                 cell.TextCN = TextCN.Split('_').FirstOrDefault();
                 cell.TextVN = TextCN.Split('_').LastOrDefault();
                 cell.Value = TextVN;
-             }
+            }
             else
             {
                 cell.TextCN = TextCN;
@@ -700,50 +703,50 @@ namespace AppVietSo
         }
         public void ReLoad(object sender, EventArgs e)
         {
- 
-                Models.LongSo.loadDataLongSo();
-                loadSettingFont();
-                var Data = Util.LongSoHienTai;
-                if (Data == null || Data.LgSo == null || Data.LgSo.Count == 0)
+
+            Models.LongSo.loadDataLongSo();
+            loadSettingFont();
+            var Data = Util.LongSoHienTai;
+            if (Data == null || Data.LgSo == null || Data.LgSo.Count == 0)
+            {
+                return;
+            }
+
+            var worksheet = reoGridControl1.CurrentWorksheet;
+            worksheet.Reset();
+
+            #region set chiều dài chiều rộng của ô dữ liệu
+            int c = Data.LgSo.Count;
+            int r = Data.LgSo.Select(z => z.Value.Count).Max(z => z);
+            if (rbSongNgu.Checked)
+            {
+                if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
                 {
-                    return;
+                    c = c * 2;
                 }
-
-                var worksheet = reoGridControl1.CurrentWorksheet;
-                worksheet.Reset();
-
-                #region set chiều dài chiều rộng của ô dữ liệu
-                int c = Data.LgSo.Count;
-                int r = Data.LgSo.Select(z => z.Value.Count).Max(z => z);
-                if (rbSongNgu.Checked)
+                if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
                 {
-                    if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
-                    {
-                        c = c * 2;
-                    }
-                    if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
-                    {
-                        r = r * 2;
-                    }
-                    c = c + 1;
+                    r = r * 2;
                 }
-                c = c + 2;
-                r = r + 2;
+                c = c + 1;
+            }
+            c = c + 2;
+            r = r + 2;
 
-                ShowFontChange();
-                worksheet.SetWidthHeight(r, c);
-                #endregion
-                #region Hiển thị dữ liệu
-                // hiển thị từng cột
-
-
-                LoadDataToDataGrid(worksheet);
-
-                #endregion
+            ShowFontChange();
+            worksheet.SetWidthHeight(r, c);
+            #endregion
+            #region Hiển thị dữ liệu
+            // hiển thị từng cột
 
 
-                worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
-         
+            LoadDataToDataGrid(worksheet);
+
+            #endregion
+
+
+            worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
+
             RenderStyle();
 
         }
@@ -1098,19 +1101,19 @@ namespace AppVietSo
                         item.Row = item.EndRow;
                         if (item.Col >= sheet.UsedRange.EndCol)
                         {
-                            item.Row = item.Row - 1;
+                            i = i - 1;
                         }
                         else
                         {
-                            item.Col += 1;
+                            j += 1;
                         }
                     }
                     else
                     {
-                        item.Row += 1;
+                        i += 1;
                     }
                 }
-                var row = sheet.Cells[item.Row, item.Col];
+                var row = sheet.Cells[i, j];
                 row.Data = cnt[k];
                 if (k > 0)
                 {
@@ -1120,97 +1123,101 @@ namespace AppVietSo
         }
         public void RenderStyle()
         {
-             
-
-                LogOutput("RenderStyle");
-                var sheet = reoGridControl1.CurrentWorksheet;
-                var position = sheet.UsedRange;
-
-                if (rbSongNgu.Checked)
-                {
-                    SaveData();
-                    LoadDataToDataGrid(sheet);
-                }
-                reoGridControl1.ShowBolder(false);
-                sheet.SetRangeStyles(position, new WorksheetRangeStyle
-                {
-                    // style item flag
-                    Flag = PlainStyleFlag.BackColor,
-                    BackColor = Color.White,
-                });
-                sheet.SetRangeStyles(position, new WorksheetRangeStyle
-                {
-                    Flag = PlainStyleFlag.HorizontalAlign,
-                    HAlign = ReoGridHorAlign.Center,
-                });
-
-                reoGridControl1.ShowBolder(cbHideGridLine.Checked);
-
-                string Status = "";
-                if (rbChuViet.Checked) Status = "TextVN";
-                if (rbChuHan.Checked) Status = "TextCN";
-                if (rbSongNgu.Checked) Status = "TextSN";
-
-                if (Status != "TextSN")
-                {
-                    ChangeFontAndSize(sheet, Status, sheet.UsedRange.ToAddress());
-                }
-
-                for (int i = 0; i <= position.EndRow; i++)
-                {
-                    for (int j = 0; j <= position.EndCol; j++)
-                    {
-                        var item = sheet.Cells[i, j];
-
-                        item.IsReadOnly = false;
-                        // nếu bắt đầu bằng @ thì bôi màu
-                        var cell = item.Tag.getCellData();
-                        if ((cell.Value + "").StartsWith("@") || (String)item.DataFormatArgs == "NO")
-                        {
-                            sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
-                            {
-                                // style item flag
-                                Flag = PlainStyleFlag.BackColor,
-                                // style item
-                                BackColor = Color.SkyBlue,
-                            });
-                            ActiveData.Get(cell.Value + "", out string CN, out string VN);
-                            if ((String)item.DataFormatArgs == "TextVN")
-                            {
-                                renderText(sheet, VN, i, j);
-                            }
-                            if ((String)item.DataFormatArgs == "TextCN")
-                            {
-                                renderText(sheet, CN, i, j);
-                                //    item.Data = CN;
-                            }
-                        }
-                        else
-                        {
-                            if ((String)item.DataFormatArgs == "NO")
-                            {
-                                item.IsReadOnly = true;
-                                continue;
-                            }
-                            switch (Status)
-                            {
-                                case "TextVN": item.Data = cell.TextVN; break;
-                                case "TextCN": item.Data = cell.TextCN; break;
-                                case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
-                                default:
-                                    break;
-                            }
-                        }
 
 
-                        if (rbSongNgu.Checked) ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
+            LogOutput("RenderStyle");
+            var sheet = reoGridControl1.CurrentWorksheet;
+            var position = sheet.UsedRange;
 
-
-                    }
-                }
-                if (rbSongNgu.Checked) ChangeWidthSize(sheet, true);
-
+            if (rbSongNgu.Checked)
+            {
                 SaveData();
+                LoadDataToDataGrid(sheet);
+            }
+            reoGridControl1.ShowBolder(false);
+            sheet.SetRangeStyles(position, new WorksheetRangeStyle
+            {
+                // style item flag
+                Flag = PlainStyleFlag.BackColor,
+                BackColor = Color.White,
+            });
+            sheet.SetRangeStyles(position, new WorksheetRangeStyle
+            {
+                Flag = PlainStyleFlag.HorizontalAlign,
+                HAlign = ReoGridHorAlign.Center,
+            });
+
+            reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+
+            string Status = "";
+            if (rbChuViet.Checked) Status = "TextVN";
+            if (rbChuHan.Checked) Status = "TextCN";
+            if (rbSongNgu.Checked) Status = "TextSN";
+
+            if (Status != "TextSN")
+            {
+                ChangeFontAndSize(sheet, Status, sheet.UsedRange.ToAddress());
+            }
+
+
+            for (int i = 0; i <= position.EndRow; i++)
+            {
+                for (int j = 0; j <= position.EndCol; j++)
+                {
+                    var item = sheet.Cells[i, j];
+                    item.IsReadOnly = false;
+                    // nếu bắt đầu bằng @ thì bôi màu
+                    var cell = item.Tag.getCellData();
+                    if ((cell.Value + "").StartsWith("@") || (String)item.DataFormatArgs == "NO")
+                    {
+                        sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
+                        {
+                            // style item flag
+                            Flag = PlainStyleFlag.BackColor,
+                            // style item
+                            BackColor = Color.SkyBlue,
+                        });
+                        ActiveData.Get(cell.Value + "", out string CN, out string VN);
+                        if ((String)item.DataFormatArgs == "TextVN")
+                        {
+                            renderText(sheet, VN, i, j);
+                        }
+                        if ((String)item.DataFormatArgs == "TextCN")
+                        {
+                            renderText(sheet, CN, i, j);
+                            //    item.Data = CN;
+                        }
+                    }
+                    else
+                    {
+                        if ((String)item.DataFormatArgs == "NO")
+                        {
+                            item.IsReadOnly = true;
+                            continue;
+                        }
+                        switch (Status)
+                        {
+                            case "TextVN": item.Data = cell.TextVN; break;
+                            case "TextCN": item.Data = cell.TextCN; break;
+                            case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
+                            default:
+                                break;
+                        }
+                    }
+                    // Dùng font không cần cài đặt
+                    if (Status== "TextCN" ||(string) item.DataFormatArgs== "TextCN")
+                    {
+                           //  item.Data = new DrawCellBody(new Font(pfc.Families[0], Util.LongSoHienTai.fsizeCN));
+                    }
+
+                    if (rbSongNgu.Checked) ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
+
+
+                }
+            }
+            if (rbSongNgu.Checked) ChangeWidthSize(sheet, true);
+
+            SaveData();
         }
         public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
         {
@@ -1236,7 +1243,7 @@ namespace AppVietSo
 
 
             }
-          
+
             sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
             {
                 Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,

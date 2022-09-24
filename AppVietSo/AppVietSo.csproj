@@ -136,6 +136,7 @@
     <Compile Include="Models\CheckKey.cs" />
     <Compile Include="Models\ComboboxItem.cs" />
     <Compile Include="Models\CsvExtentions.cs" />
+    <Compile Include="Models\DrawCellBody.cs" />
     <Compile Include="Models\ExchangeLongSo.cs" />
     <Compile Include="Models\IKT.cs" />
     <Compile Include="Models\LabelText.cs" />
