@@ -14,6 +14,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="150" />
           <Property Name="DataType" Type="nvarchar" MaxLength="50" />
           <Property Name="Note" Type="nvarchar" MaxLength="50" />
+          <Property Name="KeySoft" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="LicenceData">
           <Key>
@@ -207,6 +208,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <Property Name="Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="DataType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="KeySoft" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -297,6 +299,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <EntitySetMapping Name="LabelTexts">
             <EntityTypeMapping TypeName="lts43636_vietsoModel.LabelText">
               <MappingFragment StoreEntitySet="LabelText">
+                <ScalarProperty Name="KeySoft" ColumnName="KeySoft" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="DataType" ColumnName="DataType" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

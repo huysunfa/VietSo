@@ -1,0 +1,63 @@
+﻿@model IEnumerable<apiVietSo.Models.LabelText>
+
+@{
+    ViewBag.Title = "Quản lý định nghĩa";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Quản lý định nghĩa</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Ký hiệu
+            </th>
+            <th>
+                Nội dung
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KeySoft)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Label)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DataType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.KeySoft)
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-success" href="/LabelTexts/Edit/@item.ID">Sửa</a> |
+                </td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
+<script>
+
+    $('.table').DataTable();
+</script>

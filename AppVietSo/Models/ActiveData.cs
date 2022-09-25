@@ -12,6 +12,7 @@ namespace AppVietSo.Models
     {
         public static void Update(string b, string t)
         {
+            b = b.ToLower();
             var result = new Dictionary<string, string>();
             string path = @"Data\Active";
             if (!File.Exists(path))
@@ -32,7 +33,7 @@ namespace AppVietSo.Models
             string jsonOut = JsonConvert.SerializeObject(result);
             File.WriteAllText(path, jsonOut);
         }
-        public static bool Get(string b,  out string CN, out string VN)
+        public static bool Get(string b, out string CN, out string VN)
         {
             b = b.ToLower();
             VN = null;
@@ -49,11 +50,62 @@ namespace AppVietSo.Models
                 {
                     CN = result[b].Split('_').FirstOrDefault();
                     VN = result[b].Split('_').LastOrDefault();
+                    if (b == "@tinchu")
+                    {
+                        var txtForm = ActiveData.Get("@thietLapTinChuMoreText");
+                        var txtMore = ActiveData.Get("@thietLapTinChuFormText");
+
+                        VN = "";
+                        CN = "";
+                        foreach (var item in txtForm.Split(' '))
+                        {
+                            var key = item.Replace("$", "@");
+                            if (key.Contains("@"))
+                            {
+                                if (key == "@tinchu")
+                                {
+                                    continue;
+                                }
+                                    var cache = ActiveData.Get(key, out string tmpCN, out string tmpVN);
+                                CN += " " + tmpCN;
+                                VN += " " + tmpVN;
+                            }
+                            else
+                            {
+                                VN += " " + key;
+                                CN += " " + CNDictionary.getCN(key);
+                            }
+                        }
+
+                    }
+
                     return true;
 
                 }
             }
             return false;
+
+        }
+        public static string Get(string b)
+        {
+            b = b.ToLower();
+
+            var result = new Dictionary<string, string>();
+            string path = @"Data\Active";
+            if (File.Exists(path))
+            {
+
+                var json = System.IO.File.ReadAllText(path);
+
+                result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                if (result.ContainsKey(b))
+                {
+
+                    return result[b];
+
+                }
+            }
+            return null;
 
         }
     }

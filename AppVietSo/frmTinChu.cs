@@ -23,7 +23,7 @@ namespace AppVietSo
                 //"@noicung",
         "@diachiyvu",
         "@giachu",
-        "@tinchu",
+        "@ten",
         "@hlinhten",
         "@hlinhsinh",
         "@hlinhmat",
@@ -35,8 +35,8 @@ namespace AppVietSo
             if (dt.Columns.Count == 0)
             {
 
-                dt.Columns.Add("DanhXung");
-                dt.Columns.Add("@tinchu");
+                dt.Columns.Add("@danh");
+                dt.Columns.Add("@ten");
                 dt.Columns.Add("NamSinh");
                 dt.Columns.Add("NgayMat");
                 dt.Columns.Add("GioiTinh");
@@ -56,8 +56,8 @@ namespace AppVietSo
             dgvCmb.ValueType = typeof(bool);
             dgvCmb.Name = "Chk";
             dataGridView1.Columns.Insert(0, dgvCmb);
-            dataGridView1.Columns["DanhXung"].HeaderText = "Danh xưng";
-            dataGridView1.Columns["@tinchu"].HeaderText = "Họ tên";
+            dataGridView1.Columns["@danh"].HeaderText = "Danh xưng";
+            dataGridView1.Columns["@ten"].HeaderText = "Họ tên";
             dataGridView1.Columns["NamSinh"].HeaderText = "Năm sinh";
             dataGridView1.Columns["NgayMat"].HeaderText = "Ngày mất";
             dataGridView1.Columns["@diachiyvu"].HeaderText = "Địa chỉ";
@@ -112,7 +112,15 @@ namespace AppVietSo
                 {
                     SaveCellValue(item, it);
                 }
-
+               
+        //         SaveCellValue(item, "@danh");
+                int.TryParse(item.Cells["NamSinh"].Value + "", out int NamSinh);
+                if (NamSinh>0)
+                {
+                    var tuoi = DateTime.Now.Year - NamSinh;
+                    SaveCellValue(tuoi.ToString(), "@tuoi");
+                    SaveCellValue(Util.getSaoVN(tuoi, false), "@sao");
+                }
 
                 DataTable dt = new DataTable();
                 dt = (DataTable)dataGridView1.DataSource;
@@ -123,6 +131,12 @@ namespace AppVietSo
         void SaveCellValue(DataGridViewRow item, string key)
         {
             var VN = item.Cells[key].Value + "";
+            var CN = CNDictionary.getCN(VN);
+            ActiveData.Update(key, CN + "_" + VN);
+        } 
+        void SaveCellValue(string Value, string key)
+        {
+            var VN = Value;
             var CN = CNDictionary.getCN(VN);
             ActiveData.Update(key, CN + "_" + VN);
         }
@@ -197,7 +211,7 @@ namespace AppVietSo
             {
                 foreach (DataGridViewRow row in dataGridView1.Rows)
                 {
-                    if ((row.Cells["@tinchu"].Value + "").Contains(searchValue))
+                    if ((row.Cells["@ten"].Value + "").Contains(searchValue))
                     {
                         row.Selected = true;
                         break;

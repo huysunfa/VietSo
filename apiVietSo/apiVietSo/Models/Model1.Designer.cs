@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Huy1965\source\repos\WindowsFormsApp1 - Copy\apiVietSo\apiVietSo\Models\Model1.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\04. Project\02. Phan mem ca nhan\VietSo\apiVietSo\apiVietSo\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

@@ -146,6 +146,7 @@
     <Compile Include="Controllers\DanhSachChoDuyetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KeyManagerController.cs" />
+    <Compile Include="Controllers\LabelTextsController.cs" />
     <Compile Include="Controllers\LicenceDatasController.cs" />
     <Compile Include="Controllers\ListLongSoesController.cs" />
     <Compile Include="Controllers\LoaiSoesController.cs" />
@@ -837,6 +838,11 @@
     <Content Include="Views\ListLongSoes\Index.cshtml" />
     <Content Include="Views\DanhSachChoDuyet\Index.cshtml" />
     <Content Include="Views\DanhSachChoDuyet\danhsachchitiet.cshtml" />
+    <Content Include="Views\LabelTexts\Create.cshtml" />
+    <Content Include="Views\LabelTexts\Delete.cshtml" />
+    <Content Include="Views\LabelTexts\Details.cshtml" />
+    <Content Include="Views\LabelTexts\Edit.cshtml" />
+    <Content Include="Views\LabelTexts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,6 +13,7 @@ namespace AppVietSo.Models
     public class Util
     {
         public static LongSoData LongSoHienTai;
+        public static ThietLapTinChu thietLapTinChu;
         public static string NameLongSoHienTai;
         public static string domain = "ltsgroup.xyz";
         public static string sdtSupport = "0827.298.555";

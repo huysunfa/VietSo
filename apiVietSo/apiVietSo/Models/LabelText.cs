@@ -19,5 +19,6 @@ namespace apiVietSo.Models
         public string Title { get; set; }
         public string DataType { get; set; }
         public string Note { get; set; }
+        public string KeySoft { get; set; }
     }
 }

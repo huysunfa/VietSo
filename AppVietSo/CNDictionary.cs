@@ -14,14 +14,14 @@ namespace AppVietSo
     {
         public static Dictionary<string, string> database;
         public static DataTable databaseNguCanh;
-        public static void loadDatabase()
+        public static void loadDatabase(bool require = false)
         {
             if (File.Exists(Util.getDictionaryPath))
             {
                 database = JsonConvert.DeserializeObject<Dictionary<string, string>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryPath)));
                 databaseNguCanh = JsonConvert.DeserializeObject<DataTable>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryNguCanhPath)));
             }
-            if (database == null)
+            if (database == null || require)
             {
                 #region database
                 database = new Dictionary<string, string>();
@@ -31,7 +31,8 @@ namespace AppVietSo
 
                 foreach (DataRow item in data.Rows)
                 {
-                    database.Add((item["vn"] + "").ToLower(), item["chinese"] + "");
+                    var cn = item["chinese"] + "";
+                    database.Add((item["vn"] + "").ToLower(), cn);
                 }
                 var output = Newtonsoft.Json.JsonConvert.SerializeObject(database);
                 output = Security.Encrypt(output);

@@ -87,7 +87,7 @@ namespace AppVietSo
               TSMItemDelRow,
               TSMItemDelCol,
               TSMItemDelCel,
-           //   TSMItemThemChuSauTinChu,
+           TSMItemThemChuSauTinChu,
               TSMItemAddMua,
               TSMItemAddYear,
               TSMItemAddMonth,
@@ -137,11 +137,11 @@ namespace AppVietSo
             TSMItemDelCel.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemDelCel.Text = "Xóa ô";
             TSMItemDelCel.Click += TSMItemDelCel_Click;
-            //  TSMItemThemChuSauTinChu.Image = global::AppVietSo.Properties.Resources.edit;
-            //TSMItemThemChuSauTinChu.Name = "TSMItemThemChuSauTinChu";
-            //TSMItemThemChuSauTinChu.Size = new global::System.Drawing.Size(0x134, 0x1A);
-            //TSMItemThemChuSauTinChu.Text = "Khuôn mẫu Tín chủ";
-            //TSMItemThemChuSauTinChu.Click += TSMItemThemChuSauTinChu_Click;
+            TSMItemThemChuSauTinChu.Image = global::AppVietSo.Properties.Resources.edit;
+            TSMItemThemChuSauTinChu.Name = "TSMItemThemChuSauTinChu";
+            TSMItemThemChuSauTinChu.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemThemChuSauTinChu.Text = "Khuôn mẫu Tín chủ";
+            TSMItemThemChuSauTinChu.Click += TSMItemThemChuSauTinChu_Click;
             TSMItemAddMua.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddMua.Name = "TSMItemAddMua";
             TSMItemAddMua.Size = new global::System.Drawing.Size(0x134, 0x1A);
@@ -212,7 +212,8 @@ namespace AppVietSo
         // Token: 0x060000CE RID: 206 RVA: 0x0000E604 File Offset: 0x0000C804
         private void TSMItemThemChuSauTinChu_Click(object sender, global::System.EventArgs e)
         {
-
+            var frm = new FrmThietLapTinChu();
+            frm.ShowDialog();
         }
 
         // Token: 0x060000CF RID: 207 RVA: 0x0000E688 File Offset: 0x0000C888
