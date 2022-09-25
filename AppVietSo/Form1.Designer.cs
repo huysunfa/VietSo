@@ -297,10 +297,10 @@ namespace AppVietSo
             this.cbCanChuViet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCanChuViet.FormattingEnabled = true;
             this.cbCanChuViet.Items.AddRange(new object[] {
-            "TOP",
-            "BOTTOM",
-            "LEFT",
-            "RIGHT"});
+            "TRÊN",
+            "DƯỚI",
+            "TRÁI",
+            "PHẢI"});
             this.cbCanChuViet.Location = new System.Drawing.Point(7, 162);
             this.cbCanChuViet.Margin = new System.Windows.Forms.Padding(4);
             this.cbCanChuViet.Name = "cbCanChuViet";

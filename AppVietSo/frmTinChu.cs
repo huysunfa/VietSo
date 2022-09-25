@@ -20,7 +20,7 @@ namespace AppVietSo
             InitializeComponent();
         }
         public static List<string> keys = new List<string>() {
-                //"@noicung",
+        "@noicung",
         "@diachiyvu",
         "@giachu",
         "@ten",
@@ -59,6 +59,7 @@ namespace AppVietSo
             dataGridView1.Columns["@danh"].HeaderText = "Danh xưng";
             dataGridView1.Columns["@ten"].HeaderText = "Họ tên";
             dataGridView1.Columns["NamSinh"].HeaderText = "Năm sinh";
+            dataGridView1.Columns["@noicung"].HeaderText = "Nơi cúng";
             dataGridView1.Columns["NgayMat"].HeaderText = "Ngày mất";
             dataGridView1.Columns["@diachiyvu"].HeaderText = "Địa chỉ";
             // dataGridView1.Columns.Add(new DataGridViewComboBoxColumn() {  ValueType=typeof(string) ,Name = "GioiTinh",DataSource= new string[] {"Nam","Nữ" } });

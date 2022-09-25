@@ -464,7 +464,7 @@ namespace AppVietSo
 
             pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
 
-            cbCanChuViet.SelectedItem = "RIGHT";
+            cbCanChuViet.SelectedItem = "PHẢI";
             addMenuContext();
 
             loadListFont();
@@ -722,11 +722,11 @@ namespace AppVietSo
             int r = Data.LgSo.Select(z => z.Value.Count).Max(z => z);
             if (rbSongNgu.Checked)
             {
-                if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
+                if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "TRÁI")
                 {
                     c = c * 2;
                 }
-                if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
+                if (cbCanChuViet.Text == "TRÊN" || cbCanChuViet.Text == "DƯỚI")
                 {
                     r = r * 2;
                 }
@@ -771,12 +771,12 @@ namespace AppVietSo
                     // nếu là song ngữ thì tách cột ra
                     if (rbSongNgu.Checked)
                     {
-                        if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "LEFT")
+                        if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "TRÁI")
                         {
                             numcol = numcol * 2 + 1;
                             col2 = 1;
                         }
-                        if (cbCanChuViet.Text == "TOP" || cbCanChuViet.Text == "BOTTOM")
+                        if (cbCanChuViet.Text == "TRÊN" || cbCanChuViet.Text == "DƯỚI")
                         {
                             numrow = numrow * 2 + 1;
                             row2 = 1;
@@ -804,8 +804,8 @@ namespace AppVietSo
                     }
                     if (rbSongNgu.Checked)
                     {
-                        if (cbCanChuViet.Text == "LEFT" || cbCanChuViet.Text == "TOP") worksheet.Cells[col].DataFormatArgs = "TextCN";
-                        if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "BOTTOM") worksheet.Cells[col].DataFormatArgs = "TextVN";
+                        if (cbCanChuViet.Text == "TRÁI" || cbCanChuViet.Text == "TRÊN") worksheet.Cells[col].DataFormatArgs = "TextCN";
+                        if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "DƯỚI") worksheet.Cells[col].DataFormatArgs = "TextVN";
 
 
 
@@ -815,8 +815,8 @@ namespace AppVietSo
 
                         worksheet.Cells[cell2].Tag = it.Value;
 
-                        if (cbCanChuViet.Text == "LEFT" || cbCanChuViet.Text == "TOP") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
-                        if (cbCanChuViet.Text == "RIGHT" || cbCanChuViet.Text == "BOTTOM") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
+                        if (cbCanChuViet.Text == "TRÁI" || cbCanChuViet.Text == "TRÊN") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
+                        if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "DƯỚI") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
 
                     }
                     #endregion
@@ -1028,7 +1028,7 @@ namespace AppVietSo
             if (Tag.Contains("@"))
             {
                 Tag = Tag.ToLower();
-                if (frmTinChu.keys.Contains(Tag))
+                if (frmTinChu.keys.Contains(Tag) || Tag== "@tinchu")
                 {
                     frmTinChu frm = new frmTinChu();
                     frm.ShowDialog();

@@ -34,10 +34,9 @@ namespace AppVietSo
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -91,7 +90,6 @@ namespace AppVietSo
             // 
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.textBox1);
-            this.panel1.Controls.Add(this.comboBox1);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -102,23 +100,15 @@ namespace AppVietSo
             this.panel1.Size = new System.Drawing.Size(1241, 63);
             this.panel1.TabIndex = 3;
             // 
-            // button2
+            // button3
             // 
-            this.button2.Location = new System.Drawing.Point(12, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 35);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Thêm tín chủ";
-            this.button2.UseVisualStyleBackColor = true;
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(213, 14);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(270, 33);
-            this.comboBox1.TabIndex = 4;
+            this.button3.Location = new System.Drawing.Point(774, 11);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(114, 36);
+            this.button3.TabIndex = 6;
+            this.button3.Text = "Tìm";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // textBox1
             // 
@@ -129,15 +119,14 @@ namespace AppVietSo
             this.textBox1.TabIndex = 5;
             this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             // 
-            // button3
+            // button2
             // 
-            this.button3.Location = new System.Drawing.Point(774, 11);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(114, 36);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Tìm";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.button2.Location = new System.Drawing.Point(12, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(195, 35);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Thêm tín chủ";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // frmTinChu
             // 
@@ -163,7 +152,6 @@ namespace AppVietSo
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button button3;
     }
