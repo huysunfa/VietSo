@@ -144,18 +144,12 @@ namespace AppVietSo
                         this.orderUp.Visible = true;
                         this.orderDown.Visible = true;
                     }
-                    var enumerable = from row in dataTable.AsEnumerable()
-                                     group row by row.Field<string>("SoNo") into sales
-                                     orderby sales.Key
-                                     select new
-                                     {
-                                         Ma = sales.Key,
-                                         CountOfClients = sales.Count<DataRow>()
-                                     };
+                var per = dataTable.ToList<Person>();
+                    var enumerable = per.GroupBy(v=>v.SoNo).Select(v=> new{Ma= v.Key, CountOfClients= v.Count() }).ToList();
                     DataTable dataTable2 = new DataTable();
                     dataTable2.Columns.Add("MaSo");
                     dataTable2.Columns.Add("TotalPerson");
-                    foreach (var f__AnonymousType in enumerable)
+                    foreach (var f__AnonymousType in enumerable.ToList())
                     {
                         if (f__AnonymousType.CountOfClients !=0)
                         {
@@ -652,6 +646,7 @@ namespace AppVietSo
                                 this.SelectedSoNos.Add(num, new Family
                                 {
                                     SoNo = num
+                                   ,IDs= new List<string>()
                                 });
                             }
                         }
@@ -664,6 +659,7 @@ namespace AppVietSo
                             Family family = new Family
                             {
                                 SoNo = num
+                                ,IDs= new List<string>()
                             };
                             family.IDs.Add(text);
                             this.SelectedSoNos.Add(family.SoNo, family);

@@ -59,8 +59,12 @@ namespace AppVietSo.Models
         }
 
         // Token: 0x06000100 RID: 256 RVA: 0x00006710 File Offset: 0x00004910
-        public static DataTable getList(string pagodaID)
+        public static DataTable getList(string pagodaID="1")
         {
+            if (string.IsNullOrEmpty(pagodaID))
+            {
+                pagodaID = "1";
+            }
             string query = "Select * from Person WHERE PagodaID=@PagodaID AND (Status<>'Deleted' OR Status IS NULL) ORDER BY SoNo, Orders, NamSinh ASC";
             global::System.Collections.Generic.Dictionary<string, object> dictionary = new global::System.Collections.Generic.Dictionary<string, object>();
             dictionary.Add("@PagodaID", pagodaID);

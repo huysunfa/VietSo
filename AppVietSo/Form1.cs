@@ -934,7 +934,7 @@ namespace AppVietSo
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            FrmPerson frm = new FrmPerson();
+            var frm = new frmTinChu();
             frm.ShowDialog();
             RenderStyle();
         }
@@ -1098,10 +1098,10 @@ namespace AppVietSo
                 if (k > 0)
                 {
 
-                    if (item.Row >= sheet.UsedRange.EndRow)
+                    if (item.Row >= sheet.UsedRange.EndRow-1)
                     {
                         item.Row = item.EndRow;
-                        if (item.Col >= sheet.UsedRange.EndCol)
+                        if (item.Col >= sheet.UsedRange.EndCol-1)
                         {
                             i = i - 1;
                         }

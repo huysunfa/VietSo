@@ -87,6 +87,11 @@ namespace AppVietSo
 
                         result = result + " " + database[key];
                     }
+                    else
+                    {
+                        result = result + " " + key;
+
+                    }
                 }
             }
             if (result == "")
