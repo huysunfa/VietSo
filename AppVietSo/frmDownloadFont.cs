@@ -4,10 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -103,6 +105,14 @@ namespace AppVietSo
                     }
                 }
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Process.Start("InstallFonts.exe");
+            Thread.Sleep(2000);
+            Application.Exit();
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
         }
     }
 }

@@ -344,6 +344,7 @@ namespace AppVietSo
             }
             if (bm.StartsWith("@"))
             {
+                bm = bm.ToLower();
                 var val = ActiveData.Get(bm, out string CN, out string VN);
                 if (!val)
                 {
@@ -456,7 +457,7 @@ namespace AppVietSo
         {
             // Check e.Error for errors
         }
- 
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -933,7 +934,7 @@ namespace AppVietSo
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            frmTinChu frm = new frmTinChu();
+            FrmPerson frm = new FrmPerson();
             frm.ShowDialog();
             RenderStyle();
         }
@@ -1025,6 +1026,7 @@ namespace AppVietSo
             var Tag = cell.Value + "";
             if (Tag.Contains("@"))
             {
+                Tag = Tag.ToLower();
                 if (frmTinChu.keys.Contains(Tag))
                 {
                     frmTinChu frm = new frmTinChu();
@@ -1205,9 +1207,9 @@ namespace AppVietSo
                         }
                     }
                     // Dùng font không cần cài đặt
-                    if (Status== "TextCN" ||(string) item.DataFormatArgs== "TextCN")
+                    if (Status == "TextCN" || (string)item.DataFormatArgs == "TextCN")
                     {
-                           //  item.Data = new DrawCellBody(new Font(pfc.Families[0], Util.LongSoHienTai.fsizeCN));
+                        //  item.Data = new DrawCellBody(new Font(pfc.Families[0], Util.LongSoHienTai.fsizeCN));
                     }
 
                     if (rbSongNgu.Checked) ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
@@ -1342,6 +1344,10 @@ namespace AppVietSo
                             value.TextCN = cell.TextCN;
                             value.TextVN = cell.TextVN;
                             value.Value = cell.Value;
+                            if (string.IsNullOrEmpty(value.Value + "") && (value.TextVN + "").StartsWith("@"))
+                            {
+                                value.Value = value.TextVN;
+                            }
 
                         }
 
@@ -1386,6 +1392,10 @@ namespace AppVietSo
                                 value.TextVN = cell.TextVN;
                                 value.Value = cell.Value;
 
+                                if (string.IsNullOrEmpty(value.Value + "") && (value.TextVN + "").StartsWith("@"))
+                                {
+                                    value.Value = value.TextVN;
+                                }
 
                                 row.Add(k, value);
                                 k++;

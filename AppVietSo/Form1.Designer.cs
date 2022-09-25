@@ -187,7 +187,7 @@ namespace AppVietSo
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(146, 44);
             this.button10.TabIndex = 26;
-            this.button10.Text = "Mở file";
+            this.button10.Text = "Mở lòng sớ tải về";
             this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button10.UseVisualStyleBackColor = false;
             this.button10.Click += new System.EventHandler(this.button10_Click_1);
@@ -205,7 +205,7 @@ namespace AppVietSo
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(146, 44);
             this.button9.TabIndex = 25;
-            this.button9.Text = "Download font";
+            this.button9.Text = "Tải bộ chữ hán";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button9.UseVisualStyleBackColor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click_1);
@@ -223,7 +223,7 @@ namespace AppVietSo
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(146, 44);
             this.button6.TabIndex = 24;
-            this.button6.Text = "Update data";
+            this.button6.Text = "Lấy dữ liệu mới nhất";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);

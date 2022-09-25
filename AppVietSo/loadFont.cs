@@ -1,14 +1,19 @@
 ﻿using AppVietSo.Models;
+using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace AppVietSo
 {
@@ -74,7 +79,49 @@ namespace AppVietSo
             return output;
 
         }
+       
+        private static string GetFontName(string fontPath)
+        {
+            PrivateFontCollection fontCol = new PrivateFontCollection();
+            fontCol.AddFontFile(fontPath);
+            return fontCol.Families[0].Name;
+        }
+        public static bool CheckFontNoInstall()
+        {
+            // user fonts folder
+            var fontsPath = System.AppDomain.CurrentDomain.BaseDirectory + "/Data/fontCN";
 
+            // system fonts folder
+            var fontDestination = Environment.GetFolderPath(Environment.SpecialFolder.Fonts);
+            int cnt = 0;
+             foreach (var fontFile in Directory.GetFiles(fontsPath))
+            {
+                // get font props
+                var fontFileName = Path.GetFileName(fontFile);               // OpenSans-Regular.ttf
+                var fontName = GetFontName(fontFile);                        // Open Sans
+                var fontStyle = fontFileName.Split('.').FirstOrDefault();    // Regular, Bold 
+                var fontType = fontFileName.Split('.').LastOrDefault();    // ttf
+ 
+                if (File.Exists($"{fontDestination}\\{fontFileName}"))
+                {
+                    continue;
+                }
+                cnt++;
+            }
+            if (cnt>0)
+            {
+                var dialogResult = System.Windows.Forms.MessageBox.Show( "Có " + cnt + " chưa được đăng ký vào máy, thầy có muốn cài đặt ngay không ???", "Thông báo", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    Process.Start("InstallFonts.exe");
+                    Thread.Sleep(2000);
+                    return true;
+                }
+                 
+
+            }
+            return false;
+        }
         public static void DownloadFont()
         {
             var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetListFont");
@@ -111,6 +158,7 @@ namespace AppVietSo
                     fontCollection.AddMemoryFont(fontDataPtr, fontData.Length);
 
                     Marshal.FreeCoTaskMem(fontDataPtr);
+               //     loadFont.RegisterFont(fontFile, fontCollection.Families[fontCollection.Families.Count()-1].Name) ;
 
 
                 }

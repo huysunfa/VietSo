@@ -34,6 +34,7 @@ namespace AppVietSo.Models
         }
         public static bool Get(string b,  out string CN, out string VN)
         {
+            b = b.ToLower();
             VN = null;
             CN = null;
             var result = new Dictionary<string, string>();

@@ -48,8 +48,17 @@ namespace AppVietSo
                 OuputOK("4.  Tải dữ liệu lòng sớ đang mở");
                 Models.LongSo.GetLongSos(true);
                 OuputOK("5.  GetLabelTexts");
-                LabelText.GetLabelTexts(true);
-                //OuputOK("6. Mở phần mềm");
+                LabelText.GetLabelTexts(true);  
+           //     OuputOK("6.  InstallFonts");
+                var check=  loadFont.CheckFontNoInstall();
+
+                if (check)
+                {
+                     Application.Exit();
+                    System.Diagnostics.Process.Start(Application.ExecutablePath);
+                    return;
+                }
+                 //OuputOK("6. Mở phần mềm");
                 this.Invoke(new Action(() =>
                {
 
