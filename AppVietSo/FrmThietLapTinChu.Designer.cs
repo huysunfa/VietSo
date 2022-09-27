@@ -124,7 +124,7 @@ namespace AppVietSo
             this.txtForm.Name = "txtForm";
             this.txtForm.Size = new System.Drawing.Size(645, 198);
             this.txtForm.TabIndex = 0;
-            this.txtForm.Text = "$ten Sinh ư $canchi Niên Hành Canh $tuoi Tuế Sao $sao Tinh Quân";
+            this.txtForm.Text = "$ten Bản Mệnh Sinh Ư $canchi Niên Hành Canh $tuoi Tuế Sao $sao Tinh Quân";
             // 
             // groupBox1
             // 

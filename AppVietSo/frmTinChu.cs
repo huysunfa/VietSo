@@ -35,6 +35,7 @@ namespace AppVietSo
             if (dt.Columns.Count == 0)
             {
 
+                dt.Columns.Add("Chk");
                 dt.Columns.Add("@danh");
                 dt.Columns.Add("@ten");
                 dt.Columns.Add("NamSinh");
@@ -56,6 +57,7 @@ namespace AppVietSo
             dgvCmb.ValueType = typeof(bool);
             dgvCmb.Name = "Chk";
             dataGridView1.Columns.Insert(0, dgvCmb);
+            dataGridView1.Columns["Chk"].HeaderText = "Chọn";
             dataGridView1.Columns["@danh"].HeaderText = "Danh xưng";
             dataGridView1.Columns["@ten"].HeaderText = "Họ tên";
             dataGridView1.Columns["NamSinh"].HeaderText = "Năm sinh";
@@ -126,7 +128,7 @@ namespace AppVietSo
                 DataTable dt = new DataTable();
                 dt = (DataTable)dataGridView1.DataSource;
                 CsvExtentions.ToCSV(dt, Util.getTinChuPath);
-                this.Visible = false;
+           //     this.Visible = false;
             }
         }
         void SaveCellValue(DataGridViewRow item, string key)
@@ -231,6 +233,13 @@ namespace AppVietSo
             {
                 button3_Click(sender, e);
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            dataGridView1.CurrentCell = dataGridView1.Rows[dataGridView1.RowCount-1].Cells[1];
+            dataGridView1.CurrentRow.DefaultCellStyle.BackColor = Color.Yellow;// = dataGridView1.Rows[dataGridView1.RowCount-1].Cells[1];
+            dataGridView1.BeginEdit(true);
         }
     }
 }

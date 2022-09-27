@@ -44,8 +44,8 @@ namespace AppVietSo.Models
             result.fsizeVN = result.fsizeVN == 0 ? result.fsizeCN : result.fsizeVN;
             if (result.ScaleFactor == 0)
             {
-                float scale = (float)SystemParameters.VirtualScreenWidth / (float)result.PageWidth;
-                result.ScaleFactor = scale;
+              //  float scale = (float)SystemParameters.VirtualScreenWidth / (float)result.PageWidth;
+                result.ScaleFactor = 1;
             }
             foreach (var item in result.LgSo)
             {

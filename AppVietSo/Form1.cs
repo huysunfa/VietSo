@@ -339,7 +339,7 @@ namespace AppVietSo
             var Col = worksheet.SelectionRange.Col;
 
             var selection = worksheet.Cells[Row, Col].DataFormatArgs + "";
-            if (selection == "NO" || Row == 0 || Col == 0)
+            if (selection.CheckNo() || Row == 0 || Col == 0)
             {
                 return;
             }
@@ -461,7 +461,6 @@ namespace AppVietSo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
             pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
 
             cbCanChuViet.SelectedItem = "PHẢI";
@@ -503,7 +502,7 @@ namespace AppVietSo
             worksheet.BeforeCellEdit += (s, r1) =>
             {
 
-                if (r1.Cell != null && (String)r1.Cell.DataFormatArgs == "NO")
+                if (r1.Cell != null && r1.Cell.DataFormatArgs.CheckNo())
                 {
                     r1.IsCancelled = true;
                     return;
@@ -561,9 +560,7 @@ namespace AppVietSo
                 SaveData();
             };
 
-            rbChuHan.Checked = true;
 
-            loading = true;
             Task.Run(() =>
             {
 
@@ -576,6 +573,9 @@ namespace AppVietSo
                 }));
 
             });
+            loading = true;
+            rbChuHan.Checked = true;
+
             //    ReLoad(sender, e);
         }
         void loaddd(string txt = "")
@@ -693,6 +693,15 @@ namespace AppVietSo
             {
                 ReLoad(sender, e);
             }
+            if (rbChuViet.Checked || rbSongNgu.Checked)
+            {
+                checkBox2.Checked = true;
+            }
+            else
+            {
+                checkBox2.Checked = false;
+
+            }
         }
 
 
@@ -734,7 +743,6 @@ namespace AppVietSo
             }
             c = c + 2;
             r = r + 2;
-
             ShowFontChange();
             worksheet.SetWidthHeight(r, c);
             #endregion
@@ -970,8 +978,8 @@ namespace AppVietSo
                 {
                     ppd.Document = session.PrintDocument;
                     ppd.SetBounds(0, 0, Width, Height - 40);
-                    float scale = (float)System.Windows.SystemParameters.VirtualScreenWidth / (float)Util.LongSoHienTai.PageWidth;
-                    ppd.PrintPreviewControl.Zoom = scale * 0.7;
+                    // float scale = (float)System.Windows.SystemParameters.VirtualScreenWidth / (float)Util.LongSoHienTai.PageWidth;
+                    //  ppd.PrintPreviewControl.Zoom = scale * 0.7;
                     ppd.WindowState = FormWindowState.Maximized;
                     ppd.Document.PrinterSettings.PrinterName = Util.LongSoHienTai.PrinterName;
                     ppd.ShowDialog(this);
@@ -1028,7 +1036,7 @@ namespace AppVietSo
             if (Tag.Contains("@"))
             {
                 Tag = Tag.ToLower();
-                if (frmTinChu.keys.Contains(Tag) || Tag== "@tinchu")
+                if (frmTinChu.keys.Contains(Tag) || Tag == "@tinchu")
                 {
                     frmTinChu frm = new frmTinChu();
                     frm.ShowDialog();
@@ -1091,18 +1099,19 @@ namespace AppVietSo
             {
                 return;
             }
+            var DataFormatArgs = "";
             var cnt = txt.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
             for (int k = 0; k < cnt.Count; k++)
             {
                 var item = sheet.Ranges[new CellPosition() { Row = i, Col = j }.ToAddress()];
-                //           item.Row+=1;
+
                 if (k > 0)
                 {
 
-                    if (item.Row >= sheet.UsedRange.EndRow-1)
+                    if (item.Row >= sheet.UsedRange.EndRow - 1)
                     {
                         item.Row = item.EndRow;
-                        if (item.Col >= sheet.UsedRange.EndCol-1)
+                        if (item.Col >= sheet.UsedRange.EndCol - 1)
                         {
                             i = i - 1;
                         }
@@ -1120,8 +1129,31 @@ namespace AppVietSo
                 row.Data = cnt[k];
                 if (k > 0)
                 {
-                    row.DataFormatArgs = "NO";
+                    setColorTag(sheet, row);
+                    row.DataFormatArgs = "NO_" + DataFormatArgs;
                 }
+                else
+                {
+                    DataFormatArgs = row.DataFormatArgs + "";
+                }
+            }
+        }
+        public void setColorTag(Worksheet sheet, Cell item)
+        {
+
+            if (rbSongNgu.Checked)
+                ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
+            var cell = item.Tag.getCellData();
+
+            if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
+            {
+                sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
+                {
+                    // style item flag
+                    Flag = PlainStyleFlag.BackColor,
+                    // style item
+                    BackColor = Color.SkyBlue,
+                });
             }
         }
         public void RenderStyle()
@@ -1171,15 +1203,9 @@ namespace AppVietSo
                     item.IsReadOnly = false;
                     // nếu bắt đầu bằng @ thì bôi màu
                     var cell = item.Tag.getCellData();
-                    if ((cell.Value + "").StartsWith("@") || (String)item.DataFormatArgs == "NO")
+                    if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
                     {
-                        sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
-                        {
-                            // style item flag
-                            Flag = PlainStyleFlag.BackColor,
-                            // style item
-                            BackColor = Color.SkyBlue,
-                        });
+
                         ActiveData.Get(cell.Value + "", out string CN, out string VN);
                         if ((String)item.DataFormatArgs == "TextVN")
                         {
@@ -1193,7 +1219,7 @@ namespace AppVietSo
                     }
                     else
                     {
-                        if ((String)item.DataFormatArgs == "NO")
+                        if (item.DataFormatArgs.CheckNo())
                         {
                             item.IsReadOnly = true;
                             continue;
@@ -1212,13 +1238,13 @@ namespace AppVietSo
                     {
                         //  item.Data = new DrawCellBody(new Font(pfc.Families[0], Util.LongSoHienTai.fsizeCN));
                     }
+                    setColorTag(sheet, item);
 
-                    if (rbSongNgu.Checked) ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
 
 
                 }
             }
-            if (rbSongNgu.Checked) ChangeWidthSize(sheet, true);
+            if (rbSongNgu.Checked || rbChuViet.Checked) ChangeWidthSize(sheet, true);
 
             SaveData();
         }
@@ -1229,6 +1255,7 @@ namespace AppVietSo
             var Bold = false;
             var Italic = false;
             float FontSize = 16;
+            Data = Data.Split('_').LastOrDefault();
             if (Data == "TextCN")
             {
                 FontName = cbfnameCN.Text;

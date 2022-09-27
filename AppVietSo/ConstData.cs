@@ -18,6 +18,14 @@ namespace AppVietSo
                 result = new CellData();
             }
             return result;
+        }   public static bool CheckNo(this object input)
+        {
+            
+            if ((input+"").StartsWith("NO"))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

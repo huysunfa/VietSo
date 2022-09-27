@@ -62,6 +62,7 @@ namespace AppVietSo.Models
         }
         public static void loadDataLongSo()
         {
+
             if (string.IsNullOrEmpty(Util.NameLongSoHienTai))
             {
                 Util.NameLongSoHienTai = GetDefault();
@@ -77,8 +78,7 @@ namespace AppVietSo.Models
                 LSo.TenSo = LSo.TenSo.Split('.').FirstOrDefault();
             }
             Util.LongSoHienTai = LongSoData.get(LSo.FileName, LSo);
-
-
+           
         }
         public static LongSo GetTenSoByFileName(string FileName)
         {
