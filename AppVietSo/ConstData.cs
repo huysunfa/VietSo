@@ -1,9 +1,11 @@
 ﻿using AppVietSo.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace AppVietSo
 {
@@ -18,14 +20,69 @@ namespace AppVietSo
                 result = new CellData();
             }
             return result;
-        }   public static bool CheckNo(this object input)
+        }   public static bool CheckNo(this object input,string Duoi="")
         {
             
             if ((input+"").StartsWith("NO"))
             {
+                if (!string.IsNullOrEmpty(Duoi)&& !(input + "").EndsWith(Duoi))
+                {
+                    return false;
+                }
                 return true;
             }
             return false;
+        }
+
+        public static DataTable ToDataTable(this DataGridView dataGridView, string tableName)
+        {
+
+            DataGridView dgv = dataGridView;
+            DataTable table = new DataTable(tableName);
+
+            // Crea las columnas 
+            for (int iCol = 0; iCol < dgv.Columns.Count; iCol++)
+            {
+                table.Columns.Add(dgv.Columns[iCol].Name);
+            }
+
+            /**
+              * THIS DOES NOT WORK
+              */
+            // Agrega las filas 
+            /*for (int i = 0; i < dgv.Rows.Count; i++)
+            {
+                // Obtiene el DataBound de la fila y copia los valores de la fila 
+                DataRowView boundRow = (DataRowView)dgv.Rows[i].DataBoundItem;
+                var cells = new object[boundRow.Row.ItemArray.Length];
+                for (int iCol = 0; iCol < boundRow.Row.ItemArray.Length; iCol++)
+                {
+                    cells[iCol] = boundRow.Row.ItemArray[iCol];
+                }
+
+                // Agrega la fila clonada                 
+                table.Rows.Add(cells);
+            }*/
+
+            /* THIS WORKS BUT... */
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Index>=dgv.Rows.Count-1)
+                {
+                    continue;
+                }
+
+                DataRow datarw = table.NewRow();
+
+                for (int iCol = 0; iCol < dgv.Columns.Count; iCol++)
+                {
+                    datarw[iCol] = row.Cells[iCol].Value;
+                }
+
+                table.Rows.Add(datarw);
+            }
+
+            return table;
         }
     }
 }

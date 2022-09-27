@@ -13,8 +13,7 @@ namespace AppVietSo.Models
     public class Util
     {
         public static LongSoData LongSoHienTai;
-        public static ThietLapTinChu thietLapTinChu;
-        public static string NameLongSoHienTai;
+         public static string NameLongSoHienTai;
         public static string domain = "ltsgroup.xyz";
         public static string sdtSupport = "0827.298.555";
         public static string mainURL = "http://ltsgroup.xyz/";
@@ -22,7 +21,6 @@ namespace AppVietSo.Models
         public static string getDataPath = System.IO.Directory.GetCurrentDirectory() + "/Data/";
         public static string getNgachSoPath = "Data/NgachSo.Config";
         public static string getDictionaryPath = "Data/Dictionary.Config";
-        public static string getDictionaryChinaPath = "Data/DictionaryChina.Config";
         public static string getTinChuPath = "Data/TinChu";
         public static string getDicLongSoPath = "Data/DicLongSoPath.Config";
         public static string getDictionaryNguCanhPath = "Data/DictionaryNguCanh.Config";

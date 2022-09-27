@@ -104,6 +104,9 @@ namespace apiVietSo.Controllers
             LicenceData item = db.LicenceDatas.Where(z => z.ID == licenceData.ID).FirstOrDefault();
             item.ExpiryDate = licenceData.ExpiryDate;
             item.IP_Active = licenceData.IP_Active;
+            item.HoTen = licenceData.HoTen;
+            item.SDT = licenceData.SDT;
+            item.DiaChi = licenceData.DiaChi;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

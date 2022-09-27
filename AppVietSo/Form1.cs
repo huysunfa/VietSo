@@ -458,7 +458,20 @@ namespace AppVietSo
         {
             // Check e.Error for errors
         }
+        public void ControlActive(bool active)
+        {
+            foreach (Control item in this.Controls)
+            {
+                try
+                {
+                    item.Enabled = active;
+                }
+                catch (Exception)
+                {
 
+                }
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
             pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
@@ -714,6 +727,7 @@ namespace AppVietSo
         }
         public void ReLoad(object sender, EventArgs e)
         {
+            ControlActive(false);
 
             Models.LongSo.loadDataLongSo();
             loadSettingFont();
@@ -725,6 +739,11 @@ namespace AppVietSo
 
             var worksheet = reoGridControl1.CurrentWorksheet;
             worksheet.Reset();
+            if (worksheet.UsedRange.EndCol > 0)
+            {
+                worksheet.DeleteColumns(0, worksheet.UsedRange.EndCol - 1);
+                worksheet.DeleteRows(0, worksheet.UsedRange.EndRow - 1);
+            }
 
             #region set chiều dài chiều rộng của ô dữ liệu
             int c = Data.LgSo.Count;
@@ -758,6 +777,7 @@ namespace AppVietSo
             worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
 
             RenderStyle();
+            ControlActive(true);
 
         }
         public void LoadDataToDataGrid(Worksheet worksheet)
@@ -1054,7 +1074,7 @@ namespace AppVietSo
         {
             var position = reoGridControl1.CurrentWorksheet.SelectionRange;
             Util.strDataSugget = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Data + "";
-
+            var oldData = Util.strDataSugget;
             if (key == "@ngachso")
             {
                 var frm = new frmNgachSo();
@@ -1068,7 +1088,10 @@ namespace AppVietSo
                 var frm = new frmSugget(key, t);
                 frm.ShowDialog();
             }
-
+            if (Util.strDataSugget == oldData)
+            {
+                return;
+            }
             if (string.IsNullOrEmpty(Util.strDataSugget))
             {
                 Util.strDataSugget = t;
@@ -1097,8 +1120,11 @@ namespace AppVietSo
         {
             if (string.IsNullOrEmpty(txt))
             {
+                sheet.Cells[i, j].Data = txt;
                 return;
             }
+            var startRow = i;
+            var startCol = j;
             var DataFormatArgs = "";
             var cnt = txt.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
             for (int k = 0; k < cnt.Count; k++)
@@ -1117,7 +1143,9 @@ namespace AppVietSo
                         }
                         else
                         {
-                            j += 1;
+                            j = startCol - 1;
+                            startCol = j;
+                            i = startRow;
                         }
                     }
                     else
@@ -1129,7 +1157,7 @@ namespace AppVietSo
                 row.Data = cnt[k];
                 if (k > 0)
                 {
-                    setColorTag(sheet, row);
+                 //   setColorTag(sheet, row);
                     row.DataFormatArgs = "NO_" + DataFormatArgs;
                 }
                 else
@@ -1141,8 +1169,7 @@ namespace AppVietSo
         public void setColorTag(Worksheet sheet, Cell item)
         {
 
-            if (rbSongNgu.Checked)
-                ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
+ 
             var cell = item.Tag.getCellData();
 
             if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
@@ -1169,20 +1196,8 @@ namespace AppVietSo
                 SaveData();
                 LoadDataToDataGrid(sheet);
             }
-            reoGridControl1.ShowBolder(false);
-            sheet.SetRangeStyles(position, new WorksheetRangeStyle
-            {
-                // style item flag
-                Flag = PlainStyleFlag.BackColor,
-                BackColor = Color.White,
-            });
-            sheet.SetRangeStyles(position, new WorksheetRangeStyle
-            {
-                Flag = PlainStyleFlag.HorizontalAlign,
-                HAlign = ReoGridHorAlign.Center,
-            });
 
-            reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+
 
             string Status = "";
             if (rbChuViet.Checked) Status = "TextVN";
@@ -1194,6 +1209,7 @@ namespace AppVietSo
                 ChangeFontAndSize(sheet, Status, sheet.UsedRange.ToAddress());
             }
 
+            sheet.DeleteRangeData(sheet.UsedRange);
 
             for (int i = 0; i <= position.EndRow; i++)
             {
@@ -1238,7 +1254,6 @@ namespace AppVietSo
                     {
                         //  item.Data = new DrawCellBody(new Font(pfc.Families[0], Util.LongSoHienTai.fsizeCN));
                     }
-                    setColorTag(sheet, item);
 
 
 
@@ -1247,6 +1262,36 @@ namespace AppVietSo
             if (rbSongNgu.Checked || rbChuViet.Checked) ChangeWidthSize(sheet, true);
 
             SaveData();
+
+            sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle
+            {
+                // style item flag
+                Flag = PlainStyleFlag.BackColor,
+                BackColor = Color.White,
+            });
+            sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle
+            {
+                Flag = PlainStyleFlag.HorizontalAlign,
+                HAlign = ReoGridHorAlign.Center,
+            });
+            reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+
+            for (int i = 0; i <= position.EndRow; i++)
+            {
+                for (int j = 0; j <= position.EndCol; j++)
+                {
+                    var item = sheet.Cells[i, j];
+                    var cell = item.Tag.getCellData();
+                    if (rbSongNgu.Checked)
+                        ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
+
+                    if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
+                    {
+                      setColorTag(sheet, item);
+                    }
+                   
+                }
+            }
         }
         public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
         {
@@ -1276,9 +1321,14 @@ namespace AppVietSo
 
             sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
             {
-                Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleAll,
+                Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleBold,
                 Bold = Bold,
-                Italic = Italic,
+             });  
+            
+            sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
+            {
+                Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleItalic,
+                 Italic = Italic,
             });
             sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
             {
@@ -1411,7 +1461,7 @@ namespace AppVietSo
                         {
 
                             var item = sheet.Cells[j, i];
-                            if ((string)item.DataFormatArgs == "TextVN")
+                            if ((string)item.DataFormatArgs == "TextVN" || item.DataFormatArgs.CheckNo("TextVN"))
                             {
 
                                 var cell = item.Tag.getCellData();

@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -57,6 +58,8 @@ namespace AppVietSo.Models
 
                         VN = "";
                         CN = "";
+                        var dt = CsvExtentions.ConvertCSVtoDataTable(Util.getTinChuPath);
+
                         foreach (var item in txtForm.Split(' '))
                         {
                             var key = item.Replace("$", "@");
@@ -66,9 +69,23 @@ namespace AppVietSo.Models
                                 {
                                     continue;
                                 }
+                                if (key == "@ten")
+                                {
+                                    foreach (DataRow row in dt.Rows)
+                                    {
+                                        if ((row["Chk"] + "") == "True")
+                                        {
+                                            VN += " " + row[key];
+                                            CN += " " + CNDictionary.getCN(row[key] + "");
+                                        }
+                                    }
+                                }
+                                else
+                                {
                                     var cache = ActiveData.Get(key, out string tmpCN, out string tmpVN);
-                                CN += " " + tmpCN;
-                                VN += " " + tmpVN;
+                                    CN += " " + tmpCN;
+                                    VN += " " + tmpVN;
+                                }
                             }
                             else
                             {

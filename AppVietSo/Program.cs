@@ -16,10 +16,10 @@ namespace AppVietSo
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
-         [STAThread]
-          static void Main()
+        [STAThread]
+        static void Main()
         {
-     //       Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+               Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
             Application.Run(new frmWellCome());
@@ -29,7 +29,7 @@ namespace AppVietSo
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-            MessageBox.Show("Có lỗi xảy ra, vui lòng gọi tới 0827.298.555 hoặc  zalo 0911.108.297 \n " + e.Exception.ToString());
+             MessageBox.Show(LabelText.Get("Application_ThreadException") + " \n " + e.Exception.ToString());
         }
     }
 }

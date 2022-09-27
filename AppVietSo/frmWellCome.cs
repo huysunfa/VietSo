@@ -30,50 +30,52 @@ namespace AppVietSo
         {
             label1.Text = "";
             Task.Run(() =>
-            {
-                OuputOK("--- Kiểm tra bản quyền ---");
-                var licence = CheckLogin();
-                if (licence == false)
-                {
-                    Application.Exit();
-                    return;
-                }
-                OuputOK("1. Tải dữ liệu font chữ hán");
-
-                loadFont.loadListFontCN();
-                OuputOK("2.  Tải dữ liệu font chữ việt");
-                loadFont.loadListFontVN();
-                OuputOK("3.  Tải dữ liệu thư viện chữ hán");
-                CNDictionary.loadDatabase();
-                OuputOK("4.  Tải dữ liệu lòng sớ đang mở");
-                Models.LongSo.GetLongSos(true);
-                OuputOK("5.  GetLabelTexts");
-                LabelText.GetLabelTexts(true);  
-           //     OuputOK("6.  InstallFonts");
-                var check=  loadFont.CheckFontNoInstall();
-
-                if (check)
-                {
-                     Application.Exit();
-                    System.Diagnostics.Process.Start(Application.ExecutablePath);
-                    return;
-                }
-                 //OuputOK("6. Mở phần mềm");
-                this.Invoke(new Action(() =>
+           {
+               OuputOK("--- Kiểm tra bản quyền ---");
+               var licence = CheckLogin();
+               if (licence == false)
                {
+                   Application.Exit();
+                   return;
+               }
+               OuputOK("1. Tải dữ liệu font chữ hán");
 
-                   var frm = new Form1();
+               loadFont.loadListFontCN();
+               OuputOK("2.  Tải dữ liệu font chữ việt");
+               loadFont.loadListFontVN();
+               OuputOK("3.  Tải dữ liệu thư viện chữ hán");
+               CNDictionary.loadDatabase();
+               OuputOK("4.  Tải dữ liệu lòng sớ đang mở");
+               Models.LongSo.GetLongSos(true);
+               OuputOK("5.  GetLabelTexts");
+               LabelText.GetLabelTexts(true);
+                //     OuputOK("6.  InstallFonts");
+                var check = loadFont.CheckFontNoInstall();
+
+               if (check)
+               {
+                   Application.Exit();
+                   System.Diagnostics.Process.Start(Application.ExecutablePath);
+                   return;
+               }
+                //OuputOK("6. Mở phần mềm");
+                this.Invoke(new Action(() =>
+              {
+
+                  var frm = new Form1();
 
                    // Thread.Sleep(500);
                    this.Hide();
-                   frm.WindowState = FormWindowState.Maximized;
-                   frm.ShowDialog();
-                   this.Close();
-               }));
+                  frm.WindowState = FormWindowState.Maximized;
+                  frm.ShowDialog();
+                  this.Close();
+              }));
 
 
 
-            });
+           });
+
+
         }
         public void StartForm()
         {

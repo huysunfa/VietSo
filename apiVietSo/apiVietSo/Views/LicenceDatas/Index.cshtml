@@ -25,6 +25,10 @@
         <th>
             @Html.DisplayNameFor(model => model.IP_Active)
         </th>
+            
+            <th>@Html.DisplayNameFor(model => model.HoTen)</th>
+            <th>@Html.DisplayNameFor(model => model.SDT)</th>
+            <th>@Html.DisplayNameFor(model => model.DiaChi)</th>
         <th>
             @Html.DisplayNameFor(model => model.Date_Active)
         </th> 
@@ -45,9 +49,10 @@
         <td>
             @Html.DisplayFor(modelItem => item.Licence)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IP_Active)
-        </td>
+        <td>@Html.DisplayFor(modelItem => item.IP_Active)</td>
+        <td>@Html.DisplayFor(modelItem => item.HoTen)</td>
+        <td>@Html.DisplayFor(modelItem => item.SDT)</td>
+        <td>@Html.DisplayFor(modelItem => item.DiaChi)</td>
         <td>
             @Html.DisplayFor(modelItem => item.Date_Active)
         </td> 

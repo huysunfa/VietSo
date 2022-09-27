@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AppVietSo;
+using AppVietSo.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,6 +16,7 @@ namespace ToolsConvertBibe
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
@@ -69,7 +72,7 @@ namespace ToolsConvertBibe
         private void button3_Click(object sender, EventArgs e)
         {
             var output = new Dictionary<string, string>();
-            var data = SqlModule.GetDataTable("select * from [VnChinese]  WHERE [reading] IS   NULL ");
+            var data = SqlModuleLocal.GetDataTable("select * from [VnChinese]  WHERE [reading] IS   NULL ");
             foreach (DataRow item in data.Rows)
             {
                 var cn = item["chinese"].ToString();
@@ -82,7 +85,8 @@ namespace ToolsConvertBibe
                 {
                     var ID = item["ID"].ToString();
                     var newtxt = string.Join(" ", cn2);
-             SqlModule.ExcuteCommand($"update VnChinese set reading =N'{newtxt}' where id= "+ID);
+            
+                    SqlModuleLocal.ExcuteCommand($"update VnChinese set reading =N'{newtxt}' where id= "+ID);
                     output.Add(ID, newtxt);
                 }
 
@@ -93,6 +97,90 @@ namespace ToolsConvertBibe
                 txt += item.Key + ","+item.Value + "\n";
             }
             File.WriteAllText("a.csv", txt);
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var output = new Dictionary<string, string>();
+            var outputcn = new Dictionary<string, string>();
+            AppVietSo.CNDictionary.loadDatabase(true);
+            string[] files = Directory.GetFiles("output");
+            foreach (var item in files)
+            {
+                string Namelds = item.Replace("\\","/").Split('/').LastOrDefault();
+                var LSo = new LongSo() { FileName = Namelds };
+               var data = LongSoData.get(LSo.FileName, LSo);
+                foreach (var it in data.LgSo)
+                {
+                    foreach (var ix in it.Value)
+                    {
+                        if (string.IsNullOrEmpty(ix.Value.TextVN))
+                        {
+                            continue;
+                        }
+                        var cn = CNDictionary.getCN(ix.Value.TextVN);
+                        if (cn==null||  cn == ix.Value.TextVN)
+                        {
+                            if (!output.ContainsKey(ix.Value.TextVN))
+                            {
+                                output.Add(ix.Value.TextVN, ix.Value.TextCN);
+                            }
+                        }   
+                        
+                        var vn = CNDictionary.getVN(ix.Value.TextCN);
+                        if (string.IsNullOrEmpty(vn)|| vn == ix.Value.TextCN)
+                        {
+                            if (!outputcn.ContainsKey(ix.Value.TextCN))
+                            {
+                                outputcn.Add(ix.Value.TextCN, ix.Value.TextVN);
+                            }
+                        }
+                    }
+                
+                }
+            }
+
+            foreach (var item in output)
+            {
+                var key = item.Key.Replace("'", "");
+                var Value = item.Value.Replace("'", "");
+                SqlModuleLocal.ExcuteCommand($"insert [VnChinese](vn,chinese) values (N'{key}',N'{Value}')");
+
+            }
+            
+            foreach (var item in outputcn)
+            {
+                var key = item.Value.Replace("'", "");
+                var Value = item.Key.Replace("'", "");
+                SqlModuleLocal.ExcuteCommand($"insert [VnChinese](vn,chinese) values (N'{key}',N'{Value}')");
+
+            }
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+          SqlModule.ExcuteCommand("delete [VnChinese]");
+
+            DataTable dtRRC = SqlModuleLocal.GetDataTable("SELECT *  FROM [VnChinese]");
+            DataTable dt = SqlModule.GetDataTable("SELECT top 0  *  FROM [VnChinese]");
+ 
+            int MaxRow = dtRRC.Rows.Count;
+            //       MaxRow = 5000;
+            for (int i = 0; i < MaxRow; i++)
+            {
+                var item = dtRRC.Rows[i];
+                var row = dt.NewRow();
+
+                foreach (DataColumn col in dtRRC.Columns)
+                {
+                    row[col.ColumnName] = item[col];
+                }
+                dt.Rows.Add(row);
+
+            }
+
+            new BulkCopy().BulkInsertAll(dt, "lts43636_vietso.dbo.[VnChinese]");
         }
     }
 }

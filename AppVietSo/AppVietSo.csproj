@@ -160,6 +160,7 @@
     <Compile Include="Models\Pagoda.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\Security.cs" />
+    <Compile Include="Models\SendMailExtentions.cs" />
     <Compile Include="Models\ShareFun.cs" />
     <Compile Include="Models\TamKhong.cs" />
     <Compile Include="Models\ThietLapTinChu.cs" />
@@ -232,9 +233,6 @@
     </None>
     <None Include="Data\fontCN\UVNButLong1.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Include="Data\TamKhong.com">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

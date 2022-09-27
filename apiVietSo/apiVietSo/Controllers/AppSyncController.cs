@@ -195,7 +195,18 @@ namespace apiVietSo.Controllers
 
 
         }
+        public ActionResult GetVersion()
+        {
 
+            using (Models.vietsoEntities db = new vietsoEntities())
+            {
+                var version = db.LabelTexts.Where(v => v.Label == "version").Select(v => v.Title).FirstOrDefault();
+                return JsonMax(version);
+            }
+
+
+
+        }
         [HttpPost]
         public ActionResult UploadFileData(HttpPostedFileBase file)
         {

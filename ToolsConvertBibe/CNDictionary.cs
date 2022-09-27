@@ -7,60 +7,47 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToolsConvertBibe;
 
 namespace AppVietSo
 {
     public class CNDictionary
     {
         public static Dictionary<string, string> database;
-        public static Dictionary<string, string> databaseChina;
         public static DataTable databaseNguCanh;
         public static void loadDatabase(bool require = false)
         {
             if (File.Exists(Util.getDictionaryPath))
             {
                 database = JsonConvert.DeserializeObject<Dictionary<string, string>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryPath)));
-                databaseChina = JsonConvert.DeserializeObject<Dictionary<string, string>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryChinaPath)));
                 databaseNguCanh = JsonConvert.DeserializeObject<DataTable>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryNguCanhPath)));
             }
             if (database == null || require)
             {
                 #region database
                 database = new Dictionary<string, string>();
-                databaseChina = new Dictionary<string, string>();
-                var json = getDataFromUrl(Util.mainURL + "/AppSync/GetDictionary");
-
-                var data = JsonConvert.DeserializeObject<DataTable>(json);
+ 
+                var data = SqlModuleLocal.GetDataTable("SELECT  [vn] ,[chinese] from   [VnChinese]") ;
 
                 foreach (DataRow item in data.Rows)
                 {
+                    var key = (item["vn"] + "").ToLower();
+                    if (database.ContainsKey(key))
+                    {
+                        continue;
+                    }
                     var cn = item["chinese"] + "";
-                    var vn = item["vn"] + "";
-                    vn = vn.ToLower();
-                    if (!database.ContainsKey(vn))
-                    {
-                        database.Add(vn, cn);
-                    }
-                    if (!databaseChina.ContainsKey(cn))
-                    {
-                        databaseChina.Add(cn, vn);
-                    }
+                    database.Add(key, cn);
                 }
                 var output = Newtonsoft.Json.JsonConvert.SerializeObject(database);
                 output = Security.Encrypt(output);
                 System.IO.File.WriteAllText(Util.getDictionaryPath, output);
-
-                var outputChina = Newtonsoft.Json.JsonConvert.SerializeObject(databaseChina);
-                outputChina = Security.Encrypt(outputChina);
-                System.IO.File.WriteAllText(Util.getDictionaryChinaPath, outputChina);
                 #endregion
 
                 #region databaseNguCanh
                 databaseNguCanh = JsonConvert.DeserializeObject<DataTable>(getDataFromUrl(Util.mainURL + "/AppSync/GetDictionaryNguCanh"));
                 System.IO.File.WriteAllText(Util.getDictionaryNguCanhPath, Security.Encrypt(Newtonsoft.Json.JsonConvert.SerializeObject(databaseNguCanh)));
                 #endregion
-
-
             }
 
 
@@ -135,9 +122,9 @@ namespace AppVietSo
                 {
                     continue;
                 }
-                if (databaseChina.ContainsKey(key))
+                if (database.ContainsValue(key))
                 {
-                    result = result + " " + databaseChina[key];
+                    result = result + " " + database.Where(v => v.Value == key).Select(z => z.Key).FirstOrDefault();
                 }
             }
             if (result == "")
