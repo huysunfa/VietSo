@@ -250,11 +250,13 @@ namespace AppVietSo
 
                     if ((string)item.DataFormatArgs == "TextVN")
                     {
+                        cell.Value = null;
                         cell.TextVN = row[j];
                         cell.TextCN = CNDictionary.getCN(row[j]);
                     }
                     else
                     {
+                        cell.Value = null;
                         cell.TextCN = row[j];
                         cell.TextVN = CNDictionary.getVN(row[j]);
                     }
@@ -263,14 +265,6 @@ namespace AppVietSo
 
                 }
             }
-            //for (int i = select.Row; i <= select.EndRow; i++)
-            //{
-            //    for (int j = select.Col; j <= select.EndCol; j++)
-            //    {
-            //        worksheet.Cells[i, j].Data = text;
-
-            //    }
-            //}
             SaveData();
         }
 
@@ -337,8 +331,8 @@ namespace AppVietSo
             var worksheet = reoGridControl1.CurrentWorksheet;
             var Row = worksheet.SelectionRange.Row;
             var Col = worksheet.SelectionRange.Col;
-
-            var selection = worksheet.Cells[Row, Col].DataFormatArgs + "";
+            var item = worksheet.Cells[Row, Col];
+            var selection = item.DataFormatArgs + "";
             if (selection.CheckNo() || Row == 0 || Col == 0)
             {
                 return;
@@ -371,7 +365,7 @@ namespace AppVietSo
             {
                 setText(Row, Col, bm, bm);
             }
-            RenderStyle();
+            //   RenderStyle(item.Address);
         }
 
         // Token: 0x060000D5 RID: 213 RVA: 0x0000E87C File Offset: 0x0000CA7C
@@ -533,6 +527,7 @@ namespace AppVietSo
 
             worksheet.AfterCellEdit += (s, r1) =>
             {
+                
                 if (r1.NewData != r1.Cell)
                 {
                     var cell = r1.Cell.Tag.getCellData();
@@ -569,8 +564,12 @@ namespace AppVietSo
 
             worksheet.Scaled += (s, r1) =>
             {
-                Util.LongSoHienTai.ScaleFactor = worksheet.ScaleFactor;
-                SaveData();
+                if (Util.LongSoHienTai.ScaleFactor != worksheet.ScaleFactor)
+                {
+                    Util.LongSoHienTai.ScaleFactor = worksheet.ScaleFactor;
+                    SaveData();
+                }
+
             };
 
 
@@ -607,7 +606,6 @@ namespace AppVietSo
             dynamicPanel.Controls.Clear();
 
             var input = CNDictionary.database.Where(z => txt != "" && z.Key.ToLower().StartsWith(txt.ToLower())).OrderBy(v => v.Key.Length).ToList();
-
             int stt = 0;
             foreach (var it in input)
             {
@@ -663,7 +661,7 @@ namespace AppVietSo
             }
             item.Tag = cell;
 
-            RenderStyle();
+            RenderStyle(item.Address);
         }
         private void DynamicButton_Click(object sender, EventArgs e)
         {
@@ -778,7 +776,7 @@ namespace AppVietSo
 
             RenderStyle();
             ControlActive(true);
-
+            ChangeWidthSize(worksheet, checkBox2.Checked);
         }
         public void LoadDataToDataGrid(Worksheet worksheet)
         {
@@ -1157,7 +1155,7 @@ namespace AppVietSo
                 row.Data = cnt[k];
                 if (k > 0)
                 {
-                 //   setColorTag(sheet, row);
+                    //   setColorTag(sheet, row);
                     row.DataFormatArgs = "NO_" + DataFormatArgs;
                 }
                 else
@@ -1169,7 +1167,7 @@ namespace AppVietSo
         public void setColorTag(Worksheet sheet, Cell item)
         {
 
- 
+
             var cell = item.Tag.getCellData();
 
             if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
@@ -1183,21 +1181,24 @@ namespace AppVietSo
                 });
             }
         }
-        public void RenderStyle()
+        public void RenderStyle(string pos = "")
         {
 
-
-            LogOutput("RenderStyle");
+            LogOutput("RenderStyle: " + pos);
             var sheet = reoGridControl1.CurrentWorksheet;
             var position = sheet.UsedRange;
-
+        
             if (rbSongNgu.Checked)
             {
+                pos = null;
                 SaveData();
                 LoadDataToDataGrid(sheet);
             }
 
-
+            if (!string.IsNullOrEmpty(pos))
+            {
+                position = new RangePosition(pos);
+            }
 
             string Status = "";
             if (rbChuViet.Checked) Status = "TextVN";
@@ -1206,14 +1207,16 @@ namespace AppVietSo
 
             if (Status != "TextSN")
             {
-                ChangeFontAndSize(sheet, Status, sheet.UsedRange.ToAddress());
+                ChangeFontAndSize(sheet, Status, position.ToAddress());
+            }
+            if (string.IsNullOrEmpty(pos))
+            {
+                sheet.DeleteRangeData(position);
             }
 
-            sheet.DeleteRangeData(sheet.UsedRange);
-
-            for (int i = 0; i <= position.EndRow; i++)
+            for (int i = position.Row; i <= position.EndRow; i++)
             {
-                for (int j = 0; j <= position.EndCol; j++)
+                for (int j = position.Col; j <= position.EndCol; j++)
                 {
                     var item = sheet.Cells[i, j];
                     item.IsReadOnly = false;
@@ -1249,36 +1252,34 @@ namespace AppVietSo
                                 break;
                         }
                     }
-                    // Dùng font không cần cài đặt
-                    if (Status == "TextCN" || (string)item.DataFormatArgs == "TextCN")
-                    {
-                        //  item.Data = new DrawCellBody(new Font(pfc.Families[0], Util.LongSoHienTai.fsizeCN));
-                    }
 
 
 
                 }
             }
-            if (rbSongNgu.Checked || rbChuViet.Checked) ChangeWidthSize(sheet, true);
-
-            SaveData();
-
-            sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle
+            //if (rbSongNgu.Checked || rbChuViet.Checked) {
+            //    ChangeWidthSize(sheet, true);
+            //};
+            if (!rbSongNgu.Checked)
+            {
+                SaveData();
+            }
+            sheet.SetRangeStyles(position, new WorksheetRangeStyle
             {
                 // style item flag
                 Flag = PlainStyleFlag.BackColor,
                 BackColor = Color.White,
             });
-            sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle
+            sheet.SetRangeStyles(position, new WorksheetRangeStyle
             {
                 Flag = PlainStyleFlag.HorizontalAlign,
                 HAlign = ReoGridHorAlign.Center,
             });
             reoGridControl1.ShowBolder(cbHideGridLine.Checked);
 
-            for (int i = 0; i <= position.EndRow; i++)
+            for (int i = position.Row; i <= position.EndRow; i++)
             {
-                for (int j = 0; j <= position.EndCol; j++)
+                for (int j = position.Col; j <= position.EndCol; j++)
                 {
                     var item = sheet.Cells[i, j];
                     var cell = item.Tag.getCellData();
@@ -1287,9 +1288,9 @@ namespace AppVietSo
 
                     if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
                     {
-                      setColorTag(sheet, item);
+                        setColorTag(sheet, item);
                     }
-                   
+
                 }
             }
         }
@@ -1323,12 +1324,12 @@ namespace AppVietSo
             {
                 Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleBold,
                 Bold = Bold,
-             });  
-            
+            });
+
             sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
             {
                 Flag = unvell.ReoGrid.PlainStyleFlag.FontStyleItalic,
-                 Italic = Italic,
+                Italic = Italic,
             });
             sheet.SetRangeStyles(Address, new unvell.ReoGrid.WorksheetRangeStyle
             {
@@ -1345,11 +1346,23 @@ namespace AppVietSo
 
         public void ChangeWidthSize(Worksheet sheet, bool check)
         {
+            if (check == false)
+            {
+                return;
+            }
             sheet = reoGridControl1.CurrentWorksheet;
 
             for (int i = 1; i < sheet.ColumnCount; i = i + 1)
             {
+                var oldW = sheet.GetColumnWidth(i);
                 sheet.AutoFitColumnWidth(i, check);
+                var newW = sheet.GetColumnWidth(i);
+
+                if (newW < oldW)
+                {
+                    sheet.SetColumnsWidth(i,1, oldW);
+ 
+                }
             }
         }
         private void cbfstyleVN_SelectedIndexChanged(object sender, EventArgs e)
@@ -1486,20 +1499,7 @@ namespace AppVietSo
                         c++;
                     }
                 }
-                //var LgSoResult = new Dictionary<int, Dictionary<int, CellData>>();
-                //int c = 0;
-                //foreach (var item in LgSo)
-                //{
-                //    int j = 0;
-                //    LgSoResult.Add(c, new Dictionary<int, CellData>());
-                //    foreach (var it in item.Value)
-                //    {
-                //        LgSoResult[c].Add(j, it.Value);
-                //        j++;
-                //    }
-                //    c++;
-
-                //}
+              
                 Util.LongSoHienTai.LgSo = LgSo;
             }
 
@@ -1518,13 +1518,6 @@ namespace AppVietSo
             LongSoData.save(Util.LongSoHienTai);
         }
 
-        private void button9_Click(object sender, EventArgs e)
-        {
-            SaveData();
-            // ReLoad(sender, e);
-            //SaveData();
-            //ReLoad(sender, e);
-        }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -1607,15 +1600,22 @@ namespace AppVietSo
 
         private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
-            {
-                var sheet = reoGridControl1.CurrentWorksheet;
-                ChangeWidthSize(sheet, checkBox2.Checked);
-            }
-            else
-            {
-                ReLoad(sender, e);
-            }
+            //if (checkBox2.Checked)
+            //{
+            //    var sheet = reoGridControl1.CurrentWorksheet;
+            //    ChangeWidthSize(sheet, checkBox2.Checked);
+            //}
+            //else
+            //{
+            //    ReLoad(sender, e);
+            //}
+        }
+
+        private void checkBox2_Click(object sender, EventArgs e)
+        {
+            //var sheet = reoGridControl1.CurrentWorksheet;
+            //ChangeWidthSize(sheet, checkBox2.Checked);
+            ReLoad(sender, e);
         }
     }
 }

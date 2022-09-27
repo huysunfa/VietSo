@@ -173,6 +173,7 @@ namespace AppVietSo
             this.checkBox2.Text = "Tự căn cột";
             this.checkBox2.UseVisualStyleBackColor = true;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
+            this.checkBox2.Click += new System.EventHandler(this.checkBox2_Click);
             // 
             // button10
             // 
@@ -359,6 +360,8 @@ namespace AppVietSo
             // cbHideGridLine
             // 
             this.cbHideGridLine.AutoSize = true;
+            this.cbHideGridLine.Checked = true;
+            this.cbHideGridLine.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbHideGridLine.Location = new System.Drawing.Point(31, 254);
             this.cbHideGridLine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbHideGridLine.Name = "cbHideGridLine";
