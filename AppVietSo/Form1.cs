@@ -341,7 +341,7 @@ namespace AppVietSo
                 var val = ActiveData.Get(bm, out string CN, out string VN);
                 if (!val)
                 {
-                    if (frmTinChu.keys.Contains(bm) || bm=="@tinchu")
+                    if (frmTinChu.keys.Contains(bm) || bm == "@tinchu")
                     {
                         frmTinChu frm = new frmTinChu();
                         frm.ShowDialog();
@@ -602,21 +602,25 @@ namespace AppVietSo
                 dynamicPanel.Controls.RemoveAt(i);
             }
             dynamicPanel.Controls.Clear();
-
-            var input = CNDictionary.database.Where(z => txt != "" && z.Key.ToLower().StartsWith(txt.ToLower())).OrderBy(v => v.Key.Length).ToList();
+            txt = txt.ToLower();
+            txt = txt.Replace(" ", "");
+            if (!CNDictionary.database.ContainsKey(txt))
+            {
+                return;
+            }
+            var input = CNDictionary.database[txt];
             int stt = 0;
             foreach (var it in input)
             {
-                if (stt > 10)
+                if (stt >= 20)
                 {
                     break;
                 }
 
-
                 Button textBox1 = new Button();
                 textBox1.Location = new Point(10, 10);
-                textBox1.Text = it.Value;
-                var size = it.Value.Length * 50;
+                textBox1.Text = it;
+                var size = it.Length * 50;
                 if (size < 70)
                 {
                     size = 70;
@@ -624,13 +628,14 @@ namespace AppVietSo
                 textBox1.Size = new Size(size, 40);
                 textBox1.Click += new EventHandler(DynamicButton_Click);
 
-                textBox1.Font = new Font(cbfnameCN.Text, 16);
+                textBox1.Font = new Font(cbfnameCN.Text, 22);
 
                 textBox1.Tag = txt;
 
 
                 dynamicPanel.Controls.Add(textBox1);
                 stt++;
+
 
             }
             dynamicPanel.Visible = true;

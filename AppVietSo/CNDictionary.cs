@@ -1,4 +1,5 @@
-﻿using AppVietSo.Models;
+﻿using apiVietSo.Models;
+using AppVietSo.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,47 +13,82 @@ namespace AppVietSo
 {
     public class CNDictionary
     {
-        public static Dictionary<string, string> database;
-        public static Dictionary<string, string> databaseChina;
+        public static Dictionary<string, List<string>> database;
+      //  public static Dictionary<string, List<string>> databaseChina;
         public static DataTable databaseNguCanh;
+
+        public static global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<VnChinese>> getDic()
+        {
+            string query = "Select * from VnChinese ORDER BY used DESC";
+            global::System.Data.DataTable dataTable = SqlModule.GetDataTable(query);
+            global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<VnChinese>> dictionary = new global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<VnChinese>>();
+            foreach (object obj in dataTable.Rows)
+            {
+                global::System.Data.DataRow dataRow = (global::System.Data.DataRow)obj;
+                string text = BaseBO.GetString(dataRow["vn"]).ToLower();
+                VnChinese vnChinese = new VnChinese();
+                vnChinese.vn = text;
+                vnChinese.chinese = BaseBO.GetString(dataRow["chinese"]);
+                vnChinese.nguCanh = BaseBO.GetString(dataRow["nguCanh"]);
+                if (dictionary.ContainsKey(text))
+                {
+                    dictionary[text].Add(vnChinese);
+                }
+                else
+                {
+                    dictionary.Add(text, new global::System.Collections.Generic.List<VnChinese>
+                    {
+                        vnChinese
+                    });
+                }
+            }
+            return dictionary;
+        }
+
         public static void loadDatabase(bool require = false)
         {
             if (File.Exists(Util.getDictionaryPath))
             {
-                database = JsonConvert.DeserializeObject<Dictionary<string, string>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryPath)));
-                databaseChina = JsonConvert.DeserializeObject<Dictionary<string, string>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryChinaPath)));
+                database = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryPath)));
+              //  databaseChina = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryChinaPath)));
                 databaseNguCanh = JsonConvert.DeserializeObject<DataTable>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryNguCanhPath)));
             }
             if (database == null || require)
             {
                 #region database
-                database = new Dictionary<string, string>();
-                databaseChina = new Dictionary<string, string>();
-                var json = getDataFromUrl(Util.mainURL + "/AppSync/GetDictionary");
+                database = new Dictionary<string, List<string>>();
+                //databaseChina = new Dictionary<string, List<string>>();
+              //  var json = getDataFromUrl(Util.mainURL + "/AppSync/GetDictionary");
 
-                var data = JsonConvert.DeserializeObject<DataTable>(json);
+                var data = getDic();// JsonConvert.DeserializeObject<DataTable>(json);
 
-                foreach (DataRow item in data.Rows)
+                foreach (var item in data)
                 {
-                    var cn = item["chinese"] + "";
-                    var vn = item["vn"] + "";
-                    vn = vn.ToLower();
-                    if (!database.ContainsKey(vn))
+                    database.Add(item.Key, new List<string>());
+
+                    foreach (var it in item.Value)
                     {
-                        database.Add(vn, cn);
+                        database[item.Key].Add(it.chinese);
                     }
-                    if (!databaseChina.ContainsKey(cn))
-                    {
-                        databaseChina.Add(cn, vn);
-                    }
+                    //var cn = item.Key;
+                    //var vn = item.Key;
+                    //vn = vn.ToLower();
+                    //if (!database.ContainsKey(vn))
+                    //{
+                    //    database.Add(vn, cn);
+                    //}
+                    //if (!databaseChina.ContainsKey(cn))
+                    //{
+                    //    databaseChina.Add(cn, vn);
+                    //}
                 }
                 var output = Newtonsoft.Json.JsonConvert.SerializeObject(database);
                 output = Security.Encrypt(output);
                 System.IO.File.WriteAllText(Util.getDictionaryPath, output);
 
-                var outputChina = Newtonsoft.Json.JsonConvert.SerializeObject(databaseChina);
-                outputChina = Security.Encrypt(outputChina);
-                System.IO.File.WriteAllText(Util.getDictionaryChinaPath, outputChina);
+                //var outputChina = Newtonsoft.Json.JsonConvert.SerializeObject(databaseChina);
+                //outputChina = Security.Encrypt(outputChina);
+                //System.IO.File.WriteAllText(Util.getDictionaryChinaPath, outputChina);
                 #endregion
 
                 #region databaseNguCanh
@@ -135,10 +171,7 @@ namespace AppVietSo
                 {
                     continue;
                 }
-                if (databaseChina.ContainsKey(key))
-                {
-                    result = result + " " + databaseChina[key];
-                }
+                 
             }
             if (result == "")
             {

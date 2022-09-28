@@ -33,7 +33,7 @@ namespace AppVietSo.Models
 		}
 
 		// Token: 0x0600013B RID: 315 RVA: 0x00006F88 File Offset: 0x00005188
-		protected static string GetString(object cellValue)
+		public static string GetString(object cellValue)
 		{
 			if (cellValue == null)
 			{
@@ -43,7 +43,7 @@ namespace AppVietSo.Models
 		}
 
 		// Token: 0x0600013C RID: 316 RVA: 0x00006FAC File Offset: 0x000051AC
-		protected static int GetInt(object cellValue)
+		public static int GetInt(object cellValue)
 		{
 			int result = 0;
 			string @string = BaseBO.GetString(cellValue);
@@ -56,7 +56,7 @@ namespace AppVietSo.Models
 		}
 
 		// Token: 0x0600013D RID: 317 RVA: 0x00006FDC File Offset: 0x000051DC
-		protected static bool GetBool(object cellValue)
+		public static bool GetBool(object cellValue)
 		{
 			bool result = false;
 			string @string = BaseBO.GetString(cellValue);
@@ -69,7 +69,7 @@ namespace AppVietSo.Models
 		}
 
 		// Token: 0x0600013E RID: 318 RVA: 0x0000700C File Offset: 0x0000520C
-		protected static global::System.DateTime GetDateTime(object cellValue)
+		public static global::System.DateTime GetDateTime(object cellValue)
 		{
 			if (cellValue == null)
 			{
@@ -81,7 +81,7 @@ namespace AppVietSo.Models
 		}
 
 		// Token: 0x0600013F RID: 319 RVA: 0x00004258 File Offset: 0x00002458
-		protected BaseBO()
+		public BaseBO()
 		{
 		}
 	}
