@@ -23,7 +23,7 @@ namespace AppVietSo
         "@noicung",
         "@diachiyvu",
         "@giachu",
-        "@ten",
+        "@tinchu",
         "@hlinhten",
         "@hlinhsinh",
         "@hlinhmat",
@@ -35,17 +35,17 @@ namespace AppVietSo
 
             dataGridView1.DataSource = null;
 
-            dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn() {Name= "Chk", HeaderText="Chọn" });
-            dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn() {Name= "ChkGiaChu", HeaderText="Chọn gia chủ" });
-             dataGridView1.Columns.Add("@danh", "Danh xưng");
-            dataGridView1.Columns.Add("@ten", "Họ tên");
+            dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Chk", HeaderText = "Chọn" });
+            dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "ChkGiaChu", HeaderText = "Chọn gia chủ" });
+            dataGridView1.Columns.Add("@danh", "Danh xưng");
+            dataGridView1.Columns.Add("@tinchu", "Họ tên");
             dataGridView1.Columns.Add("NamSinh", "Năm sinh");
             dataGridView1.Columns.Add("@noicung", "Nơi cúng");
             dataGridView1.Columns.Add("NgayMat", "Ngày mất");
             dataGridView1.Columns.Add("@diachiyvu", "Địa chỉ");
             dataGridView1.Columns.Add("GioiTinh", "Giới tính");
 
-            dataGridView1.Columns["Chk"].ValueType= typeof(bool);
+            dataGridView1.Columns["Chk"].ValueType = typeof(bool);
             dataGridView1.Columns["NgayMat"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
 
@@ -54,14 +54,16 @@ namespace AppVietSo
             dataGridView1.Columns.Add("@hlinhmat", "Hương linh năm mất");
             dataGridView1.Columns.Add("@hlinhtho", "Hương linh hưởng thọ");
             dataGridView1.Columns.Add("@giachu", "@giachu");
+            dataGridView1.Columns.Add("@ten", "@ten");
 
+            dataGridView1.Columns["@ten"].Visible = false;
             dataGridView1.Columns["@giachu"].Visible = false;
             dataGridView1.Columns["@hlinhsinh"].Visible = false;
             dataGridView1.Columns["@hlinhten"].Visible = false;
             dataGridView1.Columns["@hlinhtho"].Visible = false;
             dataGridView1.Columns["@hlinhmat"].Visible = false;
 
-            if (dt==null)
+            if (dt == null)
             {
                 return;
             }
@@ -71,7 +73,7 @@ namespace AppVietSo
 
                 // Grab the new row!
                 DataGridViewRow row = dataGridView1.Rows[rowId];
- 
+
                 foreach (DataColumn it in dt.Columns)
                 {
                     if (dataGridView1.Columns.Contains(it.ColumnName))
@@ -80,7 +82,7 @@ namespace AppVietSo
                     }
 
                 }
-             }
+            }
 
 
 
@@ -91,13 +93,14 @@ namespace AppVietSo
         {
             DataTable dt = dataGridView1.ToDataTable("New");
             var giachu = dt.Select(@"ChkGiaChu='True'").FirstOrDefault();
-            if (giachu!= null)
+            if (giachu != null)
             {
                 var item = dataGridView1.Rows[0];
                 foreach (var it in keys)
                 {
                     SaveCellValue(giachu, it);
                 }
+
 
             }
             CsvExtentions.ToCSV(dt, Util.getTinChuPath);
@@ -132,9 +135,10 @@ namespace AppVietSo
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            var item = dataGridView1.Rows[e.RowIndex];
             if (dataGridView1.Columns[e.ColumnIndex].Name == "NamSinh")
             {
-                var value = dataGridView1.Rows[e.RowIndex].Cells["NamSinh"].Value + "";
+                var value = item.Cells["NamSinh"].Value + "";
                 int.TryParse(value, out int years);
                 if (years == 0)
                 {
@@ -142,14 +146,10 @@ namespace AppVietSo
                     MessageBox.Show("Vui lòng nhập năm sinh dạng số (ví dụ 1991)");
                     return;
                 }
-                dataGridView1.Rows[e.RowIndex].Cells["@hlinhsinh"].Value = Util.getSaoVN(years, false);
+                item.Cells["@hlinhsinh"].Value = Util.getSaoVN(years, false);
 
-
-
-                DataTable dt = new DataTable();
-                dt = (DataTable)dataGridView1.DataSource;
-                CsvExtentions.ToCSV(dt, Util.getTinChuPath);
             }
+          
 
             if (dataGridView1.Columns[e.ColumnIndex].Name == "NgayMat")
             {
@@ -170,10 +170,14 @@ namespace AppVietSo
 
 
 
-                DataTable dt = new DataTable();
-                dt = (DataTable)dataGridView1.DataSource;
-                CsvExtentions.ToCSV(dt, Util.getTinChuPath);
+
             }
+
+            item.Cells["@ten"].Value = item.Cells["@tinchu"].Value;
+            item.Cells["@ten"].Value = item.Cells["@tinchu"].Value;
+            DataTable dt = new DataTable();
+            dt = (DataTable)dataGridView1.DataSource;
+            CsvExtentions.ToCSV(dt, Util.getTinChuPath);
         }
 
         private void toolBtnEditChua_Click(object sender, EventArgs e)

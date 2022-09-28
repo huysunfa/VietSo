@@ -7,15 +7,21 @@ using System.Threading.Tasks;
 
 namespace AppVietSo.Models
 {
-    public class CellData
+    public class CellPos
+    {
+        public int RowNo { get; set; }
+        public int ColNo { get; set; }
+       }
+
+        public class CellData
     {
         public RectangleF Rct;
         public int RowNoOrg;
         public int ColNoOrg;
         public int RowNo;
         public int ColNo;
-
-
+        public CellPos cellVN { get; set; }
+        public CellPos cellCN { get; set; }
         public float fsizeVN { get; set; }
         public string fnameVN { get; set; }
         public int fstyleCN { get; set; }
