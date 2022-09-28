@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using unvell.ReoGrid;
 
 namespace AppVietSo
 {
@@ -15,17 +16,30 @@ namespace AppVietSo
         public static CellData getCellData(this object input)
         {
             var result = (CellData)input;
-            if (result==null)
+            if (result == null)
             {
                 result = new CellData();
             }
             return result;
-        }   public static bool CheckNo(this object input,string Duoi="")
+        }
+        public static void renderText(this Cell input)
         {
-            
-            if ((input+"").StartsWith("NO"))
+            var Status = input.DataFormatArgs + "";
+            var cell = input.Tag.getCellData();
+            switch (Status)
             {
-                if (!string.IsNullOrEmpty(Duoi)&& !(input + "").EndsWith(Duoi))
+
+                case "TextVN": input.Data = cell.TextVN; break;
+                case "TextCN": input.Data = cell.TextCN; break;
+
+            }
+        }
+        public static bool CheckNo(this object input, string Duoi = "")
+        {
+
+            if ((input + "").StartsWith("NO"))
+            {
+                if (!string.IsNullOrEmpty(Duoi) && !(input + "").EndsWith(Duoi))
                 {
                     return false;
                 }
@@ -67,7 +81,7 @@ namespace AppVietSo
             /* THIS WORKS BUT... */
             foreach (DataGridViewRow row in dgv.Rows)
             {
-                if (row.Index>=dgv.Rows.Count-1)
+                if (row.Index >= dgv.Rows.Count - 1)
                 {
                     continue;
                 }

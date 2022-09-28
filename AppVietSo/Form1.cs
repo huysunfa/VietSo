@@ -495,6 +495,7 @@ namespace AppVietSo
                 var txt = r1.Text;
                 loaddd(txt);
             };
+          
 
             worksheet.BeforeSelectionRangeChange += (s, r1) =>
             {
@@ -604,11 +605,13 @@ namespace AppVietSo
             dynamicPanel.Controls.Clear();
             txt = txt.ToLower();
             txt = txt.Replace(" ", "");
+
             if (!CNDictionary.database.ContainsKey(txt))
             {
                 return;
             }
-            var input = CNDictionary.database[txt];
+            var cache = ActiveData.Get(txt);
+           var input = CNDictionary.database[txt].Distinct().OrderByDescending(v=>(v== cache ? 1 :0));
             int stt = 0;
             foreach (var it in input)
             {
@@ -664,6 +667,9 @@ namespace AppVietSo
             }
             item.Tag = cell;
 
+         // item.renderText();
+            SaveData();
+
             RenderStyle(item.Address);
         }
         private void DynamicButton_Click(object sender, EventArgs e)
@@ -672,7 +678,10 @@ namespace AppVietSo
             var Row = worksheet.SelectionRange.Row;
             var Col = worksheet.SelectionRange.Col;
             var name = (Button)sender;
-            setText(Row, Col, name.Tag.ToString(), name.Text);
+            string TextVN = name.Tag.ToString();
+            string TextCN = name.Text;
+            setText(Row, Col, TextVN, TextCN);
+            ActiveData.Update(TextVN, TextCN);
 
 
             dynamicPanel.Visible = false;
@@ -1140,7 +1149,7 @@ namespace AppVietSo
 
                 if (k > 0)
                 {
-
+                  
                     if (item.Row >= sheet.UsedRange.EndRow - 1)
                     {
                         item.Row = item.EndRow;
@@ -1192,7 +1201,6 @@ namespace AppVietSo
         }
         public void RenderStyle(string pos = "")
         {
-
             LogOutput("RenderStyle: " + pos);
             var sheet = reoGridControl1.CurrentWorksheet;
             var position = sheet.UsedRange;
@@ -1252,23 +1260,33 @@ namespace AppVietSo
                             item.IsReadOnly = true;
                             continue;
                         }
-                        switch (Status)
+                        if (Status == "TextSN")
                         {
+                            Status = item.DataFormatArgs+"";
+                        }
+
+                        switch (Status)
+                        {         
+
                             case "TextVN": item.Data = cell.TextVN; break;
                             case "TextCN": item.Data = cell.TextCN; break;
-                            case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
-                            default:
-                                break;
+                            //case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
+
                         }
+                        //switch (Status)
+                        //{
+                        //    case "TextVN":  renderText(sheet, cell.TextVN, i, j); break;
+                        //    case "TextCN":  renderText(sheet, cell.TextCN, i, j); break;
+                        //    default:
+                        //        break;
+                        //}
                     }
 
 
 
                 }
             }
-            //if (rbSongNgu.Checked || rbChuViet.Checked) {
-            //    ChangeWidthSize(sheet, true);
-            //};
+
             if (!rbSongNgu.Checked)
             {
                 SaveData();
@@ -1625,6 +1643,18 @@ namespace AppVietSo
             //var sheet = reoGridControl1.CurrentWorksheet;
             //ChangeWidthSize(sheet, checkBox2.Checked);
             ReLoad(sender, e);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+             reoGridControl1.Undo();// sheet.
+            var select = reoGridControl1.CurrentWorksheet.SelectionRange;
+        }
+
+        private void toolStripButton3_Click(object sender, EventArgs e)
+        {
+            reoGridControl1.Redo();
+            SaveData();
         }
     }
 }

@@ -77,6 +77,8 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -113,7 +115,7 @@ namespace AppVietSo
             this.reoGridControl1.SheetTabVisible = true;
             this.reoGridControl1.SheetTabWidth = 80;
             this.reoGridControl1.ShowScrollEndSpacing = true;
-            this.reoGridControl1.Size = new System.Drawing.Size(987, 834);
+            this.reoGridControl1.Size = new System.Drawing.Size(1488, 838);
             this.reoGridControl1.TabIndex = 2;
             this.reoGridControl1.Text = "reoGridControl1";
             this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
@@ -131,7 +133,7 @@ namespace AppVietSo
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 42);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 38);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -158,7 +160,7 @@ namespace AppVietSo
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(11, 0, 11, 10);
-            this.splitContainer1.Size = new System.Drawing.Size(1185, 844);
+            this.splitContainer1.Size = new System.Drawing.Size(1686, 848);
             this.splitContainer1.SplitterDistance = 172;
             this.splitContainer1.TabIndex = 3;
             // 
@@ -393,7 +395,7 @@ namespace AppVietSo
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 752);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 756);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 82);
@@ -483,16 +485,16 @@ namespace AppVietSo
             this.panel1.Location = new System.Drawing.Point(11, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(987, 834);
+            this.panel1.Size = new System.Drawing.Size(1488, 838);
             this.panel1.TabIndex = 3;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 738);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 742);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(987, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(1488, 96);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             this.richTextBox1.Visible = false;
@@ -518,7 +520,9 @@ namespace AppVietSo
             this.cbfnameVN,
             this.cbfsizeVN,
             this.cbfstyleVN,
-            this.labelLicence});
+            this.labelLicence,
+            this.toolStripButton2,
+            this.toolStripButton3});
             this.bindingNavigator1.Location = new System.Drawing.Point(0, 0);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
@@ -527,7 +531,7 @@ namespace AppVietSo
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.bindingNavigator1.PositionItem = null;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1185, 42);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1686, 38);
             this.bindingNavigator1.Stretch = true;
             this.bindingNavigator1.TabIndex = 4;
             this.bindingNavigator1.Text = "bindingNavigator1";
@@ -537,7 +541,7 @@ namespace AppVietSo
             this.toolStripButton1.Image = global::AppVietSo.Properties.Resources.print;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(64, 29);
+            this.toolStripButton1.Size = new System.Drawing.Size(64, 25);
             this.toolStripButton1.Text = "In sớ";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
@@ -545,13 +549,13 @@ namespace AppVietSo
             // 
             this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 50, 0);
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 32);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
             // 
             // toolStripLabel3
             // 
             this.toolStripLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStripLabel3.Name = "toolStripLabel3";
-            this.toolStripLabel3.Size = new System.Drawing.Size(58, 29);
+            this.toolStripLabel3.Size = new System.Drawing.Size(58, 25);
             this.toolStripLabel3.Text = "Loại sớ";
             // 
             // txtLoaiSo
@@ -561,7 +565,7 @@ namespace AppVietSo
             this.txtLoaiSo.Image = ((System.Drawing.Image)(resources.GetObject("txtLoaiSo.Image")));
             this.txtLoaiSo.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.txtLoaiSo.Name = "txtLoaiSo";
-            this.txtLoaiSo.Size = new System.Drawing.Size(64, 29);
+            this.txtLoaiSo.Size = new System.Drawing.Size(64, 25);
             this.txtLoaiSo.Text = ".................";
             this.txtLoaiSo.Click += new System.EventHandler(this.txtLoaiSo_Click);
             // 
@@ -569,7 +573,7 @@ namespace AppVietSo
             // 
             this.labelCN.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelCN.Name = "labelCN";
-            this.labelCN.Size = new System.Drawing.Size(101, 29);
+            this.labelCN.Size = new System.Drawing.Size(101, 25);
             this.labelCN.Text = "Kiểu chữ nho";
             // 
             // cbfnameCN
@@ -577,13 +581,13 @@ namespace AppVietSo
             this.cbfnameCN.BackColor = System.Drawing.SystemColors.Info;
             this.cbfnameCN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfnameCN.Name = "cbfnameCN";
-            this.cbfnameCN.Size = new System.Drawing.Size(181, 32);
+            this.cbfnameCN.Size = new System.Drawing.Size(181, 28);
             this.cbfnameCN.DropDownClosed += new System.EventHandler(this.RenderFontSizeChanged);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 32);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 28);
             // 
             // cbfsizeCN
             // 
@@ -714,7 +718,7 @@ namespace AppVietSo
             "35.25",
             "36"});
             this.cbfsizeCN.Name = "cbfsizeCN";
-            this.cbfsizeCN.Size = new System.Drawing.Size(99, 32);
+            this.cbfsizeCN.Size = new System.Drawing.Size(99, 28);
             this.cbfsizeCN.DropDownClosed += new System.EventHandler(this.RenderFontSizeChanged);
             this.cbfsizeCN.Click += new System.EventHandler(this.cbfsizeCN_Click);
             // 
@@ -727,20 +731,20 @@ namespace AppVietSo
             "Nghiêng",
             "Thường"});
             this.cbfstyleCN.Name = "cbfstyleCN";
-            this.cbfstyleCN.Size = new System.Drawing.Size(99, 32);
+            this.cbfstyleCN.Size = new System.Drawing.Size(99, 28);
             this.cbfstyleCN.DropDownClosed += new System.EventHandler(this.RenderFontSizeChanged);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Margin = new System.Windows.Forms.Padding(0, 0, 50, 0);
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 32);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 28);
             // 
             // labelVN
             // 
             this.labelVN.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelVN.Name = "labelVN";
-            this.labelVN.Size = new System.Drawing.Size(100, 29);
+            this.labelVN.Size = new System.Drawing.Size(100, 25);
             this.labelVN.Text = "Kiểu chữ việt";
             // 
             // cbfnameVN
@@ -748,7 +752,7 @@ namespace AppVietSo
             this.cbfnameVN.BackColor = System.Drawing.SystemColors.MenuBar;
             this.cbfnameVN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfnameVN.Name = "cbfnameVN";
-            this.cbfnameVN.Size = new System.Drawing.Size(181, 32);
+            this.cbfnameVN.Size = new System.Drawing.Size(181, 28);
             this.cbfnameVN.DropDownClosed += new System.EventHandler(this.RenderFontSizeChanged);
             // 
             // cbfsizeVN
@@ -900,15 +904,35 @@ namespace AppVietSo
             this.labelLicence.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLicence.ForeColor = System.Drawing.Color.Red;
             this.labelLicence.Name = "labelLicence";
-            this.labelLicence.Size = new System.Drawing.Size(116, 20);
+            this.labelLicence.Size = new System.Drawing.Size(116, 25);
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 25);
+            this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(29, 25);
+            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1185, 886);
+            this.ClientSize = new System.Drawing.Size(1686, 886);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.bindingNavigator1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -978,6 +1002,8 @@ namespace AppVietSo
         private Button button9;
         private Button button10;
         private CheckBox checkBox2;
+        private ToolStripButton toolStripButton2;
+        private ToolStripButton toolStripButton3;
     }
 }
 

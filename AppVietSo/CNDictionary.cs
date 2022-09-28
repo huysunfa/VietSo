@@ -139,8 +139,10 @@ namespace AppVietSo
                     }
                     if (database.ContainsKey(key))
                     {
+                        var cache = ActiveData.Get(key);
+                        var input = CNDictionary.database[key].Distinct().OrderByDescending(v => (v == cache ? 1 : 0)).FirstOrDefault();
 
-                        result = result + " " + database[key];
+                        result = result + " " + input;
                     }
                     else
                     {
