@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -28,9 +29,37 @@ namespace AppVietSo
         }
         private void frmWellCome_Load(object sender, EventArgs e)
         {
+
+
+
             label1.Text = "";
             Task.Run(() =>
            {
+
+
+               OuputOK("--- Kiểm tra bản cập nhật ---");
+
+               var url = "http://ltsgroup.xyz/AppSync/GetVersion";
+               using (var webClient = new System.Net.WebClient())
+               {
+                   var result = webClient.DownloadData(url);
+                   var htmlCode = Encoding.UTF8.GetString(result);
+                   var path = System.AppDomain.CurrentDomain.BaseDirectory;
+
+                   var localpath = path + "AppVietSo.exe";
+                   var localVersion = FileVersionInfo.GetVersionInfo(localpath);
+
+                   if (localVersion.FileVersion != htmlCode)
+                   {
+                       Application.Exit();
+                       System.Diagnostics.Process.Start("Updated.exe");
+                       return;
+                   }
+
+               }
+
+
+
                OuputOK("--- Kiểm tra bản quyền ---");
                var licence = CheckLogin();
                if (licence == false)

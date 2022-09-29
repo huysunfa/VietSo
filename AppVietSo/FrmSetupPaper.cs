@@ -27,10 +27,16 @@ namespace AppVietSo
             foreach (PaperSize paperSize in settings.PaperSizes)
             {
                 ComboboxItem item = new ComboboxItem();
-                item.Text = paperSize.PaperName.ToUpper().Trim();
+                item.Text = paperSize.PaperName;
                 item.Value = paperSize;
                 this.cbxPaperSize.Items.Add(item);
             }
+            if (Util.LongSoHienTai.paperSize!=null)
+            {
+                this.cbxPaperSize.Text = Util.LongSoHienTai.paperSize.PaperName;
+
+            }
+
 
 
             this.nmrWidth.Value = this.toMM(Util.LongSoHienTai.PageWidth);
@@ -136,6 +142,7 @@ namespace AppVietSo
                     int height = paperSize.Height;
                     int width = paperSize.Width;
                     this.setSize(this.toMM(height), this.toMM(width));
+                    Util.LongSoHienTai.paperSize = paperSize;
                 }
             }
             catch (Exception ex)
@@ -143,7 +150,7 @@ namespace AppVietSo
             }
         }
 
-        // Token: 0x04000119 RID: 281
+        // token: 0x04000119 RID: 281
         private bool isLoading;
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
@@ -22,7 +24,7 @@ namespace AppVietSo
 {
     public partial class Form1 : Form
     {
-        bool loading = false;
+        //bool loading = false;
         public Form1()
         {
             InitializeComponent();
@@ -450,22 +452,10 @@ namespace AppVietSo
         {
             // Check e.Error for errors
         }
-        public void ControlActive(bool active)
-        {
-            foreach (Control item in this.Controls)
-            {
-                try
-                {
-                    item.Enabled = active;
-                }
-                catch (Exception)
-                {
 
-                }
-            }
-        }
         private void Form1_Load(object sender, EventArgs e)
         {
+
             pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
 
             cbCanChuViet.SelectedItem = "PHẢI";
@@ -495,7 +485,7 @@ namespace AppVietSo
                 var txt = r1.Text;
                 loaddd(txt);
             };
-          
+
 
             worksheet.BeforeSelectionRangeChange += (s, r1) =>
             {
@@ -542,17 +532,12 @@ namespace AppVietSo
                         TextCN = dynamicPanel.Controls[0].Text;
                     }
                     setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN);
-                    if ((string)r1.Cell.DataFormatArgs == "TextCN")
-                    {
-                        r1.NewData = TextCN;
-                    }
-                    else
-                    {
-                        r1.NewData = TextVN;
-                    }
+
+                    r1.NewData = r1.Cell.renderViewText();
 
 
                 }
+
             };
 
 
@@ -566,7 +551,7 @@ namespace AppVietSo
                 if (Util.LongSoHienTai.ScaleFactor != worksheet.ScaleFactor)
                 {
                     Util.LongSoHienTai.ScaleFactor = worksheet.ScaleFactor;
-                    SaveData();
+                    //SaveData();
                 }
 
             };
@@ -575,16 +560,17 @@ namespace AppVietSo
             Task.Run(() =>
             {
 
+                string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 var key = CheckKey.LocalKey();
                 var date = CheckKey.infoKey(key).ToString("dd/MM/yyyy");
                 this.Invoke(new Action(() =>
                 {
-                    this.Text += $" Bản quyền {key} sử dụng đến ngày : " + date;
+                    lbVersion.Text =  " Version:" + version;
+                    this.Text += $" Bản quyền {key} sử dụng đến ngày : " + date ;
                     labelLicence.Text = $"Bản quyền sử dụng đến ngày : " + date;
                 }));
 
             });
-            loading = true;
             rbChuHan.Checked = true;
 
             //    ReLoad(sender, e);
@@ -611,7 +597,7 @@ namespace AppVietSo
                 return;
             }
             var cache = ActiveData.Get(txt);
-           var input = CNDictionary.database[txt].Distinct().OrderByDescending(v=>(v== cache ? 1 :0));
+            var input = CNDictionary.database[txt].Distinct().OrderByDescending(v => (v == cache ? 1 : 0));
             int stt = 0;
             foreach (var it in input)
             {
@@ -647,11 +633,7 @@ namespace AppVietSo
         public void setText(int Row, int Col, string TextVN = "", string TextCN = "")
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
-            //Util.LongSoHienTai.LgSo[Col][Row].TextVN = TextVN;
-            //Util.LongSoHienTai.LgSo[Col][Row].TextCN = TextCN;
-            //LongSoData.save(Util.LongSoHienTai);
             var item = worksheet.Cells[new CellPosition() { Col = Col, Row = Row }];
-            item.EndEdit();
             TextVN += "";
             var cell = item.Tag.getCellData();
             if (TextVN.Contains("@"))
@@ -667,10 +649,12 @@ namespace AppVietSo
             }
             item.Tag = cell;
 
-         // item.renderText();
+            //      item.renderText();
             SaveData();
-
-            RenderStyle(item.Address);
+            if (rbSongNgu.Checked || TextVN.Contains("@"))
+            {
+                RenderStyle(item.Address);
+            }
         }
         private void DynamicButton_Click(object sender, EventArgs e)
         {
@@ -682,8 +666,9 @@ namespace AppVietSo
             string TextCN = name.Text;
             setText(Row, Col, TextVN, TextCN);
             ActiveData.Update(TextVN, TextCN);
-
-
+            var item = worksheet.Cells[Row, Col];
+            worksheet.StartEdit(Row, Col, item.renderViewText());
+            worksheet.EndEdit(EndEditReason.NormalFinish);
             dynamicPanel.Visible = false;
 
 
@@ -735,9 +720,9 @@ namespace AppVietSo
             frm.ShowDialog();
             // ReLoad(sender, e);
         }
+
         public void ReLoad(object sender, EventArgs e)
         {
-            ControlActive(false);
 
             Models.LongSo.loadDataLongSo();
             loadSettingFont();
@@ -787,11 +772,18 @@ namespace AppVietSo
             worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
 
             RenderStyle();
-            ControlActive(true);
             ChangeWidthSize(worksheet, checkBox2.Checked);
         }
+        public Dictionary<CellPos, CellPos> posSongNgu = new Dictionary<CellPos, CellPos>();
         public void LoadDataToDataGrid(Worksheet worksheet)
         {
+            var songngu = rbSongNgu.Checked;
+            var PosText = cbCanChuViet.Text;
+            if (songngu)
+            {
+                posSongNgu = new Dictionary<CellPos, CellPos>();
+            }
+
             foreach (var item in Util.LongSoHienTai.LgSo.OrderBy(z => z.Key))
             {
                 // hiển thị từng dòng
@@ -807,14 +799,14 @@ namespace AppVietSo
                     var row2 = 0;
                     var col2 = 0;
                     // nếu là song ngữ thì tách cột ra
-                    if (rbSongNgu.Checked)
+                    if (songngu)
                     {
-                        if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "TRÁI")
+                        if (PosText == "PHẢI" || PosText == "TRÁI")
                         {
                             numcol = numcol * 2 + 1;
                             col2 = 1;
                         }
-                        if (cbCanChuViet.Text == "TRÊN" || cbCanChuViet.Text == "DƯỚI")
+                        if (PosText == "TRÊN" || PosText == "DƯỚI")
                         {
                             numrow = numrow * 2 + 1;
                             row2 = 1;
@@ -847,10 +839,10 @@ namespace AppVietSo
 
                     worksheet.Cells[col].DataFormat = unvell.ReoGrid.DataFormat.CellDataFormatFlag.Text;
 
-                    if (rbSongNgu.Checked)
+                    if (songngu)
                     {
-                        if (cbCanChuViet.Text == "TRÁI" || cbCanChuViet.Text == "TRÊN") worksheet.Cells[col].DataFormatArgs = "TextCN";
-                        if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "DƯỚI") worksheet.Cells[col].DataFormatArgs = "TextVN";
+                        if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[col].DataFormatArgs = "TextCN";
+                        if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[col].DataFormatArgs = "TextVN";
 
                         var cell2 = new CellPosition() { Col = numcol - col2, Row = numrow - row2 };
 
@@ -859,8 +851,13 @@ namespace AppVietSo
 
                         worksheet.Cells[cell2].Tag = it.Value;
 
-                        if (cbCanChuViet.Text == "TRÁI" || cbCanChuViet.Text == "TRÊN") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
-                        if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "DƯỚI") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
+                        if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
+                        if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
+                        if (PosText == "PHẢI" || PosText == "DƯỚI")
+                        {
+                            posSongNgu.Add(new CellPos() { ColNo = col.Col, RowNo = col.Row }, new CellPos() { ColNo = cell2.Col, RowNo = cell2.Row });
+                        }
+
 
                     }
                     #endregion
@@ -991,6 +988,11 @@ namespace AppVietSo
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
+            if (Util.LongSoHienTai.paperSize==null)
+            {
+                MessageBox.Show("Vui lòng chọn khổ giấy trước khi in ");
+                return;
+            }
             var sheet = reoGridControl1.CurrentWorksheet;
             if (Util.LongSoHienTai.PageHeight < Util.LongSoHienTai.PageWidth)
             {
@@ -1012,6 +1014,8 @@ namespace AppVietSo
             {
                 using (PrintPreviewDialog ppd = new PrintPreviewDialog())
                 {
+                    session.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
+                    session.PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = session.PrintDocument.DefaultPageSettings.PaperSize;
                     ppd.Document = session.PrintDocument;
                     ppd.SetBounds(0, 0, Width, Height - 40);
                     // float scale = (float)System.Windows.SystemParameters.VirtualScreenWidth / (float)Util.LongSoHienTai.PageWidth;
@@ -1035,6 +1039,7 @@ namespace AppVietSo
             }
             File.Delete("data/" + Util.LongSoHienTai.LSo.FileName);
             Util.NameLongSoHienTai = null;
+            Util.LongSoHienTai = null;
             ReLoad(sender, e);
         }
 
@@ -1149,7 +1154,7 @@ namespace AppVietSo
 
                 if (k > 0)
                 {
-                  
+
                     if (item.Row >= sheet.UsedRange.EndRow - 1)
                     {
                         item.Row = item.EndRow;
@@ -1215,6 +1220,7 @@ namespace AppVietSo
             if (!string.IsNullOrEmpty(pos))
             {
                 position = new RangePosition(pos);
+
             }
 
             string Status = "";
@@ -1260,17 +1266,14 @@ namespace AppVietSo
                             item.IsReadOnly = true;
                             continue;
                         }
-                        if (Status == "TextSN")
-                        {
-                            Status = item.DataFormatArgs+"";
-                        }
+
 
                         switch (Status)
-                        {         
+                        {
 
                             case "TextVN": item.Data = cell.TextVN; break;
                             case "TextCN": item.Data = cell.TextCN; break;
-                            //case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
+                            case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
 
                         }
                         //switch (Status)
@@ -1542,7 +1545,6 @@ namespace AppVietSo
             Util.LongSoHienTai.fstyleCN = cbfstyleCN.Text;
             Util.LongSoHienTai.fstyleVN = cbfstyleVN.Text;
 
-            LongSoData.save(Util.LongSoHienTai);
         }
 
 
@@ -1647,14 +1649,23 @@ namespace AppVietSo
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-             reoGridControl1.Undo();// sheet.
-            var select = reoGridControl1.CurrentWorksheet.SelectionRange;
+            reoGridControl1.Undo();// sheet.
+            //var select = reoGridControl1.CurrentWorksheet.SelectionRange;
         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
             reoGridControl1.Redo();
-            SaveData();
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            LongSo.saveToFile();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

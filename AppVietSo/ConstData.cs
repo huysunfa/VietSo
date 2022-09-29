@@ -22,17 +22,18 @@ namespace AppVietSo
             }
             return result;
         }
-        public static void renderText(this Cell input)
+        public static string renderViewText(this Cell input)
         {
             var Status = input.DataFormatArgs + "";
             var cell = input.Tag.getCellData();
             switch (Status)
             {
 
-                case "TextVN": input.Data = cell.TextVN; break;
-                case "TextCN": input.Data = cell.TextCN; break;
+                case "TextVN": return cell.TextVN;   
+                case "TextCN": return cell.TextCN; 
 
             }
+            return null;
         }
         public static bool CheckNo(this object input, string Duoi = "")
         {

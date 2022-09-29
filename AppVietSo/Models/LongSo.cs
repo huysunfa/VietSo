@@ -60,8 +60,16 @@ namespace AppVietSo.Models
             }
             return null;
         }
+        public static void saveToFile()
+        {
+            if (Util.LongSoHienTai != null && Util.LongSoHienTai.LgSo.Count > 0)
+            {
+                LongSoData.save(Util.LongSoHienTai);
+            }
+        }
         public static void loadDataLongSo()
         {
+            saveToFile();
 
             if (string.IsNullOrEmpty(Util.NameLongSoHienTai))
             {

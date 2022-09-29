@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -32,6 +33,7 @@ namespace AppVietSo.Models
         public string fstyleVN { get; set; }
         public LongSo LSo { get; set; }
         public string PrinterName { get; set; }
+        public PaperSize paperSize { get; set; }
         public float ScaleFactor { get; set; }
         public static LongSoData get(string filename, LongSo LSo)
         {
@@ -61,6 +63,7 @@ namespace AppVietSo.Models
                     }
                 }
             }
+          
             return result;
         }
         public static void save(LongSoData item)
