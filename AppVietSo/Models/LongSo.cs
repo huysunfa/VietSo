@@ -90,6 +90,7 @@ namespace AppVietSo.Models
         }
         public static LongSo GetTenSoByFileName(string FileName)
         {
+            FileName = FileName + "";
             FileName = FileName.Replace("\\", "/").Split('/').LastOrDefault();
             var output = LongSo.GetLongSos().Where(v => v.NameFileOnly.Contains(FileName)).FirstOrDefault();
             if (output == null)

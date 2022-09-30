@@ -16,10 +16,21 @@ namespace AppVietSo
 {
     public partial class frmTinChu : Form
     {
-	 
-			// Token: 0x1700000D RID: 13
-			// (get) Token: 0x060000F8 RID: 248 RVA: 0x00012C70 File Offset: 0x00010E70
-			public string GetPagodaID
+
+		public static List<string> keys = new List<string>() {
+		"@noicung",
+		"@diachiyvu",
+		"@giachu",
+		"@tinchu",
+		"@hlinhten",
+		"@hlinhsinh",
+		"@hlinhmat",
+		"@hlinhtho"
+	};  
+		
+		// Token: 0x1700000D RID: 13
+		// (get) Token: 0x060000F8 RID: 248 RVA: 0x00012C70 File Offset: 0x00010E70
+		public string GetPagodaID
 			{
 				get
 				{
@@ -47,11 +58,9 @@ namespace AppVietSo
 			}
 
 			// Token: 0x060000FA RID: 250 RVA: 0x00012CFC File Offset: 0x00010EFC
-			public frmTinChu(bool isSelectPrint, string keySoft = "")
+			public frmTinChu()
 			{
 				this.InitializeComponent();
-				this.keySoft = keySoft;
-				this.isSelectPrint = isSelectPrint;
 				this.dgvPerson.AutoGenerateColumns = false;
 				this.dgvOverPerson.AutoGenerateColumns = false;
 				this.pnlOverPerson.Width = this.pnlOverPerson.Parent.Width;
@@ -60,8 +69,7 @@ namespace AppVietSo
 			// Token: 0x060000FB RID: 251 RVA: 0x00012D64 File Offset: 0x00010F64
 			private void FrmPerson_Load(object sender, EventArgs e)
 			{
-				try
-				{
+				 
 					this.splitContainer1.SplitterDistance = this.pnlChooseMa.Width;
 					this.isLoading = true;
 					this.show_checkBox();
@@ -101,15 +109,9 @@ namespace AppVietSo
 					this.dgvPerson.AllowUserToDeleteRows = !this.isSelectPrint;
 					this.isLoading = false;
 					this.loadPerson();
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
-				finally
-				{
+				 
 					this.isLoading = false;
-				}
+				 
 			}
 
 			// Token: 0x060000FC RID: 252 RVA: 0x00012F74 File Offset: 0x00011174
@@ -174,7 +176,7 @@ namespace AppVietSo
 							this.orderDown.Visible = true;
 						}
 						var enumerable = from row in dataTable.AsEnumerable()
-										 group row by row.Field("SoNo") into sales
+										 group row by row.Field<string>("SoNo") into sales
 										 orderby sales.Key
 										 select new
 										 {
@@ -184,18 +186,20 @@ namespace AppVietSo
 						DataTable dataTable2 = new DataTable();
 						dataTable2.Columns.Add("MaSo");
 						dataTable2.Columns.Add("TotalPerson");
-						foreach (var<> f__AnonymousType in enumerable)
-						{
-							if (0x12 < <> f__AnonymousType.CountOfClients)
-							{
-								dataTable2.Rows.Add(new object[]
-								{
-								<>f__AnonymousType.Ma,
-								<>f__AnonymousType.CountOfClients
-								});
-							}
-						}
-						if (0 < dataTable2.Rows.Count)
+                    foreach (var  f__AnonymousType in enumerable)
+                    {
+                        if ( f__AnonymousType.CountOfClients >18)
+                        {
+                            dataTable2.Rows.Add(new object[]
+                            {
+
+                                f__AnonymousType.Ma,
+
+                                f__AnonymousType.CountOfClients
+                            });
+                        }
+                    }
+                    if (0 < dataTable2.Rows.Count)
 						{
 							this.pnlOverPerson.Visible = true;
 							this.dgvOverPerson.DataSource = null;
@@ -236,7 +240,7 @@ namespace AppVietSo
 						this.dgvPerson.DataSource = dataTable;
 						this.dgvPerson.Update();
 						this.dgvPerson.Refresh();
-						foreach (object obj in ((IEnumerable)this.dgvPerson.Rows))
+						foreach (object obj in ((System.Collections.IEnumerable)this.dgvPerson.Rows))
 						{
 							DataGridViewRow dataGridViewRow = (DataGridViewRow)obj;
 							if (!string.IsNullOrEmpty(dataGridViewRow.Cells["NgayMat"].Value.ToString()))
@@ -259,28 +263,28 @@ namespace AppVietSo
 			// Token: 0x06000101 RID: 257 RVA: 0x000134D8 File Offset: 0x000116D8
 			private void toolBtnEditChua_Click(object sender, EventArgs e)
 			{
-				try
-				{
-					if (string.IsNullOrEmpty(this.keySoft))
-					{
-						MessageBox.Show("Xin hãy nhập mã bản quyền", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-					}
-					else if (new FrmEditChua(this.keySoft).ShowDialog() == DialogResult.OK)
-					{
-						this.refreshCbxChua();
-					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+				//try
+				//{
+				//	if (string.IsNullOrEmpty(this.keySoft))
+				//	{
+				//		MessageBox.Show("Xin hãy nhập mã bản quyền", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+				//	}
+				//	else if (new FrmEditChua(this.keySoft).ShowDialog() == DialogResult.OK)
+				//	{
+				//		this.refreshCbxChua();
+				//	}
+				//}
+				//catch (Exception ex)
+				//{
+				//	LogError.show(ex);
+				//}
 			}
 
 			// Token: 0x06000102 RID: 258 RVA: 0x0001353C File Offset: 0x0001173C
 			private void refreshCbxChua()
 			{
 				this.toolCbxChua.ComboBox.DataSource = null;
-				this.toolCbxChua.ComboBox.DataSource = PagodaBO.getAll();
+				//this.toolCbxChua.ComboBox.DataSource = PagodaBO.getAll();
 				this.toolCbxChua.ComboBox.DisplayMember = "Name";
 				this.toolCbxChua.ComboBox.ValueMember = "ID";
 			}
@@ -442,7 +446,7 @@ namespace AppVietSo
 			private void checkboxHeader_CheckedChanged(object sender, EventArgs e)
 			{
 				CheckBox checkBox = (CheckBox)this.dgvPerson.Controls.Find("checkboxHeader", true)[0];
-				foreach (object obj in ((IEnumerable)this.dgvPerson.Rows))
+				foreach (object obj in ((DataGridViewRowCollection)this.dgvPerson.Rows))
 				{
 					((DataGridViewRow)obj).Cells[1].Value = checkBox.Checked;
 				}

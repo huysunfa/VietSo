@@ -37,7 +37,10 @@ namespace AppVietSo.Models
         public float ScaleFactor { get; set; }
         public static LongSoData get(string filename, LongSo LSo)
         {
-
+            if (string.IsNullOrEmpty(filename))
+            {
+                return null;
+            }
             var json = System.IO.File.ReadAllText(@"Data\" + filename);
             json = Security.Decrypt(json);
             json = json.Replace("$", "@");
