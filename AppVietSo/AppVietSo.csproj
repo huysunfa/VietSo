@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>AppVietSo</RootNamespace>
     <AssemblyName>AppVietSo</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
@@ -47,7 +47,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-    <Prefer32Bit>true</Prefer32Bit>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -70,8 +70,14 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.SQLite">
-      <HintPath>C:\Bibe\System.Data.SQLite.dll</HintPath>
+    <Reference Include="System.Data.SQLite, Version=1.0.116.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\lib\net46\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.EF6, Version=1.0.116.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.EF6.1.0.116.0\lib\net46\System.Data.SQLite.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SQLite.Linq, Version=1.0.116.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SQLite.Linq.1.0.116.0\lib\net46\System.Data.SQLite.Linq.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Web" />
@@ -110,6 +116,12 @@
     <Compile Include="frmCreateNew.Designer.cs">
       <DependentUpon>frmCreateNew.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmDanhSachTinChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDanhSachTinChu.Designer.cs">
+      <DependentUpon>FrmDanhSachTinChu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDownloadFont.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +134,12 @@
     <Compile Include="FrmDownloadLoaiSo.Designer.cs">
       <DependentUpon>FrmDownloadLoaiSo.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmEditChua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmEditChua.Designer.cs">
+      <DependentUpon>FrmEditChua.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKeyInfo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +151,12 @@
     </Compile>
     <Compile Include="frmNgachSo.Designer.cs">
       <DependentUpon>frmNgachSo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPrintPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPrintPreview.Designer.cs">
+      <DependentUpon>FrmPrintPreview.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSetupPaper.cs">
       <SubType>Form</SubType>
@@ -168,12 +192,16 @@
     <Compile Include="Models\ActiveData.cs" />
     <Compile Include="Models\AKT.cs" />
     <Compile Include="Models\BaseBO.cs" />
+    <Compile Include="Models\Cell.cs" />
+    <Compile Include="Models\CellBorder.cs" />
     <Compile Include="Models\CellData.cs" />
     <Compile Include="Models\CheckKey.cs" />
     <Compile Include="Models\ComboboxItem.cs" />
     <Compile Include="Models\CsvExtentions.cs" />
     <Compile Include="Models\DbExecute.cs" />
     <Compile Include="Models\DrawCellBody.cs" />
+    <Compile Include="Models\Excel.cs" />
+    <Compile Include="Models\ExcelPerson.cs" />
     <Compile Include="Models\ExchangeLongSo.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\Family.cs" />
@@ -183,6 +211,7 @@
     <Compile Include="Models\LongSo.cs" />
     <Compile Include="Models\LongSoData.cs" />
     <Compile Include="Models\Pagoda.cs" />
+    <Compile Include="Models\PagodaBO.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonBO.cs" />
     <Compile Include="Models\Security.cs" />
@@ -195,6 +224,7 @@
     <Compile Include="Models\Util.cs" />
     <Compile Include="Models\UtilModel.cs" />
     <Compile Include="Models\VnChinese.cs" />
+    <Compile Include="Models\Year.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -223,11 +253,17 @@
     <EmbeddedResource Include="frmCreateNew.resx">
       <DependentUpon>frmCreateNew.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmDanhSachTinChu.resx">
+      <DependentUpon>FrmDanhSachTinChu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDownloadFont.resx">
       <DependentUpon>frmDownloadFont.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDownloadLoaiSo.resx">
       <DependentUpon>FrmDownloadLoaiSo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmEditChua.resx">
+      <DependentUpon>FrmEditChua.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKeyInfo.resx">
       <DependentUpon>frmKeyInfo.cs</DependentUpon>
@@ -265,6 +301,9 @@
     </None>
     <None Include="Data\fontCN\UVNButLong1.TTF">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Data\TamKhong.com">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -340,8 +379,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
-    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
-  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net451\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
+  <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.116.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
 </Project>

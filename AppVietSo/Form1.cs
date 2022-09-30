@@ -1163,7 +1163,7 @@ namespace AppVietSo
                 }
             }
         }
-        public void setColorTag(Worksheet sheet, Cell item)
+        public void setColorTag(Worksheet sheet, unvell.ReoGrid.Cell item)
         {
 
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AppVietSo.Models
 {
-    class UserSettingPrint
+ public   class UserSettingPrint
     {
         public int ZoomIndex { get; set; }
         public float MarginT { get; set; }

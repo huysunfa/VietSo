@@ -26,9 +26,8 @@ namespace AppVietSo.Models
         public static DataTable Select(string query, global::System.Collections.Generic.Dictionary<string, object> prm)
         {
             global::System.Data.DataTable result;
-            try
-            {
-                var con = new SQLiteConnection(string.Format("Data Source=" + Util.getDataPath + "TamKhong.com;Version=3"), true);
+           
+                var con = new SQLiteConnection(string.Format("Data Source=TamKhong.com;Version=3"), true);
                 con.Open();
 
                 var sqliteCommand = new SQLiteCommand(con);
@@ -43,19 +42,14 @@ namespace AppVietSo.Models
                     sqliteDataAdapter.Fill(dataSet);
                 }
                 result = dataSet.Tables[0];
-            }
-            catch (global::System.Exception ex)
-            {
-                throw ex;
-            }
+           
             return result;
         }
         // DataText.DbExecute
         // Token: 0x0600008F RID: 143 RVA: 0x000058D0 File Offset: 0x00003AD0
-        public static void update<T>(T obj)
+        public static void update<T>(T obj,string ID)
         {
-            try
-            {
+           
                 var con = new SQLiteConnection(string.Format("Data Source=TamKhong.com;Version=3"), true);
                 con.Open();
 
@@ -76,7 +70,7 @@ namespace AppVietSo.Models
                             }
                             else
                             {
-                                sqliteCommand.Parameters.AddWithValue(propertyInfo.Name, obj);
+                                sqliteCommand.Parameters.AddWithValue(propertyInfo.Name, ID);
                             }
                         }
                     }
@@ -91,18 +85,13 @@ namespace AppVietSo.Models
                 });
                 sqliteCommand.CommandText = commandText;
                 sqliteCommand.ExecuteNonQuery();
-            }
-            catch (global::System.Exception ex)
-            {
-                throw ex;
-            }
+            
         }
         // DataText.DbExecute
         // Token: 0x06000090 RID: 144 RVA: 0x00005A38 File Offset: 0x00003C38
         public static void insert<T>(T obj)
         {
-            try
-            {
+             
                 var con = new SQLiteConnection(string.Format("Data Source=TamKhong.com;Version=3"), true);
                 con.Open();
 
@@ -135,11 +124,7 @@ namespace AppVietSo.Models
                 });
                 sqliteCommand.CommandText = commandText;
                 sqliteCommand.ExecuteNonQuery();
-            }
-            catch (global::System.Exception ex)
-            {
-                throw ex;
-            }
+           
         }
 
         // DataText.DbExecute
@@ -188,16 +173,11 @@ namespace AppVietSo.Models
         public static int del(string tableName, string fieldName, string value)
         {
             int result;
-            try
-            {
+           
 
                 string query = string.Format("DELETE FROM {0} WHERE {1}='{2}'", tableName, fieldName, value);
                 result = DbExecute.executeNonQuery(query);
-            }
-            catch (global::System.Exception ex)
-            {
-                throw ex;
-            }
+           
             return result;
         }
 

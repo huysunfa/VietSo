@@ -42,6 +42,39 @@ namespace AppVietSo.Models
         {
             return px / dpi;
         }
+        public static void getCanChiVN(int year, out string can, out string chi)
+        {
+            string[] array = new string[]
+            {
+                "Canh",
+                "Tân",
+                "Nhâm",
+                "Quý",
+                "Giáp",
+                "Ất",
+                "Bính",
+                "Đinh",
+                "Mậu",
+                "Kỷ"
+            };
+            string[] array2 = new string[]
+            {
+                "Thân",
+                "Dậu",
+                "Tuất",
+                "Hợi",
+                "Tý",
+                "Sửu",
+                "Dần",
+                "Mão",
+                "Thìn",
+                "Tỵ",
+                "Ngọ",
+                "Mùi"
+            };
+            can = array[year % 0xA];
+            chi = array2[year % 0xC];
+        }
 
         // Token: 0x0600007A RID: 122 RVA: 0x000050C8 File Offset: 0x000032C8
         public static void getCanChi(int year, out string can, out string chi)

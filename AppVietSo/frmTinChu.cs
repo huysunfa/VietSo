@@ -120,7 +120,10 @@ namespace AppVietSo
 				try
 				{
 					MessageBox.Show("Mời quý Thầy click đúp vào dòng màu vàng để thêm tín chủ", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-				}
+				dgvPerson.CurrentCell = dgvPerson.Rows[dgvPerson.RowCount - 1].Cells[3];
+				dgvPerson.CurrentRow.DefaultCellStyle.BackColor = Color.Yellow;// = dataGridView1.Rows[dataGridView1.RowCount-1].Cells[1];
+				dgvPerson.BeginEdit(true);
+			}
 				catch (Exception ex)
 				{
 					LogError.show(ex);
@@ -153,8 +156,7 @@ namespace AppVietSo
 			// Token: 0x06000100 RID: 256 RVA: 0x00013014 File Offset: 0x00011214
 			private void loadPerson()
 			{
-				try
-				{
+				 
 					if (!this.isLoading)
 					{
 						Cursor.Current = Cursors.WaitCursor;
@@ -176,7 +178,7 @@ namespace AppVietSo
 							this.orderDown.Visible = true;
 						}
 						var enumerable = from row in dataTable.AsEnumerable()
-										 group row by row.Field<string>("SoNo") into sales
+										 group row by row.Field<Int64>("SoNo") into sales
 										 orderby sales.Key
 										 select new
 										 {
@@ -249,42 +251,27 @@ namespace AppVietSo
 							}
 						}
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
-				finally
-				{
+			 
 					Cursor.Current = Cursors.Default;
-				}
+				 
 			}
 
 			// Token: 0x06000101 RID: 257 RVA: 0x000134D8 File Offset: 0x000116D8
 			private void toolBtnEditChua_Click(object sender, EventArgs e)
 			{
-				//try
-				//{
-				//	if (string.IsNullOrEmpty(this.keySoft))
-				//	{
-				//		MessageBox.Show("Xin hãy nhập mã bản quyền", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-				//	}
-				//	else if (new FrmEditChua(this.keySoft).ShowDialog() == DialogResult.OK)
-				//	{
-				//		this.refreshCbxChua();
-				//	}
-				//}
-				//catch (Exception ex)
-				//{
-				//	LogError.show(ex);
-				//}
-			}
+         
+             if (new FrmEditChua(this.keySoft).ShowDialog() == DialogResult.OK)
+                {
+                    this.refreshCbxChua();
+                }
+            
+        }
 
 			// Token: 0x06000102 RID: 258 RVA: 0x0001353C File Offset: 0x0001173C
 			private void refreshCbxChua()
 			{
 				this.toolCbxChua.ComboBox.DataSource = null;
-				//this.toolCbxChua.ComboBox.DataSource = PagodaBO.getAll();
+			 this.toolCbxChua.ComboBox.DataSource = PagodaBO.getAll();
 				this.toolCbxChua.ComboBox.DisplayMember = "Name";
 				this.toolCbxChua.ComboBox.ValueMember = "ID";
 			}
@@ -292,24 +279,18 @@ namespace AppVietSo
 			// Token: 0x06000103 RID: 259 RVA: 0x0001359C File Offset: 0x0001179C
 			private void toolTxtSearch_KeyPress(object sender, KeyPressEventArgs e)
 			{
-				try
-				{
+				 
 					if (e.KeyChar == '\r')
 					{
 						this.toolBtnSearch_Click(null, null);
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+				 
 			}
 
 			// Token: 0x06000104 RID: 260 RVA: 0x000135D4 File Offset: 0x000117D4
 			private void toolBtnSearch_Click(object sender, EventArgs e)
 			{
-				try
-				{
+				 
 					Cursor.Current = Cursors.WaitCursor;
 					string text = this.toolTxtSearch.Text.Trim().ToLower();
 					if (!string.IsNullOrWhiteSpace(text))
@@ -333,23 +314,15 @@ namespace AppVietSo
 							this.lastFindIndex = 0;
 						}
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
-				finally
-				{
+				 
 					Cursor.Current = Cursors.Default;
-				}
+				 
 			}
 
 			// Token: 0x06000105 RID: 261 RVA: 0x00013708 File Offset: 0x00011908
 			private void dgvPerson_CellContentClick(object sender, DataGridViewCellEventArgs e)
 			{
-				try
-				{
-					DataGridView dataGridView = (DataGridView)sender;
+				 DataGridView dataGridView = (DataGridView)sender;
 					if (dataGridView.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
 					{
 						if (e.ColumnIndex == this.dgvPerson.Columns["action"].Index)
@@ -397,19 +370,13 @@ namespace AppVietSo
 							this.toolBtnSearch_Click(null, null);
 						}
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+			 
 			}
 
 			// Token: 0x06000106 RID: 262 RVA: 0x000139F4 File Offset: 0x00011BF4
 			private void dgvPerson_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
 			{
-				try
-				{
-					DataGridViewRow row = e.Row;
+				 DataGridViewRow row = e.Row;
 					string str = "Xin hãy xác nhận muốn xóa ";
 					object value = row.Cells["FullName"].Value;
 					if (MessageBox.Show(str + ((value != null) ? value.ToString() : null), "Xác nhận xóa!", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
@@ -420,11 +387,7 @@ namespace AppVietSo
 					{
 						PersonBO.delete(row.Cells["ID"].Value.ToString());
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+ 
 			}
 
 			// Token: 0x06000107 RID: 263 RVA: 0x00013A84 File Offset: 0x00011C84
@@ -461,8 +424,7 @@ namespace AppVietSo
 			// Token: 0x0600010A RID: 266 RVA: 0x00013BDC File Offset: 0x00011DDC
 			private void dgvPerson_CellEndEdit(object sender, DataGridViewCellEventArgs e)
 			{
-				try
-				{
+				 
 					if (!(this.dgvPerson[e.ColumnIndex, e.RowIndex].OwningColumn.Name == "Checked"))
 					{
 						if (!this.dgvPerson[e.ColumnIndex, e.RowIndex].Value.Equals(this.oldvalue))
@@ -533,11 +495,7 @@ namespace AppVietSo
 							}
 						}
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+			 
 			}
 
 			// Token: 0x0600010B RID: 267 RVA: 0x00013FC4 File Offset: 0x000121C4
@@ -573,8 +531,7 @@ namespace AppVietSo
 			// Token: 0x0600010C RID: 268 RVA: 0x00014020 File Offset: 0x00012220
 			private void dgvPerson_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
 			{
-				try
-				{
+				 
 					this.dgvPerson.Rows[e.RowIndex].ErrorText = "";
 					if (e.ColumnIndex == this.dgvPerson.Columns["NamSinh"].Index || e.ColumnIndex == this.dgvPerson.Columns["SoNo"].Index)
 					{
@@ -604,11 +561,7 @@ namespace AppVietSo
 							this.dgvPerson.Rows[e.RowIndex].ErrorText = "Họ Tên không được để trống";
 						}
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+				 
 			}
 
 			// Token: 0x0600010D RID: 269 RVA: 0x0001421C File Offset: 0x0001241C
@@ -640,15 +593,10 @@ namespace AppVietSo
 			// Token: 0x0600010F RID: 271 RVA: 0x00014324 File Offset: 0x00012524
 			private void toolBtnOk_Click(object sender, EventArgs e)
 			{
-				try
-				{
+				 
 					base.Close();
 					base.DialogResult = DialogResult.OK;
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+				 
 			}
 
 			// Token: 0x06000110 RID: 272 RVA: 0x00002678 File Offset: 0x00000878
@@ -659,20 +607,14 @@ namespace AppVietSo
 			// Token: 0x06000111 RID: 273 RVA: 0x00014358 File Offset: 0x00012558
 			private void FrmPerson_FormClosing(object sender, FormClosingEventArgs e)
 			{
-				try
-				{
-					this.GetSoNos();
+				 this.GetSoNos();
 					if (this.SelectedSoNos.Count <= 0)
 					{
 						MessageBox.Show("Xin hãy chọn Tín chủ !", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
 					}
 					Program.Stg.Chua = this.GetPagodaID;
 					Program.Stg.IsGiaChu = this.ckbChuSo.Checked;
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+			 
 			}
 
 			// Token: 0x06000112 RID: 274 RVA: 0x000143CC File Offset: 0x000125CC
@@ -705,9 +647,10 @@ namespace AppVietSo
 							}
 							else
 							{
-								Family family = new Family
-								{
-									SoNo = num
+							Family family = new Family
+							{
+								SoNo = num,
+								IDs = new List<string>()
 								};
 								family.IDs.Add(text);
 								this.SelectedSoNos.Add(family.SoNo, family);
@@ -720,27 +663,22 @@ namespace AppVietSo
 			// Token: 0x06000113 RID: 275 RVA: 0x00014534 File Offset: 0x00012734
 			private void btnPrintPreview_Click(object sender, EventArgs e)
 			{
-				try
-				{
-					//DataTable dataTable;
-					//if (this.ckbChuSo.Checked)
-					//{
-					//	dataTable = PersonBO.getListChuSo(this.GetPagodaID, "FullName");
-					//}
-					//else
-					//{
-					//	dataTable = PersonBO.getList(this.GetPagodaID);
-					//}
-					//if (dataTable != null && 0 < dataTable.Rows.Count)
-					//{
-					//	new FrmDanhSachTinChu(dataTable).ShowDialog(this);
-					//}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
-			}
+
+            DataTable dataTable;
+            if (this.ckbChuSo.Checked)
+            {
+                dataTable = PersonBO.getListChuSo(this.GetPagodaID, "FullName");
+            }
+            else
+            {
+                dataTable = PersonBO.getList(this.GetPagodaID);
+            }
+            if (dataTable != null && 0 < dataTable.Rows.Count)
+            {
+                new FrmDanhSachTinChu(dataTable).ShowDialog(this);
+            }
+
+        }
 
 			// Token: 0x06000114 RID: 276 RVA: 0x000145A4 File Offset: 0x000127A4
 			private void nUpDFrom_ValueChanged(object sender, EventArgs e)
@@ -757,8 +695,7 @@ namespace AppVietSo
 			// Token: 0x06000116 RID: 278 RVA: 0x000145B0 File Offset: 0x000127B0
 			private void setSelected(object sender, EventArgs e)
 			{
-				try
-				{
+				 
 					NumericUpDown numericUpDown = sender as NumericUpDown;
 					for (int i = 0; i < this.dgvPerson.RowCount; i++)
 					{
@@ -800,11 +737,7 @@ namespace AppVietSo
 					{
 						this.nUpDTo.Value = value + 1m;
 					}
-				}
-				catch (Exception ex)
-				{
-					LogError.show(ex);
-				}
+				 
 			}
 
 			// Token: 0x040000DF RID: 223

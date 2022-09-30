@@ -14,21 +14,16 @@ namespace AppVietSo.Models
 		public static global::System.Collections.Generic.List<T> GetObject<T>(DataTable dtValues) where T : new()
 		{
 			global::System.Collections.Generic.List<T> result;
-			try
-			{
+			 
 				if (dtValues != null && dtValues.Rows != null && dtValues.Rows.Count != 0)
 				{
 					result = dtValues.ToList<T>();
 				}
 				else
 				{
-					result = null;
+					result = new List<T>();
 				}
-			}
-			catch (global::System.Exception ex)
-			{
- 				result = null;
-			}
+			 
 			return result;
 		}
 

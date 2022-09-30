@@ -285,7 +285,7 @@ namespace AppVietSo
             this.btnPrintPreview.Location = new System.Drawing.Point(8, 178);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(225, 43);
+            this.btnPrintPreview.Size = new System.Drawing.Size(203, 43);
             this.btnPrintPreview.TabIndex = 50;
             this.btnPrintPreview.Text = "In danh sách tín chủ";
             this.btnPrintPreview.UseVisualStyleBackColor = true;

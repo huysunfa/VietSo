@@ -22,7 +22,7 @@ namespace AppVietSo
             }
             return result;
         }
-        public static string renderViewText(this Cell input)
+        public static string renderViewText(this unvell.ReoGrid.Cell input)
         {
             var Status = input.DataFormatArgs + "";
             var cell = input.Tag.getCellData();

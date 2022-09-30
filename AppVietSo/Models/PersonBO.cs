@@ -147,7 +147,7 @@ namespace AppVietSo.Models
         // Token: 0x06000107 RID: 263 RVA: 0x00006404 File Offset: 0x00004604
         public static void update(Person prn)
         {
-            DbExecute.update(prn);
+            DbExecute.update(prn, prn.ID);
         }
 
         // Token: 0x06000108 RID: 264 RVA: 0x00006A20 File Offset: 0x00004C20
@@ -238,7 +238,7 @@ namespace AppVietSo.Models
         person.ID = id;
         person.Status = "Deleted";
         person.UpdateDT = global::System.DateTime.Now;
-        DbExecute.update(person);
+        DbExecute.update(person, person.ID);
     }
 
     // Token: 0x0600010F RID: 271 RVA: 0x00006CD8 File Offset: 0x00004ED8
