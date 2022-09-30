@@ -121,7 +121,6 @@ namespace AppVietSo
             this.reoGridControl1.Text = "reoGridControl1";
             this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
             this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
-            this.reoGridControl1.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.reoGridControl1_PreviewKeyDown);
             // 
             // ctextMenuS
             // 
@@ -944,8 +943,8 @@ namespace AppVietSo
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(1686, 968);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.bindingNavigator1);

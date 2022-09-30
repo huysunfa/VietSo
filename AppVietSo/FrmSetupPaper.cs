@@ -3,6 +3,8 @@ using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Printing;
+using System.Management;
+using System.Runtime.InteropServices;
 using System.Windows.Controls;
 using System.Windows.Forms;
 
@@ -17,10 +19,7 @@ namespace AppVietSo
             isLoading = true;
             this.InitializeComponent();
         }
-
-
-        // Token: 0x06000122 RID: 290 RVA: 0x00016C2C File Offset: 0x00014E2C
-        private void FrmSetupPaper_Load(object sender, EventArgs e)
+        public void LoadPageSize()
         {
             label12.Text = Util.LongSoHienTai.PrinterName;
             PrinterSettings settings = new PrinterSettings();
@@ -31,13 +30,19 @@ namespace AppVietSo
                 item.Value = paperSize;
                 this.cbxPaperSize.Items.Add(item);
             }
-            if (Util.LongSoHienTai.paperSize!=null)
+            if (Util.LongSoHienTai.paperSize != null)
             {
                 this.cbxPaperSize.Text = Util.LongSoHienTai.paperSize.PaperName;
 
             }
+        }
+
+        // Token: 0x06000122 RID: 290 RVA: 0x00016C2C File Offset: 0x00014E2C
+        private void FrmSetupPaper_Load(object sender, EventArgs e)
+        {
 
 
+            LoadPageSize();
 
             this.nmrWidth.Value = this.toMM(Util.LongSoHienTai.PageWidth);
             this.nmrHeight.Value = this.toMM(Util.LongSoHienTai.PageHeight);
@@ -45,15 +50,15 @@ namespace AppVietSo
             this.nmrBottom.Value = this.toMM((int)Util.LongSoHienTai.PagePaddingBottom);
             this.nmrLeft.Value = this.toMM((int)Util.LongSoHienTai.PagePaddingLeft);
             this.nmrRight.Value = this.toMM((int)Util.LongSoHienTai.PagePaddingRight);
-            foreach (PaperSize paperSize in settings.PaperSizes)
-            {
+            //foreach (PaperSize paperSize in settings.PaperSizes)
+            //{
 
-                if (paperSize.Height == Util.LongSoHienTai.PageWidth && paperSize.Width == Util.LongSoHienTai.PageHeight)
-                {
-                    this.cbxPaperSize.Text = paperSize.PaperName.ToUpper().Trim();
-                    break;
-                }
-            }
+            //    if (paperSize.Height == Util.LongSoHienTai.PageWidth && paperSize.Width == Util.LongSoHienTai.PageHeight)
+            //    {
+            //        this.cbxPaperSize.Text = paperSize.PaperName.ToUpper().Trim();
+            //        break;
+            //    }
+            //}
             comboBox1.SelectedIndex = 0;
             comboBox1.SelectedItem = "DỌC";
 
@@ -110,6 +115,11 @@ namespace AppVietSo
             {
             }
         }
+        public static class MyPrinters
+        {
+            [DllImport("winspool.drv", CharSet = CharSet.Auto, SetLastError = true)]
+            public static extern bool SetDefaultPrinter(string Name);
+        }
 
         // Token: 0x06000127 RID: 295 RVA: 0x00016F5C File Offset: 0x0001515C
         private void btnPrintSetting_Click(object sender, EventArgs e)
@@ -124,6 +134,9 @@ namespace AppVietSo
                     Util.LongSoHienTai.PrinterName = printDialog.PrinterSettings.PrinterName;
                     label12.Text = Util.LongSoHienTai.PrinterName;
                     LongSoData.save(Util.LongSoHienTai);
+                    MyPrinters.SetDefaultPrinter(Util.LongSoHienTai.PrinterName);
+                      LoadPageSize();
+
                 }
             }
             catch (Exception ex)

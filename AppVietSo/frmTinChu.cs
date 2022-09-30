@@ -1,4 +1,5 @@
 ﻿using AppVietSo.Models;
+using AppVietSo.Properties;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,16 +37,23 @@ namespace AppVietSo
             dataGridView1.DataSource = null;
 
             dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "Chk", HeaderText = "Chọn" });
-            dataGridView1.Columns.Add(new DataGridViewCheckBoxColumn() { Name = "ChkGiaChu", HeaderText = "Chọn gia chủ" });
+            dataGridView1.Columns.Add("@maso", "Mã sớ");
             dataGridView1.Columns.Add("@danh", "Danh xưng");
             dataGridView1.Columns.Add("@tinchu", "Họ tên");
             dataGridView1.Columns.Add("NamSinh", "Năm sinh");
             dataGridView1.Columns.Add("@noicung", "Nơi cúng");
             dataGridView1.Columns.Add("NgayMat", "Ngày mất");
-            dataGridView1.Columns.Add("@diachiyvu", "Địa chỉ");
-            dataGridView1.Columns.Add("GioiTinh", "Giới tính");
 
-            dataGridView1.Columns["Chk"].ValueType = typeof(bool);
+            DataGridViewComboBoxColumn dgvCmb = new DataGridViewComboBoxColumn();
+            dgvCmb.HeaderText = "Giới tính";
+            dgvCmb.Items.Add("Nam");
+            dgvCmb.Items.Add("Nữ");
+            dgvCmb.Name = "GioiTinh";
+            dataGridView1.Columns.Add(dgvCmb);
+            dataGridView1.Columns.Add("@diachiyvu", "Địa chỉ");
+
+            dataGridView1.Columns.Add(new DataGridViewImageColumn() { Image = Resources.upArrow, Name = "orderUp" , HeaderText="",ToolTipText= "Lên trên" });
+
             dataGridView1.Columns["NgayMat"].DefaultCellStyle.Format = "dd/MM/yyyy";
 
 
@@ -109,16 +117,16 @@ namespace AppVietSo
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (dataGridView1.Columns[e.ColumnIndex].Name == "ChkGiaChu")
-            {
-                for (int i = 0; i < dataGridView1.RowCount; i++)
-                {
-                    if (dataGridView1.Rows[i].Cells[1] != dataGridView1.CurrentCell)
-                    {
-                        dataGridView1.Rows[i].Cells[1].Value = false;
-                    }
-                }
-            }
+            //if (dataGridView1.Columns[e.ColumnIndex].Name == "ChkGiaChu")
+            //{
+            //    for (int i = 0; i < dataGridView1.RowCount; i++)
+            //    {
+            //        if (dataGridView1.Rows[i].Cells[1] != dataGridView1.CurrentCell)
+            //        {
+            //            dataGridView1.Rows[i].Cells[1].Value = false;
+            //        }
+            //    }
+            //}
         }
         void SaveCellValue(DataRow item, string key)
         {
@@ -149,7 +157,7 @@ namespace AppVietSo
                 item.Cells["@hlinhsinh"].Value = Util.getSaoVN(years, false);
 
             }
-          
+
 
             if (dataGridView1.Columns[e.ColumnIndex].Name == "NgayMat")
             {

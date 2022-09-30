@@ -103,15 +103,13 @@ namespace apiVietSo.Controllers
 
         }
 
-        [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
-        public ActionResult GetDictionaryNguCanh()
+         public ActionResult GetDictionaryNguCanh()
         {
             var data = SqlModule.GetDataTable($"SELECT  LABEL vn,TITLE chinese,NOTE used, DATATYPE nguCanh FROM LabelText WHERE keysoft='Sugget'");
             var result = ToJson(data);
             return JsonMax(result);
         }
-        [OutputCache(Duration = 86400, VaryByParam = "key", Location = OutputCacheLocation.Client, NoStore = true)]
-        public ActionResult GetLicenceData(string key)
+         public ActionResult GetLicenceData(string key)
         {
             var data = SqlModule.GetDataTable($@" SELECT * FROM [LicenceData] where Licence='{key}'");
 
@@ -119,8 +117,7 @@ namespace apiVietSo.Controllers
             return JsonMax(result);
         }
 
-        [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
-        public ActionResult GetLongSo()
+         public ActionResult GetLongSo()
         {
             using (Models.vietsoEntities db = new vietsoEntities())
             {
@@ -180,8 +177,7 @@ namespace apiVietSo.Controllers
 
         }
 
-        [OutputCache(Duration = 86400, VaryByParam = "none", Location = OutputCacheLocation.Client, NoStore = true)]
-        public ActionResult GetListFont()
+         public ActionResult GetListFont()
         {
 
             var path = Server.MapPath("~/FileUpload/fontCN").ToUpper();

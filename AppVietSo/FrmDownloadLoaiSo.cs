@@ -34,7 +34,7 @@ namespace AppVietSo
             {
                 dgvParent.Rows.Add(item);
             }
-            dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
+           // dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
 
 
         }
@@ -164,6 +164,7 @@ namespace AppVietSo
                 LSo.TenSo = TenSo;
                 if (File.Exists(Util.getDataPath + FName))
                 {
+                    Util.LongSoHienTai = null;
                     Util.NameLongSoHienTai = FName;
                     base.DialogResult = DialogResult.OK;
                     return;
@@ -175,6 +176,7 @@ namespace AppVietSo
                         //object value2 = dataGridViewRow.Cells["TenSo"].Value;
                         //this.updateTenSo(((value2 != null) ? value2.ToString() : null) ?? "");
                         base.DialogResult = DialogResult.OK;
+                          Util.LongSoHienTai = null;
                         Util.NameLongSoHienTai = FName;
                         return;
                     }
@@ -219,6 +221,7 @@ namespace AppVietSo
                             var LSo = new LongSo();
                             LSo.FileName = value;
                             LSo.TenSo = TenSo;
+                            Util.LongSoHienTai = null;
                             Util.NameLongSoHienTai = FName;
 
                             MessageBox.Show("Tải file thành công", "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
