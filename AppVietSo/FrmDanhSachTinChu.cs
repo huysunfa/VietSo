@@ -411,6 +411,39 @@ namespace AppVietSo
 		// Token: 0x06000060 RID: 96 RVA: 0x000079F8 File Offset: 0x00005BF8
 		private void btnPrintPreview_Click(object sender, EventArgs e)
 		{
+
+			 
+			var sheet = reoGridControl1.CurrentWorksheet;
+			 
+			sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
+				 new unvell.ReoGrid.RangeBorderStyle
+				 {
+					 Style = BorderLineStyle.None,
+				 });
+			sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle
+			{
+				// style item flag
+				Flag = PlainStyleFlag.BackColor,
+				// style item
+				BackColor = Color.White,
+			});
+			using (var session = sheet.CreatePrintSession())
+			{
+				using (PrintPreviewDialog ppd = new PrintPreviewDialog())
+				{
+					session.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
+					session.PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = session.PrintDocument.DefaultPageSettings.PaperSize;
+					ppd.Document = session.PrintDocument;
+					ppd.SetBounds(0, 0, Width, Height - 40);
+ 					ppd.WindowState = FormWindowState.Maximized;
+					ppd.Document.PrinterSettings.PrinterName = Util.LongSoHienTai.PrinterName;
+					ppd.ShowDialog(this);
+ 				}
+			}
+
+			return;
+
+
 			//try
 			{
 				if (string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleCenter) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleRight))
