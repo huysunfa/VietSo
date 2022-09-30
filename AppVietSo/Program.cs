@@ -33,6 +33,7 @@ namespace AppVietSo
 
 
         }
+        public static UserSetting Stg;
 
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {

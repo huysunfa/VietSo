@@ -149,6 +149,7 @@
     <Compile Include="Models\CheckKey.cs" />
     <Compile Include="Models\ComboboxItem.cs" />
     <Compile Include="Models\CsvExtentions.cs" />
+    <Compile Include="Models\DbExecute.cs" />
     <Compile Include="Models\DrawCellBody.cs" />
     <Compile Include="Models\ExchangeLongSo.cs" />
     <Compile Include="Models\Extensions.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="Models\LongSoData.cs" />
     <Compile Include="Models\Pagoda.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\PersonBO.cs" />
     <Compile Include="Models\Security.cs" />
     <Compile Include="Models\SendMailExtentions.cs" />
     <Compile Include="Models\ShareFun.cs" />
@@ -180,6 +182,9 @@
     <Compile Include="ReoGridExtentions.cs" />
     <Compile Include="SqlModule.cs" />
     <Compile Include="Suggets.cs" />
+    <Compile Include="ToolTipCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="UploadToServer.cs">
       <SubType>Form</SubType>
     </Compile>
