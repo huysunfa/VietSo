@@ -75,7 +75,7 @@ namespace AppVietSo.Models
         }
 
     // Token: 0x06000102 RID: 258 RVA: 0x00006790 File Offset: 0x00004990
-    public static global::System.Collections.Generic.List<Person> getList(string pagodaID, Family fml)
+    public static global::System.Collections.Generic.List<Person> getList(string pagodaID, Family fml,bool PersonPerCol=false)
         {
             string str = "";
             fml.IDs = fml.IDs ?? new List<string>();
@@ -83,7 +83,13 @@ namespace AppVietSo.Models
             {
                 str = "AND ID IN (" + string.Join(",", fml.IDs) + ") ";
             }
-            string query = "Select * from Person WHERE PagodaID=@PagodaID AND SoNo=@SoNo AND (NgayMat='' OR NgayMat IS NULL) " + str + "ORDER BY Orders, NamSinh ASC";
+            string query = "Select * from Person WHERE PagodaID=@PagodaID AND SoNo=@SoNo ";
+            if (PersonPerCol==false)
+            {
+                query = query + " AND (NgayMat='' OR NgayMat IS NULL) ";
+            }
+            query = query + str + "ORDER BY Orders, NamSinh ASC";
+
             global::System.Collections.Generic.Dictionary<string, object> dictionary = new global::System.Collections.Generic.Dictionary<string, object>();
             dictionary.Add("@PagodaID", pagodaID);
             dictionary.Add("@SoNo", fml.SoNo);

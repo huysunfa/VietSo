@@ -454,7 +454,7 @@ namespace AppVietSo
 
         private void Form1_Load(object sender, EventArgs e)
         {
-         
+            //return;
             pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
             cbCanChuViet.SelectedItem = "PHẢI";
             addMenuContext();
@@ -1743,16 +1743,14 @@ namespace AppVietSo
             reoGridControl1.CurrentWorksheet.SetSettings(WorksheetSettings.View_ShowPageBreaks, checkBox3.Checked);
         }
 
-		private bool m_bLayoutCalled = false;
-		private DateTime m_dt;
+        private bool m_bLayoutCalled = false;
         private void Form1_Layout(object sender, LayoutEventArgs e)
         {
-             if (m_bLayoutCalled == false)
+            if (m_bLayoutCalled == false)
             {
                 m_bLayoutCalled = true;
-                m_dt = DateTime.Now;
-                   SplashScreen.CloseForm();
-                this.Show();
+                 this.Activate();
+                SplashScreen.CloseForm();
             }
         }
     }

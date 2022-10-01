@@ -54,11 +54,12 @@ namespace AppVietSo
             this.ClientSize = new System.Drawing.Size(1067, 554);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmWellCome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmWellCome";
             this.Load += new System.EventHandler(this.frmWellCome_Load);
+            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.frmWellCome_Layout);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -13,16 +13,16 @@ namespace AppVietSo.Models
     {
 
         // Token: 0x06000142 RID: 322 RVA: 0x00019260 File Offset: 0x00017460
-        public static void SetWidthHeight2(this global::unvell.ReoGrid.Worksheet sheet, int row, int col)
+        public static void SetWidthHeightBibe(global::unvell.ReoGrid.Worksheet sheet, int row, int col)
         {
             float dpi = 100f;
             float dpi2 = 100f;
-            double num = Util.LongSoHienTai.PageHeight;
-            double num2 = Util.LongSoHienTai.PageWidth;
-            float num3 = Util.InchToPixel(Util.LongSoHienTai.PagePaddingLeft, dpi);
-            float num4 = Util.InchToPixel(Util.LongSoHienTai.PagePaddingRight, dpi);
-            float num5 = Util.InchToPixel(Util.LongSoHienTai.PagePaddingTop, dpi2);
-            float num6 = Util.InchToPixel(Util.LongSoHienTai.PagePaddingBottom, dpi2);
+            double num =  Util.InchToPixel(sheet.PrintSettings.PaperHeight, dpi);
+            double num2 =  Util.InchToPixel(sheet.PrintSettings.PaperWidth, dpi2);
+            float num3 = Util.InchToPixel(sheet.PrintSettings.Margins.Left, dpi);
+            float num4 = Util.InchToPixel(sheet.PrintSettings.Margins.Right, dpi);
+            float num5 = Util.InchToPixel(sheet.PrintSettings.Margins.Top, dpi2);
+            float num6 = Util.InchToPixel(sheet.PrintSettings.Margins.Bottom, dpi2);
             double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
             num2 -= (double)(num5 + num6);
             ushort height = (ushort)global::System.Math.Floor(num2 / (double)row);
@@ -35,14 +35,22 @@ namespace AppVietSo.Models
         public static void SetRowCol(this unvell.ReoGrid.Worksheet sheet, int row, int col)
         {
 
-            if (sheet.UsedRange.EndCol > 0)
+            try
             {
-                sheet.DeleteColumns(0, sheet.UsedRange.EndCol);
-                sheet.DeleteRows(0, sheet.UsedRange.EndRow);
+                if (sheet.UsedRange.EndCol > 0)
+                {
+                    sheet.DeleteColumns(0, sheet.UsedRange.EndCol);
+                    sheet.DeleteRows(0, sheet.UsedRange.EndRow);
+                }
+                sheet.SetRows(row);
+                sheet.SetCols(col);
+                sheet.SetWidthHeight(row, col);
             }
-            sheet.SetRows(row);
-            sheet.SetCols(col);
-            sheet.SetWidthHeight(row, col);
+            catch (Exception ex)
+            {
+
+               
+            }
         }
 
         public static void SetWidthHeight(this unvell.ReoGrid.Worksheet sheet, int row, int col)

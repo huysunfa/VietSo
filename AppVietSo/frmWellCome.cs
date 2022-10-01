@@ -190,5 +190,18 @@ namespace AppVietSo
                 return false;
             }
         }
+
+        private bool m_bLayoutCalled = false;
+        private DateTime m_dt;
+        private void frmWellCome_Layout(object sender, LayoutEventArgs e)
+        {
+            if (m_bLayoutCalled == false)
+            {
+                m_bLayoutCalled = true;
+                m_dt = DateTime.Now;
+                this.Activate();
+                SplashScreen.CloseForm();
+            }
+        }
     }
 }

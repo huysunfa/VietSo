@@ -10,13 +10,13 @@ namespace AppVietSo
 	public sealed class DanhSachTinChu
 	{
 		// Token: 0x0600005B RID: 91 RVA: 0x00004AA8 File Offset: 0x00002CA8
-		public static void FillTinChuToGrid(global::System.Collections.Generic.Dictionary<int, Family> selectedSoNos, bool isFillAddress, string pagodaID,  Year isNextYear, ThietLapTinChu tlTC, global::unvell.ReoGrid.Worksheet curWS, int startRowNum, int startColNum)
+		public static void FillTinChuToGrid(global::System.Collections.Generic.Dictionary<int, Family> selectedSoNos, bool isFillAddress, string pagodaID,  Year isNextYear, ThietLapTinChu tlTC, global::unvell.ReoGrid.Worksheet curWS, int startRowNum, int startColNum,bool PersonPerCol =false)
 		{
 			int num = startRowNum;
 			int num2 = startColNum;
 			foreach (Family family in selectedSoNos.Values)
 			{
-				global::System.Collections.Generic.List<Person> list = PersonBO.getList(pagodaID, family);
+				global::System.Collections.Generic.List<Person> list = PersonBO.getList(pagodaID, family, PersonPerCol);
 				if (list == null || list.Count <= 0)
 				{
 					throw new global::System.Exception("Không tìm thấy Mã sớ " + family.SoNo.ToString());
@@ -45,26 +45,31 @@ namespace AppVietSo
 		{
 			foreach (global::System.Collections.Generic.Queue<Cell> queue in A_1)
 			{
-				DanhSachTinChu.LOAD93(A_0, queue, A_4, A_5, ref A_6, ref A_7);
-			}
-			if (!string.IsNullOrWhiteSpace(A_2) && A_3)
-			{
-				global::System.Collections.Generic.Queue<Cell> queue2 = new global::System.Collections.Generic.Queue<Cell>();
-	A_2 = A_2.Replace(",", "").Replace(".", "").Replace("-", "").Replace("_", "").Replace("  ", " ");
-				foreach (string text in A_2.Split(new char[]
+				if (!string.IsNullOrWhiteSpace(A_2) && A_3)
 				{
+ 					A_2 = A_2.Replace(",", "").Replace(".", "").Replace("-", "").Replace("_", "").Replace("  ", " ");
+					foreach (string text in A_2.Split(new char[]
+					{
 					' '
-				}))
-				{
-	queue2.Enqueue(new Cell
-	{
-		Value = global::System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower()),
-		FontBold = true
-	});
-}
-queue2.Enqueue(new Cell());
-DanhSachTinChu.LOAD93(A_0, queue2, A_4, A_5, ref A_6, ref A_7);
+					}))
+					{
+						queue.Enqueue(new Cell
+						{
+							Value = global::System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(text.ToLower()),
+							FontBold = true
+						});
+					}
+ 		//			DanhSachTinChu.LOAD93(A_0, queue2, A_4, A_5, ref A_6, ref A_7);
+				}
+
+				DanhSachTinChu.LOAD93(A_0, queue, A_4, A_5, ref A_6, ref A_7);
+
+		
+
+				A_6 = 0;
+				A_7 = A_7 - 1;
 			}
+		
 		}
 
 		// Token: 0x0600005D RID: 93 RVA: 0x00004D6C File Offset: 0x00002F6C

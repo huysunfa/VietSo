@@ -198,13 +198,14 @@ namespace AppVietSo
 		{
 		//	try
 			{
+				var  PersonPerCol = ckxPersonPerCol.Checked;
 				Cursor.Current = Cursors.WaitCursor;
 				this.PageSetting();
 				tlTC.MoreText = ActiveData.Get("@thietLapTinChuMoreText");
 				tlTC.FormText = ActiveData.Get("@thietLapTinChuFormText");
 				if (!string.IsNullOrEmpty(this.pagodaID) && this.selectedSoNos != null && this.selectedSoNos.Count > 0)
 				{
-					DanhSachTinChu.FillTinChuToGrid(this.selectedSoNos, this.isFillAddress, this.pagodaID, this.isNextYear, this.tlTC, this.curWS, 0, this.startColNum);
+					DanhSachTinChu.FillTinChuToGrid(this.selectedSoNos, this.isFillAddress, this.pagodaID, this.isNextYear, this.tlTC, this.curWS, 0, this.startColNum, PersonPerCol);
 					Excel.HorizontalAlign(this.curWS, ReoGridHorAlign.Center);
 					this.curWS.ResetAllPageBreaks();
 					this.updatePageTotal();
@@ -220,41 +221,41 @@ namespace AppVietSo
 		// Token: 0x06000016 RID: 22 RVA: 0x0000278C File Offset: 0x0000098C
 		private void btnPrintPreview_Click(object sender, EventArgs e)
 		{
-			//try
-			//{
-			//	if (string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuH").PageTitleCenter) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuH").PageTitleRight))
-			//	{
-			//		Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft = Util.domain;
-			//		Program.Stg.GetPrintSetting("TinChuH").PageTitleRight = "Trang &[Page] /Tổng &[Pages]";
-			//	}
-			//	this.curWS.PrintSettings.PageTitleLeft = Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft;
-			//	this.curWS.PrintSettings.PageTitleCenter = Program.Stg.GetPrintSetting("TinChuH").PageTitleCenter;
-			//	this.curWS.PrintSettings.PageTitleRight = Program.Stg.GetPrintSetting("TinChuH").PageTitleRight;
-			//	this.curWS.PrintSettings.IsFooter = Program.Stg.GetPrintSetting("TinChuH").PageIsFooter;
-			//	this.curWS.PrintSettings.ShowPageNo = Program.Stg.GetPrintSetting("TinChuH").PageIsShowPageNo;
-			//	FrmPrintPreview frmPrintPreview = new FrmPrintPreview();
-			//	frmPrintPreview.Sheet = this.curWS;
-			//	frmPrintPreview.ZoomIndex = Program.Stg.GetPrintSetting("TinChuH").ZoomIndex;
-			//	frmPrintPreview.ShowDialog(this);
-   //             unvell.ReoGrid.Print.PageMargins margins = this.curWS.PrintSettings.Margins;
-			//	Program.Stg.GetPrintSetting("TinChuH").MarginT = margins.Top;
-			//	Program.Stg.GetPrintSetting("TinChuH").MarginB = margins.Bottom;
-			//	Program.Stg.GetPrintSetting("TinChuH").MarginL = margins.Left;
-			//	Program.Stg.GetPrintSetting("TinChuH").MarginR = margins.Right;
-			//	Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft = this.curWS.PrintSettings.PageTitleLeft;
-			//	Program.Stg.GetPrintSetting("TinChuH").PageTitleCenter = this.curWS.PrintSettings.PageTitleCenter;
-			//	Program.Stg.GetPrintSetting("TinChuH").PageTitleRight = this.curWS.PrintSettings.PageTitleRight;
-			//	Program.Stg.GetPrintSetting("TinChuH").PageIsFooter = this.curWS.PrintSettings.IsFooter;
-			//	Program.Stg.GetPrintSetting("TinChuH").PageIsShowPageNo = this.curWS.PrintSettings.ShowPageNo;
-			//	Program.Stg.GetPrintSetting("TinChuH").PaperName = this.curWS.PrintSettings.PaperName;
-			//	Program.Stg.GetPrintSetting("TinChuH").ZoomIndex = frmPrintPreview.ZoomIndex;
-			//	this.FillTinChu();
-			//}
-			////
-			//{
-			//	//
-			//}
-		}
+            //try
+            {
+                if (string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuH").PageTitleCenter) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuH").PageTitleRight))
+                {
+                    Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft = Util.domain;
+                    Program.Stg.GetPrintSetting("TinChuH").PageTitleRight = "Trang &[Page] /Tổng &[Pages]";
+                }
+                //this.curWS.PrintSettings.PageTitleLeft = Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft;
+                //this.curWS.PrintSettings.PageTitleCenter = Program.Stg.GetPrintSetting("TinChuH").PageTitleCenter;
+                //this.curWS.PrintSettings.PageTitleRight = Program.Stg.GetPrintSetting("TinChuH").PageTitleRight;
+                //this.curWS.PrintSettings.IsFooter = Program.Stg.GetPrintSetting("TinChuH").PageIsFooter;
+                //this.curWS.PrintSettings.ShowPageNo = Program.Stg.GetPrintSetting("TinChuH").PageIsShowPageNo;
+                FrmPrintPreview frmPrintPreview = new FrmPrintPreview();
+                frmPrintPreview.Sheet = this.curWS;
+                frmPrintPreview.ZoomIndex = Program.Stg.GetPrintSetting("TinChuH").ZoomIndex;
+                frmPrintPreview.ShowDialog(this);
+                unvell.ReoGrid.Print.PageMargins margins = this.curWS.PrintSettings.Margins;
+                Program.Stg.GetPrintSetting("TinChuH").MarginT = margins.Top;
+                Program.Stg.GetPrintSetting("TinChuH").MarginB = margins.Bottom;
+                Program.Stg.GetPrintSetting("TinChuH").MarginL = margins.Left;
+                Program.Stg.GetPrintSetting("TinChuH").MarginR = margins.Right;
+                //Program.Stg.GetPrintSetting("TinChuH").PageTitleLeft = this.curWS.PrintSettings.PageTitleLeft;
+                //Program.Stg.GetPrintSetting("TinChuH").PageTitleCenter = this.curWS.PrintSettings.PageTitleCenter;
+                //Program.Stg.GetPrintSetting("TinChuH").PageTitleRight = this.curWS.PrintSettings.PageTitleRight;
+                //Program.Stg.GetPrintSetting("TinChuH").PageIsFooter = this.curWS.PrintSettings.IsFooter;
+                //Program.Stg.GetPrintSetting("TinChuH").PageIsShowPageNo = this.curWS.PrintSettings.ShowPageNo;
+                //Program.Stg.GetPrintSetting("TinChuH").PaperName = this.curWS.PrintSettings.PaperName;
+                Program.Stg.GetPrintSetting("TinChuH").ZoomIndex = frmPrintPreview.ZoomIndex;
+                this.FillTinChu();
+            }
+            //
+            {
+                //
+            }
+        }
 
 		// Token: 0x06000017 RID: 23 RVA: 0x00002AA0 File Offset: 0x00000CA0
 		private void btnPrintSetting_Click(object sender, EventArgs e)
@@ -303,8 +304,8 @@ namespace AppVietSo
 			}
 			this.curWS.PrintSettings.ApplySystemPageSettings(pageSettings);
 			this.curWS.PrintSettings.PageOrder = PrintPageOrder.OverThenDown;
-			ShareFun.SetRowCol(this.curWS, this.row, this.col);
-			ShareFun.SetWidthHeight(this.curWS, this.row, this.col);
+			//ShareFun.SetRowCol(this.curWS, this.row, this.col);
+			ShareFun.SetWidthHeightBibe(this.curWS, this.row, this.col);
 		}
 
 		// Token: 0x06000019 RID: 25 RVA: 0x00002CC0 File Offset: 0x00000EC0
@@ -315,8 +316,8 @@ namespace AppVietSo
 				if (!this.isInit)
 				{
 					this.col = (int)this.nmrCols.Value;
-					ShareFun.SetRowCol(this.curWS, this.row, this.col);
-					ShareFun.SetWidthHeight(this.curWS, this.row, this.col);
+					//ShareFun.SetRowCol(this.curWS, this.row, this.col);
+					ShareFun.SetWidthHeightBibe(this.curWS, this.row, this.col);
 					this.updatePageTotal();
 				}
 			}
@@ -367,14 +368,7 @@ namespace AppVietSo
 		// Token: 0x0600001D RID: 29 RVA: 0x00002DDC File Offset: 0x00000FDC
 		private void ckxPersonPerCol_CheckedChanged(object sender, EventArgs e)
 		{
-		//	try
-			{
-				MessageBox.Show("Phần này đang hoàn thiện sẽ được cập nhật ở phiên bản sau", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Hand);
-			}
-			//
-			{
-				//
-			}
+			this.FillTinChu();
 		}
 
 		// Token: 0x0600001E RID: 30 RVA: 0x00002E18 File Offset: 0x00001018

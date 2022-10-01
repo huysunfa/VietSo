@@ -80,9 +80,8 @@ namespace AppVietSo
 		{
 			if (ms_frmSplash != null && ms_frmSplash.IsDisposed == false)
 			{
-				ms_frmSplash.Invoke(new Action(() => ms_frmSplash.Close()));
 				// Make it start going away.
-				//ms_frmSplash.m_dblOpacityIncrement = -ms_frmSplash.m_dblOpacityDecrement;
+				ms_frmSplash.m_dblOpacityIncrement = -ms_frmSplash.m_dblOpacityDecrement;
 			}
 			ms_oThread = null;  // we don't need these any more.
 			ms_frmSplash = null;

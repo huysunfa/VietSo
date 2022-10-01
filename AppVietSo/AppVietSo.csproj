@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class5.cs" />
     <Compile Include="CNDictionary.cs" />
     <Compile Include="ConstData.cs" />
     <Compile Include="DanhSachTinChu.cs" />
@@ -146,6 +147,12 @@
     </Compile>
     <Compile Include="FrmEditChua.Designer.cs">
       <DependentUpon>FrmEditChua.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmHeaderFooter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHeaderFooter.Designer.cs">
+      <DependentUpon>FrmHeaderFooter.cs</DependentUpon>
     </Compile>
     <Compile Include="frmKeyInfo.cs">
       <SubType>Form</SubType>
@@ -295,6 +302,9 @@
     <EmbeddedResource Include="FrmEditChua.resx">
       <DependentUpon>FrmEditChua.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmHeaderFooter.resx">
+      <DependentUpon>FrmHeaderFooter.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmKeyInfo.resx">
       <DependentUpon>frmKeyInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -303,6 +313,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPersonSelectPrint.resx">
       <DependentUpon>FrmPersonSelectPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPrintPreview.resx">
+      <DependentUpon>FrmPrintPreview.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrintProcess.resx">
       <DependentUpon>FrmPrintProcess.cs</DependentUpon>

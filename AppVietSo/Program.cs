@@ -33,8 +33,9 @@ namespace AppVietSo
             Application.SetCompatibleTextRenderingDefault(true);
             CheckFolder();
 
+        //    return;
 
-			SplashScreen.ShowSplashScreen();
+            SplashScreen.ShowSplashScreen();
 			Application.DoEvents();
 
             SplashScreen.SetStatus("--- Kiểm tra bản cập nhật ---");

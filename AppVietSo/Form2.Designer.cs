@@ -60,6 +60,7 @@ namespace AppVietSo
             this.Name = "Form2";
             this.Text = "Form2";
             this.Load += new System.EventHandler(this.Form2_Load);
+            this.Layout += new System.Windows.Forms.LayoutEventHandler(this.Form2_Layout);
             this.ResumeLayout(false);
 
         }

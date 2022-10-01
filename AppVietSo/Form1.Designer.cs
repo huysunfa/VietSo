@@ -180,7 +180,7 @@ namespace AppVietSo
             this.checkBox3.TabIndex = 30;
             this.checkBox3.Text = "Hiện phân trang";
             this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.UseWaitCursor = true;
+            this.checkBox3.UseWaitCursor = false;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // button11
@@ -199,7 +199,7 @@ namespace AppVietSo
             this.button11.Text = "Danh sách đoàn";
             this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button11.UseVisualStyleBackColor = false;
-            this.button11.UseWaitCursor = true;
+            this.button11.UseWaitCursor = false;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // lbVersion
@@ -212,7 +212,7 @@ namespace AppVietSo
             this.lbVersion.Size = new System.Drawing.Size(64, 25);
             this.lbVersion.TabIndex = 28;
             this.lbVersion.Text = "label1";
-            this.lbVersion.UseWaitCursor = true;
+            this.lbVersion.UseWaitCursor = false;
             this.lbVersion.Click += new System.EventHandler(this.label1_Click);
             // 
             // checkBox2
@@ -225,7 +225,7 @@ namespace AppVietSo
             this.checkBox2.TabIndex = 27;
             this.checkBox2.Text = "Tự căn cột";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.UseWaitCursor = true;
+            this.checkBox2.UseWaitCursor = false;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
             this.checkBox2.Click += new System.EventHandler(this.checkBox2_Click);
             // 
@@ -245,7 +245,7 @@ namespace AppVietSo
             this.button10.Text = "Mở lòng sớ tải về";
             this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button10.UseVisualStyleBackColor = false;
-            this.button10.UseWaitCursor = true;
+            this.button10.UseWaitCursor = false;
             this.button10.Click += new System.EventHandler(this.button10_Click_1);
             // 
             // button9
@@ -264,7 +264,7 @@ namespace AppVietSo
             this.button9.Text = "Tải bộ chữ hán";
             this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button9.UseVisualStyleBackColor = false;
-            this.button9.UseWaitCursor = true;
+            this.button9.UseWaitCursor = false;
             this.button9.Click += new System.EventHandler(this.button9_Click_1);
             // 
             // button6
@@ -283,7 +283,7 @@ namespace AppVietSo
             this.button6.Text = "Lấy dữ liệu mới nhất";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = false;
-            this.button6.UseWaitCursor = true;
+            this.button6.UseWaitCursor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
             // button3
@@ -302,7 +302,7 @@ namespace AppVietSo
             this.button3.Text = "Chia sẻ";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.UseWaitCursor = true;
+            this.button3.UseWaitCursor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button8
@@ -321,7 +321,7 @@ namespace AppVietSo
             this.button8.Text = "Tạo lòng sớ mới";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
-            this.button8.UseWaitCursor = true;
+            this.button8.UseWaitCursor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click_2);
             // 
             // groupBox2
@@ -341,7 +341,7 @@ namespace AppVietSo
             this.groupBox2.Size = new System.Drawing.Size(150, 198);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
-            this.groupBox2.UseWaitCursor = true;
+            this.groupBox2.UseWaitCursor = false;
             // 
             // lbCanChuViet
             // 
@@ -352,7 +352,6 @@ namespace AppVietSo
             this.lbCanChuViet.Size = new System.Drawing.Size(86, 17);
             this.lbCanChuViet.TabIndex = 22;
             this.lbCanChuViet.Text = "Căn chữ việt";
-            this.lbCanChuViet.UseWaitCursor = true;
             // 
             // cbCanChuViet
             // 
@@ -368,7 +367,6 @@ namespace AppVietSo
             this.cbCanChuViet.Name = "cbCanChuViet";
             this.cbCanChuViet.Size = new System.Drawing.Size(136, 24);
             this.cbCanChuViet.TabIndex = 21;
-            this.cbCanChuViet.UseWaitCursor = true;
             this.cbCanChuViet.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
             // 
             // checkBox1
@@ -381,7 +379,6 @@ namespace AppVietSo
             this.checkBox1.TabIndex = 20;
             this.checkBox1.Text = "Có in mã sớ";
             this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.UseWaitCursor = true;
             // 
             // rbSongNgu
             // 
@@ -394,7 +391,6 @@ namespace AppVietSo
             this.rbSongNgu.Tag = "";
             this.rbSongNgu.Text = "Song ngữ";
             this.rbSongNgu.UseVisualStyleBackColor = true;
-            this.rbSongNgu.UseWaitCursor = true;
             this.rbSongNgu.CheckedChanged += new System.EventHandler(this.button1_Click);
             // 
             // rbChuViet
@@ -407,7 +403,6 @@ namespace AppVietSo
             this.rbChuViet.TabIndex = 17;
             this.rbChuViet.Text = "Chữ việt";
             this.rbChuViet.UseVisualStyleBackColor = true;
-            this.rbChuViet.UseWaitCursor = true;
             this.rbChuViet.CheckedChanged += new System.EventHandler(this.button1_Click);
             // 
             // rbChuHan
@@ -420,7 +415,6 @@ namespace AppVietSo
             this.rbChuHan.TabIndex = 18;
             this.rbChuHan.Text = "Chữ hán";
             this.rbChuHan.UseVisualStyleBackColor = true;
-            this.rbChuHan.UseWaitCursor = true;
             this.rbChuHan.CheckedChanged += new System.EventHandler(this.button1_Click);
             // 
             // cbHideGridLine
@@ -435,7 +429,7 @@ namespace AppVietSo
             this.cbHideGridLine.TabIndex = 17;
             this.cbHideGridLine.Text = "Hiện dòng kẻ";
             this.cbHideGridLine.UseVisualStyleBackColor = true;
-            this.cbHideGridLine.UseWaitCursor = true;
+            this.cbHideGridLine.UseWaitCursor = false;
             this.cbHideGridLine.CheckedChanged += new System.EventHandler(this.cbHideGridLine_CheckedChanged);
             // 
             // button4
@@ -454,7 +448,7 @@ namespace AppVietSo
             this.button4.Text = "Xóa lòng sớ";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.UseWaitCursor = true;
+            this.button4.UseWaitCursor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // pictureBox1
@@ -486,7 +480,7 @@ namespace AppVietSo
             this.button1.Text = "Tín chủ";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.UseWaitCursor = true;
+            this.button1.UseWaitCursor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
@@ -505,7 +499,7 @@ namespace AppVietSo
             this.button2.Text = "Ngạch sớ";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.UseWaitCursor = true;
+            this.button2.UseWaitCursor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button7
@@ -525,7 +519,7 @@ namespace AppVietSo
             this.button7.Text = "Tải lại dữ liệu";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.UseWaitCursor = true;
+            this.button7.UseWaitCursor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button5
@@ -544,7 +538,7 @@ namespace AppVietSo
             this.button5.Text = "Cài đặt khổ giấy";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.UseWaitCursor = true;
+            this.button5.UseWaitCursor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel1
@@ -557,7 +551,6 @@ namespace AppVietSo
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1488, 920);
             this.panel1.TabIndex = 3;
-            this.panel1.UseWaitCursor = true;
             // 
             // richTextBox1
             // 
@@ -568,7 +561,7 @@ namespace AppVietSo
             this.richTextBox1.Size = new System.Drawing.Size(1488, 96);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
-            this.richTextBox1.UseWaitCursor = true;
+            this.richTextBox1.UseWaitCursor = false;
             this.richTextBox1.Visible = false;
             // 
             // bindingNavigator1

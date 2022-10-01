@@ -412,71 +412,34 @@ namespace AppVietSo
 		private void btnPrintPreview_Click(object sender, EventArgs e)
 		{
 
-			 
-			var sheet = reoGridControl1.CurrentWorksheet;
-			 
-			sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
-				 new unvell.ReoGrid.RangeBorderStyle
-				 {
-					 Style = BorderLineStyle.None,
-				 });
-			sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle
-			{
-				// style item flag
-				Flag = PlainStyleFlag.BackColor,
-				// style item
-				BackColor = Color.White,
-			});
-			using (var session = sheet.CreatePrintSession())
-			{
-				using (PrintPreviewDialog ppd = new PrintPreviewDialog())
-				{
-					session.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
-					session.PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = session.PrintDocument.DefaultPageSettings.PaperSize;
-					ppd.Document = session.PrintDocument;
-					ppd.SetBounds(0, 0, Width, Height - 40);
- 					ppd.WindowState = FormWindowState.Maximized;
-					ppd.Document.PrinterSettings.PrinterName = Util.LongSoHienTai.PrinterName;
-					ppd.ShowDialog(this);
- 				}
-			}
 
-			return;
-
-
-			//try
+			if (string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleCenter) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleRight))
 			{
-				if (string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleCenter) && string.IsNullOrEmpty(Program.Stg.GetPrintSetting("TinChuD").PageTitleRight))
-				{
-					Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft = Util.domain;
-					Program.Stg.GetPrintSetting("TinChuD").PageTitleRight = "Trang &[Page] /Tổng &[Pages]";
-				}
-				//this.curWS.PrintSettings.PageTitleLeft = Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft;
-				//this.curWS.PrintSettings.PageTitleCenter = Program.Stg.GetPrintSetting("TinChuD").PageTitleCenter;
-				//this.curWS.PrintSettings.PageTitleRight = Program.Stg.GetPrintSetting("TinChuD").PageTitleRight;
-				//this.curWS.PrintSettings.IsFooter = Program.Stg.GetPrintSetting("TinChuD").PageIsFooter;
-				//this.curWS.PrintSettings.ShowPageNo = Program.Stg.GetPrintSetting("TinChuD").PageIsShowPageNo;
-				FrmPrintPreview frmPrintPreview = new FrmPrintPreview();
-				//frmPrintPreview.Sheet = this.curWS;
-			//	frmPrintPreview.ZoomIndex = Program.Stg.GetPrintSetting("TinChuD").ZoomIndex;
-				frmPrintPreview.ShowDialog(this);
-				PageMargins margins = this.curWS.PrintSettings.Margins;
-				Program.Stg.GetPrintSetting("TinChuD").MarginT = margins.Top;
-				Program.Stg.GetPrintSetting("TinChuD").MarginB = margins.Bottom;
-				Program.Stg.GetPrintSetting("TinChuD").MarginL = margins.Left;
-				Program.Stg.GetPrintSetting("TinChuD").MarginR = margins.Right;
-				//Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft = this.curWS.PrintSettings.PageTitleLeft;
-				//Program.Stg.GetPrintSetting("TinChuD").PageTitleCenter = this.curWS.PrintSettings.PageTitleCenter;
-				//Program.Stg.GetPrintSetting("TinChuD").PageTitleRight = this.curWS.PrintSettings.PageTitleRight;
-				//Program.Stg.GetPrintSetting("TinChuD").PageIsFooter = this.curWS.PrintSettings.IsFooter;
-				//Program.Stg.GetPrintSetting("TinChuD").PageIsShowPageNo = this.curWS.PrintSettings.ShowPageNo;
-				//Program.Stg.GetPrintSetting("TinChuD").PaperName = this.curWS.PrintSettings.PaperName;
-				//Program.Stg.GetPrintSetting("TinChuD").ZoomIndex = frmPrintPreview.ZoomIndex;
+				Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft = Util.domain;
+				Program.Stg.GetPrintSetting("TinChuD").PageTitleRight = "Trang &[Page] /Tổng &[Pages]";
 			}
-			//
-			{
-				//
-			}
+			//this.curWS.PrintSettings.PageTitleLeft = Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft;
+			//this.curWS.PrintSettings.PageTitleCenter = Program.Stg.GetPrintSetting("TinChuD").PageTitleCenter;
+			//this.curWS.PrintSettings.PageTitleRight = Program.Stg.GetPrintSetting("TinChuD").PageTitleRight;
+			//this.curWS.PrintSettings.IsFooter = Program.Stg.GetPrintSetting("TinChuD").PageIsFooter;
+			//this.curWS.PrintSettings.ShowPageNo = Program.Stg.GetPrintSetting("TinChuD").PageIsShowPageNo;
+			FrmPrintPreview frmPrintPreview = new FrmPrintPreview();
+			frmPrintPreview.Sheet = this.curWS;
+			frmPrintPreview.ZoomIndex = Program.Stg.GetPrintSetting("TinChuD").ZoomIndex;
+			frmPrintPreview.ShowDialog(this);
+			PageMargins margins = this.curWS.PrintSettings.Margins;
+			Program.Stg.GetPrintSetting("TinChuD").MarginT = margins.Top;
+			Program.Stg.GetPrintSetting("TinChuD").MarginB = margins.Bottom;
+			Program.Stg.GetPrintSetting("TinChuD").MarginL = margins.Left;
+			Program.Stg.GetPrintSetting("TinChuD").MarginR = margins.Right;
+			//Program.Stg.GetPrintSetting("TinChuD").PageTitleLeft = this.curWS.PrintSettings.PageTitleLeft;
+			//Program.Stg.GetPrintSetting("TinChuD").PageTitleCenter = this.curWS.PrintSettings.PageTitleCenter;
+			//Program.Stg.GetPrintSetting("TinChuD").PageTitleRight = this.curWS.PrintSettings.PageTitleRight;
+			//Program.Stg.GetPrintSetting("TinChuD").PageIsFooter = this.curWS.PrintSettings.IsFooter;
+			//Program.Stg.GetPrintSetting("TinChuD").PageIsShowPageNo = this.curWS.PrintSettings.ShowPageNo;
+			//Program.Stg.GetPrintSetting("TinChuD").PaperName = this.curWS.PrintSettings.PaperName;
+			Program.Stg.GetPrintSetting("TinChuD").ZoomIndex = frmPrintPreview.ZoomIndex;
+
 		}
 
 		// Token: 0x06000061 RID: 97 RVA: 0x00007D04 File Offset: 0x00005F04

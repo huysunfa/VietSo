@@ -32,5 +32,16 @@ namespace AppVietSo
             sheet.SetColumnsWidth(0, 10, 59);
             sheet.ResetAllPageBreaks();
         }
+
+        private bool m_bLayoutCalled = false;
+        private void Form2_Layout(object sender, LayoutEventArgs e)
+        {
+            if (m_bLayoutCalled == false)
+            {
+                m_bLayoutCalled = true;
+                this.Activate();
+                SplashScreen.CloseForm();
+            }
+        }
     }
 }
