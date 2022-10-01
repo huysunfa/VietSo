@@ -39,10 +39,16 @@ namespace Updated
                              
                                 // Gets the full path to ensure that relative segments are removed.
                                 string destinationPath = Path.GetFullPath(Path.Combine(path, entry.FullName));
-
-                                // Ordinal match is safest, case-sensitive volumes can be mounted within volumes that
-                                // are case-insensitive.
-                                if (destinationPath.StartsWith(path, StringComparison.Ordinal))
+                            string ext = Path.GetExtension(entry.Name).ToLower();
+                            if (string.IsNullOrEmpty(ext))
+                            {
+                                if (!Directory.Exists(destinationPath)&& !File.Exists(destinationPath))
+                                {
+                                    Directory.CreateDirectory(destinationPath);
+                                }
+                            }
+                            // are case-insensitive.
+                            if (!String.IsNullOrEmpty(ext) && destinationPath.StartsWith(path, StringComparison.Ordinal))
                                     entry.ExtractToFile(destinationPath,true);
                           
                         }
@@ -55,8 +61,8 @@ namespace Updated
                     }
 
                     //     ZipFile.ExtractToDirectory(filename, localpath);
-                    Process.Start("AppVietSo.exe");
                 }
+                Process.Start("AppVietSo.exe");
 
             }
         }

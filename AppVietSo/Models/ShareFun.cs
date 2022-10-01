@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using unvell.ReoGrid;
 using unvell.ReoGrid.Print;
 
 namespace AppVietSo.Models
@@ -31,10 +32,22 @@ namespace AppVietSo.Models
             sheet.ResetAllPageBreaks();
         }
 
+        public static void SetRowCol(this unvell.ReoGrid.Worksheet sheet, int row, int col)
+        {
+
+            if (sheet.UsedRange.EndCol > 0)
+            {
+                sheet.DeleteColumns(0, sheet.UsedRange.EndCol);
+                sheet.DeleteRows(0, sheet.UsedRange.EndRow);
+            }
+            sheet.SetRows(row);
+            sheet.SetCols(col);
+            sheet.SetWidthHeight(row, col);
+        }
+
         public static void SetWidthHeight(this unvell.ReoGrid.Worksheet sheet, int row, int col)
         {
 
-            const float cmPreInch = 2.54f * 10;
             float dpi = 100f;
             double num = Util.LongSoHienTai.PageWidth;
             double num2 = Util.LongSoHienTai.PageHeight;
@@ -45,27 +58,22 @@ namespace AppVietSo.Models
             double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
             num2 -= (double)(num5 + num6);
             ushort height = (ushort)System.Math.Floor(num2 / (double)(row + 2));
-            sheet.SetRows(row);
-            sheet.SetCols(col);
-            
+
             sheet.SetRowsHeight(1, row - 1, height);
             ushort width = (ushort)System.Math.Floor(num7 / (double)(col + 1));
             sheet.SetColumnsWidth(1, col - 1, width);
-            //sheet.ResetAllPageBreaks();
             // margrin
-            sheet.SetColumnsWidth(0, 1, (ushort)num3);
-            sheet.SetColumnsWidth(sheet.UsedRange.EndCol, 1, (ushort)num4);
-            sheet.SetRowsHeight(0, 1, (ushort)num5);
-            sheet.SetRowsHeight(sheet.UsedRange.EndRow, 1, (ushort)num6);
-            
+            var heightFree = 0; //Util.LongSoHienTai.PageHeight - (num5 + num6+(height * (row -2)));
+            var weightFree = 0;// Util.LongSoHienTai.PageWidth - (num3 + num4 + (width * (col - 2)));
+            weightFree = weightFree < 0 ? 0 : weightFree;
+            heightFree = heightFree < 0 ? 0 : heightFree;
+            sheet.SetColumnsWidth(0, 1, (ushort)(num3+ weightFree));
+            sheet.SetColumnsWidth(sheet.UsedRange.EndCol, 1, (ushort)(num4));
+            sheet.SetRowsHeight(0, 1, (ushort)(num5+ heightFree));
+            sheet.SetRowsHeight(sheet.UsedRange.EndRow, 1, (ushort)(num6));
 
-            //    sheet.PrintSettings.Margins = new PageMargins(0,0,0,0);
-
-           // var PagePaddingTop = toMM((int)Util.LongSoHienTai.PagePaddingTop) / cmPreInch;
-           // var PagePaddingBottom = toMM((int)Util.LongSoHienTai.PagePaddingBottom) / cmPreInch;
-           // var PagePaddingLeft = toMM((int)Util.LongSoHienTai.PagePaddingLeft) / cmPreInch;
-           // var PagePaddingRight = toMM((int)Util.LongSoHienTai.PagePaddingRight) / cmPreInch;
-         sheet.PrintSettings.Margins = new PageMargins(0);
+     
+            sheet.PrintSettings.Margins = new PageMargins(0);
             sheet.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
             sheet.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
         }

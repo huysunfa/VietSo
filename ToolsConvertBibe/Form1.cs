@@ -182,5 +182,91 @@ namespace ToolsConvertBibe
 
             new BulkCopy().BulkInsertAll(dt, "lts43636_vietso.dbo.[VnChinese]");
         }
-    }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+          var  text = Util.UnZIP(richTextBox1.Text);
+
+            var ck = Newtonsoft.Json.JsonConvert.DeserializeObject<CustomerKey>(text);
+         }
+        public class CustomerKey
+        {
+
+
+            // Token: 0x17000001 RID: 1
+            // (get) Token: 0x0600005D RID: 93 RVA: 0x00004E78 File Offset: 0x00003078
+            // (set) Token: 0x0600005E RID: 94 RVA: 0x00004E8C File Offset: 0x0000308C
+            public string CusKey { get; set; }
+
+            // Token: 0x17000002 RID: 2
+            // (get) Token: 0x0600005F RID: 95 RVA: 0x00004EA0 File Offset: 0x000030A0
+            // (set) Token: 0x06000060 RID: 96 RVA: 0x00004EB4 File Offset: 0x000030B4
+            public string ComputerID { get; set; }
+
+            // Token: 0x17000003 RID: 3
+            // (get) Token: 0x06000061 RID: 97 RVA: 0x00004EC8 File Offset: 0x000030C8
+            // (set) Token: 0x06000062 RID: 98 RVA: 0x00004EDC File Offset: 0x000030DC
+            public DateTime StartDtime { get; set; }
+
+            // Token: 0x17000004 RID: 4
+            // (get) Token: 0x06000063 RID: 99 RVA: 0x00004EF0 File Offset: 0x000030F0
+            // (set) Token: 0x06000064 RID: 100 RVA: 0x00004F04 File Offset: 0x00003104
+            public DateTime EndDtime { get; set; }
+
+            // Token: 0x17000005 RID: 5
+            // (get) Token: 0x06000065 RID: 101 RVA: 0x00004F18 File Offset: 0x00003118
+            // (set) Token: 0x06000066 RID: 102 RVA: 0x00004F2C File Offset: 0x0000312C
+            public DateTime CheckDtime { get; set; }
+
+            // Token: 0x17000006 RID: 6
+            // (get) Token: 0x06000067 RID: 103 RVA: 0x00004F40 File Offset: 0x00003140
+            // (set) Token: 0x06000068 RID: 104 RVA: 0x00004F54 File Offset: 0x00003154
+            public string Action { get; set; }
+
+            // Token: 0x17000007 RID: 7
+            // (get) Token: 0x06000069 RID: 105 RVA: 0x00004F68 File Offset: 0x00003168
+            // (set) Token: 0x0600006A RID: 106 RVA: 0x00004F7C File Offset: 0x0000317C
+            public string Name { get; set; }
+
+            // Token: 0x17000008 RID: 8
+            // (get) Token: 0x0600006B RID: 107 RVA: 0x00004F90 File Offset: 0x00003190
+            // (set) Token: 0x0600006C RID: 108 RVA: 0x00004FA4 File Offset: 0x000031A4
+            public string Phone { get; set; }
+
+            // Token: 0x17000009 RID: 9
+            // (get) Token: 0x0600006D RID: 109 RVA: 0x00004FB8 File Offset: 0x000031B8
+            // (set) Token: 0x0600006E RID: 110 RVA: 0x00004FCC File Offset: 0x000031CC
+            public string Note { get; set; }
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            var text = ZIP(richTextBox1.Text);
+            richTextBox1.Text = text;
+        }
+        public static string ZIP(string str)
+        {
+            if (str == "")
+            {
+                return "";
+            }
+            return global::System.Convert.ToBase64String(bzupp(str));
+        }
+        // Token: 0x06000081 RID: 129 RVA: 0x00005520 File Offset: 0x00003720
+        private static byte[] bzupp(string A_0)
+		{
+			byte[] bytes = global::System.Text.Encoding.UTF8.GetBytes(A_0);
+        global::System.IO.MemoryStream memoryStream = new global::System.IO.MemoryStream();
+        global::System.IO.Compression.GZipStream gzipStream = new global::System.IO.Compression.GZipStream(memoryStream, global::System.IO.Compression.CompressionMode.Compress, true);
+        gzipStream.Write(bytes, 0, bytes.Length);
+			gzipStream.Dispose();
+			memoryStream.Position = 0L;
+			byte[] array = new byte[memoryStream.Length + 1L];
+        memoryStream.Read(array, 0, array.Length);
+			memoryStream.Dispose();
+			return array;
+		}
+
+}
 }

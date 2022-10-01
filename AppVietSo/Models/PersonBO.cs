@@ -78,6 +78,7 @@ namespace AppVietSo.Models
     public static global::System.Collections.Generic.List<Person> getList(string pagodaID, Family fml)
         {
             string str = "";
+            fml.IDs = fml.IDs ?? new List<string>();
             if (0 < fml.IDs.Count)
             {
                 str = "AND ID IN (" + string.Join(",", fml.IDs) + ") ";

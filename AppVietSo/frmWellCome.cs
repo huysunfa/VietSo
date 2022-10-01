@@ -73,7 +73,7 @@ namespace AppVietSo
                OuputOK("2.  Tải dữ liệu font chữ việt");
                loadFont.loadListFontVN();
                OuputOK("3.  Tải dữ liệu thư viện chữ hán");
-               CNDictionary.loadDatabase(true);
+               CNDictionary.loadDatabase();
                OuputOK("4.  Tải dữ liệu lòng sớ đang mở");
                Models.LongSo.GetLongSos(true);
                OuputOK("5.  GetLabelTexts");

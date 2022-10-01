@@ -20,8 +20,8 @@ namespace AppVietSo
 
         private void FrmThietLapTinChu_Load(object sender, EventArgs e)
         {
-            var txtForm = ActiveData.Get("@thietLapTinChuMoreText");
-            var txtMore = ActiveData.Get("@thietLapTinChuFormText");
+            var txtMore= ActiveData.Get("@thietLapTinChuMoreText");
+            var txtForm = ActiveData.Get("@thietLapTinChuFormText");
             if (!string.IsNullOrEmpty(txtForm))
             {
                 this.txtForm.Text = txtForm;
@@ -33,10 +33,10 @@ namespace AppVietSo
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            string text = this.txtMore.Text.Trim();
-            if (!string.IsNullOrWhiteSpace(text))
+            string More = this.txtMore.Text.Trim();
+            if (!string.IsNullOrWhiteSpace(More))
             {
-                text = Util.RemoveDoubleSpace(text);
+                More = Util.RemoveDoubleSpace(More);
             }
             string text2 = this.txtForm.Text.Trim();
             if (!string.IsNullOrWhiteSpace(text2))
@@ -44,8 +44,8 @@ namespace AppVietSo
                 text2 = Util.RemoveDoubleSpace(text2);
             }
 
-            ActiveData.Update("@thietLapTinChuMoreText", text2);
-            ActiveData.Update("@thietLapTinChuFormText", text);
+            ActiveData.Update("@thietLapTinChuMoreText", More);
+            ActiveData.Update("@thietLapTinChuFormText", text2);
             base.Close();
             base.DialogResult = DialogResult.OK;
         }

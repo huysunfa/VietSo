@@ -40,9 +40,39 @@ namespace AppVietSo.Models
         {
             return px / dpi;
         }
-
-        // Token: 0x0600007A RID: 122 RVA: 0x000050C8 File Offset: 0x000032C8
-        public static void getCanChi(int year, out string can, out string chi)
+        public static string UnZIP(string str)
+        {
+            if (str == "")
+            {
+                return "";
+            }
+            return global::System.Text.Encoding.UTF8.GetString(Util.BZIP(str));
+        }
+        private static byte[] BZIP(string A_0)
+		{
+			if (A_0 == null)
+			{
+				return null;
+			}
+			global::System.IO.MemoryStream memoryStream = new global::System.IO.MemoryStream(global::System.Convert.FromBase64String(A_0));
+        global::System.IO.Compression.GZipStream gzipStream = new global::System.IO.Compression.GZipStream(memoryStream, global::System.IO.Compression.CompressionMode.Decompress, true);
+        byte[] array = new byte[4];
+        memoryStream.Position = memoryStream.Length - 5L;
+			memoryStream.Read(array, 0, 4);
+			int num = global::System.BitConverter.ToInt32(array, 0);
+			if (num > 0)
+			{
+				memoryStream.Position = 0L;
+				byte[] array2 = new byte[num - 1 + 1];
+        gzipStream.Read(array2, 0, num);
+				gzipStream.Dispose();
+				memoryStream.Dispose();
+				return array2;
+			}
+			return null;
+		}
+// Token: 0x0600007A RID: 122 RVA: 0x000050C8 File Offset: 0x000032C8
+public static void getCanChi(int year, out string can, out string chi)
         {
             string[] array = new string[]
             {

@@ -14,11 +14,24 @@ namespace AppVietSo
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
             worksheet.SetRangeBorders(worksheet.UsedRange, BorderPositions.All,
-                                 new unvell.ReoGrid.RangeBorderStyle
-                                 {
-                                     Style = (show ? BorderLineStyle.Solid : BorderLineStyle.None),
-                                     Color = Color.WhiteSmoke
-                                 });
+                               new unvell.ReoGrid.RangeBorderStyle { Style = BorderLineStyle.None });
+
+            if (show)
+            {
+                var rangedata = new RangePosition(
+                    worksheet.UsedRange.Row + 1
+                    , worksheet.UsedRange.Col + 1
+                    , worksheet.UsedRange.EndRow - 1
+                    , worksheet.UsedRange.EndCol - 1
+                    );
+
+                worksheet.SetRangeBorders(rangedata, BorderPositions.All,
+                                     new unvell.ReoGrid.RangeBorderStyle
+                                     {
+                                         Style = BorderLineStyle.Solid,
+                                         Color = Color.WhiteSmoke
+                                     });
+            }
         }
     }
 }
