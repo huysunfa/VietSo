@@ -57,10 +57,6 @@ namespace AppVietSo
 
                 //check select row
                 dataGridView1.CurrentRow.Cells["Chk"].Value = true;
-                Util.strDataSugget = dataGridView1.CurrentRow.Cells["Nội dung"].Value + "";
-                string vn = dataGridView1.CurrentRow.Cells["Nội dung"].Value + "";
-                Util.strDataSugget = CNDictionary.getCN(Util.strDataSugget) + "_" + vn;
-                ActiveData.Update("@ngachso", Util.strDataSugget);
 
                 button1_Click(sender, e);
             }
@@ -70,6 +66,16 @@ namespace AppVietSo
         {
             DataTable dt = new DataTable();
             dt = (DataTable)dataGridView1.DataSource;
+            foreach (DataRow item in dt.Rows)
+            {
+                if ((item[0] + "") == "True")
+                {
+
+                    string vn = item["Nội dung"] + "";
+                    Util.strDataSugget = CNDictionary.getCN(vn) + "_" + vn;
+                    ActiveData.Update("@ngachso", Util.strDataSugget);
+                }
+            }
             CsvExtentions.ToCSV(dt, Util.getNgachSoPath);
             this.Visible = false;
         }

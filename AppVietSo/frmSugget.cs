@@ -121,7 +121,15 @@ namespace AppVietSo
             try
             {
                 var vn = dataGridView1.CurrentRow.Cells["vn"].Value + "";
-                var xx = CNDictionary.getChuNomDD(vn);
+                var xx = "";
+                if (_key == "thang")
+                {
+                    xx= CNDictionary.getChuNomMM(vn);
+                }
+                else
+                {
+                    xx = CNDictionary.getChuNomDD(vn);
+                }
                 if (xx==vn)
                 {
                     int.TryParse(vn, out int  year);

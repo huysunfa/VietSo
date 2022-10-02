@@ -16,7 +16,7 @@ namespace AppVietSo
 	{
 		#region Member Variables
 		// Threading
-		private static SplashScreen ms_frmSplash = null;
+		public static SplashScreen ms_frmSplash = null;
 		private static Thread ms_oThread = null;
 
 		// Fade in and out.

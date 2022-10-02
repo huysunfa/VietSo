@@ -126,7 +126,12 @@ namespace AppVietSo.Models
         {
             get
             {
-                return (DateTime.Now.Year - this.NamSinh);
+ 
+                DateTime.TryParseExact(NgayMat, "dd/MM/yyyy",
+                           System.Globalization.CultureInfo.InvariantCulture,
+                                System.Globalization.DateTimeStyles.None,
+                           out DateTime mat);
+                return (mat.Year - this.NamSinh)+1;
             }
         }
 

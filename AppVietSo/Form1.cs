@@ -397,12 +397,16 @@ namespace AppVietSo
         // Token: 0x060000D9 RID: 217 RVA: 0x0000E8C4 File Offset: 0x0000CAC4
         private void TSMItemAddNoiC_Click(object sender, global::System.EventArgs e)
         {
+            var chua = Models.PagodaBO.get(Program.Stg.Chua);
+            ActiveData.Update("@noicung", chua.Name);
             addTextLongSo("@noicung", "Nơi cúng");
         }
 
         // Token: 0x060000DA RID: 218 RVA: 0x0000E8D6 File Offset: 0x0000CAD6
         private void TSMItemAddAdress_Click(object sender, global::System.EventArgs e)
         {
+            var chua = Models.PagodaBO.get(Program.Stg.Chua);
+            ActiveData.Update("@diachiyvu", chua.Address);
             addTextLongSo("@diachiyvu", "Địa chỉ");
         }
 
@@ -451,9 +455,17 @@ namespace AppVietSo
 
         #endregion
 
-
+      
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (m_bLayoutCalled == false)
+            {
+                m_bLayoutCalled = true;
+                SplashScreen.CloseForm();
+                this.Activate();
+
+            }
+
             //return;
             pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
             cbCanChuViet.SelectedItem = "PHẢI";
@@ -1752,12 +1764,7 @@ namespace AppVietSo
         private bool m_bLayoutCalled = false;
         private void Form1_Layout(object sender, LayoutEventArgs e)
         {
-            if (m_bLayoutCalled == false)
-            {
-                m_bLayoutCalled = true;
-                this.Activate();
-                SplashScreen.CloseForm();
-            }
+           
         }
     }
 }

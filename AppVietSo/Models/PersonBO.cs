@@ -100,6 +100,7 @@ namespace AppVietSo.Models
         public static global::System.Collections.Generic.List<Person> getHuonglinhs(string pagodaID, Family fml)
         {
             string str = "";
+            fml.IDs = fml.IDs ?? new List<string>();
             if (0 < fml.IDs.Count)
             {
                 str = " AND ID IN (" + string.Join(",", fml.IDs) + ") ";
@@ -109,6 +110,14 @@ namespace AppVietSo.Models
             dictionary.Add("@PagodaID", pagodaID);
             dictionary.Add("@SoNo", fml.SoNo);
             return BaseBO.GetObject<Person>(DbExecute.Select(query, dictionary));
+        } 
+        
+        public static Person getChuSo(string pagodaID)
+        {             
+            string query = "Select * from chuso WHERE PagodaID=@PagodaID ";
+            global::System.Collections.Generic.Dictionary<string, object> dictionary = new global::System.Collections.Generic.Dictionary<string, object>();
+            dictionary.Add("@PagodaID", pagodaID);
+             return BaseBO.GetObject<Person>(DbExecute.Select(query, dictionary)).FirstOrDefault();
         }
 
         // Token: 0x06000104 RID: 260 RVA: 0x000068B8 File Offset: 0x00004AB8

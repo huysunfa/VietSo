@@ -49,15 +49,15 @@ namespace AppVietSo.Models
                 result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
                 if (result.ContainsKey(b))
                 {
-                    CN = result[b].Split('_').FirstOrDefault();
-                    VN = result[b].Split('_').LastOrDefault();
+                    CN = (result[b]+"").Split('_').FirstOrDefault();
+                    VN = (result[b]+"").Split('_').LastOrDefault();
                     if (b == "@tinchu")
                     {
-                        var txtForm = ActiveData.Get("@thietLapTinChuMoreText");
-                        var txtMore = ActiveData.Get("@thietLapTinChuFormText");
+                         var txtMore = ActiveData.Get("@thietLapTinChuMoreText");
+                        var txtForm = ActiveData.Get("@thietLapTinChuFormText") +" "+ txtMore;
 
-                        VN = "";
-                        CN = "";
+                        //VN = VN;
+                        //CN = CN;
                         var dt = CsvExtentions.ConvertCSVtoDataTable(Util.getTinChuPath);
 
                         foreach (var item in txtForm.Split(' '))
