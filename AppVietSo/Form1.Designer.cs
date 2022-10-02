@@ -42,9 +42,6 @@ namespace AppVietSo
             this.button11 = new System.Windows.Forms.Button();
             this.lbVersion = new System.Windows.Forms.Label();
             this.checkBox2 = new System.Windows.Forms.CheckBox();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -83,6 +80,11 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.tiênTichToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mơLongSơTaiVêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taiBôChưHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -92,6 +94,7 @@ namespace AppVietSo
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip2
@@ -143,13 +146,11 @@ namespace AppVietSo
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox3);
             this.splitContainer1.Panel1.Controls.Add(this.button11);
             this.splitContainer1.Panel1.Controls.Add(this.lbVersion);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox2);
-            this.splitContainer1.Panel1.Controls.Add(this.button10);
-            this.splitContainer1.Panel1.Controls.Add(this.button9);
-            this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button8);
             this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
@@ -180,7 +181,6 @@ namespace AppVietSo
             this.checkBox3.TabIndex = 30;
             this.checkBox3.Text = "Hiện phân trang";
             this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.UseWaitCursor = false;
             this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // button11
@@ -199,7 +199,6 @@ namespace AppVietSo
             this.button11.Text = "Danh sách đoàn";
             this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button11.UseVisualStyleBackColor = false;
-            this.button11.UseWaitCursor = false;
             this.button11.Click += new System.EventHandler(this.button11_Click);
             // 
             // lbVersion
@@ -212,7 +211,6 @@ namespace AppVietSo
             this.lbVersion.Size = new System.Drawing.Size(64, 25);
             this.lbVersion.TabIndex = 28;
             this.lbVersion.Text = "label1";
-            this.lbVersion.UseWaitCursor = false;
             this.lbVersion.Click += new System.EventHandler(this.label1_Click);
             // 
             // checkBox2
@@ -225,66 +223,8 @@ namespace AppVietSo
             this.checkBox2.TabIndex = 27;
             this.checkBox2.Text = "Tự căn cột";
             this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.UseWaitCursor = false;
             this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
             this.checkBox2.Click += new System.EventHandler(this.checkBox2_Click);
-            // 
-            // button10
-            // 
-            this.button10.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button10.BackColor = System.Drawing.Color.Teal;
-            this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button10.ForeColor = System.Drawing.Color.Transparent;
-            this.button10.Location = new System.Drawing.Point(11, 756);
-            this.button10.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(146, 44);
-            this.button10.TabIndex = 26;
-            this.button10.Text = "Mở lòng sớ tải về";
-            this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.UseVisualStyleBackColor = false;
-            this.button10.UseWaitCursor = false;
-            this.button10.Click += new System.EventHandler(this.button10_Click_1);
-            // 
-            // button9
-            // 
-            this.button9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button9.BackColor = System.Drawing.Color.Teal;
-            this.button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.Transparent;
-            this.button9.Location = new System.Drawing.Point(11, 708);
-            this.button9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(146, 44);
-            this.button9.TabIndex = 25;
-            this.button9.Text = "Tải bộ chữ hán";
-            this.button9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.UseWaitCursor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click_1);
-            // 
-            // button6
-            // 
-            this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.button6.BackColor = System.Drawing.Color.Teal;
-            this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.Transparent;
-            this.button6.Location = new System.Drawing.Point(11, 660);
-            this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(146, 44);
-            this.button6.TabIndex = 24;
-            this.button6.Text = "Lấy dữ liệu mới nhất";
-            this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.UseVisualStyleBackColor = false;
-            this.button6.UseWaitCursor = false;
-            this.button6.Click += new System.EventHandler(this.button6_Click_1);
             // 
             // button3
             // 
@@ -302,7 +242,6 @@ namespace AppVietSo
             this.button3.Text = "Chia sẻ";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button3.UseVisualStyleBackColor = false;
-            this.button3.UseWaitCursor = false;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button8
@@ -321,7 +260,6 @@ namespace AppVietSo
             this.button8.Text = "Tạo lòng sớ mới";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
-            this.button8.UseWaitCursor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click_2);
             // 
             // groupBox2
@@ -341,7 +279,6 @@ namespace AppVietSo
             this.groupBox2.Size = new System.Drawing.Size(150, 198);
             this.groupBox2.TabIndex = 20;
             this.groupBox2.TabStop = false;
-            this.groupBox2.UseWaitCursor = false;
             // 
             // lbCanChuViet
             // 
@@ -372,7 +309,7 @@ namespace AppVietSo
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(21, 18);
+            this.checkBox1.Location = new System.Drawing.Point(21, 19);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(104, 21);
@@ -429,7 +366,6 @@ namespace AppVietSo
             this.cbHideGridLine.TabIndex = 17;
             this.cbHideGridLine.Text = "Hiện dòng kẻ";
             this.cbHideGridLine.UseVisualStyleBackColor = true;
-            this.cbHideGridLine.UseWaitCursor = false;
             this.cbHideGridLine.CheckedChanged += new System.EventHandler(this.cbHideGridLine_CheckedChanged);
             // 
             // button4
@@ -448,7 +384,6 @@ namespace AppVietSo
             this.button4.Text = "Xóa lòng sớ";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.UseWaitCursor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
             // pictureBox1
@@ -480,7 +415,6 @@ namespace AppVietSo
             this.button1.Text = "Tín chủ";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.UseWaitCursor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // button2
@@ -499,7 +433,6 @@ namespace AppVietSo
             this.button2.Text = "Ngạch sớ";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
-            this.button2.UseWaitCursor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // button7
@@ -519,7 +452,6 @@ namespace AppVietSo
             this.button7.Text = "Tải lại dữ liệu";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button7.UseVisualStyleBackColor = false;
-            this.button7.UseWaitCursor = false;
             this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button5
@@ -538,7 +470,6 @@ namespace AppVietSo
             this.button5.Text = "Cài đặt khổ giấy";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = false;
-            this.button5.UseWaitCursor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // panel1
@@ -561,7 +492,6 @@ namespace AppVietSo
             this.richTextBox1.Size = new System.Drawing.Size(1488, 96);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
-            this.richTextBox1.UseWaitCursor = false;
             this.richTextBox1.Visible = false;
             // 
             // bindingNavigator1
@@ -1003,6 +933,54 @@ namespace AppVietSo
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tiênTichToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(11, 670);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(257, 48);
+            this.menuStrip1.TabIndex = 31;
+            this.menuStrip1.Text = "Tiện ích";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // tiênTichToolStripMenuItem
+            // 
+            this.tiênTichToolStripMenuItem.BackColor = System.Drawing.Color.Teal;
+            this.tiênTichToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mơLongSơTaiVêToolStripMenuItem,
+            this.taiBôChưHanToolStripMenuItem,
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem});
+            this.tiênTichToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.tiênTichToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tiênTichToolStripMenuItem.Name = "tiênTichToolStripMenuItem";
+            this.tiênTichToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10);
+            this.tiênTichToolStripMenuItem.Size = new System.Drawing.Size(97, 44);
+            this.tiênTichToolStripMenuItem.Text = "Tiện tích";
+            // 
+            // mơLongSơTaiVêToolStripMenuItem
+            // 
+            this.mơLongSơTaiVêToolStripMenuItem.Name = "mơLongSơTaiVêToolStripMenuItem";
+            this.mơLongSơTaiVêToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.mơLongSơTaiVêToolStripMenuItem.Text = "Mở lòng sớ tải về";
+            this.mơLongSơTaiVêToolStripMenuItem.Click += new System.EventHandler(this.mơLongSơTaiVêToolStripMenuItem_Click);
+            // 
+            // taiBôChưHanToolStripMenuItem
+            // 
+            this.taiBôChưHanToolStripMenuItem.Name = "taiBôChưHanToolStripMenuItem";
+            this.taiBôChưHanToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.taiBôChưHanToolStripMenuItem.Text = "Tải bộ chữ hán";
+            this.taiBôChưHanToolStripMenuItem.Click += new System.EventHandler(this.taiBôChưHanToolStripMenuItem_Click);
+            // 
+            // lâyDưLiêuMơiNhâtToolStripMenuItem
+            // 
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Name = "lâyDưLiêuMơiNhâtToolStripMenuItem";
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Text = "Lấy dữ liệu mới nhất";
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Click += new System.EventHandler(this.lâyDưLiêuMơiNhâtToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1011,6 +989,7 @@ namespace AppVietSo
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.bindingNavigator1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
@@ -1031,6 +1010,8 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1076,9 +1057,6 @@ namespace AppVietSo
         private ComboBox cbCanChuViet;
         private Label lbCanChuViet;
         private Button button3;
-        private Button button6;
-        private Button button9;
-        private Button button10;
         private CheckBox checkBox2;
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
@@ -1086,6 +1064,11 @@ namespace AppVietSo
         private ToolStripButton toolStripButton4;
         private Button button11;
         private CheckBox checkBox3;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem tiênTichToolStripMenuItem;
+        private ToolStripMenuItem mơLongSơTaiVêToolStripMenuItem;
+        private ToolStripMenuItem taiBôChưHanToolStripMenuItem;
+        private ToolStripMenuItem lâyDưLiêuMơiNhâtToolStripMenuItem;
     }
 }
 

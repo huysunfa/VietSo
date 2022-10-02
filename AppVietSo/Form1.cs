@@ -1620,44 +1620,16 @@ namespace AppVietSo
         private void button6_Click_1(object sender, EventArgs e)
         {
 
-            var listfilelocal = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data", "*.config").ToList();
-            foreach (var item in listfilelocal)
-            {
-                File.Delete(item);
-            }
-            MessageBox.Show("Đã update dữ liệu mới nhất");
         }
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            var frm = new frmDownloadFont();
-            frm.ShowDialog();
-            loadFont.loadListFontCN(true);
-            var check = loadFont.CheckFontNoInstall();
-
-            if (check)
-            {
-                Application.Exit();
-                System.Diagnostics.Process.Start(Application.ExecutablePath);
-                return;
-            }
+            
         }
 
         private void button10_Click_1(object sender, EventArgs e)
         {
-            var openFileDialog1 = new OpenFileDialog();
-            openFileDialog1.Filter = "HC file|*.hc";
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                var file = new FileInfo(openFileDialog1.FileName);
-                string destFileName = Util.getDataPath + "FileUpload/" + DateTime.Now.ToString("ddMM_HHmmss") + file.Name;
-
-                File.Copy(openFileDialog1.FileName, destFileName, true);
-                var file2 = new FileInfo(destFileName);
-
-                Util.NameLongSoHienTai = "/FileUpload/" + file2.Name;
-                ReLoad(sender, e);
-            }
+          
         }
 
         private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
@@ -1765,6 +1737,54 @@ namespace AppVietSo
         private void Form1_Layout(object sender, LayoutEventArgs e)
         {
            
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void mơLongSơTaiVêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var openFileDialog1 = new OpenFileDialog();
+            openFileDialog1.Filter = "HC file|*.hc";
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                var file = new FileInfo(openFileDialog1.FileName);
+                string destFileName = Util.getDataPath + "FileUpload/" + DateTime.Now.ToString("ddMM_HHmmss") + file.Name;
+
+                File.Copy(openFileDialog1.FileName, destFileName, true);
+                var file2 = new FileInfo(destFileName);
+
+                Util.NameLongSoHienTai = "/FileUpload/" + file2.Name;
+                ReLoad(sender, e);
+            }
+        }
+
+        private void taiBôChưHanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDownloadFont();
+            frm.ShowDialog();
+            loadFont.loadListFontCN(true);
+            var check = loadFont.CheckFontNoInstall();
+
+            if (check)
+            {
+                Application.Exit();
+                System.Diagnostics.Process.Start(Application.ExecutablePath);
+                return;
+            }
+        }
+
+        private void lâyDưLiêuMơiNhâtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            var listfilelocal = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data", "*.config").ToList();
+            foreach (var item in listfilelocal)
+            {
+                File.Delete(item);
+            }
+            MessageBox.Show("Đã update dữ liệu mới nhất");
         }
     }
 }

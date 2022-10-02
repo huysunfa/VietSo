@@ -37,13 +37,19 @@ namespace AppVietSo.Models
 
             try
             {
-                if (sheet.UsedRange.EndCol > 0)
+
+                sheet.Reset();
+                if (0 < row)
                 {
-                    sheet.DeleteColumns(0, sheet.UsedRange.EndCol);
-                    sheet.DeleteRows(0, sheet.UsedRange.EndRow);
+                    sheet.SetRows(row);
                 }
-                sheet.SetRows(row);
-                sheet.SetCols(col);
+                if (0 < col)
+                {
+                    sheet.SetCols(col);
+                }
+
+                //sheet.SetRows(row);
+                //sheet.SetCols(col);
                 sheet.SetWidthHeight(row, col);
             }
             catch (Exception ex)
