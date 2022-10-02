@@ -147,7 +147,6 @@ namespace AppVietSo
             this.txtMore.Name = "txtMore";
             this.txtMore.Size = new System.Drawing.Size(645, 150);
             this.txtMore.TabIndex = 0;
-            this.txtMore.Text = "Hợp đồng gia quyến đẳng cầu tài cầu lộc cầu bình an";
             // 
             // FrmThietLapTinChu
             // 

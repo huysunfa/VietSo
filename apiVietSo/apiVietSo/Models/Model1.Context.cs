@@ -32,5 +32,6 @@ namespace apiVietSo.Models
         public virtual DbSet<LoaiSo> LoaiSoes { get; set; }
         public virtual DbSet<ListLongSo_ChoDuyet> ListLongSo_ChoDuyet { get; set; }
         public virtual DbSet<LabelText> LabelTexts { get; set; }
+        public virtual DbSet<LogError> LogErrors { get; set; }
     }
 }

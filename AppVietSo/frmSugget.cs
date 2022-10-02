@@ -118,8 +118,7 @@ namespace AppVietSo
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
-            {
+           
                 var vn = dataGridView1.CurrentRow.Cells["vn"].Value + "";
                 var xx = "";
                 if (_key == "thang")
@@ -150,12 +149,7 @@ namespace AppVietSo
                 var chinese = CNDictionary.getCN(vn);
                 Util.strDataSugget = chinese + "_" + vn;
 
-            }
-            catch
-            {
-
-
-            }
+           
             this.Hide(); 
             this.Visible = false;
         }

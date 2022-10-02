@@ -28,15 +28,28 @@ namespace AppVietSo
             {
                 SetProcessDPIAware();
             }
-            //  Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
             CheckFolder();
 
-        //    return;
+            //    return;
+
+
+            var licence = CheckKey.CheckLogin();
+            if (licence == false)
+            {
+                Application.Exit();
+                return;
+            }
+
 
             SplashScreen.ShowSplashScreen();
-			Application.DoEvents();
+            Application.DoEvents();
+
+            SplashScreen.SetStatus("--- Kiểm tra bản quyền ---");
+
+
 
             SplashScreen.SetStatus("--- Kiểm tra bản cập nhật ---");
 
@@ -61,13 +74,6 @@ namespace AppVietSo
 
 
 
-            SplashScreen.SetStatus("--- Kiểm tra bản quyền ---");
-            var licence = CheckKey.CheckLogin();
-            if (licence == false)
-            {
-                Application.Exit();
-                return;
-            }
             SplashScreen.SetStatus("1. Tải dữ liệu font chữ hán");
 
             loadFont.loadListFontCN();
@@ -88,8 +94,8 @@ namespace AppVietSo
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
                 return;
             }
-            
-             Application.Run(new Form1()); 
+
+            Application.Run(new Form1());
             //Application.Run(new frmWellCome());
 
 
@@ -98,7 +104,7 @@ namespace AppVietSo
         public static void CheckFolder()
         {
             List<string> path = new List<string>();
-            Stg =  UserSetting.Load();
+            Stg = UserSetting.Load();
 
             path.Add(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/");
             path.Add(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload/");
@@ -109,11 +115,22 @@ namespace AppVietSo
                     Directory.CreateDirectory(directory);
                 }
             }
-        
+
         }
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
-             MessageBox.Show(LabelText.Get("Application_ThreadException") + " \n " + e.Exception.ToString());
+            var key = CheckKey.LocalKey();
+
+            var value = new Dictionary<string, string>();
+            value.Add("Key",key);
+            value.Add("Error", e.Exception.ToString());
+            CNDictionary.PostDataFromUrl(Util.mainURL + "/AppSync/SubmitError", value);
+
+            //MessageBox.Show(LabelText.Get("Application_ThreadException") + " \n " + e.Exception.ToString());
+
+            Application.Exit();
+            System.Diagnostics.Process.Start(Application.ExecutablePath);
+
         }
     }
 }

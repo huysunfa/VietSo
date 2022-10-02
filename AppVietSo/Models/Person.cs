@@ -131,6 +131,10 @@ namespace AppVietSo.Models
                            System.Globalization.CultureInfo.InvariantCulture,
                                 System.Globalization.DateTimeStyles.None,
                            out DateTime mat);
+                if (mat.Year<1800)
+                {
+                    mat = DateTime.Now;
+                }
                 return (mat.Year - this.NamSinh)+1;
             }
         }

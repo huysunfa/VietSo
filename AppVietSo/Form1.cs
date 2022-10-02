@@ -516,31 +516,31 @@ namespace AppVietSo
             //    RenderStyle(select.ToAddress());
             //    //SaveData();
             //};
-            reoGridControl1.WorksheetScrolled += (s, r1) =>
-            {
-                var tmp = (float)0.1234567890;
-                var fsca = 1 - ((Width - r1.Y) / Width);
-                if (r1.X == tmp && r1.Y == tmp)
-                {
-                    return;
-                }
-                if (r1.Y == 0)
-                {
-                    fsca = -(float)0.06;
-                }
-                fsca = fsca * 3;
-                worksheet.ScaleFactor = worksheet.ScaleFactor - fsca;
-                //  worksheet.SetScale(fsca);
-                if (r1.X != 0 || r1.Y != 0)
-                {
-                    reoGridControl1.ScrollCurrentWorksheet(tmp, tmp);
+            //reoGridControl1.WorksheetScrolled += (s, r1) =>
+            //{
+            //    var tmp = (float)0.1234567890;
+            //    var fsca = 1 - ((Width - r1.Y) / Width);
+            //    if (r1.X == tmp && r1.Y == tmp)
+            //    {
+            //        return;
+            //    }
+            //    if (r1.Y == 0)
+            //    {
+            //        fsca = -(float)0.06;
+            //    }
+            //    fsca = fsca * 3;
+            //    worksheet.ScaleFactor = worksheet.ScaleFactor - fsca;
+            //    //  worksheet.SetScale(fsca);
+            //    if (r1.X != 0 || r1.Y != 0)
+            //    {
+            //        reoGridControl1.ScrollCurrentWorksheet(tmp, tmp);
 
-                }
-                //var row = (SetCellDataAction)r1.Action;
-                //var select = new CellPosition() { Row = row.Row, Col = row.Col };
-                //RenderStyle(select.ToAddress());
-                ////SaveData();
-            };
+            //    }
+            //    //var row = (SetCellDataAction)r1.Action;
+            //    //var select = new CellPosition() { Row = row.Row, Col = row.Col };
+            //    //RenderStyle(select.ToAddress());
+            //    ////SaveData();
+            //};
 
 
             worksheet.BeforeSelectionRangeChange += (s, r1) =>
@@ -685,6 +685,13 @@ namespace AppVietSo
 
 
             }
+            if (input.Count()>20)
+            {
+                var line = (int)(input.Count() / 5);
+                line = line + 1;
+                dynamicPanel.Size = new System.Drawing.Size(400, line * 50);
+            }
+
             dynamicPanel.Visible = true;
 
         }
@@ -1337,6 +1344,7 @@ namespace AppVietSo
             if (string.IsNullOrEmpty(pos))
             {
                 sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
+                ChangeWidthSize(sheet, checkBox2.Checked);
             }
             for (int i = position.Row; i <= position.EndRow; i++)
             {

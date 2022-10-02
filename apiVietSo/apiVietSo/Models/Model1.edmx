@@ -66,6 +66,15 @@
           <Property Name="LoaiSoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="TenLoaiSo" Type="nvarchar" MaxLength="150" />
         </EntityType>
+        <EntityType Name="LogError">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="50" />
+          <Property Name="Error" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="StaffInfo">
           <Key>
             <PropertyRef Name="ID" />
@@ -98,6 +107,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <EntitySet Name="ListLongSo" EntityType="Self.ListLongSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ListLongSo_ChoDuyet" EntityType="Self.ListLongSo_ChoDuyet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LoaiSo" EntityType="Self.LoaiSo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LogError" EntityType="Self.LogError" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffInfo" EntityType="Self.StaffInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VnChinese" EntityType="Self.VnChinese" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -162,6 +172,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <EntitySet Name="LoaiSoes" EntityType="lts43636_vietsoModel.LoaiSo" />
           <EntitySet Name="ListLongSo_ChoDuyet" EntityType="lts43636_vietsoModel.ListLongSo_ChoDuyet" />
           <EntitySet Name="LabelTexts" EntityType="lts43636_vietsoModel.LabelText" />
+          <EntitySet Name="LogErrors" EntityType="lts43636_vietsoModel.LogError" />
         </EntityContainer>
         <EntityType Name="ListLongSo">
           <Key>
@@ -209,6 +220,15 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <Property Name="DataType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="KeySoft" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LogError">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Error" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -304,6 +324,16 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
                 <ScalarProperty Name="DataType" ColumnName="DataType" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Label" ColumnName="Label" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogErrors">
+            <EntityTypeMapping TypeName="lts43636_vietsoModel.LogError">
+              <MappingFragment StoreEntitySet="LogError">
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Error" ColumnName="Error" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

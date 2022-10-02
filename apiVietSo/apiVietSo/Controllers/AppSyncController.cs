@@ -176,6 +176,18 @@ namespace apiVietSo.Controllers
             }
 
         }
+        [HttpPost]
+           public ActionResult SubmitError(LogError item)
+        {
+            using (Models.vietsoEntities db = new vietsoEntities())
+            {
+                item.DateCreated = DateTime.Now;
+                db.LogErrors.Add(item);
+                db.SaveChanges();
+                return JsonMax("OK");
+            }
+
+        }
 
          public ActionResult GetListFont()
         {

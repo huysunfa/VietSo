@@ -640,7 +640,10 @@ namespace AppVietSo
                 ActiveData.Update("@hlinhmat", hlinhmat);
                 ActiveData.Update("@hlinhtho", hlinhtho);
                 ActiveData.Update("@giachu", gc.FullName);
-                ActiveData.Update("@tinchu", gc.FullName);
+                 ActiveData.Update("@tinchu", gc.FullName);
+                ActiveData.Update("@canchi", CNDictionary.getCN(gc.Menh)+"_"+gc.Menh);
+                ActiveData.Update("@sotuoi", gc.Tuoi);
+                ActiveData.Update("@tuoi",CNDictionary.getCN(CNDictionary.getChuNomYYYY(gc.Tuoi)) + "_"  + CNDictionary.getChuNomYYYY(gc.Tuoi));
 
                 Program.Stg.IsGiaChu = this.ckbChuSo.Checked;
 

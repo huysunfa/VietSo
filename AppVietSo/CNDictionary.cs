@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,9 +15,15 @@ namespace AppVietSo
     public class CNDictionary
     {
         public static Dictionary<string, List<string>> database;
-      //  public static Dictionary<string, List<string>> databaseChina;
+        //  public static Dictionary<string, List<string>> databaseChina;
         public static DataTable databaseNguCanh;
-
+        public static string getNam(string yyyy)
+        {
+            string str;
+            string str2;
+          Util.getCanChiVN(int.Parse(yyyy), out str, out str2);
+            return str + " " + str2;
+        }
         public static global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<VnChinese>> getDic()
         {
             string query = "Select * from VnChinese ORDER BY used DESC";
@@ -50,7 +57,7 @@ namespace AppVietSo
             if (File.Exists(Util.getDictionaryPath))
             {
                 database = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryPath)));
-              //  databaseChina = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryChinaPath)));
+                //  databaseChina = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryChinaPath)));
                 databaseNguCanh = JsonConvert.DeserializeObject<DataTable>(Security.Decrypt(System.IO.File.ReadAllText(Util.getDictionaryNguCanhPath)));
             }
             if (database == null || require)
@@ -58,7 +65,7 @@ namespace AppVietSo
                 #region database
                 database = new Dictionary<string, List<string>>();
                 //databaseChina = new Dictionary<string, List<string>>();
-              //  var json = getDataFromUrl(Util.mainURL + "/AppSync/GetDictionary");
+                //  var json = getDataFromUrl(Util.mainURL + "/AppSync/GetDictionary");
 
                 var data = getDic();// JsonConvert.DeserializeObject<DataTable>(json);
 
@@ -111,8 +118,26 @@ namespace AppVietSo
 
             }
         }
+        public static string PostDataFromUrl(string inputURL, Dictionary<string, string> values)
+        {
+            values = values ?? new Dictionary<string, string>();
+            //  var values = new Dictionary<string, string>
+            //{
+            //    { "thing1", "hello" },
+            //    { "thing2", "world" }
+            //};
 
-      
+            var content = new FormUrlEncodedContent(values);
+            using (HttpClient client = new HttpClient())
+            {
+                var response = client.PostAsync(inputURL, content).Result;
+
+                var responseString =   response.Content.ReadAsStringAsync().Result;
+                return responseString;
+            }
+        }
+
+
 
         public static string getCN(string vn)
         {
@@ -178,7 +203,7 @@ namespace AppVietSo
                 {
                     continue;
                 }
-                 
+
             }
             if (result == "")
             {

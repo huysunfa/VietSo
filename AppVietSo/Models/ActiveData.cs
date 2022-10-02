@@ -49,11 +49,20 @@ namespace AppVietSo.Models
                 result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
                 if (result.ContainsKey(b))
                 {
+                  
+
                     CN = (result[b]+"").Split('_').FirstOrDefault();
                     VN = (result[b]+"").Split('_').LastOrDefault();
                     if (b == "@tinchu")
                     {
-                         var txtMore = ActiveData.Get("@thietLapTinChuMoreText");
+                        if (!result.ContainsKey("@thietlaptinchuformtext"))
+                        {
+                       
+                            ActiveData.Update("@thietlaptinchuformtext", "$ten Bản Mệnh Sinh Ư $canchi Niên Hành Canh $tuoi Tuế Sao $sao Tinh Quân");
+
+                        }
+
+                        var txtMore = ActiveData.Get("@thietLapTinChuMoreText");
                         var txtForm = ActiveData.Get("@thietLapTinChuFormText") +" "+ txtMore;
 
                         //VN = VN;
