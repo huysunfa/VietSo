@@ -633,8 +633,7 @@ namespace AppVietSo
                 return;
             }
             dynamicPanel.Visible = false;
-
-            dynamicPanel.Location = new Point(MousePosition.X, MousePosition.Y);
+             dynamicPanel.Location = new Point(MousePosition.X, MousePosition.Y);
             for (int i = 0; i < dynamicPanel.Controls.Count; i++)
             {
                 dynamicPanel.Controls.RemoveAt(i);
@@ -1104,8 +1103,7 @@ namespace AppVietSo
             {
                 var frm = new frmNgachSo();
                 frm.ShowDialog();
-
-            }
+             }
             else
             {
 
@@ -1113,24 +1111,29 @@ namespace AppVietSo
                 frm.SetDesktopLocation(Cursor.Position.X, Cursor.Position.Y);
 
                 frm.ShowDialog();
-            }
-            if (Util.strDataSugget == oldData)
-            {
-                return;
-            }
-            if (string.IsNullOrEmpty(Util.strDataSugget))
-            {
-                Util.strDataSugget = t;
-            }
 
-            var item = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col];
-            var cell = item.Tag.getCellData();
-            cell.TextCN = Util.strDataSugget;
-            cell.TextVN = key;
-            item.Tag = cell;
+            }
+             ActiveData.Update(key, Util.strDataSugget);
+            addTextLongSo(key, t);
 
-            ActiveData.Update(key, Util.strDataSugget);
-        }
+            //if (Util.strDataSugget == oldData)
+            //{
+            //    return;
+            //}
+            //if (string.IsNullOrEmpty(Util.strDataSugget))
+            //{
+            //    Util.strDataSugget = t;
+            //}
+
+            //var item = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col];
+            //var cell = item.Tag.getCellData();
+            //cell.TextCN = Util.strDataSugget;
+            //cell.TextVN = key;
+            //item.Tag = cell;
+  
+            // ActiveData.Update(key, Util.strDataSugget);
+            //setText(position.Row, position.Col, cell.TextVN, cell.TextCN);
+         }
 
         public void LogOutput(string input)
         {
@@ -1247,16 +1250,19 @@ namespace AppVietSo
                     item.IsReadOnly = false;
                     // nếu bắt đầu bằng @ thì bôi màu
                     var cell = item.Tag.getCellData();
-
-                    var isVN = (String)item.DataFormatArgs == "TextVN" ? true : false;
-
-
                     if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
                     {
-                        ActiveData.Get(cell.Value + "", out string CN, out string VN);
 
-                        var txtview = isVN ? VN : CN;
-                        renderText(sheet, txtview, i, j);
+                        ActiveData.Get(cell.Value + "", out string CN, out string VN);
+                        if ((String)item.DataFormatArgs == "TextVN")
+                        {
+                            renderText(sheet, VN, i, j);
+                        }
+                        if ((String)item.DataFormatArgs == "TextCN")
+                        {
+                            renderText(sheet, CN, i, j);
+                            //    item.Data = CN;
+                        }
                     }
                     else
                     {
@@ -1266,7 +1272,7 @@ namespace AppVietSo
                             continue;
                         }
 
-                        item.Data = cell.Text(isVN);
+
                         switch (Status)
                         {
 
@@ -1275,10 +1281,13 @@ namespace AppVietSo
                             case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
 
                         }
-                        var txtview = isVN ? cell.TextVN : cell.TextCN;
-
-                        renderText(sheet, txtview, i, j);
-                        
+                        //switch (Status)
+                        //{
+                        //    case "TextVN":  renderText(sheet, cell.TextVN, i, j); break;
+                        //    case "TextCN":  renderText(sheet, cell.TextCN, i, j); break;
+                        //    default:
+                        //        break;
+                        //}
                     }
 
 
@@ -1313,7 +1322,10 @@ namespace AppVietSo
 
             reoGridControl1.ShowBolder(cbHideGridLine.Checked);
 
-            sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
+            if (string.IsNullOrEmpty(pos))
+            {
+                sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
+            }
             for (int i = position.Row; i <= position.EndRow; i++)
             {
                 for (int j = position.Col; j <= position.EndCol; j++)

@@ -66,11 +66,11 @@ namespace AppVietSo
 				this.rbtnPortrait.Checked = !this.rbtnLandscape.Checked;
 				for (int i = 0; i < PrinterSettings.InstalledPrinters.Count; i++)
 				{
-					Class5 @class = new Class5(PrinterSettings.InstalledPrinters[i], i);
-					this.cbxPrinter.Items.Add(@class);
-					if (@class.String_0 == new PrinterSettings().PrinterName)
+				var name = PrinterSettings.InstalledPrinters[i];
+ 					this.cbxPrinter.Items.Add(PrinterSettings.InstalledPrinters[i]);
+					if (name == new PrinterSettings().PrinterName)
 					{
-						this.cbxPrinter.SelectedItem = @class;
+						this.cbxPrinter.SelectedItem = name;
 					}
 				}
 				this.cbxPaperSize.DisplayMember = "PaperName";
@@ -182,7 +182,7 @@ namespace AppVietSo
 			 
 				if (this.cbxPrinter.SelectedItem != null)
 				{
-					this.worksheet_0.PrintSettings.PrinterName = ((Class5)this.cbxPrinter.SelectedItem).String_0;
+					this.worksheet_0.PrintSettings.PrinterName =  (string)this.cbxPrinter.SelectedItem;
 					this.printPreviewControl1.Document.PrinterSettings.PrinterName = this.worksheet_0.PrintSettings.PrinterName;
 					this.method_3();
 				}

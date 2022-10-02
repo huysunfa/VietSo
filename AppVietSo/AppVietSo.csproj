@@ -100,79 +100,117 @@
     <Compile Include="CNDictionary.cs" />
     <Compile Include="ConstData.cs" />
     <Compile Include="DanhSachTinChu.cs" />
-    <Compile Include="Form1.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs" />
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Form2.Designer.cs">
       <DependentUpon>Form2.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCreateNew.cs" />
+    <Compile Include="frmCreateNew.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmCreateNew.Designer.cs">
       <DependentUpon>frmCreateNew.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDanhSach.cs" />
+    <Compile Include="FrmDanhSach.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmDanhSach.Designer.cs">
       <DependentUpon>FrmDanhSach.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDanhSachTinChu.cs" />
+    <Compile Include="FrmDanhSachTinChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmDanhSachTinChu.Designer.cs">
       <DependentUpon>FrmDanhSachTinChu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmDownloadFont.cs" />
+    <Compile Include="frmDownloadFont.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmDownloadFont.Designer.cs">
       <DependentUpon>frmDownloadFont.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmDownloadLoaiSo.cs" />
+    <Compile Include="FrmDownloadLoaiSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmDownloadLoaiSo.Designer.cs">
       <DependentUpon>FrmDownloadLoaiSo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmEditChua.cs" />
+    <Compile Include="FrmEditChua.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmEditChua.Designer.cs">
       <DependentUpon>FrmEditChua.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmHeaderFooter.cs" />
+    <Compile Include="FrmHeaderFooter.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmHeaderFooter.Designer.cs">
       <DependentUpon>FrmHeaderFooter.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKeyInfo.cs" />
+    <Compile Include="frmKeyInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmKeyInfo.Designer.cs">
       <DependentUpon>frmKeyInfo.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmNgachSo.cs" />
+    <Compile Include="frmNgachSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmNgachSo.Designer.cs">
       <DependentUpon>frmNgachSo.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPersonSelectPrint.cs" />
+    <Compile Include="FrmPersonSelectPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmPersonSelectPrint.Designer.cs">
       <DependentUpon>FrmPersonSelectPrint.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPrintPreview.cs" />
+    <Compile Include="FrmPrintPreview.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmPrintPreview.Designer.cs">
       <DependentUpon>FrmPrintPreview.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmPrintProcess.cs" />
+    <Compile Include="FrmPrintProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmPrintProcess.Designer.cs">
       <DependentUpon>FrmPrintProcess.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmSetupPaper.cs" />
+    <Compile Include="FrmSetupPaper.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmSetupPaper.designer.cs">
       <DependentUpon>FrmSetupPaper.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmSugget.cs" />
+    <Compile Include="frmSugget.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSugget.Designer.cs">
       <DependentUpon>frmSugget.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmThietLapTinChu.cs" />
+    <Compile Include="FrmThietLapTinChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FrmThietLapTinChu.Designer.cs">
       <DependentUpon>FrmThietLapTinChu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmTinChu.cs" />
+    <Compile Include="frmTinChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmTinChu.Designer.cs">
       <DependentUpon>frmTinChu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmWellCome.cs" />
+    <Compile Include="frmWellCome.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmWellCome.Designer.cs">
       <DependentUpon>frmWellCome.cs</DependentUpon>
     </Compile>
@@ -224,14 +262,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="ReoGridExtentions.cs" />
-    <Compile Include="SplashScreen.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="SplashScreen.Designer.cs">
       <DependentUpon>SplashScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlModule.cs" />
     <Compile Include="Suggets.cs" />
-    <Compile Include="ToolTipCustom.cs" />
-    <Compile Include="UploadToServer.cs" />
+    <Compile Include="ToolTipCustom.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="UploadToServer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="UploadToServer.Designer.cs">
       <DependentUpon>UploadToServer.cs</DependentUpon>
     </Compile>
@@ -293,7 +337,7 @@
       <DependentUpon>frmWellCome.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -327,6 +371,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\end24" />
+    <None Include="Resources\end48" />
+    <None Include="Resources\home24" />
+    <None Include="Resources\home48" />
     <None Include="Resources\key" />
     <None Include="Resources\leftArrow" />
     <None Include="Resources\Paste" />
@@ -358,6 +406,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Capture.ico" />
+    <None Include="Resources\zoomout48.png" />
+    <None Include="Resources\zoomout24.png" />
+    <None Include="Resources\zoomin48.png" />
+    <None Include="Resources\zoomin24.png" />
+    <None Include="Resources\home48.png" />
+    <None Include="Resources\home24.png" />
+    <None Include="Resources\end48.png" />
+    <None Include="Resources\end24.png" />
     <None Include="Resources\bg.jpg" />
     <None Include="Resources\upArrow.png" />
     <None Include="Resources\undo.png" />

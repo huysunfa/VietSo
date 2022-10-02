@@ -154,7 +154,7 @@ namespace AppVietSo
 
         private void frmSugget_Deactivate(object sender, EventArgs e)
         {
-            this.Close();
+            //this.Close();
         }
     }
 }
