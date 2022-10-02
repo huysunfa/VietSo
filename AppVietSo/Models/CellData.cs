@@ -91,7 +91,7 @@ namespace AppVietSo.Models
 					}
 					nguCanh = "";
 					IL_6D:
-					return  LePhatBibe.getCN(textVN, nguCanh);
+					return  LePhat.getCN(textVN, nguCanh);
 				}
 				string textVNBMK = this.TextVNBMK;
 				object value2 = this.Value;
@@ -105,7 +105,7 @@ namespace AppVietSo.Models
 				}
 				nguCanh2 = "";
 				IL_94:
-				return LePhatBibe.getCN(textVNBMK, nguCanh2);
+				return LePhat.getCN(textVNBMK, nguCanh2);
 			}
 		}
 	}

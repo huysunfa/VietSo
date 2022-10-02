@@ -10,8 +10,47 @@ namespace AppVietSo.Models
     {
 		public static string CaiDatLongSo;
 		public static Dictionary<string, string> dicData;
+		private static global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<VnChinese>> dictionary_0;
+		public static string getCN(string vn, string nguCanh)
+		{
+			if (string.IsNullOrEmpty(vn))
+			{
+				return vn;
+			}
+			if (!string.IsNullOrEmpty(nguCanh))
+			{
+				nguCanh = nguCanh.Replace("$", "").Replace("@", "").Replace("*", "").ToLower();
+			}
+			if (! LePhat.getDic.ContainsKey(vn.ToLower()))
+			{
+				return vn;
+			}
+			global::System.Collections.Generic.List<VnChinese> list =  LePhat.getDic[vn.ToLower()];
+			if (list.Count > 0)
+			{
+				foreach (VnChinese vnChinese in list)
+				{
+					if (!string.IsNullOrEmpty(vnChinese.chinese) && !string.IsNullOrEmpty(vnChinese.nguCanh) && vnChinese.nguCanh == nguCanh)
+					{
+						return vnChinese.chinese;
+					}
+				}
+				return list[0].chinese;
+			}
+			return vn;
+		}
 
-
+		public static global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<VnChinese>> getDic
+		{
+			get
+			{
+				if (LePhat.dictionary_0 == null)
+				{
+					LePhat.dictionary_0 = VnChineseBO.getDic();
+				}
+				return LePhat.dictionary_0;
+			}
+		}
 		public static global::System.Collections.Generic.Queue<string> convert2Queue(string s)
 		{
 			s = global::System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(s.Trim().ToLower());

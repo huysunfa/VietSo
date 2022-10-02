@@ -50,12 +50,11 @@ namespace AppVietSo
 		// Token: 0x06000086 RID: 134 RVA: 0x000056C4 File Offset: 0x000038C4
 		private void FrmPrintPreview_Load(object sender, EventArgs e)
 		{
-			try
-			{
+			 
 				this.bool_0 = true;
 				this.splitContainer1.SplitterDistance = this.cbxPrinter.Width + this.cbxPrinter.Left * 2;
 				this.method_0();
-			//	this.cbxPageNumber.Checked = this.worksheet_0.PrintSettings.ShowPageNo;
+				this.cbxPageNumber.Checked =true;
 				PageMargins margins = this.worksheet_0.PrintSettings.Margins;
 				this.nmrTop.Value = (decimal)(margins.Top * 25.4f);
 				this.nmrBottom.Value = (decimal)(margins.Bottom * 25.4f);
@@ -84,15 +83,10 @@ namespace AppVietSo
 						this.cbxPaperSize.SelectedItem = paperSize;
 					}
 				}
-			}
-			catch (Exception exception_)
-			{
-				
-			}
-			finally
-			{
+		 
+			 
 				this.bool_0 = false;
-			}
+			 
 		}
 
 		// Token: 0x06000087 RID: 135 RVA: 0x00005948 File Offset: 0x00003B48
@@ -114,8 +108,7 @@ namespace AppVietSo
 		// Token: 0x06000089 RID: 137 RVA: 0x000059E0 File Offset: 0x00003BE0
 		private void btnPrint_Click(object sender, EventArgs e)
 		{
-			try
-			{
+		 
 				if (this.cbxPrinter.SelectedItem != null)
 				{
 					if (this.printPreviewControl1.Document.PrinterSettings.IsValid)
@@ -145,12 +138,7 @@ namespace AppVietSo
 					MessageBox.Show("Máy in không hợp lệ, xin kiểm tra lại máy in.");
 					}
 				}
-			}
-			catch (Exception exception_)
-			{
-				
-			}
-			finally
+		 
 			{
 			////	this.worksheet_0.PrintSettings.FromPage = 0;
 			//	this.worksheet_0.PrintSettings.ToPage = 0;
@@ -160,65 +148,45 @@ namespace AppVietSo
 		// Token: 0x0600008A RID: 138 RVA: 0x00005B64 File Offset: 0x00003D64
 		private void cbxZoom_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			try
-			{
+			 
 				double zoom = double.Parse(this.cbxZoom.Text.Replace("%", "")) / 100.0;
 				this.printPreviewControl1.Zoom = zoom;
-			}
-			catch (Exception exception_)
-			{
-				
-			}
+			 
 		}
 
 		// Token: 0x0600008B RID: 139 RVA: 0x00005BC0 File Offset: 0x00003DC0
 		private void btnZoomOut_Click(object sender, EventArgs e)
 		{
-			try
-			{
+			 
 				if (0 < this.cbxZoom.SelectedIndex)
 				{
 					this.cbxZoom.SelectedIndex = this.cbxZoom.SelectedIndex - 1;
 				}
-			}
-			catch (Exception exception_)
-			{
-				
-			}
+		 
 		}
 
 		// Token: 0x0600008C RID: 140 RVA: 0x00005C0C File Offset: 0x00003E0C
 		private void btnZoomIn_Click(object sender, EventArgs e)
 		{
-			try
-			{
+			 
 				if (this.cbxZoom.SelectedIndex < this.cbxZoom.Items.Count - 1)
 				{
 					this.cbxZoom.SelectedIndex = this.cbxZoom.SelectedIndex + 1;
 				}
-			}
-			catch (Exception exception_)
-			{
-				
-			}
+			 
 		}
 
 		// Token: 0x0600008D RID: 141 RVA: 0x00005C6C File Offset: 0x00003E6C
 		private void cbxPrinter_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			try
-			{
+			 
 				if (this.cbxPrinter.SelectedItem != null)
 				{
 					this.worksheet_0.PrintSettings.PrinterName = ((Class5)this.cbxPrinter.SelectedItem).String_0;
 					this.printPreviewControl1.Document.PrinterSettings.PrinterName = this.worksheet_0.PrintSettings.PrinterName;
 					this.method_3();
 				}
-			}
-			catch (Exception exception_)
-			{
-				
-			}
+		 
 		}
 
 		// Token: 0x0600008E RID: 142 RVA: 0x00005CF0 File Offset: 0x00003EF0
@@ -367,12 +335,12 @@ namespace AppVietSo
 			try
 			{
 				FrmHeaderFooter frmHeaderFooter = new FrmHeaderFooter();
-				//frmHeaderFooter.PageTitleLeft = this.worksheet_0.PrintSettings.PageTitleLeft;
-				//frmHeaderFooter.PageTitleCenter = this.worksheet_0.PrintSettings.PageTitleCenter;
-				//frmHeaderFooter.PageTitleRight = this.worksheet_0.PrintSettings.PageTitleRight;
-				//frmHeaderFooter.IsFooter = this.worksheet_0.PrintSettings.IsFooter;
-				if (frmHeaderFooter.ShowDialog(this) == DialogResult.OK)
-				{
+                //frmHeaderFooter.PageTitleLeft = this.worksheet_0.PrintSettings.PageTitleLeft;
+                //frmHeaderFooter.PageTitleCenter = this.worksheet_0.PrintSettings.PageTitleCenter;
+                //frmHeaderFooter.PageTitleRight = this.worksheet_0.PrintSettings.PageTitleRight;
+                //frmHeaderFooter.IsFooter = this.worksheet_0.PrintSettings.IsFooter;
+                if (frmHeaderFooter.ShowDialog(this) == DialogResult.OK)
+                {
 				//	this.worksheet_0.PrintSettings.PageTitleLeft = frmHeaderFooter.PageTitleLeft;
 				//	this.worksheet_0.PrintSettings.PageTitleCenter = frmHeaderFooter.PageTitleCenter;
 				//	this.worksheet_0.PrintSettings.PageTitleRight = frmHeaderFooter.PageTitleRight;

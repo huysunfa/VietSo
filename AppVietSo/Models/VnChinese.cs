@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace apiVietSo.Models
+namespace AppVietSo.Models
 {
     using System;
     using System.Collections.Generic;

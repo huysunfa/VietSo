@@ -462,7 +462,7 @@ namespace AppVietSo
             loadListFont();
 
             var worksheet = reoGridControl1.CurrentWorksheet;
-          
+
             worksheet.SelectionForwardDirection = SelectionForwardDirection.Down;
             worksheet.SetSettings(WorksheetSettings.View_ShowHeaders, false);
             worksheet.SetSettings(WorksheetSettings.Behavior_MouseWheelToScroll, false);
@@ -471,7 +471,7 @@ namespace AppVietSo
             worksheet.SetSettings(WorksheetSettings.Edit_AllowAdjustColumnWidth, false);
             worksheet.SetSettings(WorksheetSettings.Edit_AutoExpandRowHeight, false);
             worksheet.SetSettings(WorksheetSettings.Edit_AllowAdjustRowHeight, false);
-           
+
             worksheet.EnableSettings(WorksheetSettings.View_ShowPageBreaks);
 
             // add listview columns
@@ -489,7 +489,7 @@ namespace AppVietSo
                 var txt = r1.Text;
                 loaddd(txt);
             };
-            
+
             //worksheet.RowsHeightChanged += (s, r1) =>
             //{
             //    var sheet = reoGridControl1.CurrentWorksheet;
@@ -1247,19 +1247,16 @@ namespace AppVietSo
                     item.IsReadOnly = false;
                     // nếu bắt đầu bằng @ thì bôi màu
                     var cell = item.Tag.getCellData();
+
+                    var isVN = (String)item.DataFormatArgs == "TextVN" ? true : false;
+
+
                     if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
                     {
-
                         ActiveData.Get(cell.Value + "", out string CN, out string VN);
-                        if ((String)item.DataFormatArgs == "TextVN")
-                        {
-                            renderText(sheet, VN, i, j);
-                        }
-                        if ((String)item.DataFormatArgs == "TextCN")
-                        {
-                            renderText(sheet, CN, i, j);
-                            //    item.Data = CN;
-                        }
+
+                        var txtview = isVN ? VN : CN;
+                        renderText(sheet, txtview, i, j);
                     }
                     else
                     {
@@ -1269,7 +1266,7 @@ namespace AppVietSo
                             continue;
                         }
 
-
+                        item.Data = cell.Text(isVN);
                         switch (Status)
                         {
 
@@ -1278,13 +1275,10 @@ namespace AppVietSo
                             case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
 
                         }
-                        //switch (Status)
-                        //{
-                        //    case "TextVN":  renderText(sheet, cell.TextVN, i, j); break;
-                        //    case "TextCN":  renderText(sheet, cell.TextCN, i, j); break;
-                        //    default:
-                        //        break;
-                        //}
+                        var txtview = isVN ? cell.TextVN : cell.TextCN;
+
+                        renderText(sheet, txtview, i, j);
+                        
                     }
 
 
@@ -1311,14 +1305,15 @@ namespace AppVietSo
                 Flag = PlainStyleFlag.HorizontalAlign,
                 HAlign = ReoGridHorAlign.Center,
             });
-              sheet.SetRangeStyles(position, new WorksheetRangeStyle
+            sheet.SetRangeStyles(position, new WorksheetRangeStyle
             {
-                  Flag = PlainStyleFlag.Padding,
-                  Padding = new PaddingValue(0)
-              });
-         
+                Flag = PlainStyleFlag.Padding,
+                Padding = new PaddingValue(0)
+            });
+
             reoGridControl1.ShowBolder(cbHideGridLine.Checked);
 
+            sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
             for (int i = position.Row; i <= position.EndRow; i++)
             {
                 for (int j = position.Col; j <= position.EndCol; j++)
@@ -1335,8 +1330,7 @@ namespace AppVietSo
 
                 }
             }
-            sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
-         sheet.SetSettings(WorksheetSettings.View_ShowPageBreaks, checkBox3.Checked);
+            sheet.SetSettings(WorksheetSettings.View_ShowPageBreaks, checkBox3.Checked);
 
         }
         public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
@@ -1395,15 +1389,15 @@ namespace AppVietSo
             //{
             //    return;
             //}
-            for (int i = 1; i < sheet.RowCount; i ++)
+            for (int i = 1; i < sheet.RowCount; i++)
             {
                 sheet.RowHeaders[i].IsAutoHeight = check;
 
             }
-            for (int i = 1; i < sheet.ColumnCount;  i++)
+            for (int i = 1; i < sheet.ColumnCount; i++)
             {
-                 sheet.ColumnHeaders[i].IsAutoWidth = check;
-  
+                sheet.ColumnHeaders[i].IsAutoWidth = check;
+
             }
             if (check == false)
             {
@@ -1415,7 +1409,7 @@ namespace AppVietSo
             {
                 var oldW = sheet.GetColumnWidth(i);
                 sheet.AutoFitColumnWidth(i, check);
-                sheet.ColumnHeaders[i].IsAutoWidth= check;
+                sheet.ColumnHeaders[i].IsAutoWidth = check;
                 var newW = sheet.GetColumnWidth(i);
 
                 if (newW < oldW)
@@ -1426,7 +1420,7 @@ namespace AppVietSo
             }
             for (int i = 1; i < sheet.RowCount; i = i + 1)
             {
-                sheet.RowHeaders[i].IsAutoHeight= check;
+                sheet.RowHeaders[i].IsAutoHeight = check;
 
             }
         }
@@ -1700,7 +1694,7 @@ namespace AppVietSo
             //{
             //    Util.LongSoHienTai.PageHeight = w;
             //}
-         
+
             sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
                  new unvell.ReoGrid.RangeBorderStyle
                  {
@@ -1749,7 +1743,7 @@ namespace AppVietSo
             if (m_bLayoutCalled == false)
             {
                 m_bLayoutCalled = true;
-                 this.Activate();
+                this.Activate();
                 SplashScreen.CloseForm();
             }
         }

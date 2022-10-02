@@ -16,498 +16,536 @@ namespace AppVietSo
 		// Token: 0x0600009F RID: 159 RVA: 0x000061B8 File Offset: 0x000043B8
 		private void InitializeComponent()
 		{
-			this.splitContainer1 = new global::System.Windows.Forms.SplitContainer();
-			this.btnClose = new global::System.Windows.Forms.Button();
-			this.btnZoomIn = new global::System.Windows.Forms.PictureBox();
-			this.btnZoomOut = new global::System.Windows.Forms.PictureBox();
-			this.groupBox3 = new global::System.Windows.Forms.GroupBox();
-			this.btnCustomTitle = new global::System.Windows.Forms.Button();
-			this.btnLastPage = new global::System.Windows.Forms.PictureBox();
-			this.btnFirstPage = new global::System.Windows.Forms.PictureBox();
-			this.nmrPageTo = new global::System.Windows.Forms.NumericUpDown();
-			this.nmrPageFrom = new global::System.Windows.Forms.NumericUpDown();
-			this.label1 = new global::System.Windows.Forms.Label();
-			this.rbtnCurPage = new global::System.Windows.Forms.RadioButton();
-			this.rbtnPage = new global::System.Windows.Forms.RadioButton();
-			this.rbtnAllPage = new global::System.Windows.Forms.RadioButton();
-			this.nmrPage = new global::System.Windows.Forms.NumericUpDown();
-			this.totalPage = new global::System.Windows.Forms.Label();
-			this.cbxPageNumber = new global::System.Windows.Forms.CheckBox();
-			this.groupBox1 = new global::System.Windows.Forms.GroupBox();
-			this.rbtnLandscape = new global::System.Windows.Forms.RadioButton();
-			this.rbtnPortrait = new global::System.Windows.Forms.RadioButton();
-			this.label3 = new global::System.Windows.Forms.Label();
-			this.cbxPaperSize = new global::System.Windows.Forms.ComboBox();
-			this.label2 = new global::System.Windows.Forms.Label();
-			this.cbxPrinter = new global::System.Windows.Forms.ComboBox();
-			this.cbxZoom = new global::System.Windows.Forms.ComboBox();
-			this.groupBox2 = new global::System.Windows.Forms.GroupBox();
-			this.nmrLeft = new global::System.Windows.Forms.NumericUpDown();
-			this.label5 = new global::System.Windows.Forms.Label();
-			this.nmrRight = new global::System.Windows.Forms.NumericUpDown();
-			this.label4 = new global::System.Windows.Forms.Label();
-			this.label8 = new global::System.Windows.Forms.Label();
-			this.nmrBottom = new global::System.Windows.Forms.NumericUpDown();
-			this.label7 = new global::System.Windows.Forms.Label();
-			this.nmrTop = new global::System.Windows.Forms.NumericUpDown();
-			this.btnPrint = new global::System.Windows.Forms.Button();
-			this.printPreviewControl1 = new global::System.Windows.Forms.PrintPreviewControl();
-			((global::System.ComponentModel.ISupportInitialize)this.splitContainer1).BeginInit();
-			this.splitContainer1.Panel1.SuspendLayout();
-			this.splitContainer1.Panel2.SuspendLayout();
-			this.splitContainer1.SuspendLayout();
-			((global::System.ComponentModel.ISupportInitialize)this.btnZoomIn).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.btnZoomOut).BeginInit();
-			this.groupBox3.SuspendLayout();
-			((global::System.ComponentModel.ISupportInitialize)this.btnLastPage).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.btnFirstPage).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrPageTo).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrPageFrom).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrPage).BeginInit();
-			this.groupBox1.SuspendLayout();
-			this.groupBox2.SuspendLayout();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrLeft).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrRight).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrBottom).BeginInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrTop).BeginInit();
-			base.SuspendLayout();
-			this.splitContainer1.Dock = global::System.Windows.Forms.DockStyle.Fill;
-			this.splitContainer1.Location = new global::System.Drawing.Point(0, 0);
-			this.splitContainer1.Name = "splitContainer1";
-			this.splitContainer1.Panel1.AutoScroll = true;
-			this.splitContainer1.Panel1.Controls.Add(this.btnClose);
-			this.splitContainer1.Panel1.Controls.Add(this.btnZoomIn);
-			this.splitContainer1.Panel1.Controls.Add(this.btnZoomOut);
-			this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
-			this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
-			this.splitContainer1.Panel1.Controls.Add(this.label3);
-			this.splitContainer1.Panel1.Controls.Add(this.cbxPaperSize);
-			this.splitContainer1.Panel1.Controls.Add(this.label2);
-			this.splitContainer1.Panel1.Controls.Add(this.cbxPrinter);
-			this.splitContainer1.Panel1.Controls.Add(this.cbxZoom);
-			this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
-			this.splitContainer1.Panel1.Controls.Add(this.btnPrint);
-			this.splitContainer1.Panel2.Controls.Add(this.printPreviewControl1);
-			this.splitContainer1.Size = new global::System.Drawing.Size(0x552, 0x37C);
-			this.splitContainer1.SplitterDistance = 0x12E;
-			this.splitContainer1.TabIndex = 1;
-//			this.btnClose.Image = global::Class7.Bitmap_4;
-			this.btnClose.ImageAlign = global::System.Drawing.ContentAlignment.MiddleLeft;
-			this.btnClose.Location = new global::System.Drawing.Point(0xB, 0x16);
-			this.btnClose.Name = "btnClose";
-			this.btnClose.Size = new global::System.Drawing.Size(0x7B, 0x26);
-			this.btnClose.TabIndex = 0x2F;
-			this.btnClose.Text = "Quay lại";
-			this.btnClose.TextAlign = global::System.Drawing.ContentAlignment.MiddleRight;
-			this.btnClose.UseVisualStyleBackColor = true;
-			this.btnClose.Click += new global::System.EventHandler(this.btnClose_Click);
-			this.btnZoomIn.Cursor = global::System.Windows.Forms.Cursors.Hand;
-			//this.btnZoomIn.Image = global::Class7.Bitmap_6;
-			this.btnZoomIn.Location = new global::System.Drawing.Point(0xFE, 0x84);
-			this.btnZoomIn.Name = "btnZoomIn";
-			this.btnZoomIn.Size = new global::System.Drawing.Size(0x1E, 0x1E);
-			this.btnZoomIn.TabIndex = 0x2E;
-			this.btnZoomIn.TabStop = false;
-			this.btnZoomIn.Click += new global::System.EventHandler(this.btnZoomIn_Click);
-			this.btnZoomOut.Cursor = global::System.Windows.Forms.Cursors.Hand;
-		//	this.btnZoomOut.Image = global::Class7.Bitmap_8;
-			this.btnZoomOut.Location = new global::System.Drawing.Point(0x7F, 0x84);
-			this.btnZoomOut.Name = "btnZoomOut";
-			this.btnZoomOut.Size = new global::System.Drawing.Size(0x1E, 0x1E);
-			this.btnZoomOut.TabIndex = 0x2D;
-			this.btnZoomOut.TabStop = false;
-			this.btnZoomOut.Click += new global::System.EventHandler(this.btnZoomOut_Click);
-			this.groupBox3.Controls.Add(this.btnCustomTitle);
-			this.groupBox3.Controls.Add(this.btnLastPage);
-			this.groupBox3.Controls.Add(this.btnFirstPage);
-			this.groupBox3.Controls.Add(this.nmrPageTo);
-			this.groupBox3.Controls.Add(this.nmrPageFrom);
-			this.groupBox3.Controls.Add(this.label1);
-			this.groupBox3.Controls.Add(this.rbtnCurPage);
-			this.groupBox3.Controls.Add(this.rbtnPage);
-			this.groupBox3.Controls.Add(this.rbtnAllPage);
-			this.groupBox3.Controls.Add(this.nmrPage);
-			this.groupBox3.Controls.Add(this.totalPage);
-			this.groupBox3.Controls.Add(this.cbxPageNumber);
-			this.groupBox3.Location = new global::System.Drawing.Point(0xB, 0x249);
-			this.groupBox3.Name = "groupBox3";
-			this.groupBox3.Size = new global::System.Drawing.Size(0x111, 0x11D);
-			this.groupBox3.TabIndex = 0x2C;
-			this.groupBox3.TabStop = false;
-			this.groupBox3.Text = "Trang in";
-			this.btnCustomTitle.Location = new global::System.Drawing.Point(0xAA, 0xE8);
-			this.btnCustomTitle.Name = "btnCustomTitle";
-			this.btnCustomTitle.Size = new global::System.Drawing.Size(0x61, 0x1F);
-			this.btnCustomTitle.TabIndex = 0x33;
-			this.btnCustomTitle.Text = "Thay đổi";
-			this.btnCustomTitle.UseVisualStyleBackColor = true;
-			this.btnCustomTitle.Click += new global::System.EventHandler(this.btnCustomTitle_Click);
-			this.btnLastPage.Cursor = global::System.Windows.Forms.Cursors.Hand;
-			//this.btnLastPage.Image = global::Class7.Bitmap_0;
-			this.btnLastPage.Location = new global::System.Drawing.Point(0xB9, 0xAA);
-			this.btnLastPage.Name = "btnLastPage";
-			this.btnLastPage.Size = new global::System.Drawing.Size(0x1E, 0x1E);
-			this.btnLastPage.TabIndex = 0x32;
-			this.btnLastPage.TabStop = false;
-			this.btnLastPage.Click += new global::System.EventHandler(this.btnLastPage_Click);
-			this.btnFirstPage.Cursor = global::System.Windows.Forms.Cursors.Hand;
-			//this.btnFirstPage.Image = global::Class7.Bitmap_2;
-			this.btnFirstPage.Location = new global::System.Drawing.Point(0x12, 0xAA);
-			this.btnFirstPage.Name = "btnFirstPage";
-			this.btnFirstPage.Size = new global::System.Drawing.Size(0x1E, 0x1E);
-			this.btnFirstPage.TabIndex = 0x2F;
-			this.btnFirstPage.TabStop = false;
-			this.btnFirstPage.Click += new global::System.EventHandler(this.btnFirstPage_Click);
-			this.nmrPageTo.Enabled = false;
-			this.nmrPageTo.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 11f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			this.nmrPageTo.Location = new global::System.Drawing.Point(0xD6, 0x48);
-			this.nmrPageTo.Margin = new global::System.Windows.Forms.Padding(5);
-			global::System.Windows.Forms.NumericUpDown numericUpDown = this.nmrPageTo;
-			int[] array = new int[4];
-			array[0] = 1;
-		//	numericUpDown.Minimum = 1;
-			this.nmrPageTo.Name = "nmrPageTo";
-			this.nmrPageTo.Size = new global::System.Drawing.Size(0x32, 0x18);
-			this.nmrPageTo.TabIndex = 0x31;
-			global::System.Windows.Forms.NumericUpDown numericUpDown2 = this.nmrPageTo;
-			int[] array2 = new int[4];
-			array2[0] = 1;
-			//numericUpDown2.Value = new decimal(array2);
-			this.nmrPageTo.ValueChanged += new global::System.EventHandler(this.nmrPageTo_ValueChanged);
-			this.nmrPageFrom.Enabled = false;
-			this.nmrPageFrom.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 11f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			this.nmrPageFrom.Location = new global::System.Drawing.Point(0x7C, 0x48);
-			this.nmrPageFrom.Margin = new global::System.Windows.Forms.Padding(5);
-			global::System.Windows.Forms.NumericUpDown numericUpDown3 = this.nmrPageFrom;
-			int[] array3 = new int[4];
-			array3[0] = 1;
-		//	numericUpDown3.Minimum = new decimal(array3);
-			this.nmrPageFrom.Name = "nmrPageFrom";
-			this.nmrPageFrom.Size = new global::System.Drawing.Size(0x32, 0x18);
-			this.nmrPageFrom.TabIndex = 0x30;
-			global::System.Windows.Forms.NumericUpDown numericUpDown4 = this.nmrPageFrom;
-			int[] array4 = new int[4];
-			array4[0] = 1;
-		//	numericUpDown4.Value = new decimal(array4);
-			this.nmrPageFrom.ValueChanged += new global::System.EventHandler(this.nmrPageFrom_ValueChanged);
-			this.label1.AutoSize = true;
-			this.label1.Location = new global::System.Drawing.Point(0xB1, 0x4C);
-			this.label1.Name = "label1";
-			this.label1.Size = new global::System.Drawing.Size(0x20, 0x11);
-			this.label1.TabIndex = 0x2F;
-			this.label1.Text = "đến";
-			this.rbtnCurPage.AutoSize = true;
-			this.rbtnCurPage.Location = new global::System.Drawing.Point(0xF, 0x76);
-			this.rbtnCurPage.Name = "rbtnCurPage";
-			this.rbtnCurPage.Size = new global::System.Drawing.Size(0x72, 0x15);
-			this.rbtnCurPage.TabIndex = 0x2E;
-			this.rbtnCurPage.TabStop = true;
-			this.rbtnCurPage.Text = "Trang hiện tại";
-			this.rbtnCurPage.UseVisualStyleBackColor = true;
-			this.rbtnPage.AutoSize = true;
-			this.rbtnPage.Location = new global::System.Drawing.Point(0xF, 0x49);
-			this.rbtnPage.Name = "rbtnPage";
-			this.rbtnPage.Size = new global::System.Drawing.Size(0x50, 0x15);
-			this.rbtnPage.TabIndex = 1;
-			this.rbtnPage.TabStop = true;
-			this.rbtnPage.Text = "Từ trang";
-			this.rbtnPage.UseVisualStyleBackColor = true;
-			this.rbtnPage.CheckedChanged += new global::System.EventHandler(this.rbtnPage_CheckedChanged);
-			this.rbtnAllPage.AutoSize = true;
-			this.rbtnAllPage.Checked = true;
-			this.rbtnAllPage.Location = new global::System.Drawing.Point(0x12, 0x21);
-			this.rbtnAllPage.Name = "rbtnAllPage";
-			this.rbtnAllPage.Size = new global::System.Drawing.Size(0x81, 0x15);
-			this.rbtnAllPage.TabIndex = 0;
-			this.rbtnAllPage.TabStop = true;
-			this.rbtnAllPage.Text = "Tất cả các trang";
-			this.rbtnAllPage.UseVisualStyleBackColor = true;
-			this.nmrPage.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 11f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			this.nmrPage.Location = new global::System.Drawing.Point(0x38, 0xA9);
-			this.nmrPage.Margin = new global::System.Windows.Forms.Padding(5);
-			global::System.Windows.Forms.NumericUpDown numericUpDown5 = this.nmrPage;
-			int[] array5 = new int[4];
-			array5[0] = 1;
-		//	numericUpDown5.Minimum = new decimal(array5);
-			this.nmrPage.Name = "nmrPage";
-			this.nmrPage.Size = new global::System.Drawing.Size(0x32, 0x18);
-			this.nmrPage.TabIndex = 0x20;
-			global::System.Windows.Forms.NumericUpDown numericUpDown6 = this.nmrPage;
-			int[] array6 = new int[4];
-			array6[0] = 1;
-			//numericUpDown6.Value = new decimal(array6);
-			this.nmrPage.ValueChanged += new global::System.EventHandler(this.nmrPage_ValueChanged);
-			this.totalPage.AutoSize = true;
-			this.totalPage.Location = new global::System.Drawing.Point(0x6A, 0xAD);
-			this.totalPage.Name = "totalPage";
-			this.totalPage.Size = new global::System.Drawing.Size(0x39, 0x11);
-			this.totalPage.TabIndex = 0x23;
-			this.totalPage.Text = "/1 trang";
-			this.cbxPageNumber.Anchor = (global::System.Windows.Forms.AnchorStyles.Bottom | global::System.Windows.Forms.AnchorStyles.Left);
-			this.cbxPageNumber.AutoSize = true;
-			this.cbxPageNumber.Location = new global::System.Drawing.Point(0x10, 0xED);
-			this.cbxPageNumber.Name = "cbxPageNumber";
-			this.cbxPageNumber.Size = new global::System.Drawing.Size(0x7B, 0x15);
-			this.cbxPageNumber.TabIndex = 0x24;
-			this.cbxPageNumber.Text = "Header/ Footer";
-			this.cbxPageNumber.UseVisualStyleBackColor = true;
-			this.cbxPageNumber.CheckedChanged += new global::System.EventHandler(this.cbxPageNumber_CheckedChanged);
-			this.groupBox1.Controls.Add(this.rbtnLandscape);
-			this.groupBox1.Controls.Add(this.rbtnPortrait);
-			this.groupBox1.Location = new global::System.Drawing.Point(0xB, 0x1FB);
-			this.groupBox1.Name = "groupBox1";
-			this.groupBox1.Size = new global::System.Drawing.Size(0x111, 0x3C);
-			this.groupBox1.TabIndex = 0x2B;
-			this.groupBox1.TabStop = false;
-			this.groupBox1.Text = "Hướng giấy";
-			this.rbtnLandscape.AutoSize = true;
-			this.rbtnLandscape.Location = new global::System.Drawing.Point(0xB8, 0x1A);
-			this.rbtnLandscape.Name = "rbtnLandscape";
-			this.rbtnLandscape.Size = new global::System.Drawing.Size(0x44, 0x15);
-			this.rbtnLandscape.TabIndex = 1;
-			this.rbtnLandscape.TabStop = true;
-			this.rbtnLandscape.Text = "Ngang";
-			this.rbtnLandscape.UseVisualStyleBackColor = true;
-			this.rbtnLandscape.CheckedChanged += new global::System.EventHandler(this.rbtnPortrait_CheckedChanged);
-			this.rbtnPortrait.AutoSize = true;
-			this.rbtnPortrait.Location = new global::System.Drawing.Point(0x5F, 0x1A);
-			this.rbtnPortrait.Name = "rbtnPortrait";
-			this.rbtnPortrait.Size = new global::System.Drawing.Size(0x33, 0x15);
-			this.rbtnPortrait.TabIndex = 0;
-			this.rbtnPortrait.TabStop = true;
-			this.rbtnPortrait.Text = "Dọc";
-			this.rbtnPortrait.UseVisualStyleBackColor = true;
-			this.rbtnPortrait.CheckedChanged += new global::System.EventHandler(this.rbtnPortrait_CheckedChanged);
-			this.label3.AutoSize = true;
-			this.label3.ForeColor = global::System.Drawing.SystemColors.HotTrack;
-			this.label3.Location = new global::System.Drawing.Point(0xC, 0xF1);
-			this.label3.Name = "label3";
-			this.label3.Size = new global::System.Drawing.Size(0x37, 0x11);
-			this.label3.TabIndex = 0x2A;
-			this.label3.Text = "Cỡ giấy";
-			this.cbxPaperSize.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbxPaperSize.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 11f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			this.cbxPaperSize.FormattingEnabled = true;
-			this.cbxPaperSize.Items.AddRange(new object[]
-			{
-				"60%",
-				"70%",
-				"80%",
-				"90%",
-				"100%",
-				"110%",
-				"120%",
-				"130%",
-				"140%",
-				"150%"
-			});
-			this.cbxPaperSize.Location = new global::System.Drawing.Point(0xB, 0x10B);
-			this.cbxPaperSize.Name = "cbxPaperSize";
-			this.cbxPaperSize.Size = new global::System.Drawing.Size(0x111, 0x1A);
-			this.cbxPaperSize.TabIndex = 0x29;
-			this.cbxPaperSize.SelectedIndexChanged += new global::System.EventHandler(this.cbxPaperSize_SelectedIndexChanged);
-			this.label2.AutoSize = true;
-			this.label2.ForeColor = global::System.Drawing.SystemColors.HotTrack;
-			this.label2.Location = new global::System.Drawing.Point(0xC, 0xAC);
-			this.label2.Name = "label2";
-			this.label2.Size = new global::System.Drawing.Size(0x31, 0x11);
-			this.label2.TabIndex = 0x28;
-			this.label2.Text = "Máy in";
-			this.cbxPrinter.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbxPrinter.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 11f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			this.cbxPrinter.FormattingEnabled = true;
-			this.cbxPrinter.Location = new global::System.Drawing.Point(0xB, 0xC6);
-			this.cbxPrinter.Name = "cbxPrinter";
-			this.cbxPrinter.Size = new global::System.Drawing.Size(0x111, 0x1A);
-			this.cbxPrinter.TabIndex = 0x27;
-			this.cbxPrinter.SelectedIndexChanged += new global::System.EventHandler(this.cbxPrinter_SelectedIndexChanged);
-			this.cbxZoom.DropDownStyle = global::System.Windows.Forms.ComboBoxStyle.DropDownList;
-			this.cbxZoom.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 11f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			this.cbxZoom.FormattingEnabled = true;
-			this.cbxZoom.Items.AddRange(new object[]
-			{
-				"50%",
-				"60%",
-				"70%",
-				"80%",
-				"90%",
-				"100%",
-				"110%",
-				"120%",
-				"130%",
-				"140%",
-				"150%"
-			});
-			this.cbxZoom.Location = new global::System.Drawing.Point(0xA3, 0x82);
-			this.cbxZoom.Name = "cbxZoom";
-			this.cbxZoom.Size = new global::System.Drawing.Size(0x55, 0x1A);
-			this.cbxZoom.TabIndex = 0x21;
-			this.cbxZoom.SelectedIndexChanged += new global::System.EventHandler(this.cbxZoom_SelectedIndexChanged);
-			this.groupBox2.Controls.Add(this.nmrLeft);
-			this.groupBox2.Controls.Add(this.label5);
-			this.groupBox2.Controls.Add(this.nmrRight);
-			this.groupBox2.Controls.Add(this.label4);
-			this.groupBox2.Controls.Add(this.label8);
-			this.groupBox2.Controls.Add(this.nmrBottom);
-			this.groupBox2.Controls.Add(this.label7);
-			this.groupBox2.Controls.Add(this.nmrTop);
-			this.groupBox2.Location = new global::System.Drawing.Point(0xB, 0x144);
-			this.groupBox2.Name = "groupBox2";
-			this.groupBox2.Size = new global::System.Drawing.Size(0x111, 0xA3);
-			this.groupBox2.TabIndex = 0x1F;
-			this.groupBox2.TabStop = false;
-			this.groupBox2.Text = "Khoảng cách lề giấy (mm)";
-			this.nmrLeft.Location = new global::System.Drawing.Point(0x39, 0x4D);
-			this.nmrLeft.Margin = new global::System.Windows.Forms.Padding(5);
-			global::System.Windows.Forms.NumericUpDown numericUpDown7 = this.nmrLeft;
-			int[] array7 = new int[4];
-			array7[0] = 0x46;
-			//numericUpDown7.Maximum = new decimal(array7);
-			global::System.Windows.Forms.NumericUpDown numericUpDown8 = this.nmrLeft;
-			int[] array8 = new int[4];
-			array8[0] = 7;
-			//numericUpDown8.Minimum = new decimal(array8);
-			this.nmrLeft.Name = "nmrLeft";
-			this.nmrLeft.Size = new global::System.Drawing.Size(0x32, 0x17);
-			this.nmrLeft.TabIndex = 5;
-			global::System.Windows.Forms.NumericUpDown numericUpDown9 = this.nmrLeft;
-			int[] array9 = new int[4];
-			array9[0] = 7;
-			//numericUpDown9.Value = new decimal(array9);
-			this.nmrLeft.ValueChanged += new global::System.EventHandler(this.nmrTop_ValueChanged);
-			this.label5.AutoSize = true;
-			this.label5.Location = new global::System.Drawing.Point(0x49, 0x24);
-			this.label5.Name = "label5";
-			this.label5.Size = new global::System.Drawing.Size(0x26, 0x11);
-			this.label5.TabIndex = 6;
-			this.label5.Text = "Trên";
-			this.nmrRight.Location = new global::System.Drawing.Point(0xCE, 0x4D);
-			this.nmrRight.Margin = new global::System.Windows.Forms.Padding(5);
-			global::System.Windows.Forms.NumericUpDown numericUpDown10 = this.nmrRight;
-			int[] array10 = new int[4];
-			array10[0] = 0x46;
-		//numericUpDown10.Maximum = new decimal(array10);
-			global::System.Windows.Forms.NumericUpDown numericUpDown11 = this.nmrRight;
-			int[] array11 = new int[4];
-			array11[0] = 7;
-			//numericUpDown11.Minimum = new decimal(array11);
-			this.nmrRight.Name = "nmrRight";
-			this.nmrRight.Size = new global::System.Drawing.Size(0x32, 0x17);
-			this.nmrRight.TabIndex = 6;
-			global::System.Windows.Forms.NumericUpDown numericUpDown12 = this.nmrRight;
-			int[] array12 = new int[4];
-			array12[0] = 7;
-			//numericUpDown12.Value = new decimal(array12);
-			this.nmrRight.ValueChanged += new global::System.EventHandler(this.nmrTop_ValueChanged);
-			this.label4.AutoSize = true;
-			this.label4.Location = new global::System.Drawing.Point(0x48, 0x80);
-			this.label4.Name = "label4";
-			this.label4.Size = new global::System.Drawing.Size(0x25, 0x11);
-			this.label4.TabIndex = 8;
-			this.label4.Text = "Dưới";
-			this.label8.AutoSize = true;
-			this.label8.Location = new global::System.Drawing.Point(0xB, 0x4F);
-			this.label8.Name = "label8";
-			this.label8.Size = new global::System.Drawing.Size(0x21, 0x11);
-			this.label8.TabIndex = 0xA;
-			this.label8.Text = "Trái";
-			this.nmrBottom.Location = new global::System.Drawing.Point(0x7A, 0x7E);
-			this.nmrBottom.Margin = new global::System.Windows.Forms.Padding(5);
-			global::System.Windows.Forms.NumericUpDown numericUpDown13 = this.nmrBottom;
-			int[] array13 = new int[4];
-			array13[0] = 0x46;
-			//numericUpDown13.Maximum = new decimal(array13);
-			global::System.Windows.Forms.NumericUpDown numericUpDown14 = this.nmrBottom;
-			int[] array14 = new int[4];
-			array14[0] = 7;
-		//	numericUpDown14.Minimum = new decimal(array14);
-			this.nmrBottom.Name = "nmrBottom";
-			this.nmrBottom.Size = new global::System.Drawing.Size(0x32, 0x17);
-			this.nmrBottom.TabIndex = 4;
-			global::System.Windows.Forms.NumericUpDown numericUpDown15 = this.nmrBottom;
-			int[] array15 = new int[4];
-			array15[0] = 7;
-			//numericUpDown15.Value = new decimal(array15);
-			this.nmrBottom.ValueChanged += new global::System.EventHandler(this.nmrTop_ValueChanged);
-			this.label7.AutoSize = true;
-			this.label7.Location = new global::System.Drawing.Point(0x9C, 0x52);
-			this.label7.Name = "label7";
-			this.label7.Size = new global::System.Drawing.Size(0x24, 0x11);
-			this.label7.TabIndex = 0xC;
-			this.label7.Text = "Phải";
-			this.nmrTop.Location = new global::System.Drawing.Point(0x7A, 0x1F);
-			this.nmrTop.Margin = new global::System.Windows.Forms.Padding(5);
-			global::System.Windows.Forms.NumericUpDown numericUpDown16 = this.nmrTop;
-			int[] array16 = new int[4];
-			array16[0] = 0x46;
-			//numericUpDown16.Maximum = new decimal(array16);
-			global::System.Windows.Forms.NumericUpDown numericUpDown17 = this.nmrTop;
-			int[] array17 = new int[4];
-			array17[0] = 7;
-		//	numericUpDown17.Minimum = new decimal(array17);
-			this.nmrTop.Name = "nmrTop";
-			this.nmrTop.Size = new global::System.Drawing.Size(0x32, 0x17);
-			this.nmrTop.TabIndex = 3;
-			global::System.Windows.Forms.NumericUpDown numericUpDown18 = this.nmrTop;
-			int[] array18 = new int[4];
-			array18[0] = 7;
-			//numericUpDown18.Value = new decimal(array18);
-			this.nmrTop.ValueChanged += new global::System.EventHandler(this.nmrTop_ValueChanged);
-			this.btnPrint.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 10f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			//this.btnPrint.Image = global::Class7.Bitmap_5;
-			this.btnPrint.ImageAlign = global::System.Drawing.ContentAlignment.TopCenter;
-			this.btnPrint.Location = new global::System.Drawing.Point(0xC4, 0x16);
-			this.btnPrint.Margin = new global::System.Windows.Forms.Padding(2);
-			this.btnPrint.Name = "btnPrint";
-			this.btnPrint.Size = new global::System.Drawing.Size(0x58, 0x4C);
-			this.btnPrint.TabIndex = 0x1E;
-			this.btnPrint.Text = "Print";
-			this.btnPrint.TextAlign = global::System.Drawing.ContentAlignment.BottomCenter;
-			this.btnPrint.UseVisualStyleBackColor = true;
-			this.btnPrint.Click += new global::System.EventHandler(this.btnPrint_Click);
-			this.printPreviewControl1.Dock = global::System.Windows.Forms.DockStyle.Fill;
-			this.printPreviewControl1.Location = new global::System.Drawing.Point(0, 0);
-			this.printPreviewControl1.Name = "printPreviewControl1";
-			this.printPreviewControl1.Size = new global::System.Drawing.Size(0x420, 0x37C);
-			this.printPreviewControl1.TabIndex = 1;
-			base.AutoScaleDimensions = new global::System.Drawing.SizeF(8f, 16f);
-			base.AutoScaleMode = global::System.Windows.Forms.AutoScaleMode.Font;
-			base.ClientSize = new global::System.Drawing.Size(0x552, 0x37C);
-			base.Controls.Add(this.splitContainer1);
-			this.Font = new global::System.Drawing.Font("Microsoft Sans Serif", 10f, global::System.Drawing.FontStyle.Regular, global::System.Drawing.GraphicsUnit.Point, 0);
-			base.Margin = new global::System.Windows.Forms.Padding(4);
-			base.MinimizeBox = false;
-			base.Name = "FrmPrintPreview";
-			base.ShowIcon = false;
-			base.ShowInTaskbar = false;
-			base.StartPosition = global::System.Windows.Forms.FormStartPosition.CenterParent;
-			this.Text = "In ấn";
-			base.WindowState = global::System.Windows.Forms.FormWindowState.Maximized;
-			base.FormClosing += new global::System.Windows.Forms.FormClosingEventHandler(this.FrmPrintPreview_FormClosing);
-			base.Load += new global::System.EventHandler(this.FrmPrintPreview_Load);
-			this.splitContainer1.Panel1.ResumeLayout(false);
-			this.splitContainer1.Panel1.PerformLayout();
-			this.splitContainer1.Panel2.ResumeLayout(false);
-			((global::System.ComponentModel.ISupportInitialize)this.splitContainer1).EndInit();
-			this.splitContainer1.ResumeLayout(false);
-			((global::System.ComponentModel.ISupportInitialize)this.btnZoomIn).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.btnZoomOut).EndInit();
-			this.groupBox3.ResumeLayout(false);
-			this.groupBox3.PerformLayout();
-			((global::System.ComponentModel.ISupportInitialize)this.btnLastPage).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.btnFirstPage).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrPageTo).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrPageFrom).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrPage).EndInit();
-			this.groupBox1.ResumeLayout(false);
-			this.groupBox1.PerformLayout();
-			this.groupBox2.ResumeLayout(false);
-			this.groupBox2.PerformLayout();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrLeft).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrRight).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrBottom).EndInit();
-			((global::System.ComponentModel.ISupportInitialize)this.nmrTop).EndInit();
-			base.ResumeLayout(false);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnZoomIn = new System.Windows.Forms.PictureBox();
+            this.btnZoomOut = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.btnCustomTitle = new System.Windows.Forms.Button();
+            this.btnLastPage = new System.Windows.Forms.PictureBox();
+            this.btnFirstPage = new System.Windows.Forms.PictureBox();
+            this.nmrPageTo = new System.Windows.Forms.NumericUpDown();
+            this.nmrPageFrom = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.rbtnCurPage = new System.Windows.Forms.RadioButton();
+            this.rbtnPage = new System.Windows.Forms.RadioButton();
+            this.rbtnAllPage = new System.Windows.Forms.RadioButton();
+            this.nmrPage = new System.Windows.Forms.NumericUpDown();
+            this.totalPage = new System.Windows.Forms.Label();
+            this.cbxPageNumber = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rbtnLandscape = new System.Windows.Forms.RadioButton();
+            this.rbtnPortrait = new System.Windows.Forms.RadioButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbxPaperSize = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbxPrinter = new System.Windows.Forms.ComboBox();
+            this.cbxZoom = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nmrLeft = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
+            this.nmrRight = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.nmrBottom = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.nmrTop = new System.Windows.Forms.NumericUpDown();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).BeginInit();
+            this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLastPage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFirstPage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPageTo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPageFrom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPage)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).BeginInit();
+            this.SuspendLayout();
+            // 
+            // splitContainer1
+            // 
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.btnClose);
+            this.splitContainer1.Panel1.Controls.Add(this.btnZoomIn);
+            this.splitContainer1.Panel1.Controls.Add(this.btnZoomOut);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox3);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.cbxPaperSize);
+            this.splitContainer1.Panel1.Controls.Add(this.label2);
+            this.splitContainer1.Panel1.Controls.Add(this.cbxPrinter);
+            this.splitContainer1.Panel1.Controls.Add(this.cbxZoom);
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
+            this.splitContainer1.Panel1.Controls.Add(this.btnPrint);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.printPreviewControl1);
+            this.splitContainer1.Size = new System.Drawing.Size(1362, 892);
+            this.splitContainer1.SplitterDistance = 302;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // btnClose
+            // 
+            this.btnClose.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose.Location = new System.Drawing.Point(11, 22);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(123, 38);
+            this.btnClose.TabIndex = 47;
+            this.btnClose.Text = "Quay lại";
+            this.btnClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnZoomIn
+            // 
+            this.btnZoomIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnZoomIn.Location = new System.Drawing.Point(254, 132);
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.Size = new System.Drawing.Size(30, 30);
+            this.btnZoomIn.TabIndex = 46;
+            this.btnZoomIn.TabStop = false;
+            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
+            // 
+            // btnZoomOut
+            // 
+            this.btnZoomOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnZoomOut.Location = new System.Drawing.Point(127, 132);
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.Size = new System.Drawing.Size(30, 30);
+            this.btnZoomOut.TabIndex = 45;
+            this.btnZoomOut.TabStop = false;
+            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.btnCustomTitle);
+            this.groupBox3.Controls.Add(this.btnLastPage);
+            this.groupBox3.Controls.Add(this.btnFirstPage);
+            this.groupBox3.Controls.Add(this.nmrPageTo);
+            this.groupBox3.Controls.Add(this.nmrPageFrom);
+            this.groupBox3.Controls.Add(this.label1);
+            this.groupBox3.Controls.Add(this.rbtnCurPage);
+            this.groupBox3.Controls.Add(this.rbtnPage);
+            this.groupBox3.Controls.Add(this.rbtnAllPage);
+            this.groupBox3.Controls.Add(this.nmrPage);
+            this.groupBox3.Controls.Add(this.totalPage);
+            this.groupBox3.Controls.Add(this.cbxPageNumber);
+            this.groupBox3.Location = new System.Drawing.Point(11, 585);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(273, 285);
+            this.groupBox3.TabIndex = 44;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Trang in";
+            // 
+            // btnCustomTitle
+            // 
+            this.btnCustomTitle.Location = new System.Drawing.Point(170, 232);
+            this.btnCustomTitle.Name = "btnCustomTitle";
+            this.btnCustomTitle.Size = new System.Drawing.Size(97, 31);
+            this.btnCustomTitle.TabIndex = 51;
+            this.btnCustomTitle.Text = "Thay đổi";
+            this.btnCustomTitle.UseVisualStyleBackColor = true;
+            this.btnCustomTitle.Click += new System.EventHandler(this.btnCustomTitle_Click);
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLastPage.Location = new System.Drawing.Point(185, 170);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(30, 30);
+            this.btnLastPage.TabIndex = 50;
+            this.btnLastPage.TabStop = false;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFirstPage.Location = new System.Drawing.Point(18, 170);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
+            this.btnFirstPage.TabIndex = 47;
+            this.btnFirstPage.TabStop = false;
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
+            // 
+            // nmrPageTo
+            // 
+            this.nmrPageTo.Enabled = false;
+            this.nmrPageTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nmrPageTo.Location = new System.Drawing.Point(214, 72);
+            this.nmrPageTo.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrPageTo.Name = "nmrPageTo";
+            this.nmrPageTo.Size = new System.Drawing.Size(50, 28);
+            this.nmrPageTo.TabIndex = 49;
+            this.nmrPageTo.ValueChanged += new System.EventHandler(this.nmrPageTo_ValueChanged);
+            // 
+            // nmrPageFrom
+            // 
+            this.nmrPageFrom.Enabled = false;
+            this.nmrPageFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nmrPageFrom.Location = new System.Drawing.Point(124, 72);
+            this.nmrPageFrom.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrPageFrom.Name = "nmrPageFrom";
+            this.nmrPageFrom.Size = new System.Drawing.Size(50, 28);
+            this.nmrPageFrom.TabIndex = 48;
+            this.nmrPageFrom.ValueChanged += new System.EventHandler(this.nmrPageFrom_ValueChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(177, 76);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 20);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "đến";
+            // 
+            // rbtnCurPage
+            // 
+            this.rbtnCurPage.AutoSize = true;
+            this.rbtnCurPage.Location = new System.Drawing.Point(15, 118);
+            this.rbtnCurPage.Name = "rbtnCurPage";
+            this.rbtnCurPage.Size = new System.Drawing.Size(132, 24);
+            this.rbtnCurPage.TabIndex = 46;
+            this.rbtnCurPage.TabStop = true;
+            this.rbtnCurPage.Text = "Trang hiện tại";
+            this.rbtnCurPage.UseVisualStyleBackColor = true;
+            // 
+            // rbtnPage
+            // 
+            this.rbtnPage.AutoSize = true;
+            this.rbtnPage.Location = new System.Drawing.Point(15, 73);
+            this.rbtnPage.Name = "rbtnPage";
+            this.rbtnPage.Size = new System.Drawing.Size(92, 24);
+            this.rbtnPage.TabIndex = 1;
+            this.rbtnPage.TabStop = true;
+            this.rbtnPage.Text = "Từ trang";
+            this.rbtnPage.UseVisualStyleBackColor = true;
+            this.rbtnPage.CheckedChanged += new System.EventHandler(this.rbtnPage_CheckedChanged);
+            // 
+            // rbtnAllPage
+            // 
+            this.rbtnAllPage.AutoSize = true;
+            this.rbtnAllPage.Checked = true;
+            this.rbtnAllPage.Location = new System.Drawing.Point(18, 33);
+            this.rbtnAllPage.Name = "rbtnAllPage";
+            this.rbtnAllPage.Size = new System.Drawing.Size(152, 24);
+            this.rbtnAllPage.TabIndex = 0;
+            this.rbtnAllPage.TabStop = true;
+            this.rbtnAllPage.Text = "Tất cả các trang";
+            this.rbtnAllPage.UseVisualStyleBackColor = true;
+            // 
+            // nmrPage
+            // 
+            this.nmrPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nmrPage.Location = new System.Drawing.Point(56, 169);
+            this.nmrPage.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrPage.Name = "nmrPage";
+            this.nmrPage.Size = new System.Drawing.Size(50, 28);
+            this.nmrPage.TabIndex = 32;
+            this.nmrPage.ValueChanged += new System.EventHandler(this.nmrPage_ValueChanged);
+            // 
+            // totalPage
+            // 
+            this.totalPage.AutoSize = true;
+            this.totalPage.Location = new System.Drawing.Point(106, 173);
+            this.totalPage.Name = "totalPage";
+            this.totalPage.Size = new System.Drawing.Size(66, 20);
+            this.totalPage.TabIndex = 35;
+            this.totalPage.Text = "/1 trang";
+            // 
+            // cbxPageNumber
+            // 
+            this.cbxPageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbxPageNumber.AutoSize = true;
+            this.cbxPageNumber.Location = new System.Drawing.Point(16, 234);
+            this.cbxPageNumber.Name = "cbxPageNumber";
+            this.cbxPageNumber.Size = new System.Drawing.Size(144, 24);
+            this.cbxPageNumber.TabIndex = 36;
+            this.cbxPageNumber.Text = "Header/ Footer";
+            this.cbxPageNumber.UseVisualStyleBackColor = true;
+            this.cbxPageNumber.CheckedChanged += new System.EventHandler(this.cbxPageNumber_CheckedChanged);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rbtnLandscape);
+            this.groupBox1.Controls.Add(this.rbtnPortrait);
+            this.groupBox1.Location = new System.Drawing.Point(11, 507);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(273, 60);
+            this.groupBox1.TabIndex = 43;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Hướng giấy";
+            // 
+            // rbtnLandscape
+            // 
+            this.rbtnLandscape.AutoSize = true;
+            this.rbtnLandscape.Location = new System.Drawing.Point(184, 26);
+            this.rbtnLandscape.Name = "rbtnLandscape";
+            this.rbtnLandscape.Size = new System.Drawing.Size(78, 24);
+            this.rbtnLandscape.TabIndex = 1;
+            this.rbtnLandscape.TabStop = true;
+            this.rbtnLandscape.Text = "Ngang";
+            this.rbtnLandscape.UseVisualStyleBackColor = true;
+            this.rbtnLandscape.CheckedChanged += new System.EventHandler(this.rbtnPortrait_CheckedChanged);
+            // 
+            // rbtnPortrait
+            // 
+            this.rbtnPortrait.AutoSize = true;
+            this.rbtnPortrait.Location = new System.Drawing.Point(95, 26);
+            this.rbtnPortrait.Name = "rbtnPortrait";
+            this.rbtnPortrait.Size = new System.Drawing.Size(61, 24);
+            this.rbtnPortrait.TabIndex = 0;
+            this.rbtnPortrait.TabStop = true;
+            this.rbtnPortrait.Text = "Dọc";
+            this.rbtnPortrait.UseVisualStyleBackColor = true;
+            this.rbtnPortrait.CheckedChanged += new System.EventHandler(this.rbtnPortrait_CheckedChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label3.Location = new System.Drawing.Point(12, 241);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(65, 20);
+            this.label3.TabIndex = 42;
+            this.label3.Text = "Cỡ giấy";
+            // 
+            // cbxPaperSize
+            // 
+            this.cbxPaperSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPaperSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxPaperSize.FormattingEnabled = true;
+            this.cbxPaperSize.Items.AddRange(new object[] {
+            "60%",
+            "70%",
+            "80%",
+            "90%",
+            "100%",
+            "110%",
+            "120%",
+            "130%",
+            "140%",
+            "150%"});
+            this.cbxPaperSize.Location = new System.Drawing.Point(11, 267);
+            this.cbxPaperSize.Name = "cbxPaperSize";
+            this.cbxPaperSize.Size = new System.Drawing.Size(273, 30);
+            this.cbxPaperSize.TabIndex = 41;
+            this.cbxPaperSize.SelectedIndexChanged += new System.EventHandler(this.cbxPaperSize_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label2.Location = new System.Drawing.Point(12, 172);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(58, 20);
+            this.label2.TabIndex = 40;
+            this.label2.Text = "Máy in";
+            // 
+            // cbxPrinter
+            // 
+            this.cbxPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxPrinter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxPrinter.FormattingEnabled = true;
+            this.cbxPrinter.Location = new System.Drawing.Point(11, 198);
+            this.cbxPrinter.Name = "cbxPrinter";
+            this.cbxPrinter.Size = new System.Drawing.Size(273, 30);
+            this.cbxPrinter.TabIndex = 39;
+            this.cbxPrinter.SelectedIndexChanged += new System.EventHandler(this.cbxPrinter_SelectedIndexChanged);
+            // 
+            // cbxZoom
+            // 
+            this.cbxZoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbxZoom.FormattingEnabled = true;
+            this.cbxZoom.Items.AddRange(new object[] {
+            "50%",
+            "60%",
+            "70%",
+            "80%",
+            "90%",
+            "100%",
+            "110%",
+            "120%",
+            "130%",
+            "140%",
+            "150%"});
+            this.cbxZoom.Location = new System.Drawing.Point(163, 130);
+            this.cbxZoom.Name = "cbxZoom";
+            this.cbxZoom.Size = new System.Drawing.Size(85, 30);
+            this.cbxZoom.TabIndex = 33;
+            this.cbxZoom.SelectedIndexChanged += new System.EventHandler(this.cbxZoom_SelectedIndexChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.nmrLeft);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.nmrRight);
+            this.groupBox2.Controls.Add(this.label4);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.nmrBottom);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.nmrTop);
+            this.groupBox2.Location = new System.Drawing.Point(11, 324);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(273, 163);
+            this.groupBox2.TabIndex = 31;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Khoảng cách lề giấy (mm)";
+            // 
+            // nmrLeft
+            // 
+            this.nmrLeft.Location = new System.Drawing.Point(57, 77);
+            this.nmrLeft.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrLeft.Name = "nmrLeft";
+            this.nmrLeft.Size = new System.Drawing.Size(50, 26);
+            this.nmrLeft.TabIndex = 5;
+            this.nmrLeft.ValueChanged += new System.EventHandler(this.nmrTop_ValueChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(73, 36);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 20);
+            this.label5.TabIndex = 6;
+            this.label5.Text = "Trên";
+            // 
+            // nmrRight
+            // 
+            this.nmrRight.Location = new System.Drawing.Point(206, 77);
+            this.nmrRight.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrRight.Name = "nmrRight";
+            this.nmrRight.Size = new System.Drawing.Size(50, 26);
+            this.nmrRight.TabIndex = 6;
+            this.nmrRight.ValueChanged += new System.EventHandler(this.nmrTop_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(72, 128);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(44, 20);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Dưới";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(11, 79);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(38, 20);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Trái";
+            // 
+            // nmrBottom
+            // 
+            this.nmrBottom.Location = new System.Drawing.Point(122, 126);
+            this.nmrBottom.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrBottom.Name = "nmrBottom";
+            this.nmrBottom.Size = new System.Drawing.Size(50, 26);
+            this.nmrBottom.TabIndex = 4;
+            this.nmrBottom.ValueChanged += new System.EventHandler(this.nmrTop_ValueChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(156, 82);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(42, 20);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Phải";
+            // 
+            // nmrTop
+            // 
+            this.nmrTop.Location = new System.Drawing.Point(122, 31);
+            this.nmrTop.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrTop.Name = "nmrTop";
+            this.nmrTop.Size = new System.Drawing.Size(50, 26);
+            this.nmrTop.TabIndex = 3;
+            this.nmrTop.ValueChanged += new System.EventHandler(this.nmrTop_ValueChanged);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.BackgroundImage = global::AppVietSo.Properties.Resources.print;
+            this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnPrint.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnPrint.Location = new System.Drawing.Point(196, 22);
+            this.btnPrint.Margin = new System.Windows.Forms.Padding(2);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(88, 76);
+            this.btnPrint.TabIndex = 30;
+            this.btnPrint.Text = "Print";
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // printPreviewControl1
+            // 
+            this.printPreviewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.printPreviewControl1.Location = new System.Drawing.Point(0, 0);
+            this.printPreviewControl1.Name = "printPreviewControl1";
+            this.printPreviewControl1.Size = new System.Drawing.Size(1056, 892);
+            this.printPreviewControl1.TabIndex = 1;
+            // 
+            // FrmPrintPreview
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(1362, 892);
+            this.Controls.Add(this.splitContainer1);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimizeBox = false;
+            this.Name = "FrmPrintPreview";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "In ấn";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrintPreview_FormClosing);
+            this.Load += new System.EventHandler(this.FrmPrintPreview_Load);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLastPage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFirstPage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPageTo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPageFrom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrPage)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).EndInit();
+            this.ResumeLayout(false);
+
 		}
 
 		// Token: 0x04000046 RID: 70

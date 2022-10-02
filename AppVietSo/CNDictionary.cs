@@ -111,6 +111,9 @@ namespace AppVietSo
 
             }
         }
+
+      
+
         public static string getCN(string vn)
         {
             if (string.IsNullOrEmpty(vn))
