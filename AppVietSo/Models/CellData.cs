@@ -34,7 +34,79 @@ namespace AppVietSo.Models
         public int fstyleVN { get; set; }
         public string TextCN { get; set; }
         public string alignVN { get; set; }
-
-
-    }
+		public CellData Clone()
+		{
+			return new  CellData
+			{
+				Value = this.Value,
+				TextVN = this.TextVN,
+				TextCN = this.TextCN,
+				TextVNBMK = this.TextVNBMK,
+				TextCNBMK = this.TextCNBMK,
+				Rct = this.Rct,
+				fnameCN = this.fnameCN,
+				fsizeCN = this.fsizeCN,
+				fstyleCN = this.fstyleCN,
+				fnameVN = this.fnameVN,
+				fsizeVN = this.fsizeVN,
+				fstyleVN = this.fstyleVN,
+				alignVN = this.alignVN,
+				RowNo = this.RowNo,
+				ColNo = this.ColNo,
+				RowNoOrg = this.RowNoOrg,
+				ColNoOrg = this.ColNoOrg
+			};
+		}
+		public string Text(bool isVN)
+		{
+			if (isVN)
+			{
+				if (!string.IsNullOrEmpty(this.TextVNBMK))
+				{
+					return this.TextVNBMK;
+				}
+				return this.TextVN;
+			}
+			else
+			{
+				if (!string.IsNullOrEmpty(this.TextCNBMK))
+				{
+					return this.TextCNBMK;
+				}
+				if (!string.IsNullOrEmpty(this.TextCN))
+				{
+					return this.TextCN;
+				}
+				if (string.IsNullOrEmpty(this.TextVNBMK))
+				{
+					string textVN = this.TextVN;
+					object value = this.Value;
+					string nguCanh;
+					if (value != null)
+					{
+						if ((nguCanh = value.ToString()) != null)
+						{
+							goto IL_6D;
+						}
+					}
+					nguCanh = "";
+					IL_6D:
+					return  LePhatBibe.getCN(textVN, nguCanh);
+				}
+				string textVNBMK = this.TextVNBMK;
+				object value2 = this.Value;
+				string nguCanh2;
+				if (value2 != null)
+				{
+					if ((nguCanh2 = value2.ToString()) != null)
+					{
+						goto IL_94;
+					}
+				}
+				nguCanh2 = "";
+				IL_94:
+				return LePhatBibe.getCN(textVNBMK, nguCanh2);
+			}
+		}
+	}
 }
