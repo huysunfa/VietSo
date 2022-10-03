@@ -262,6 +262,7 @@ namespace AppVietSo
             this.dgvPerson.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPerson.Size = new System.Drawing.Size(804, 558);
             this.dgvPerson.TabIndex = 3;
+            this.dgvPerson.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPerson_CellContentClick);
             // 
             // ID
             // 

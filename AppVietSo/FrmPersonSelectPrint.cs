@@ -357,5 +357,19 @@ namespace AppVietSo
 
 		// Token: 0x0400002E RID: 46
 		private int lastFindIndex;
+
+        private void dgvPerson_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        
+		{
+
+            if (e.ColumnIndex==1)
+            {
+				var val = this.dgvPerson.Rows[e.RowIndex].Cells["Checked"].Value;
+				val = val ?? false;
+				   var bo =(bool)val;
+				this.dgvPerson.Rows[e.RowIndex].Cells["Checked"].Value = !bo;
+			}
+
+		}
 	}
 }
