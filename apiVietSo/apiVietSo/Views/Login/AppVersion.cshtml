@@ -1,0 +1,8 @@
+﻿@model  List<string> 
+<h2 style="font-family:Calibri">Tải phần mềm :</h2>
+@foreach (var item in Model)
+{
+    var name = item.Split('\\').LastOrDefault();
+    var url = @"/AppVersion/"+name;
+    <h4><a href="@url">@name</a></h4>
+}

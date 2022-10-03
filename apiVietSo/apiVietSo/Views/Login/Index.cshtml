@@ -8,10 +8,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link href="~/Content/lib/LTE/adminlte.min.css" rel="stylesheet" />
     <link href="~/Content/lib/font-awesome/css/all.min.css" rel="stylesheet" />
-
+    <style>
+        .login-page, .register-page
+        {
+            align-items:start
+        }
+    </style>
 </head>
-<body class="hold-transition login-page">
-    <div class="login-box">
+<body class="hold-transition login-page row">
+    <div class="login-box col-md-3">
         <!-- /.login-logo -->
         <div class="card card-outline card-primary">
             <div class="card-header text-center">
@@ -60,6 +65,11 @@
         </div>
         <!-- /.card -->
     </div>
+    <div class="col-md-9">
 
+        @{ 
+            Html.RenderAction("AppVersion");
+        }
+    </div>
 </body>
 </html>

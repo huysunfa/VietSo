@@ -2,6 +2,7 @@
 using apiVietSo.Settings;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -20,6 +21,15 @@ namespace apiVietSo.Controllers
             }
 
             return PartialView();
+        }  
+        
+        public ActionResult AppVersion()
+        {
+            string path = System.Web.HttpContext.Current.Server.MapPath("~") + @"\AppVersion";
+            var fileArray = Directory.GetFiles(path, "*", SearchOption.AllDirectories).Select(z => z.ToUpper()).ToList();
+ 
+            return PartialView(fileArray);
+
         }
 
 
