@@ -33,5 +33,11 @@ namespace AppVietSo
                                      });
             }
         }
+        
+        public static void PreView(this ReoGridControl reoGrid ,object sender= null, EventArgs e=null)
+        {
+      //      LoadDataToDataGrid(reoGrid);
+
+        }
     }
 }

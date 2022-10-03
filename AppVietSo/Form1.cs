@@ -455,7 +455,7 @@ namespace AppVietSo
 
         #endregion
 
-      
+
         private void Form1_Load(object sender, EventArgs e)
         {
             if (m_bLayoutCalled == false)
@@ -645,7 +645,7 @@ namespace AppVietSo
                 return;
             }
             dynamicPanel.Visible = false;
-             dynamicPanel.Location = new Point(MousePosition.X, MousePosition.Y);
+            dynamicPanel.Location = new Point(MousePosition.X, MousePosition.Y);
             for (int i = 0; i < dynamicPanel.Controls.Count; i++)
             {
                 dynamicPanel.Controls.RemoveAt(i);
@@ -685,7 +685,7 @@ namespace AppVietSo
 
 
             }
-            if (input.Count()>20)
+            if (input.Count() > 20)
             {
                 var line = (int)(input.Count() / 5);
                 line = line + 1;
@@ -778,9 +778,13 @@ namespace AppVietSo
 
 
 
-        public void ReLoad(object sender, EventArgs e)
+        public void ReLoad(object sender, EventArgs e, ReoGridControl reoGrid = null)
         {
-
+            if (reoGrid == null)
+            {
+                reoGrid = reoGridControl1;
+            }
+            var worksheet = reoGrid.CurrentWorksheet;
             Models.LongSo.loadDataLongSo();
             loadSettingFont();
             var Data = Util.LongSoHienTai;
@@ -788,13 +792,9 @@ namespace AppVietSo
             {
                 return;
             }
-            //   reoGridControl1.RemoveWorksheet(reoGridControl1.CurrentWorksheet);
-            // var newgrid=  reoGridControl1.CreateWorksheet();
-
-            //  reoGridControl1.Worksheets.Add(newgrid);
-            var worksheet = reoGridControl1.CurrentWorksheet;
+      
             worksheet.Reset();
-            reoGridControl1.ClearActionHistory();
+            reoGrid.ClearActionHistory();
 
 
             if (worksheet.UsedRange.EndCol > 0)
@@ -1122,7 +1122,7 @@ namespace AppVietSo
             {
                 var frm = new frmNgachSo();
                 frm.ShowDialog();
-             }
+            }
             else
             {
 
@@ -1132,7 +1132,7 @@ namespace AppVietSo
                 frm.ShowDialog();
 
             }
-             ActiveData.Update(key, Util.strDataSugget);
+            ActiveData.Update(key, Util.strDataSugget);
             addTextLongSo(key, t);
 
             //if (Util.strDataSugget == oldData)
@@ -1149,10 +1149,10 @@ namespace AppVietSo
             //cell.TextCN = Util.strDataSugget;
             //cell.TextVN = key;
             //item.Tag = cell;
-  
+
             // ActiveData.Update(key, Util.strDataSugget);
             //setText(position.Row, position.Col, cell.TextVN, cell.TextCN);
-         }
+        }
 
         public void LogOutput(string input)
         {
@@ -1161,12 +1161,25 @@ namespace AppVietSo
                 richTextBox1.Text = input + ":" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") + "\n" + richTextBox1.Text;
             }
         }
-        public void renderText(Worksheet sheet, string txt, int i, int j)
+        public void renderText(Worksheet sheet, string txt, int i, int j,bool songngu= false)
         {
             if (string.IsNullOrEmpty(txt))
             {
                 sheet.Cells[i, j].Data = txt;
                 return;
+            }
+            int nextI = 1;
+            int nextJ = 1;
+            if (songngu)
+            {
+                if (cbCanChuViet.Text == "PHẢI" || cbCanChuViet.Text == "TRÁI")
+                {
+                    nextJ = 2;
+                }
+                if (cbCanChuViet.Text == "TRÊN" || cbCanChuViet.Text == "DƯỚI")
+                {
+                    nextI = 2;
+                }
             }
             var startRow = i;
             var startCol = j;
@@ -1184,18 +1197,18 @@ namespace AppVietSo
                         item.Row = item.EndRow;
                         if (item.Col >= sheet.UsedRange.EndCol - 1)
                         {
-                            i = i - 1;
+                            i = i - nextI;
                         }
                         else
                         {
-                            j = startCol - 1;
+                            j = startCol - nextJ;
                             startCol = j;
                             i = startRow;
                         }
                     }
                     else
                     {
-                        i += 1;
+                        i += nextI;
                     }
                 }
                 var row = sheet.Cells[i, j];
@@ -1275,11 +1288,11 @@ namespace AppVietSo
                         ActiveData.Get(cell.Value + "", out string CN, out string VN);
                         if ((String)item.DataFormatArgs == "TextVN")
                         {
-                            renderText(sheet, VN, i, j);
+                            renderText(sheet, VN, i, j,rbSongNgu.Checked);
                         }
                         if ((String)item.DataFormatArgs == "TextCN")
                         {
-                            renderText(sheet, CN, i, j);
+                            renderText(sheet, CN, i, j, rbSongNgu.Checked);
                             //    item.Data = CN;
                         }
                     }
@@ -1632,12 +1645,12 @@ namespace AppVietSo
 
         private void button9_Click_1(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button10_Click_1(object sender, EventArgs e)
         {
-          
+
         }
 
         private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
@@ -1744,7 +1757,7 @@ namespace AppVietSo
         private bool m_bLayoutCalled = false;
         private void Form1_Layout(object sender, LayoutEventArgs e)
         {
-           
+
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)

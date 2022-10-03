@@ -28,6 +28,10 @@ namespace AppVietSo.Models
             {
                 return userSetting;
             }
+            if (string.IsNullOrEmpty(userSetting.Chua))
+            {
+                userSetting.Chua = ActiveData.Get("@chua");
+            }
     return new UserSetting() { PrintSetting = new Dictionary<string, UserSettingPrint>() };
 
         }

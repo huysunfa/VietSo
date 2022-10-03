@@ -58,17 +58,19 @@ namespace AppVietSo
 					num++;
 					int percentProgress = num / this.SoNos.Count * 0x64;
 					this.bgWorker.ReportProgress(percentProgress, keyValuePair.Key);
-					///this.PrD.Fml = keyValuePair.Value;
-					//try
-					//{
-					//	this.PrD.PreView();
-					//}
-					//catch (Exception)
-					//{
-					//	this.SoNosError.Add(keyValuePair.Key);
-					//	continue;
-					//}
-					this.PrD.CurrentWorksheet.PrintSettings.PageScaling = 1f;    // scale to 70%
+
+					Program.Stg.Chua = keyValuePair.Key+"";
+
+					try
+                    {
+                       this.PrD.PreView();
+                    }
+                    catch (Exception)
+                    {
+                        this.SoNosError.Add(keyValuePair.Key);
+                        continue;
+                    }
+                    this.PrD.CurrentWorksheet.PrintSettings.PageScaling = 1f;    // scale to 70%
 
 					print();
 					Thread.Sleep(400);

@@ -49,60 +49,54 @@ namespace AppVietSo.Models
                 result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
                 if (result.ContainsKey(b))
                 {
-                  
 
-                    CN = (result[b]+"").Split('_').FirstOrDefault();
-                    VN = (result[b]+"").Split('_').LastOrDefault();
+
+                    CN = (result[b] + "").Split('_').FirstOrDefault();
+                    VN = (result[b] + "").Split('_').LastOrDefault();
                     if (b == "@tinchu")
                     {
                         if (!result.ContainsKey("@thietlaptinchuformtext"))
                         {
-                       
+
                             ActiveData.Update("@thietlaptinchuformtext", "$ten Bản Mệnh Sinh Ư $canchi Niên Hành Canh $tuoi Tuế Sao $sao Tinh Quân");
 
                         }
 
                         var txtMore = ActiveData.Get("@thietLapTinChuMoreText");
-                        var txtForm = ActiveData.Get("@thietLapTinChuFormText") +" "+ txtMore;
+                        var txtForm = ActiveData.Get("@thietLapTinChuFormText") + " " + txtMore;
 
                         //VN = VN;
                         //CN = CN;
-                        var dt = CsvExtentions.ConvertCSVtoDataTable(Util.getTinChuPath);
-
-                        foreach (var item in txtForm.Split(' '))
+                         var user = PersonBO.getListSoNo(Program.Stg.Chua);
+                        CN = "";
+                        VN = "";
+                        var SelectedSoNos = ActiveData.Get("@SelectedSoNos").Split(',');
+                        foreach (string it in SelectedSoNos)
                         {
-                            var key = item.Replace("$", "@");
-                            if (key.Contains("@"))
-                            {
-                                if (key == "@tinchu")
-                                {
-                                    continue;
-                                }
-                                if (key == "@ten")
-                                {
-                                    foreach (DataRow row in dt.Rows)
-                                    {
-                                        if ((row["Chk"] + "") == "True")
-                                        {
-                                            VN += " " + row[key];
-                                            CN += " " + CNDictionary.getCN(row[key] + "");
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    var cache = ActiveData.Get(key, out string tmpCN, out string tmpVN);
-                                    CN += " " + tmpCN;
-                                    VN += " " + tmpVN;
-                                }
-                            }
-                            else
-                            {
-                                VN += " " + key;
-                                CN += " " + CNDictionary.getCN(key);
-                            }
-                        }
+                            var ID = it;
 
+                            if (string.IsNullOrEmpty(ID))
+                            {
+                                continue;
+                            }
+                            var person = PersonBO.get(ID);
+
+                            var text = txtForm.Replace("$", "@");
+
+                            text = text.Replace("@canchi", person.Menh);
+                            text = text.Replace("@sotuoi", person.Tuoi);
+                            text = text.Replace("@tuoi", CNDictionary.getChuNomYYYY(person.Tuoi));
+                            text = text.Replace("@sao", person.Sao);
+                            text = text.Replace("@danh", (person.DanhXung+"").Trim());
+                            text = text.Replace("@ten", (person.FullName+"").Trim());
+
+                            VN += text;
+                            CN += CNDictionary.getCN(text);
+
+
+
+
+                        }
                     }
 
                     return true;

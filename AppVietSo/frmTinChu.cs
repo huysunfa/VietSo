@@ -635,6 +635,7 @@ namespace AppVietSo
                     hlinhtho += it.Tuoi + " ";
                  }
                 var gc = PersonBO.getChuSo(Program.Stg.Chua);
+                ActiveData.Update("@chua", Program.Stg.Chua);
                 ActiveData.Update("@hlinhten", hlinhten);
                 ActiveData.Update("@hlinhsinh", hlinhsinh);
                 ActiveData.Update("@hlinhmat", hlinhmat);
@@ -648,6 +649,17 @@ namespace AppVietSo
                 Program.Stg.IsGiaChu = this.ckbChuSo.Checked;
 
             }
+            var IDS = SelectedSoNos.Select(z => z.Value.IDs).ToList();
+            var listID = new List<string>();
+            foreach (var item in IDS)
+            {
+                foreach (var it in item)
+                {
+                    listID.Add(it);
+
+                }
+            }
+            ActiveData.Update("@SelectedSoNos", string.Join(",", listID));
 
         }
 
@@ -672,11 +684,11 @@ namespace AppVietSo
                             {
                                 this.SelectedSoNos.Add(num, new Family
                                 {
-                                    SoNo = num
+                                    SoNo = num, IDs= new List<string>()
                                 });
                             }
                         }
-                        else if (this.SelectedSoNos.ContainsKey(num))
+                          if (this.SelectedSoNos.ContainsKey(num))
                         {
                             this.SelectedSoNos[num].IDs.Add(text);
                         }
