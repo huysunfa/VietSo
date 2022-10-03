@@ -240,6 +240,7 @@ namespace AppVietSo.Models
                     SoNo = BaseBO.GetInt(dataRow["SoNo"]),
                     Orders = BaseBO.GetInt(dataRow["Orders"]),
                     Status = BaseBO.GetString(dataRow["Status"]),
+                    DanhXung = BaseBO.GetString(dataRow["DanhXung"]),
                     UpdateDT = BaseBO.GetDateTime(dataRow["UpdateDT"])
                 };
             }

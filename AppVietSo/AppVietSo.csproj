@@ -196,6 +196,12 @@
     <Compile Include="frmSugget.Designer.cs">
       <DependentUpon>frmSugget.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThemMatChu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemMatChu.Designer.cs">
+      <DependentUpon>frmThemMatChu.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmThietLapTinChu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSugget.resx">
       <DependentUpon>frmSugget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemMatChu.resx">
+      <DependentUpon>frmThemMatChu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmThietLapTinChu.resx">
       <DependentUpon>FrmThietLapTinChu.cs</DependentUpon>

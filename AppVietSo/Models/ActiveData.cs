@@ -34,6 +34,32 @@ namespace AppVietSo.Models
             string jsonOut = JsonConvert.SerializeObject(result);
             File.WriteAllText(path, jsonOut);
         }
+
+        public static void UpdateDataByID()
+        {
+            var user = ActiveData.Get("@SelectedSoNos").Split(',').Where(v=>!string.IsNullOrEmpty(v)).FirstOrDefault();
+            if (user == null)
+            {
+                return;
+            }
+            var chua = Models.PagodaBO.get(ActiveData.Get("@chua"));
+
+            ActiveData.Update("@noicung", chua.Name);
+            int.TryParse(Program.Stg.Chua, out int NumChua);
+
+          
+           
+
+            var gc = PersonBO.get(user);
+            ActiveData.Update("@chua", Program.Stg.Chua);
+                ActiveData.Update("@giachu", gc.FullName);
+            ActiveData.Update("@tinchu", gc.FullName);
+            ActiveData.Update("@diachiyvu", gc.Address.Trim()=="" ? chua.Address : gc.Address);
+            ActiveData.Update("@canchi", CNDictionary.getCN(gc.Menh) + "_" + gc.Menh);
+            ActiveData.Update("@sotuoi", gc.Tuoi);
+            ActiveData.Update("@tuoi", CNDictionary.getCN(CNDictionary.getChuNomYYYY(gc.Tuoi)) + "_" + CNDictionary.getChuNomYYYY(gc.Tuoi));
+
+        }
         public static bool Get(string b, out string CN, out string VN)
         {
             b = b.ToLower();
@@ -67,7 +93,7 @@ namespace AppVietSo.Models
 
                         //VN = VN;
                         //CN = CN;
-                         var user = PersonBO.getListSoNo(Program.Stg.Chua);
+                        var user = PersonBO.getListSoNo(Program.Stg.Chua);
                         CN = "";
                         VN = "";
                         var SelectedSoNos = ActiveData.Get("@SelectedSoNos").Split(',');
@@ -83,15 +109,15 @@ namespace AppVietSo.Models
 
                             var text = txtForm.Replace("$", "@");
 
-                            text = text.Replace("@canchi", person.Menh);
+                             text = text.Replace("@canchi", person.Menh);
                             text = text.Replace("@sotuoi", person.Tuoi);
                             text = text.Replace("@tuoi", CNDictionary.getChuNomYYYY(person.Tuoi));
                             text = text.Replace("@sao", person.Sao);
-                            text = text.Replace("@danh", (person.DanhXung+"").Trim());
-                            text = text.Replace("@ten", (person.FullName+"").Trim());
+                            text = text.Replace("@danh", (person.DanhXung + "").Trim());
+                            text = text.Replace("@ten", (person.FullName + "").Trim());
 
-                            VN += text;
-                            CN += CNDictionary.getCN(text);
+                            VN += text+" ";
+                            CN += CNDictionary.getCN(text) + " ";
 
 
 
@@ -127,6 +153,22 @@ namespace AppVietSo.Models
             }
             return null;
 
+        }   
+        
+        public static Dictionary<string, string> GetAll()
+        {
+ 
+            var result = new Dictionary<string, string>();
+            string path = @"Data\Active";
+            if (File.Exists(path))
+            {
+
+                var json = System.IO.File.ReadAllText(path);
+
+                result = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+
+            }
+            return result;
         }
     }
 }

@@ -20,6 +20,11 @@ namespace AppVietSo
 
         private void frmKeyInfo_Load(object sender, EventArgs e)
         {
+            if (Program.IsConnectedToInternet()==false)
+            {
+                MessageBox.Show("Vui lòng kết nối mạng để xem thông tin bản quyền");
+                this.Close();                return;
+            }
             var key = CheckKey.LocalKey();
             var data = CheckKey.FullinfoKey(key);
             var HoTen = data.Rows[0]["HoTen"] + "";

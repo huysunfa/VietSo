@@ -27,8 +27,13 @@ namespace AppVietSo.Models
             var mac = CheckKey.getMac();
 
             var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/checkOnline?key=" + key + "&mac=" + mac);
-
-            return json == "OK" ? true : false;
+             var result = json == "OK" ? true : false;
+            if (result)
+            {
+                var info= CheckKey.infoKey(key);
+                ActiveData.Update("DateLicence", info.ToString("dd/MM/yyyy"));
+            }
+            return result;
         }
 
         public static void UpdateKeyOnline(string key)
@@ -65,9 +70,16 @@ namespace AppVietSo.Models
         }
         public static DataTable FullinfoKey(string key)
         {
-            var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetLicenceData?key=" + key);
-            var data = JsonConvert.DeserializeObject<DataTable>(json);
-            return data;
+            try
+            {
+                var json = CNDictionary.getDataFromUrl(Util.mainURL + "/AppSync/GetLicenceData?key=" + key);
+                var data = JsonConvert.DeserializeObject<DataTable>(json);
+                return data;
+            }
+            catch (Exception)
+            {
+                return new DataTable();
+            }
 
         }
         public static string LocalKey()
@@ -81,8 +93,8 @@ namespace AppVietSo.Models
                     var txt = File.ReadAllLines(path).FirstOrDefault();
                     txt = Security.Decrypt(txt);
                     value = txt;
-                    var check = CheckKey.checkOnline(value);
-                    if (check)
+              //      var check = CheckKey.checkOnline(value);
+               //     if (check)
                     {
                         return value;
                     }
@@ -98,6 +110,14 @@ namespace AppVietSo.Models
         {
 
             string value = CheckKey.LocalKey();
+            if (Program.IsConnectedToInternet()==false)
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    return false;
+                }
+                return true;
+            }
 
             var check = false;
             check = CheckKey.checkOnline(value);

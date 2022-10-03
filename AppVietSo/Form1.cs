@@ -259,6 +259,7 @@ namespace AppVietSo
         {
             var frm = new FrmThietLapTinChu();
             frm.ShowDialog();
+            ReLoad(sender, e);
         }
 
         // Token: 0x060000CF RID: 207 RVA: 0x0000E688 File Offset: 0x0000C888
@@ -359,15 +360,27 @@ namespace AppVietSo
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
             var select = worksheet.SelectionRange;
+            var render = false;
             for (int i = select.Row; i <= select.EndRow; i++)
             {
                 for (int j = select.Col; j <= select.EndCol; j++)
                 {
                     worksheet.Cells[i, j].Data = "";
+                    worksheet.Cells[i, j].DataFormatArgs = (worksheet.Cells[i, j].DataFormatArgs + "").Split('_').LastOrDefault();
+                    var cell = worksheet.Cells[i, j].Tag.getCellData();
+                    if ((cell.Value + "") == "@tinchu")
+                    {
+                        render = true;
+
+                    }
                     worksheet.Cells[i, j].Tag = new CellData();
                 }
             }
             SaveData();
+            if (render)
+            {
+                ReLoad(sender, e);
+            }
         }
 
         private void TSMItemAddMua_Click(object sender, global::System.EventArgs e)
@@ -397,16 +410,15 @@ namespace AppVietSo
         // Token: 0x060000D9 RID: 217 RVA: 0x0000E8C4 File Offset: 0x0000CAC4
         private void TSMItemAddNoiC_Click(object sender, global::System.EventArgs e)
         {
-            var chua = Models.PagodaBO.get(Program.Stg.Chua);
-            ActiveData.Update("@noicung", chua.Name);
+            ActiveData.UpdateDataByID();
             addTextLongSo("@noicung", "Nơi cúng");
         }
 
         // Token: 0x060000DA RID: 218 RVA: 0x0000E8D6 File Offset: 0x0000CAD6
         private void TSMItemAddAdress_Click(object sender, global::System.EventArgs e)
         {
-            var chua = Models.PagodaBO.get(Program.Stg.Chua);
-            ActiveData.Update("@diachiyvu", chua.Address);
+            ActiveData.UpdateDataByID();
+
             addTextLongSo("@diachiyvu", "Địa chỉ");
         }
 
@@ -419,36 +431,42 @@ namespace AppVietSo
         // Token: 0x060000DC RID: 220 RVA: 0x0000E8FA File Offset: 0x0000CAFA
         private void TSMItemAddTinChu_Click(object sender, global::System.EventArgs e)
         {
+            ActiveData.UpdateDataByID();
             addTextLongSo("@tinchu", "Tín chủ");
         }
 
         // Token: 0x060000DD RID: 221 RVA: 0x0000E90C File Offset: 0x0000CB0C
         private void TSMItemAddGiaChu_Click(object sender, global::System.EventArgs e)
         {
+            ActiveData.UpdateDataByID();
             addTextLongSo("@giachu", "Gia chủ");
         }
 
         // Token: 0x060000DE RID: 222 RVA: 0x0000E91E File Offset: 0x0000CB1E
         private void TSMItemAddHuongLinh_Click(object sender, global::System.EventArgs e)
         {
+            ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhten", "Hương linh");
         }
 
         // Token: 0x060000DF RID: 223 RVA: 0x0000E930 File Offset: 0x0000CB30
         private void TSMItemAddHLinhSinh_Click(object sender, global::System.EventArgs e)
         {
+            ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhsinh", "Hương linh");
         }
 
         // Token: 0x060000E0 RID: 224 RVA: 0x0000E942 File Offset: 0x0000CB42
         private void TSMItemAddHLinhMat_Click(object sender, global::System.EventArgs e)
         {
+            ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhmat", "Hương linh");
         }
 
         // Token: 0x060000E1 RID: 225 RVA: 0x0000E954 File Offset: 0x0000CB54
         private void TSMItemAddHLinhTho_Click(object sender, global::System.EventArgs e)
         {
+            ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhtho", "Hưởng thọ");
         }
 
@@ -589,8 +607,9 @@ namespace AppVietSo
                         return;
                     }
                     string TextVN = r1.NewData + "";
-                    string TextCN = r1.NewData + "";
-                    if (dynamicPanel.Controls.Count > 0)
+                    string TextCN = ActiveData.Get(TextVN);
+
+                     if (string.IsNullOrEmpty(TextCN) && dynamicPanel.Controls.Count > 0)
                     {
                         TextVN = dynamicPanel.Controls[0].Tag + "";
                         TextCN = dynamicPanel.Controls[0].Text;
@@ -626,7 +645,7 @@ namespace AppVietSo
 
                 string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
                 var key = CheckKey.LocalKey();
-                var date = CheckKey.infoKey(key).ToString("dd/MM/yyyy");
+                var date = ActiveData.Get("DateLicence");
                 this.Invoke(new Action(() =>
                 {
                     lbVersion.Text = " Version:" + version;
@@ -654,44 +673,55 @@ namespace AppVietSo
             txt = txt.ToLower();
             txt = txt.Replace(" ", "");
 
-            if (!CNDictionary.database.ContainsKey(txt))
-            {
-                return;
-            }
-            var cache = ActiveData.Get(txt);
-            var input = CNDictionary.database[txt].Distinct().OrderByDescending(v => (v == cache ? 1 : 0));
-            int stt = 0;
-            foreach (var it in input)
+            if (CNDictionary.database.ContainsKey(txt))
             {
 
-                Button textBox1 = new Button();
-                textBox1.Location = new Point(10, 10);
-                textBox1.Text = it;
-                var size = it.Length * 50;
-                if (size < 70)
+                var cache = ActiveData.Get(txt);
+                var input = CNDictionary.database[txt].Distinct().OrderByDescending(v => (v == cache ? 1 : 0));
+                int stt = 0;
+                foreach (var it in input)
                 {
-                    size = 70;
+
+                    Button textBox1 = new Button();
+                    textBox1.Location = new Point(10, 10);
+                    textBox1.Text = it;
+                    var size = it.Length * 50;
+                    if (size < 70)
+                    {
+                        size = 70;
+                    }
+                    textBox1.Size = new Size(size, 40);
+                    textBox1.Click += new EventHandler(DynamicButton_Click);
+
+                    textBox1.Font = new Font(cbfnameCN.Text, 22);
+
+                    textBox1.Tag = txt;
+
+
+                    dynamicPanel.Controls.Add(textBox1);
+                    stt++;
+
+
                 }
-                textBox1.Size = new Size(size, 40);
-                textBox1.Click += new EventHandler(DynamicButton_Click);
-
-                textBox1.Font = new Font(cbfnameCN.Text, 22);
-
-                textBox1.Tag = txt;
-
-
-                dynamicPanel.Controls.Add(textBox1);
-                stt++;
-
+                if (input.Count() > 20)
+                {
+                    var line = (int)(input.Count() / 5);
+                    line = line + 1;
+                    dynamicPanel.Size = new System.Drawing.Size(400, line * 50);
+                }
 
             }
-            if (input.Count() > 20)
-            {
-                var line = (int)(input.Count() / 5);
-                line = line + 1;
-                dynamicPanel.Size = new System.Drawing.Size(400, line * 50);
-            }
+            
+           var btnAddMatChu = new Button();
+            btnAddMatChu.Location = new Point(10, 10);
+            btnAddMatChu.Text = "Thêm mặt chữ";
+            btnAddMatChu.Size = new Size(100, 40);
+            // btnAddMatChu.Dock = DockStyle.Fill;
+            btnAddMatChu.Tag = txt;
 
+            btnAddMatChu.BackColor = Color.Orange;
+            btnAddMatChu.Click += new EventHandler(ThemMatChu_Click);
+            dynamicPanel.Controls.Add(btnAddMatChu);
             dynamicPanel.Visible = true;
 
         }
@@ -749,6 +779,20 @@ namespace AppVietSo
 
         }
 
+        private void ThemMatChu_Click(object sender, EventArgs e)
+        {
+            var worksheet = reoGridControl1.CurrentWorksheet;
+            var Row = worksheet.SelectionRange.Row;
+            var Col = worksheet.SelectionRange.Col;
+            var name = (Button)sender;
+            string TextVN = name.Tag.ToString();
+            var frmMatChu = new frmThemMatChu(TextVN);
+            frmMatChu.SetDesktopLocation(Cursor.Position.X, Cursor.Position.Y);
+            frmMatChu.ShowDialog();
+            worksheet.EndEdit(EndEditReason.NormalFinish);
+            dynamicPanel.Visible = false;
+        }
+
 
 
 
@@ -792,7 +836,7 @@ namespace AppVietSo
             {
                 return;
             }
-      
+
             worksheet.Reset();
             reoGrid.ClearActionHistory();
 
@@ -1161,7 +1205,7 @@ namespace AppVietSo
                 richTextBox1.Text = input + ":" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") + "\n" + richTextBox1.Text;
             }
         }
-        public void renderText(Worksheet sheet, string txt, int i, int j,bool songngu= false)
+        public void renderText(Worksheet sheet, string txt, int i, int j, bool songngu = false)
         {
             if (string.IsNullOrEmpty(txt))
             {
@@ -1224,9 +1268,12 @@ namespace AppVietSo
                 }
             }
         }
-        public void setColorTag(Worksheet sheet, unvell.ReoGrid.Cell item)
+        public void setColorTag(Worksheet sheet, unvell.ReoGrid.Cell item, Color color)
         {
-
+            if (color == null)
+            {
+                color = Color.SkyBlue;
+            }
 
             var cell = item.Tag.getCellData();
 
@@ -1237,7 +1284,7 @@ namespace AppVietSo
                     // style item flag
                     Flag = PlainStyleFlag.BackColor,
                     // style item
-                    BackColor = Color.SkyBlue,
+                    BackColor = color,
                 });
             }
         }
@@ -1280,6 +1327,7 @@ namespace AppVietSo
                 {
                     var item = sheet.Cells[i, j];
                     item.IsReadOnly = false;
+
                     // nếu bắt đầu bằng @ thì bôi màu
                     var cell = item.Tag.getCellData();
                     if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
@@ -1288,7 +1336,7 @@ namespace AppVietSo
                         ActiveData.Get(cell.Value + "", out string CN, out string VN);
                         if ((String)item.DataFormatArgs == "TextVN")
                         {
-                            renderText(sheet, VN, i, j,rbSongNgu.Checked);
+                            renderText(sheet, VN, i, j, rbSongNgu.Checked);
                         }
                         if ((String)item.DataFormatArgs == "TextCN")
                         {
@@ -1358,6 +1406,14 @@ namespace AppVietSo
             {
                 sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
                 ChangeWidthSize(sheet, checkBox2.Checked);
+                sheet.SetRangeStyles(sheet.UsedRange.ToAddress(), new WorksheetRangeStyle
+                {
+                    // style item flag
+                    Flag = PlainStyleFlag.BackColor,
+                    // style item
+                    BackColor = Color.White,
+                });
+
             }
             for (int i = position.Row; i <= position.EndRow; i++)
             {
@@ -1370,7 +1426,7 @@ namespace AppVietSo
 
                     if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
                     {
-                        setColorTag(sheet, item);
+                        setColorTag(sheet, item, Color.SkyBlue);
                     }
 
                 }
@@ -1737,7 +1793,7 @@ namespace AppVietSo
                     ppd.WindowState = FormWindowState.Maximized;
                     ppd.Document.PrinterSettings.PrinterName = Util.LongSoHienTai.PrinterName;
                     ppd.ShowDialog(this);
-                    RenderStyle();
+                    ReLoad(sender, e);
                 }
             }
 

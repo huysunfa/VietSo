@@ -17,7 +17,15 @@ namespace AppVietSo
     {
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         private static extern bool SetProcessDPIAware();
+        [System.Runtime.InteropServices.DllImport("wininet.dll")]
+        private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
+        public static bool IsConnectedToInternet()
+        {
+            int Desc;
+            return InternetGetConnectedState(out Desc, 0);
+        }
 
+ 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -28,7 +36,7 @@ namespace AppVietSo
             {
                 SetProcessDPIAware();
             }
-             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
+            Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
             CheckFolder();
@@ -50,8 +58,10 @@ namespace AppVietSo
             SplashScreen.SetStatus("--- Kiểm tra bản quyền ---");
 
 
-
-            SplashScreen.SetStatus("--- Kiểm tra bản cập nhật ---");
+            var Internet = Program.IsConnectedToInternet();
+            if (Internet)
+            { 
+                SplashScreen.SetStatus("--- Kiểm tra bản cập nhật ---");
 
             var url = "http://ltsgroup.xyz/AppSync/GetVersion";
             using (var webClient = new System.Net.WebClient())
@@ -72,7 +82,7 @@ namespace AppVietSo
 
             }
 
-
+            }
 
             SplashScreen.SetStatus("1. Tải dữ liệu font chữ hán");
 
@@ -82,9 +92,9 @@ namespace AppVietSo
             SplashScreen.SetStatus("3.  Tải dữ liệu thư viện chữ hán");
             CNDictionary.loadDatabase();
             SplashScreen.SetStatus("4.  Tải dữ liệu lòng sớ đang mở");
-            Models.LongSo.GetLongSos(true);
+            Models.LongSo.GetLongSos(Internet);
             SplashScreen.SetStatus("5.  GetLabelTexts");
-            LabelText.GetLabelTexts(true);
+            LabelText.GetLabelTexts(Internet);
             //     OuputOK("6.  InstallFonts");
             var check = loadFont.CheckFontNoInstall();
 
@@ -122,7 +132,7 @@ namespace AppVietSo
             var key = CheckKey.LocalKey();
 
             var value = new Dictionary<string, string>();
-            value.Add("Key",key);
+            value.Add("Key", key);
             value.Add("Error", e.Exception.ToString());
             CNDictionary.PostDataFromUrl(Util.mainURL + "/AppSync/SubmitError", value);
 

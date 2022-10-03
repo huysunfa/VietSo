@@ -21,7 +21,7 @@ namespace AppVietSo
         {
             string str;
             string str2;
-          Util.getCanChiVN(int.Parse(yyyy), out str, out str2);
+            Util.getCanChiVN(int.Parse(yyyy), out str, out str2);
             return str + " " + str2;
         }
         public static global::System.Collections.Generic.Dictionary<string, global::System.Collections.Generic.List<VnChinese>> getDic()
@@ -49,6 +49,8 @@ namespace AppVietSo
                     });
                 }
             }
+
+
             return dictionary;
         }
 
@@ -77,18 +79,9 @@ namespace AppVietSo
                     {
                         database[item.Key].Add(it.chinese);
                     }
-                    //var cn = item.Key;
-                    //var vn = item.Key;
-                    //vn = vn.ToLower();
-                    //if (!database.ContainsKey(vn))
-                    //{
-                    //    database.Add(vn, cn);
-                    //}
-                    //if (!databaseChina.ContainsKey(cn))
-                    //{
-                    //    databaseChina.Add(cn, vn);
-                    //}
+
                 }
+
                 var output = Newtonsoft.Json.JsonConvert.SerializeObject(database);
                 output = Security.Encrypt(output);
                 System.IO.File.WriteAllText(Util.getDictionaryPath, output);
@@ -103,19 +96,34 @@ namespace AppVietSo
                 System.IO.File.WriteAllText(Util.getDictionaryNguCanhPath, Security.Encrypt(Newtonsoft.Json.JsonConvert.SerializeObject(databaseNguCanh)));
                 #endregion
 
-
+             
             }
-
+            foreach (var item in ActiveData.GetAll())
+            {
+                if (!database.ContainsKey(item.Key))
+                {
+                    database.Add(item.Key, new List<string>());
+                }
+                database[item.Key].Add(item.Value);
+            }
 
         }
         public static string getDataFromUrl(string inputURL)
         {
-            using (var webClient = new System.Net.WebClient())
+            try
             {
-                var result = webClient.DownloadData(inputURL);
-                var htmlCode = Encoding.UTF8.GetString(result);
-                return htmlCode;
+                using (var webClient = new System.Net.WebClient())
+                {
+                    var result = webClient.DownloadData(inputURL);
+                    var htmlCode = Encoding.UTF8.GetString(result);
+                    return htmlCode;
 
+                }
+            }
+            catch (Exception)
+            {
+
+                return null;
             }
         }
         public static string PostDataFromUrl(string inputURL, Dictionary<string, string> values)
@@ -132,7 +140,7 @@ namespace AppVietSo
             {
                 var response = client.PostAsync(inputURL, content).Result;
 
-                var responseString =   response.Content.ReadAsStringAsync().Result;
+                var responseString = response.Content.ReadAsStringAsync().Result;
                 return responseString;
             }
         }

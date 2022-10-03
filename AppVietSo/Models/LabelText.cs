@@ -39,6 +39,7 @@ namespace AppVietSo.Models
             var data = GetLabelTexts();
 
             var result = data.Where(v => v.Label.ToUpper() == key.ToUpper()).Select(v => v.Title).FirstOrDefault();
+            result = result ?? key;
             return result;
         } 
         

@@ -34,7 +34,7 @@ namespace AppVietSo
             {
                 dgvParent.Rows.Add(item);
             }
-           // dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
+             dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
 
 
         }
@@ -91,7 +91,7 @@ namespace AppVietSo
                             var newdata = listfilelocal.Select(v => new LongSo
                             {
                                 TenSo = LongSo.GetTenSoByFileName(v).TenSo,
-                                ChuGiai = LongSo.GetTenSoByFileName(v).ChuGiai,
+                                ChuGiai = text,
                                 FileName = "/FileUpload/" + v + ConstData.ExtentionsFile,
                                 LoaiSo = text
                             }).ToList();
@@ -210,6 +210,12 @@ namespace AppVietSo
                     else
                     {
                         var value = dataGridViewRow.Cells["FileName"].Value.ToString();
+                        var ChuGiai = dataGridViewRow.Cells["ChuGiai"].Value+"";
+                        if (ChuGiai== "SỚ CỦA THẦY")
+                        {
+                            MessageBox.Show(LabelText.Get("Sớ đã nằm trong máy của thầy, không cần phải tải về nữa ạ!"));
+                            return;
+                        }
                         value = value.Replace("\\","/");
                         if (ExchangeLongSo.downloadFile(value))
                         {
