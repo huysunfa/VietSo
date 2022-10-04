@@ -15,7 +15,7 @@ namespace apiVietSo.Controllers
         private vietsoEntities db = new vietsoEntities();
 
         // GET: VnChinese
-        public ActionResult Index(string vn="")
+        public ActionResult Index(string vn = "")
         {
             ViewBag.vn = vn;
             vn = vn.ToLower();
@@ -24,9 +24,9 @@ namespace apiVietSo.Controllers
 
             if (string.IsNullOrEmpty(vn))
             {
-                return View( new List<VnChinese>());
+                return View(new List<VnChinese>());
             }
-            return View(db.VnChinese.Where(v=>v.vn==vn).ToList());
+            return View(db.VnChinese.Where(v => v.vn == vn).ToList());
         }
 
         // GET: VnChinese/Details/5
@@ -51,20 +51,14 @@ namespace apiVietSo.Controllers
         }
 
         // POST: VnChinese/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,vn,chinese,reading,used,nguCanh,UpdateDT,syncTime")] VnChinese vnChinese)
+        public ActionResult Create(VnChinese vnChinese)
         {
-            if (ModelState.IsValid)
-            {
-                db.VnChinese.Add(vnChinese);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            return View(vnChinese);
+            db.VnChinese.Add(vnChinese);
+            db.SaveChanges();
+            return RedirectToAction("Index", new { vn = vnChinese.vn });
+
         }
 
         // GET: VnChinese/Edit/5
@@ -86,16 +80,16 @@ namespace apiVietSo.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,vn,chinese,reading,used,nguCanh,UpdateDT,syncTime")] VnChinese vnChinese)
+        public ActionResult Edit(VnChinese vnChinese)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(vnChinese).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(vnChinese);
+
+            VnChinese item = db.VnChinese.Find(vnChinese.ID);
+
+            item.chinese = vnChinese.chinese;
+            item.vn = vnChinese.vn;
+            db.SaveChanges();
+
+            return RedirectToAction("Index", new { vn = vnChinese.vn });
         }
 
         // GET: VnChinese/Delete/5
@@ -119,9 +113,10 @@ namespace apiVietSo.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             VnChinese vnChinese = db.VnChinese.Find(id);
+            var vn = vnChinese.vn;
             db.VnChinese.Remove(vnChinese);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { vn = vn });
         }
 
         protected override void Dispose(bool disposing)

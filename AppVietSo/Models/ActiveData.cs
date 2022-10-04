@@ -44,7 +44,7 @@ namespace AppVietSo.Models
             }
             var chua = Models.PagodaBO.get(ActiveData.Get("@chua"));
 
-            ActiveData.Update("@noicung", chua.Name);
+            ActiveData.Update("@noicung", CNDictionary.getCN(chua.Name)+"_"+ chua.Name);
             int.TryParse(Program.Stg.Chua, out int NumChua);
 
           
@@ -54,7 +54,12 @@ namespace AppVietSo.Models
             ActiveData.Update("@chua", Program.Stg.Chua);
                 ActiveData.Update("@giachu", gc.FullName);
             ActiveData.Update("@tinchu", gc.FullName);
-            ActiveData.Update("@diachiyvu", gc.Address.Trim()=="" ? chua.Address : gc.Address);
+            var Address = gc.Address.Trim() == "" ? chua.Address : gc.Address;
+            Address = (Address + "").Replace(","," ");
+            Address = (Address + "").Replace("-"," ");
+            Address = (Address + "").Replace(":"," ");
+            Address = (Address + "").Replace("."," ");
+            ActiveData.Update("@diachiyvu", CNDictionary.getCN(Address)+"_"+ Address);
             ActiveData.Update("@canchi", CNDictionary.getCN(gc.Menh) + "_" + gc.Menh);
             ActiveData.Update("@sotuoi", gc.Tuoi);
             ActiveData.Update("@tuoi", CNDictionary.getCN(CNDictionary.getChuNomYYYY(gc.Tuoi)) + "_" + CNDictionary.getChuNomYYYY(gc.Tuoi));

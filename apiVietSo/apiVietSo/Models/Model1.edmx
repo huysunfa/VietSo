@@ -86,8 +86,6 @@
           <Property Name="Created" Type="datetime" />
           <Property Name="CreatedBy" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VnChinese">
           <Key>
             <PropertyRef Name="ID" />
@@ -109,18 +107,7 @@ warning 6002: The table/view 'lts43636_vietso.dbo.VnChinese' does not have a pri
           <EntitySet Name="LoaiSo" EntityType="Self.LoaiSo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LogError" EntityType="Self.LogError" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffInfo" EntityType="Self.StaffInfo" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VnChinese" EntityType="Self.VnChinese" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [VnChinese].[ID] AS [ID], 
-    [VnChinese].[vn] AS [vn], 
-    [VnChinese].[chinese] AS [chinese], 
-    [VnChinese].[reading] AS [reading], 
-    [VnChinese].[used] AS [used], 
-    [VnChinese].[nguCanh] AS [nguCanh], 
-    [VnChinese].[UpdateDT] AS [UpdateDT], 
-    [VnChinese].[syncTime] AS [syncTime]
-    FROM [dbo].[VnChinese] AS [VnChinese]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="VnChinese" EntityType="Self.VnChinese" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->

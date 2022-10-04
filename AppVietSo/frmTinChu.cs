@@ -242,9 +242,17 @@ namespace AppVietSo
                 this.dgvPerson.DataSource = dataTable;
                 this.dgvPerson.Update();
                 this.dgvPerson.Refresh();
+
+                var listIDS = ActiveData.Get("@SelectedSoNos").Split(',').Where(v => !string.IsNullOrEmpty(v)).ToList();
+
                 foreach (object obj in ((System.Collections.IEnumerable)this.dgvPerson.Rows))
                 {
                     DataGridViewRow dataGridViewRow = (DataGridViewRow)obj;
+                    var ID = dataGridViewRow.Cells["ID"].Value + "";
+                    if (listIDS.Contains(ID))
+                    {
+                        dataGridViewRow.Cells["Checked"].Value = true;  
+                    }
                     if (!string.IsNullOrEmpty(dataGridViewRow.Cells["NgayMat"].Value.ToString()))
                     {
                         dataGridViewRow.DefaultCellStyle.Font = new Font(this.dgvPerson.Font.FontFamily, 12.5f, FontStyle.Italic | FontStyle.Underline);

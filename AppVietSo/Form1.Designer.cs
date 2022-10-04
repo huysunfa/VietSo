@@ -38,6 +38,11 @@ namespace AppVietSo
             this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.ctextMenuS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.tiênTichToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mơLongSơTaiVêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.taiBôChưHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.button11 = new System.Windows.Forms.Button();
             this.lbVersion = new System.Windows.Forms.Label();
@@ -80,21 +85,16 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.tiênTichToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mơLongSơTaiVêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.taiBôChưHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip2
@@ -126,7 +126,7 @@ namespace AppVietSo
             this.reoGridControl1.TabIndex = 2;
             this.reoGridControl1.Text = "reoGridControl1";
             this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
-            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
+            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_Click_1);
             // 
             // ctextMenuS
             // 
@@ -170,6 +170,54 @@ namespace AppVietSo
             this.splitContainer1.Size = new System.Drawing.Size(1686, 930);
             this.splitContainer1.SplitterDistance = 172;
             this.splitContainer1.TabIndex = 3;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tiênTichToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(11, 670);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
+            this.menuStrip1.TabIndex = 31;
+            this.menuStrip1.Text = "Tiện ích";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
+            // 
+            // tiênTichToolStripMenuItem
+            // 
+            this.tiênTichToolStripMenuItem.BackColor = System.Drawing.Color.Teal;
+            this.tiênTichToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mơLongSơTaiVêToolStripMenuItem,
+            this.taiBôChưHanToolStripMenuItem,
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem});
+            this.tiênTichToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
+            this.tiênTichToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tiênTichToolStripMenuItem.Name = "tiênTichToolStripMenuItem";
+            this.tiênTichToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10);
+            this.tiênTichToolStripMenuItem.Size = new System.Drawing.Size(97, 44);
+            this.tiênTichToolStripMenuItem.Text = "Tiện tích";
+            // 
+            // mơLongSơTaiVêToolStripMenuItem
+            // 
+            this.mơLongSơTaiVêToolStripMenuItem.Name = "mơLongSơTaiVêToolStripMenuItem";
+            this.mơLongSơTaiVêToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.mơLongSơTaiVêToolStripMenuItem.Text = "Mở lòng sớ tải về";
+            this.mơLongSơTaiVêToolStripMenuItem.Click += new System.EventHandler(this.mơLongSơTaiVêToolStripMenuItem_Click);
+            // 
+            // taiBôChưHanToolStripMenuItem
+            // 
+            this.taiBôChưHanToolStripMenuItem.Name = "taiBôChưHanToolStripMenuItem";
+            this.taiBôChưHanToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.taiBôChưHanToolStripMenuItem.Text = "Tải bộ chữ hán";
+            this.taiBôChưHanToolStripMenuItem.Click += new System.EventHandler(this.taiBôChưHanToolStripMenuItem_Click);
+            // 
+            // lâyDưLiêuMơiNhâtToolStripMenuItem
+            // 
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Name = "lâyDưLiêuMơiNhâtToolStripMenuItem";
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Text = "Lấy dữ liệu mới nhất";
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Click += new System.EventHandler(this.lâyDưLiêuMơiNhâtToolStripMenuItem_Click);
             // 
             // checkBox3
             // 
@@ -933,54 +981,6 @@ namespace AppVietSo
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
-            // menuStrip1
-            // 
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tiênTichToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(11, 670);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(257, 48);
-            this.menuStrip1.TabIndex = 31;
-            this.menuStrip1.Text = "Tiện ích";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
-            // 
-            // tiênTichToolStripMenuItem
-            // 
-            this.tiênTichToolStripMenuItem.BackColor = System.Drawing.Color.Teal;
-            this.tiênTichToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mơLongSơTaiVêToolStripMenuItem,
-            this.taiBôChưHanToolStripMenuItem,
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem});
-            this.tiênTichToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
-            this.tiênTichToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tiênTichToolStripMenuItem.Name = "tiênTichToolStripMenuItem";
-            this.tiênTichToolStripMenuItem.Padding = new System.Windows.Forms.Padding(10);
-            this.tiênTichToolStripMenuItem.Size = new System.Drawing.Size(97, 44);
-            this.tiênTichToolStripMenuItem.Text = "Tiện tích";
-            // 
-            // mơLongSơTaiVêToolStripMenuItem
-            // 
-            this.mơLongSơTaiVêToolStripMenuItem.Name = "mơLongSơTaiVêToolStripMenuItem";
-            this.mơLongSơTaiVêToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.mơLongSơTaiVêToolStripMenuItem.Text = "Mở lòng sớ tải về";
-            this.mơLongSơTaiVêToolStripMenuItem.Click += new System.EventHandler(this.mơLongSơTaiVêToolStripMenuItem_Click);
-            // 
-            // taiBôChưHanToolStripMenuItem
-            // 
-            this.taiBôChưHanToolStripMenuItem.Name = "taiBôChưHanToolStripMenuItem";
-            this.taiBôChưHanToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.taiBôChưHanToolStripMenuItem.Text = "Tải bộ chữ hán";
-            this.taiBôChưHanToolStripMenuItem.Click += new System.EventHandler(this.taiBôChưHanToolStripMenuItem_Click);
-            // 
-            // lâyDưLiêuMơiNhâtToolStripMenuItem
-            // 
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Name = "lâyDưLiêuMơiNhâtToolStripMenuItem";
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Text = "Lấy dữ liệu mới nhất";
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Click += new System.EventHandler(this.lâyDưLiêuMơiNhâtToolStripMenuItem_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1003,6 +1003,8 @@ namespace AppVietSo
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1010,8 +1012,6 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

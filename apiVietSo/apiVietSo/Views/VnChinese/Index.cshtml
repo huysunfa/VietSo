@@ -5,41 +5,71 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <form>
-<h2>Quản lý thư viện mặt chữ 
-    <input autofocus  placeholder="Nhập chữ việt để xem mặt chữ" style="width:50%" name="vn" value="@ViewBag.vn"/> 
+    <h2>
+        Quản lý thư viện mặt chữ
+        <input autofocus placeholder="Nhập chữ việt để xem mặt chữ" style="width:50%" name="vn" value="@ViewBag.vn" />
     </h2>
 
 </form>
+<form action="/VnChinese/Create" method="post" class="row">
 
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="vn">vn</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="vn" name="vn" type="text"  value="@ViewBag.vn">
+            <span class="field-validation-valid text-danger" data-valmsg-for="vn" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="chinese">chinese</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" id="chinese" name="chinese" type="text" value="">
+            <span class="field-validation-valid text-danger" data-valmsg-for="chinese" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <button type="submit" class="btn btn-sm btn-primary" href="/VnChinese/Create">Thêm mặt chữ</button></p>
+        </div>
+    </div>
+</form>
 <p>
-<a class="btn btn-sm btn-primary" href="/VnChinese/Create">Thêm mặt chữ</a></p>
-<table class="table table-bordered">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.vn)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.chinese)
-        </th>
-        
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.vn)
-        </td>
-        <td style="font-size:20px;font-weight:bold">
-            @Html.DisplayFor(modelItem => item.chinese)
-        </td>
-    
- 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-             @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
 
-</table>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.vn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.chinese)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vn)
+                </td>
+                <td style="font-size:20px;font-weight:bold">
+                    @Html.DisplayFor(modelItem => item.chinese)
+                </td>
+
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                </td>
+            </tr>
+        }
+
+    </table>
