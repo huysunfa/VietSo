@@ -449,7 +449,7 @@ namespace AppVietSo
             var frmMatChu = new frmThemMatChu(TextVN);
             frmMatChu.SetDesktopLocation(Cursor.Position.X, Cursor.Position.Y);
             frmMatChu.ShowDialog();
-            ReLoad(sender, e);
+            RenderStyle();
         }
 
         // Token: 0x060000DC RID: 220 RVA: 0x0000E8FA File Offset: 0x0000CAFA
