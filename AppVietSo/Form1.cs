@@ -516,6 +516,7 @@ namespace AppVietSo
             loadListFont();
 
             var worksheet = reoGridControl1.CurrentWorksheet;
+            reoGridControl1.SetSettings(WorkbookSettings.View_ShowSheetTabControl, false);
 
             worksheet.SettingsValue();
 
@@ -1317,7 +1318,7 @@ namespace AppVietSo
                 cell.TextVN = cnt[k];
                 cell.TextCN = CNDictionary.getCN(cell.TextVN);
                 row.Tag = cell;
-               
+
 
                 if (k > 0)
                 {
@@ -1577,7 +1578,7 @@ namespace AppVietSo
             {
                 var oldW = sheet.GetColumnWidth(i);
                 sheet.AutoFitColumnWidth(i, check);
-                sheet.ColumnHeaders[i].IsAutoWidth = check;
+                //   sheet.ColumnHeaders[i].IsAutoWidth = check;
                 var newW = sheet.GetColumnWidth(i);
 
                 if (newW < oldW)
@@ -1588,8 +1589,14 @@ namespace AppVietSo
             }
             for (int i = 1; i < sheet.RowCount; i = i + 1)
             {
-                sheet.RowHeaders[i].IsAutoHeight = check;
+                var oldW = sheet.GetRowHeight(i);
+                sheet.AutoFitRowHeight(i, check);
+                var newW = sheet.GetRowHeight(i);
+                if (newW < oldW)
+                {
+                    sheet.SetRowsHeight(i, 1, oldW);
 
+                }
             }
         }
 
@@ -1852,6 +1859,7 @@ namespace AppVietSo
             {
                 using (PrintPreviewDialog ppd = new PrintPreviewDialog())
                 {
+                    session.PrintDocument.DefaultPageSettings.Landscape = true;
                     session.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
                     session.PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = session.PrintDocument.DefaultPageSettings.PaperSize;
                     ppd.Document = session.PrintDocument;
@@ -1946,13 +1954,13 @@ namespace AppVietSo
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             AddMaSo(checkBox1.Checked);
-      //      RenderStyle();
+            //      RenderStyle();
         }
 
         public void AddMaSo(bool input = false)
         {
             var sheet = reoGridControl1.CurrentWorksheet;
-            var cell = sheet.Cells[sheet.UsedRange.EndRow-1, sheet.UsedRange.EndCol-1];
+            var cell = sheet.Cells[sheet.UsedRange.EndRow - 1, sheet.UsedRange.EndCol - 1];
             if (input)
             {
                 cell.Data = ActiveData.Get("@maso");
