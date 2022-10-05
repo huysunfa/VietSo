@@ -1315,16 +1315,9 @@ namespace AppVietSo
                 var row = sheet.Cells[i, j];
                 var cell = row.Tag.getCellData();
                 cell.TextVN = cnt[k];
-                cell.TextCN = cntCN[k];
+                cell.TextCN = CNDictionary.getCN(cell.TextVN);
                 row.Tag = cell;
-                if (DataFormatArgs == "TextVN")
-                {
-                    row.Data = cell.TextVN;
-                }
-                else
-                {
-                    row.Data = cell.TextCN;
-                }
+               
 
                 if (k > 0)
                 {
@@ -1333,6 +1326,15 @@ namespace AppVietSo
                 else
                 {
                     DataFormatArgs = row.DataFormatArgs + "";
+                }
+
+                if (DataFormatArgs == "TextVN")
+                {
+                    row.Data = cell.TextVN;
+                }
+                else
+                {
+                    row.Data = cell.TextCN;
                 }
             }
         }
