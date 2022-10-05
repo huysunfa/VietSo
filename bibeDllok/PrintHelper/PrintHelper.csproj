@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{422B3777-B732-4A84-A9D0-EC285C1E9B15}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PrintHelper</RootNamespace>
+    <AssemblyName>PrintHelper</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CommonModel">
+      <HintPath>..\CommonModel-cleaned-cleaned.dll</HintPath>
+    </Reference>
+    <Reference Include="DataModel">
+      <HintPath>..\DataModel-cleaned-cleaned.dll</HintPath>
+    </Reference>
+    <Reference Include="DataText">
+      <HintPath>..\DataText-cleaned-cleaned.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="unvell.ReoGrid" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="-Module-.cs" />
+    <Compile Include="Cell.cs" />
+    <Compile Include="CellBorder.cs" />
+    <Compile Include="ConfusedByAttribute.cs" />
+    <Compile Include="DanhSachTinChu.cs" />
+    <Compile Include="dummy_ptr\{80a52806-2261-44dc-af1a-fc5ec7ec1ab3}.cs" />
+    <Compile Include="Excel.cs" />
+    <Compile Include="ExcelPerson.cs" />
+    <Compile Include="FrmKeyInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKeyInput.Designer.cs">
+      <DependentUpon>FrmKeyInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmKeyRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmKeyRequest.Designer.cs">
+      <DependentUpon>FrmKeyRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmPayInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPayInfo.Designer.cs">
+      <DependentUpon>FrmPayInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PrDocument.cs" />
+    <Compile Include="PrintBase.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Valid.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="FrmKeyInput.resources" />
+    <EmbeddedResource Include="FrmKeyRequest.resources" />
+    <EmbeddedResource Include="FrmPayInfo.resources" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
