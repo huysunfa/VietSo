@@ -251,7 +251,7 @@ namespace AppVietSo
                     var ID = dataGridViewRow.Cells["ID"].Value + "";
                     if (listIDS.Contains(ID))
                     {
-                        dataGridViewRow.Cells["Checked"].Value = true;  
+                        dataGridViewRow.Cells["Checked"].Value = true;
                     }
                     if (!string.IsNullOrEmpty(dataGridViewRow.Cells["NgayMat"].Value.ToString()))
                     {
@@ -634,24 +634,24 @@ namespace AppVietSo
                 string hlinhsinh = "";
                 string hlinhmat = "";
                 string hlinhtho = "";
-                 foreach (var it in user)
+                foreach (var it in user)
                 {
                     hlinhten += it.FullName + " ";
                     hlinhsinh += it.Menh + " ";
                     hlinhmat += it.DaiHanY + " ";
                     hlinhtho += it.Tuoi + " ";
-                 }
+                }
                 var gc = PersonBO.getChuSo(Program.Stg.Chua);
                 ActiveData.Update("@chua", Program.Stg.Chua);
                 ActiveData.Update("@hlinhten", hlinhten);
                 ActiveData.Update("@hlinhsinh", hlinhsinh);
                 ActiveData.Update("@hlinhmat", hlinhmat);
                 ActiveData.Update("@hlinhtho", hlinhtho);
-                ActiveData.Update("@giachu", gc.FullName);
-                 ActiveData.Update("@tinchu", gc.FullName);
-                 ActiveData.Update("@canchi", CNDictionary.getCN(gc.Menh)+"_"+gc.Menh);
+                ActiveData.Update("@giachu", (gc.FullName));
+                ActiveData.Update("@tinchu", gc.FullName);
+                ActiveData.Update("@canchi", CNDictionary.getCN(gc.Menh) + "_" + gc.Menh);
                 ActiveData.Update("@sotuoi", gc.Tuoi);
-                ActiveData.Update("@tuoi",CNDictionary.getCN(CNDictionary.getChuNomYYYY(gc.Tuoi)) + "_"  + CNDictionary.getChuNomYYYY(gc.Tuoi));
+                ActiveData.Update("@tuoi", CNDictionary.getCN(CNDictionary.getChuNomYYYY(gc.Tuoi)) + "_" + CNDictionary.getChuNomYYYY(gc.Tuoi));
 
                 Program.Stg.IsGiaChu = this.ckbChuSo.Checked;
 
@@ -691,11 +691,12 @@ namespace AppVietSo
                             {
                                 this.SelectedSoNos.Add(num, new Family
                                 {
-                                    SoNo = num, IDs= new List<string>()
+                                    SoNo = num,
+                                    IDs = new List<string>()
                                 });
                             }
                         }
-                          if (this.SelectedSoNos.ContainsKey(num))
+                        if (this.SelectedSoNos.ContainsKey(num))
                         {
                             this.SelectedSoNos[num].IDs.Add(text);
                         }

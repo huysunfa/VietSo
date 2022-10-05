@@ -981,6 +981,13 @@ namespace AppVietSo
                         it.Value.cellCN = new CellPos() { ColNo = numcol, RowNo = numrow };
                     }
 
+                    if ((it.Value.Value + "").StartsWith("@"))
+                    {
+                        ActiveData.Get(it.Value.Value + "", out string CN, out string VN);
+                        it.Value.TextVN = VN;
+                        it.Value.TextCN = CN;
+
+                    }
                     worksheet.Cells[col].Tag = it.Value;
 
                     worksheet.Cells[col].DataFormat = unvell.ReoGrid.DataFormat.CellDataFormatFlag.Text;
@@ -1186,14 +1193,13 @@ namespace AppVietSo
                 {
                     frmTinChu frm = new frmTinChu();
                     frm.ShowDialog();
-                    ActiveData.Get(Tag, out string CN, out string VN);
-
+                     ReLoad(sender,e);
                 }
                 else
                 {
                     showSugget(Tag, Tag);
-                }
                 RenderStyle();
+                }
             }
         }
         public void showSugget(string key, string t)
@@ -1389,10 +1395,12 @@ namespace AppVietSo
 
                     // nếu bắt đầu bằng @ thì bôi màu
                     var cell = item.Tag.getCellData();
-                    if ((cell.Value + "").StartsWith("@") )
+                    if ((cell.Value + "").StartsWith("@") && (cell.Value + "") != ("@giachu"))
                     {
 
-                        ActiveData.Get(cell.Value + "", out string CN, out string VN);
+                      
+
+                            ActiveData.Get(cell.Value + "", out string CN, out string VN);
 
                         renderText(sheet, CN, VN, i, j, rbSongNgu.Checked);
 
@@ -1812,6 +1820,7 @@ namespace AppVietSo
                 MessageBox.Show("Vui lòng chọn khổ giấy trước khi in ");
                 var frm = new FrmSetupPaper();
                 frm.ShowDialog();
+                ReLoad(sender, e);
                 return;
             }
             var sheet = reoGridControl1.CurrentWorksheet;
