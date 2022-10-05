@@ -919,6 +919,8 @@ namespace AppVietSo
 
             RenderStyle();
             ChangeWidthSize(worksheet, checkBox2.Checked);
+
+            AddMaSo(checkBox1.Checked);
         }
         public Dictionary<string, string> posSongNgu = new Dictionary<string, string>();
         public void LoadDataToDataGrid(Worksheet worksheet)
@@ -1111,6 +1113,7 @@ namespace AppVietSo
             var frm = new frmTinChu();
             frm.ShowDialog();
             RenderStyle();
+            AddMaSo(checkBox1.Checked);
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -1193,12 +1196,12 @@ namespace AppVietSo
                 {
                     frmTinChu frm = new frmTinChu();
                     frm.ShowDialog();
-                     ReLoad(sender,e);
+                    ReLoad(sender, e);
                 }
                 else
                 {
                     showSugget(Tag, Tag);
-                RenderStyle();
+                    RenderStyle();
                 }
             }
         }
@@ -1398,9 +1401,9 @@ namespace AppVietSo
                     if ((cell.Value + "").StartsWith("@") && (cell.Value + "") != ("@giachu"))
                     {
 
-                      
 
-                            ActiveData.Get(cell.Value + "", out string CN, out string VN);
+
+                        ActiveData.Get(cell.Value + "", out string CN, out string VN);
 
                         renderText(sheet, CN, VN, i, j, rbSongNgu.Checked);
 
@@ -1936,6 +1939,26 @@ namespace AppVietSo
         {
 
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            AddMaSo(checkBox1.Checked);
+      //      RenderStyle();
+        }
+
+        public void AddMaSo(bool input = false)
+        {
+            var sheet = reoGridControl1.CurrentWorksheet;
+            var cell = sheet.Cells[sheet.UsedRange.EndRow-1, sheet.UsedRange.EndCol-1];
+            if (input)
+            {
+                cell.Data = ActiveData.Get("@maso");
+            }
+            else
+            {
+                cell.Data = null;
+            }
         }
     }
 }

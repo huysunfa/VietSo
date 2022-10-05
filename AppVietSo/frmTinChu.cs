@@ -620,16 +620,20 @@ namespace AppVietSo
             if (this.SelectedSoNos.Count <= 0)
             {
                 MessageBox.Show("Xin hãy chọn Tín chủ !", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+        
             }
+   
+ 
             Program.Stg.Chua = this.GetPagodaID;
-            var chua = Models.PagodaBO.get(Program.Stg.Chua);
-            ActiveData.Update("@noicung", chua.Name);
-            int.TryParse(Program.Stg.Chua, out int NumChua);
-            if (SelectedSoNos.ContainsKey(NumChua))
-            {
-                var item = SelectedSoNos[NumChua];
 
+            var MaSo = SelectedSoNos.FirstOrDefault().Key;
+           
+
+            if (SelectedSoNos.ContainsKey(MaSo))
+            {
+                var item = SelectedSoNos[MaSo];
                 var user = PersonBO.getHuonglinhs(Program.Stg.Chua, item);
+
                 string hlinhten = "";
                 string hlinhsinh = "";
                 string hlinhmat = "";
@@ -641,7 +645,7 @@ namespace AppVietSo
                     hlinhmat += it.DaiHanY + " ";
                     hlinhtho += it.Tuoi + " ";
                 }
-                var gc = PersonBO.getChuSo(Program.Stg.Chua);
+                var gc = PersonBO.get(item.IDs.FirstOrDefault());
                 ActiveData.Update("@chua", Program.Stg.Chua);
                 ActiveData.Update("@hlinhten", hlinhten);
                 ActiveData.Update("@hlinhsinh", hlinhsinh);
@@ -649,6 +653,7 @@ namespace AppVietSo
                 ActiveData.Update("@hlinhtho", hlinhtho);
                 ActiveData.Update("@giachu", (gc.FullName));
                 ActiveData.Update("@tinchu", gc.FullName);
+                ActiveData.Update("@maso", gc.SoNo + "");
                 ActiveData.Update("@canchi", CNDictionary.getCN(gc.Menh) + "_" + gc.Menh);
                 ActiveData.Update("@sotuoi", gc.Tuoi);
                 ActiveData.Update("@tuoi", CNDictionary.getCN(CNDictionary.getChuNomYYYY(gc.Tuoi)) + "_" + CNDictionary.getChuNomYYYY(gc.Tuoi));
@@ -670,9 +675,8 @@ namespace AppVietSo
             ActiveData.UpdateDataByID();
         }
 
-
-        // Token: 0x06000112 RID: 274 RVA: 0x000143CC File Offset: 0x000125CC
-        private void GetSoNos()
+    
+         private void GetSoNos()
         {
             this.dgvPerson.EndEdit();
             this.SelectedSoNos = new Dictionary<int, Family>();
