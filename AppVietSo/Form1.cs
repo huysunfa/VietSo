@@ -449,7 +449,7 @@ namespace AppVietSo
             var frmMatChu = new frmThemMatChu(TextVN);
             frmMatChu.SetDesktopLocation(Cursor.Position.X, Cursor.Position.Y);
             frmMatChu.ShowDialog();
-            RenderStyle(cell.Address);
+            ReLoad(sender, e);
         }
 
         // Token: 0x060000DC RID: 220 RVA: 0x0000E8FA File Offset: 0x0000CAFA
@@ -1244,11 +1244,11 @@ namespace AppVietSo
                 richTextBox1.Text = input + ":" + DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff") + "\n" + richTextBox1.Text;
             }
         }
-        public void renderText(Worksheet sheet, string txt, int i, int j, bool songngu = false)
+        public void renderText(Worksheet sheet, string CN, string VN, int i, int j, bool songngu = false)
         {
-            if (string.IsNullOrEmpty(txt))
+            if (string.IsNullOrEmpty(VN))
             {
-                sheet.Cells[i, j].Data = txt;
+                sheet.Cells[i, j].Data = VN;
                 return;
             }
             int nextI = 1;
@@ -1267,7 +1267,8 @@ namespace AppVietSo
             var startRow = i;
             var startCol = j;
             var DataFormatArgs = "";
-            var cnt = txt.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
+            var cnt = VN.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
+            var cntCN = CN.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
             for (int k = 0; k < cnt.Count; k++)
             {
                 var item = sheet.Ranges[new CellPosition() { Row = i, Col = j }.ToAddress()];
@@ -1303,13 +1304,21 @@ namespace AppVietSo
                     continue;
                 }
                 var row = sheet.Cells[i, j];
-                row.Data = cnt[k];
                 var cell = row.Tag.getCellData();
-
+                cell.TextVN = cnt[k];
+                cell.TextCN = cntCN[k];
+                row.Tag = cell;
+                if (DataFormatArgs == "TextVN")
+                {
+                    row.Data = cell.TextVN;
+                }
+                else
+                {
+                    row.Data = cell.TextCN;
+                }
 
                 if (k > 0)
                 {
-                    //   setColorTag(sheet, row);
                     row.DataFormatArgs = "NO_" + DataFormatArgs;
                 }
                 else
@@ -1380,19 +1389,13 @@ namespace AppVietSo
 
                     // nếu bắt đầu bằng @ thì bôi màu
                     var cell = item.Tag.getCellData();
-                    if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
+                    if ((cell.Value + "").StartsWith("@") )
                     {
 
                         ActiveData.Get(cell.Value + "", out string CN, out string VN);
-                        if ((String)item.DataFormatArgs == "TextVN")
-                        {
-                            renderText(sheet, VN, i, j, rbSongNgu.Checked);
-                        }
-                        if ((String)item.DataFormatArgs == "TextCN")
-                        {
-                            renderText(sheet, CN, i, j, rbSongNgu.Checked);
-                            //    item.Data = CN;
-                        }
+
+                        renderText(sheet, CN, VN, i, j, rbSongNgu.Checked);
+
                     }
                     else
                     {
