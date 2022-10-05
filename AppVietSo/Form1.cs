@@ -57,6 +57,7 @@ namespace AppVietSo
         }
         public void addMenuContext()
         {
+            var TSMItemEditText = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemPaste = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddRow = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddCol = new global::System.Windows.Forms.ToolStripMenuItem();
@@ -81,6 +82,7 @@ namespace AppVietSo
             ctextMenuS.ImageScalingSize = new global::System.Drawing.Size(0x14, 0x14);
             ctextMenuS.Items.AddRange(new global::System.Windows.Forms.ToolStripItem[]
              {
+              TSMItemEditText,
               TSMItemPaste,
               TSMItemAddRow,
               TSMItemAddCol,
@@ -105,6 +107,14 @@ namespace AppVietSo
 
             ctextMenuS.Name = "ctextMenuS";
             ctextMenuS.Size = new global::System.Drawing.Size(0x135, 0x20C);
+
+            TSMItemEditText.Image = global::AppVietSo.Properties.Resources.edit;
+            TSMItemEditText.Name = "TSMItemEditText";
+            TSMItemEditText.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemEditText.Text = "Sửa lại mặt chữ";
+            TSMItemEditText.Click += TSMItemEditText_Click;
+
+
             TSMItemPaste.Image = global::AppVietSo.Properties.Resources.Paste;
             TSMItemPaste.Name = "TSMItemPaste";
             TSMItemPaste.ShortcutKeys = (global::System.Windows.Forms.Keys)0x20056;
@@ -428,6 +438,20 @@ namespace AppVietSo
             addTextLongSo("@ngachso", "Ngạch sớ");
         }
 
+        private void TSMItemEditText_Click(object sender, global::System.EventArgs e)
+        {
+            var worksheet = reoGridControl1.CurrentWorksheet;
+            var Row = worksheet.SelectionRange.Row;
+            var Col = worksheet.SelectionRange.Col;
+
+            var cell = worksheet.Cells[Row, Col];
+            string TextVN = cell.Tag.getCellData().TextVN;
+            var frmMatChu = new frmThemMatChu(TextVN);
+            frmMatChu.SetDesktopLocation(Cursor.Position.X, Cursor.Position.Y);
+            frmMatChu.ShowDialog();
+            RenderStyle(cell.Address);
+        }
+
         // Token: 0x060000DC RID: 220 RVA: 0x0000E8FA File Offset: 0x0000CAFA
         private void TSMItemAddTinChu_Click(object sender, global::System.EventArgs e)
         {
@@ -493,16 +517,7 @@ namespace AppVietSo
 
             var worksheet = reoGridControl1.CurrentWorksheet;
 
-            worksheet.SelectionForwardDirection = SelectionForwardDirection.Down;
-            worksheet.SetSettings(WorksheetSettings.View_ShowHeaders, false);
-            worksheet.SetSettings(WorksheetSettings.Behavior_MouseWheelToScroll, false);
-            worksheet.SetSettings(WorksheetSettings.Behavior_ScrollToFocusCell, false);
-            worksheet.SetSettings(WorksheetSettings.Edit_AutoExpandColumnWidth, false);
-            worksheet.SetSettings(WorksheetSettings.Edit_AllowAdjustColumnWidth, false);
-            worksheet.SetSettings(WorksheetSettings.Edit_AutoExpandRowHeight, false);
-            worksheet.SetSettings(WorksheetSettings.Edit_AllowAdjustRowHeight, false);
-
-            worksheet.EnableSettings(WorksheetSettings.View_ShowPageBreaks);
+            worksheet.SettingsValue();
 
             // add listview columns
             dynamicPanel.Location = new Point(MousePosition.X, MousePosition.Y);
@@ -510,7 +525,7 @@ namespace AppVietSo
             dynamicPanel.Visible = false;
             dynamicPanel.TabIndex = 9999;
             dynamicPanel.Size = new System.Drawing.Size(400, 200);
-            dynamicPanel.BackColor = Color.LightBlue;
+            dynamicPanel.BackColor = Color.Gray;
 
             Controls.Add(dynamicPanel);
             dynamicPanel.BringToFront();
@@ -519,6 +534,12 @@ namespace AppVietSo
                 var txt = r1.Text;
                 loaddd(txt);
             };
+            worksheet.BeforeCellEdit += (s, r1) =>
+         {
+
+             var cell = r1.Cell.Tag.getCellData();
+             r1.EditText = cell.TextVN;
+         };
 
             //worksheet.RowsHeightChanged += (s, r1) =>
             //{
@@ -601,18 +622,26 @@ namespace AppVietSo
 
                 if (r1.NewData != r1.Cell)
                 {
-                    var cell = r1.Cell.Tag.getCellData();
-                    if ((string)r1.NewData == (string)cell.TextVN || (string)r1.NewData == (string)cell.TextCN)
+                    if (string.IsNullOrEmpty(r1.NewData + ""))
                     {
                         return;
                     }
+                    var cell = r1.Cell.Tag.getCellData();
+                    //if ((string)r1.NewData == (string)cell.TextVN || (string)r1.NewData == (string)cell.TextCN)
+                    //{
+                    //    return;
+                    //}
                     string TextVN = r1.NewData + "";
                     string TextCN = ActiveData.Get(TextVN);
 
-                     if (string.IsNullOrEmpty(TextCN) && dynamicPanel.Controls.Count > 0)
+                    if (string.IsNullOrEmpty(TextCN) && dynamicPanel.Controls.Count > 0)
                     {
                         TextVN = dynamicPanel.Controls[0].Tag + "";
                         TextCN = dynamicPanel.Controls[0].Text;
+                        if (TextCN == "Thêm mặt chữ")
+                        {
+                            TextCN = TextVN;
+                        }
                     }
                     setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN);
 
@@ -693,6 +722,7 @@ namespace AppVietSo
                     textBox1.Size = new Size(size, 40);
                     textBox1.Click += new EventHandler(DynamicButton_Click);
 
+                    textBox1.BackColor = Color.LightYellow;
                     textBox1.Font = new Font(cbfnameCN.Text, 22);
 
                     textBox1.Tag = txt;
@@ -709,10 +739,14 @@ namespace AppVietSo
                     line = line + 1;
                     dynamicPanel.Size = new System.Drawing.Size(400, line * 50);
                 }
+                else
+                {
+                    dynamicPanel.Size = new System.Drawing.Size(400, 200);
+                }
 
             }
-            
-           var btnAddMatChu = new Button();
+
+            var btnAddMatChu = new Button();
             btnAddMatChu.Location = new Point(10, 10);
             btnAddMatChu.Text = "Thêm mặt chữ";
             btnAddMatChu.Size = new Size(100, 40);
@@ -789,6 +823,11 @@ namespace AppVietSo
             var frmMatChu = new frmThemMatChu(TextVN);
             frmMatChu.SetDesktopLocation(Cursor.Position.X, Cursor.Position.Y);
             frmMatChu.ShowDialog();
+            var cn = ActiveData.Get(TextVN);
+            if (string.IsNullOrEmpty(cn))
+            {
+                name.Text = cn;
+            }
             worksheet.EndEdit(EndEditReason.NormalFinish);
             dynamicPanel.Visible = false;
         }
@@ -1236,18 +1275,22 @@ namespace AppVietSo
                 if (k > 0)
                 {
 
+                    // nếu số dòng vượt quá điểm kết thúc
                     if (item.Row >= sheet.UsedRange.EndRow - 1)
                     {
                         item.Row = item.EndRow;
-                        if (item.Col >= sheet.UsedRange.EndCol - 1)
+                        // nếu số cột vượt quá điểm bắt đầu
+                        if ((item.Col - nextJ) <= sheet.UsedRange.Col)
                         {
-                            i = i - nextI;
+                            continue;
+
                         }
                         else
                         {
-                            j = startCol - nextJ;
-                            startCol = j;
+                            // số dòng reset lại
                             i = startRow;
+                            // số cột reset về dầu
+                            j = j - nextJ;
                         }
                     }
                     else
@@ -1255,8 +1298,15 @@ namespace AppVietSo
                         i += nextI;
                     }
                 }
+                if (j < sheet.UsedRange.Col || i < sheet.UsedRange.Row)
+                {
+                    continue;
+                }
                 var row = sheet.Cells[i, j];
                 row.Data = cnt[k];
+                var cell = row.Tag.getCellData();
+
+
                 if (k > 0)
                 {
                     //   setColorTag(sheet, row);
@@ -1272,7 +1322,7 @@ namespace AppVietSo
         {
             if (color == null)
             {
-                color = Color.SkyBlue;
+                color = Color.Orange;
             }
 
             var cell = item.Tag.getCellData();
@@ -1426,12 +1476,13 @@ namespace AppVietSo
 
                     if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
                     {
-                        setColorTag(sheet, item, Color.SkyBlue);
+                        setColorTag(sheet, item, Color.Orange);
                     }
 
                 }
             }
             sheet.SetSettings(WorksheetSettings.View_ShowPageBreaks, checkBox3.Checked);
+            // sheet.SettingsValue();
 
         }
         public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
@@ -1862,6 +1913,17 @@ namespace AppVietSo
                 File.Delete(item);
             }
             MessageBox.Show("Đã update dữ liệu mới nhất");
+        }
+
+        private void reoGridControl1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void reoGridControl1_DoubleClick(object sender, EventArgs e)
+        {
+
+
         }
     }
 }

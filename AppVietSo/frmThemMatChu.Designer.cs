@@ -40,11 +40,11 @@ namespace AppVietSo
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(41, 38);
+            this.label1.Location = new System.Drawing.Point(31, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(326, 25);
+            this.label1.Size = new System.Drawing.Size(351, 25);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Thêm mặt chữ hán cho từ tiếng viết :";
+            this.label1.Text = "Thay đổi mặt chữ hán cho từ tiếng viết :";
             // 
             // textBox1
             // 
@@ -97,7 +97,7 @@ namespace AppVietSo
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmThemMatChu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Thêm mặt chữ";
+            this.Text = "Thay đổi mặt chữ";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmThemMatChu_FormClosed);
             this.Load += new System.EventHandler(this.frmThemMatChu_Load);
             this.ResumeLayout(false);

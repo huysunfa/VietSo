@@ -39,5 +39,22 @@ namespace AppVietSo
       //      LoadDataToDataGrid(reoGrid);
 
         }
+           public static void SettingsValue(this Worksheet worksheet, object sender= null, EventArgs e=null)
+        {
+             worksheet.SelectionForwardDirection = SelectionForwardDirection.Down;
+            worksheet.SetSettings(WorksheetSettings.View_ShowHeaders, false);
+            worksheet.SetSettings(WorksheetSettings.Behavior_MouseWheelToScroll, false);
+            worksheet.SetSettings(WorksheetSettings.Behavior_ScrollToFocusCell, false);
+            worksheet.SetSettings(WorksheetSettings.Edit_AutoExpandColumnWidth, false);
+            worksheet.SetSettings(WorksheetSettings.Edit_AllowAdjustColumnWidth, false);
+            worksheet.SetSettings(WorksheetSettings.Edit_AutoExpandRowHeight, false);
+            worksheet.SetSettings(WorksheetSettings.Edit_AllowAdjustRowHeight, false);
+            worksheet.SetSettings(WorksheetSettings.View_AllowCellTextOverflow, true);
+            worksheet.SetSettings(WorksheetSettings.View_ShowGridLine, true);
+
+            worksheet.EnableSettings(WorksheetSettings.View_ShowPageBreaks);
+        }
+
+
     }
 }

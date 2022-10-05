@@ -126,7 +126,8 @@ namespace AppVietSo
             this.reoGridControl1.TabIndex = 2;
             this.reoGridControl1.Text = "reoGridControl1";
             this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
-            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_Click_1);
+            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
+            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_DoubleClick);
             // 
             // ctextMenuS
             // 
