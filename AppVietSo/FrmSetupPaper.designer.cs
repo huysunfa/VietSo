@@ -268,6 +268,7 @@ namespace AppVietSo
             this.label11.Size = new System.Drawing.Size(105, 20);
             this.label11.TabIndex = 19;
             this.label11.Text = "Chiều giấy in";
+            this.label11.Visible = false;
             // 
             // comboBox1
             // 
@@ -280,6 +281,7 @@ namespace AppVietSo
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(156, 28);
             this.comboBox1.TabIndex = 18;
+            this.comboBox1.Visible = false;
             this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // label12

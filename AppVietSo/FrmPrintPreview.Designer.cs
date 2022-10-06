@@ -18,8 +18,12 @@ namespace AppVietSo
 		{
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnZoomIn = new System.Windows.Forms.PictureBox();
+            this.btnZoomOut = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.btnCustomTitle = new System.Windows.Forms.Button();
+            this.btnLastPage = new System.Windows.Forms.PictureBox();
+            this.btnFirstPage = new System.Windows.Forms.PictureBox();
             this.nmrPageTo = new System.Windows.Forms.NumericUpDown();
             this.nmrPageFrom = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,17 +50,17 @@ namespace AppVietSo
             this.nmrBottom = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.nmrTop = new System.Windows.Forms.NumericUpDown();
-            this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
-            this.btnZoomIn = new System.Windows.Forms.PictureBox();
-            this.btnZoomOut = new System.Windows.Forms.PictureBox();
-            this.btnLastPage = new System.Windows.Forms.PictureBox();
-            this.btnFirstPage = new System.Windows.Forms.PictureBox();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).BeginInit();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLastPage)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFirstPage)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPageTo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPageFrom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPage)).BeginInit();
@@ -66,10 +70,6 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLastPage)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFirstPage)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -114,6 +114,30 @@ namespace AppVietSo
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnZoomIn
+            // 
+            this.btnZoomIn.BackgroundImage = global::AppVietSo.Properties.Resources.zoomin24;
+            this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnZoomIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnZoomIn.Location = new System.Drawing.Point(254, 132);
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.Size = new System.Drawing.Size(30, 30);
+            this.btnZoomIn.TabIndex = 46;
+            this.btnZoomIn.TabStop = false;
+            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
+            // 
+            // btnZoomOut
+            // 
+            this.btnZoomOut.BackgroundImage = global::AppVietSo.Properties.Resources.zoomout24;
+            this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnZoomOut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnZoomOut.Location = new System.Drawing.Point(127, 132);
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.Size = new System.Drawing.Size(30, 30);
+            this.btnZoomOut.TabIndex = 45;
+            this.btnZoomOut.TabStop = false;
+            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.btnCustomTitle);
@@ -143,7 +167,32 @@ namespace AppVietSo
             this.btnCustomTitle.TabIndex = 51;
             this.btnCustomTitle.Text = "Thay đổi";
             this.btnCustomTitle.UseVisualStyleBackColor = true;
+            this.btnCustomTitle.Visible = false;
             this.btnCustomTitle.Click += new System.EventHandler(this.btnCustomTitle_Click);
+            // 
+            // btnLastPage
+            // 
+            this.btnLastPage.BackgroundImage = global::AppVietSo.Properties.Resources.end24;
+            this.btnLastPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnLastPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnLastPage.Location = new System.Drawing.Point(185, 170);
+            this.btnLastPage.Name = "btnLastPage";
+            this.btnLastPage.Size = new System.Drawing.Size(30, 30);
+            this.btnLastPage.TabIndex = 50;
+            this.btnLastPage.TabStop = false;
+            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
+            // 
+            // btnFirstPage
+            // 
+            this.btnFirstPage.BackgroundImage = global::AppVietSo.Properties.Resources.home24;
+            this.btnFirstPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnFirstPage.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFirstPage.Location = new System.Drawing.Point(18, 170);
+            this.btnFirstPage.Name = "btnFirstPage";
+            this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
+            this.btnFirstPage.TabIndex = 47;
+            this.btnFirstPage.TabStop = false;
+            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
             // 
             // nmrPageTo
             // 
@@ -250,6 +299,7 @@ namespace AppVietSo
             this.cbxPageNumber.TabIndex = 36;
             this.cbxPageNumber.Text = "Header/ Footer";
             this.cbxPageNumber.UseVisualStyleBackColor = true;
+            this.cbxPageNumber.Visible = false;
             this.cbxPageNumber.CheckedChanged += new System.EventHandler(this.cbxPageNumber_CheckedChanged);
             // 
             // groupBox1
@@ -452,62 +502,6 @@ namespace AppVietSo
             this.nmrTop.TabIndex = 3;
             this.nmrTop.ValueChanged += new System.EventHandler(this.nmrTop_ValueChanged);
             // 
-            // printPreviewControl1
-            // 
-            this.printPreviewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.printPreviewControl1.Location = new System.Drawing.Point(0, 0);
-            this.printPreviewControl1.Name = "printPreviewControl1";
-            this.printPreviewControl1.Size = new System.Drawing.Size(1056, 892);
-            this.printPreviewControl1.TabIndex = 1;
-            // 
-            // btnZoomIn
-            // 
-            this.btnZoomIn.BackgroundImage = global::AppVietSo.Properties.Resources.zoomin24;
-            this.btnZoomIn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnZoomIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnZoomIn.Location = new System.Drawing.Point(254, 132);
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.Size = new System.Drawing.Size(30, 30);
-            this.btnZoomIn.TabIndex = 46;
-            this.btnZoomIn.TabStop = false;
-            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
-            // 
-            // btnZoomOut
-            // 
-            this.btnZoomOut.BackgroundImage = global::AppVietSo.Properties.Resources.zoomout24;
-            this.btnZoomOut.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnZoomOut.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnZoomOut.Location = new System.Drawing.Point(127, 132);
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.Size = new System.Drawing.Size(30, 30);
-            this.btnZoomOut.TabIndex = 45;
-            this.btnZoomOut.TabStop = false;
-            this.btnZoomOut.Click += new System.EventHandler(this.btnZoomOut_Click);
-            // 
-            // btnLastPage
-            // 
-            this.btnLastPage.BackgroundImage = global::AppVietSo.Properties.Resources.end24;
-            this.btnLastPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnLastPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnLastPage.Location = new System.Drawing.Point(185, 170);
-            this.btnLastPage.Name = "btnLastPage";
-            this.btnLastPage.Size = new System.Drawing.Size(30, 30);
-            this.btnLastPage.TabIndex = 50;
-            this.btnLastPage.TabStop = false;
-            this.btnLastPage.Click += new System.EventHandler(this.btnLastPage_Click);
-            // 
-            // btnFirstPage
-            // 
-            this.btnFirstPage.BackgroundImage = global::AppVietSo.Properties.Resources.home24;
-            this.btnFirstPage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnFirstPage.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFirstPage.Location = new System.Drawing.Point(18, 170);
-            this.btnFirstPage.Name = "btnFirstPage";
-            this.btnFirstPage.Size = new System.Drawing.Size(30, 30);
-            this.btnFirstPage.TabIndex = 47;
-            this.btnFirstPage.TabStop = false;
-            this.btnFirstPage.Click += new System.EventHandler(this.btnFirstPage_Click);
-            // 
             // btnPrint
             // 
             this.btnPrint.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -523,6 +517,14 @@ namespace AppVietSo
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // printPreviewControl1
+            // 
+            this.printPreviewControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.printPreviewControl1.Location = new System.Drawing.Point(0, 0);
+            this.printPreviewControl1.Name = "printPreviewControl1";
+            this.printPreviewControl1.Size = new System.Drawing.Size(1056, 892);
+            this.printPreviewControl1.TabIndex = 1;
             // 
             // FrmPrintPreview
             // 
@@ -546,8 +548,12 @@ namespace AppVietSo
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnLastPage)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.btnFirstPage)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPageTo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPageFrom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrPage)).EndInit();
@@ -559,10 +565,6 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnLastPage)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnFirstPage)).EndInit();
             this.ResumeLayout(false);
 
 		}

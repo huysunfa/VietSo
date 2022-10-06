@@ -542,6 +542,7 @@ namespace AppVietSo
              r1.EditText = cell.TextVN;
          };
 
+
             //worksheet.RowsHeightChanged += (s, r1) =>
             //{
             //    var sheet = reoGridControl1.CurrentWorksheet;
@@ -922,6 +923,36 @@ namespace AppVietSo
             ChangeWidthSize(worksheet, checkBox2.Checked);
 
             AddMaSo(checkBox1.Checked);
+
+            worksheet.ResetAllPageBreaks();
+            var MaxRow = worksheet.RowPageBreaks.Max(v => v);
+            var MinRow = worksheet.RowPageBreaks.Min(v => v);
+            foreach (var item in worksheet.RowPageBreaks.ToList())
+            {
+                if (item == MaxRow || item == MinRow)
+                {
+                    continue;
+                }
+
+                if (worksheet.RowPageBreaks.Contains(item))
+                {
+                    worksheet.ChangeRowPageBreak(item, MaxRow, false);
+                }
+            }
+
+            var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
+            var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
+            foreach (var item in worksheet.ColumnPageBreaks.ToList())
+            {
+                if (item == MaxCol || item == MinCol)
+                {
+                    continue;
+                }
+                if (worksheet.ColumnPageBreaks.Contains(item))
+                {
+                    worksheet.ChangeColumnPageBreak(item, MaxCol, false);
+                }
+            }
         }
         public Dictionary<string, string> posSongNgu = new Dictionary<string, string>();
         public void LoadDataToDataGrid(Worksheet worksheet)
@@ -1500,7 +1531,7 @@ namespace AppVietSo
             }
             sheet.SetSettings(WorksheetSettings.View_ShowPageBreaks, checkBox3.Checked);
             // sheet.SettingsValue();
-
+            sheet.PrintSettings.PageScaling = 1;
         }
         public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
         {
@@ -1827,6 +1858,7 @@ namespace AppVietSo
 
         private void toolStripButton4_Click(object sender, EventArgs e)
         {
+
             if (Util.LongSoHienTai.paperSize == null)
             {
                 MessageBox.Show("Vui lòng chọn khổ giấy trước khi in ");
@@ -1836,12 +1868,7 @@ namespace AppVietSo
                 return;
             }
             var sheet = reoGridControl1.CurrentWorksheet;
-            // var w = sheet.ColumnCount * sheet.RowHeaderWidth;
-
-            //if (w> Util.LongSoHienTai.PageHeight)
-            //{
-            //    Util.LongSoHienTai.PageHeight = w;
-            //}
+            sheet.PrintSettings.PaperName = Util.LongSoHienTai.paperSize.PaperName;
 
             sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
                  new unvell.ReoGrid.RangeBorderStyle
@@ -1855,23 +1882,13 @@ namespace AppVietSo
                 // style item
                 BackColor = Color.White,
             });
-            using (var session = sheet.CreatePrintSession())
-            {
-                using (PrintPreviewDialog ppd = new PrintPreviewDialog())
-                {
-                    session.PrintDocument.DefaultPageSettings.Landscape = true;
-                    session.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
-                    session.PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = session.PrintDocument.DefaultPageSettings.PaperSize;
-                    ppd.Document = session.PrintDocument;
-                    ppd.SetBounds(0, 0, Width, Height - 40);
-                    // float scale = (float)System.Windows.SystemParameters.VirtualScreenWidth / (float)Util.LongSoHienTai.PageWidth;
-                    //  ppd.PrintPreviewControl.Zoom = scale * 0.7;
-                    ppd.WindowState = FormWindowState.Maximized;
-                    ppd.Document.PrinterSettings.PrinterName = Util.LongSoHienTai.PrinterName;
-                    ppd.ShowDialog(this);
-                    ReLoad(sender, e);
-                }
-            }
+
+            FrmPrintPreview frmPrintPreview = new FrmPrintPreview();
+            frmPrintPreview.Sheet = reoGridControl1.CurrentWorksheet;
+            frmPrintPreview.ShowDialog(this);
+
+            ReLoad(sender, e);
+
 
         }
 
@@ -1969,6 +1986,47 @@ namespace AppVietSo
             {
                 cell.Data = null;
             }
+        }
+
+        private void xóaCộtKhôngCóNộiDungToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            var LgSo = new Dictionary<int, Dictionary<int, CellData>>();
+
+            var sheet = reoGridControl1.CurrentWorksheet;
+            var position = sheet.UsedRange;
+            if (position.Cols <= 1)
+            {
+                return;
+            }
+            var listCol = new List<int>();
+            for (int i = 1; i <= position.EndCol - 1; i++)
+            {
+                var check = false;
+                for (int j = 1; j <= position.EndRow - 1; j++)
+                {
+                    var item = sheet.Cells[j, i];
+                    if (!string.IsNullOrEmpty(item.Data + ""))
+                    {
+                        check = true;
+                        break;
+                    }
+
+
+                }
+                if (check == false)
+                {
+                    listCol.Add(i);
+                }
+            }
+            foreach (var item in listCol.OrderByDescending(z=>z))
+            {
+                sheet.DeleteColumns(item, 1);
+            }
+            SaveData();
+         
+            ReLoad(sender, e);
+
         }
     }
 }

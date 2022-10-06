@@ -85,6 +85,7 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -180,7 +181,7 @@ namespace AppVietSo
             this.tiênTichToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(11, 670);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(255, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -191,7 +192,8 @@ namespace AppVietSo
             this.tiênTichToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mơLongSơTaiVêToolStripMenuItem,
             this.taiBôChưHanToolStripMenuItem,
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem});
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem,
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem});
             this.tiênTichToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.tiênTichToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tiênTichToolStripMenuItem.Name = "tiênTichToolStripMenuItem";
@@ -202,21 +204,21 @@ namespace AppVietSo
             // mơLongSơTaiVêToolStripMenuItem
             // 
             this.mơLongSơTaiVêToolStripMenuItem.Name = "mơLongSơTaiVêToolStripMenuItem";
-            this.mơLongSơTaiVêToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.mơLongSơTaiVêToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.mơLongSơTaiVêToolStripMenuItem.Text = "Mở lòng sớ tải về";
             this.mơLongSơTaiVêToolStripMenuItem.Click += new System.EventHandler(this.mơLongSơTaiVêToolStripMenuItem_Click);
             // 
             // taiBôChưHanToolStripMenuItem
             // 
             this.taiBôChưHanToolStripMenuItem.Name = "taiBôChưHanToolStripMenuItem";
-            this.taiBôChưHanToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.taiBôChưHanToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.taiBôChưHanToolStripMenuItem.Text = "Tải bộ chữ hán";
             this.taiBôChưHanToolStripMenuItem.Click += new System.EventHandler(this.taiBôChưHanToolStripMenuItem_Click);
             // 
             // lâyDưLiêuMơiNhâtToolStripMenuItem
             // 
             this.lâyDưLiêuMơiNhâtToolStripMenuItem.Name = "lâyDưLiêuMơiNhâtToolStripMenuItem";
-            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Size = new System.Drawing.Size(242, 26);
+            this.lâyDưLiêuMơiNhâtToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.lâyDưLiêuMơiNhâtToolStripMenuItem.Text = "Lấy dữ liệu mới nhất";
             this.lâyDưLiêuMơiNhâtToolStripMenuItem.Click += new System.EventHandler(this.lâyDưLiêuMơiNhâtToolStripMenuItem_Click);
             // 
@@ -983,6 +985,13 @@ namespace AppVietSo
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
+            // xóaCộtKhôngCóNộiDungToolStripMenuItem
+            // 
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Name = "xóaCộtKhôngCóNộiDungToolStripMenuItem";
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Text = "Xóa cột không có nội dung";
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Click += new System.EventHandler(this.xóaCộtKhôngCóNộiDungToolStripMenuItem_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1071,6 +1080,7 @@ namespace AppVietSo
         private ToolStripMenuItem mơLongSơTaiVêToolStripMenuItem;
         private ToolStripMenuItem taiBôChưHanToolStripMenuItem;
         private ToolStripMenuItem lâyDưLiêuMơiNhâtToolStripMenuItem;
+        private ToolStripMenuItem xóaCộtKhôngCóNộiDungToolStripMenuItem;
     }
 }
 
