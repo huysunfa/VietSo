@@ -359,8 +359,12 @@ namespace AppVietSo
         private void TSMItemDelCol_Click(object sender, global::System.EventArgs e)
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
-            var cnt = worksheet.SelectionRange.Col;
-            worksheet.DeleteColumns(cnt, 1);
+
+            var from = worksheet.SelectionRange.Col;
+            var to = worksheet.SelectionRange.EndCol;
+            var diff = to - from + 1;
+            worksheet.DeleteColumns(from,diff);
+
             SaveData();
             ReLoad(sender, e);
         }
@@ -457,6 +461,12 @@ namespace AppVietSo
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@tinchu", "Tín chủ");
+            var worksheet = reoGridControl1.CurrentWorksheet;
+            var Col = worksheet.SelectionRange.Col;
+            if (rbSongNgu.Checked)
+            {
+                worksheet.AutoFitColumnWidth(Col, true);
+            }
         }
 
         // Token: 0x060000DD RID: 221 RVA: 0x0000E90C File Offset: 0x0000CB0C
@@ -1530,8 +1540,12 @@ namespace AppVietSo
                 }
             }
             sheet.SetSettings(WorksheetSettings.View_ShowPageBreaks, checkBox3.Checked);
-            // sheet.SettingsValue();
-            sheet.PrintSettings.PageScaling = 1;
+
+            sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle()
+            {
+                Flag = PlainStyleFlag.Padding,
+                Padding = new PaddingValue(0, 0, 0, 0),
+            });
         }
         public void ChangeFontAndSize(Worksheet sheet, string Data, string Address)
         {
@@ -2019,12 +2033,21 @@ namespace AppVietSo
                     listCol.Add(i);
                 }
             }
-            foreach (var item in listCol.OrderByDescending(z=>z))
+            foreach (var item in listCol.OrderByDescending(z => z))
             {
-                sheet.DeleteColumns(item, 1);
+                try
+                {
+
+                    sheet.DeleteColumns(item, 1);
+                }
+                catch (Exception)
+                {
+
+
+                }
             }
             SaveData();
-         
+
             ReLoad(sender, e);
 
         }

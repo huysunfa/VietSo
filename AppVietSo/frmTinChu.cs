@@ -570,6 +570,32 @@ namespace AppVietSo
                 }
             }
 
+            if (e.ColumnIndex == this.dgvPerson.Columns["NgayMat"].Index)
+            {
+                var NgayMat = e.FormattedValue + "";
+                //         var NgayMat = this.dgvPerson.Rows[e.RowIndex].Cells["NgayMat"].Value+"";
+                if (NgayMat == "")
+                {
+                    return;
+                }
+                DateTime.TryParseExact(NgayMat, "dd/MM/yyyy",
+                           System.Globalization.CultureInfo.InvariantCulture,
+                                System.Globalization.DateTimeStyles.None,
+                           out DateTime mat);
+                if (mat.Year < 1800)
+                {
+                    MessageBox.Show("Ngày mất phải nhập đúng định dạng ngày/tháng/năm.", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    //    this.dgvPerson.Rows[e.RowIndex].ErrorText = "Họ Tên không được để trống";
+                    DataGridViewCell cell = dgvPerson.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                    dgvPerson.CurrentCell = cell;
+                    dgvPerson.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = null;
+                    e.Cancel = true;
+                    dgvPerson.BeginEdit(true);
+                }
+
+
+            }
+
         }
 
         // Token: 0x0600010D RID: 269 RVA: 0x0001421C File Offset: 0x0001241C
@@ -620,14 +646,14 @@ namespace AppVietSo
             if (this.SelectedSoNos.Count <= 0)
             {
                 MessageBox.Show("Xin hãy chọn Tín chủ !", Util.domain, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-        
+
             }
-   
- 
+
+
             Program.Stg.Chua = this.GetPagodaID;
 
             var MaSo = SelectedSoNos.FirstOrDefault().Key;
-           
+
 
             if (SelectedSoNos.ContainsKey(MaSo))
             {
@@ -675,8 +701,8 @@ namespace AppVietSo
             ActiveData.UpdateDataByID();
         }
 
-    
-         private void GetSoNos()
+
+        private void GetSoNos()
         {
             this.dgvPerson.EndEdit();
             this.SelectedSoNos = new Dictionary<int, Family>();
