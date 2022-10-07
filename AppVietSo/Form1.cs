@@ -363,7 +363,7 @@ namespace AppVietSo
             var from = worksheet.SelectionRange.Col;
             var to = worksheet.SelectionRange.EndCol;
             var diff = to - from + 1;
-            worksheet.DeleteColumns(from,diff);
+            worksheet.DeleteColumns(from, diff);
 
             SaveData();
             ReLoad(sender, e);
@@ -1619,30 +1619,47 @@ namespace AppVietSo
             }
             sheet = reoGridControl1.CurrentWorksheet;
 
-            for (int i = 1; i < sheet.ColumnCount; i = i + 1)
+            int TotalWidth = 0;
+            for (int i = 1; i < sheet.ColumnCount; i++)
             {
                 var oldW = sheet.GetColumnWidth(i);
                 sheet.AutoFitColumnWidth(i, check);
-                //   sheet.ColumnHeaders[i].IsAutoWidth = check;
+
                 var newW = sheet.GetColumnWidth(i);
 
                 if (newW < oldW)
                 {
+                    newW = oldW;
                     sheet.SetColumnsWidth(i, 1, oldW);
 
                 }
+                TotalWidth += newW;
             }
-            for (int i = 1; i < sheet.RowCount; i = i + 1)
-            {
-                var oldW = sheet.GetRowHeight(i);
-                sheet.AutoFitRowHeight(i, check);
-                var newW = sheet.GetRowHeight(i);
-                if (newW < oldW)
-                {
-                    sheet.SetRowsHeight(i, 1, oldW);
+            //int TotalHeight = 0;
+            //for (int i = 1; i < sheet.RowCount; i = i + 1)
+            //{
+            //    var oldW = sheet.GetRowHeight(i);
+            //    sheet.AutoFitRowHeight(i, check);
+            //    var newW = sheet.GetRowHeight(i);
+            //    if (newW < oldW)
+            //    {
+            //        newW = oldW;
+            //        sheet.SetRowsHeight(i, 1, oldW);
 
-                }
-            }
+            //    }
+            //    TotalHeight += newW;
+
+            //}
+            var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
+            var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
+            int row = (sheet.UsedRange.EndRow - 2);
+            var old  = TotalHeight / row;
+            sheet.SetRowsHeight(1, row, (ushort)old);
+
+            var free = TotalHeight - (row * (int)old);
+            var colend =(ushort)( sheet.GetRowHeight(row +2)+ free);
+            sheet.SetRowsHeight(row+1, 1,colend);
+
         }
 
 
