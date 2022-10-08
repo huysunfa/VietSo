@@ -288,19 +288,19 @@ namespace AppVietSo
         // Token: 0x06000092 RID: 146 RVA: 0x00005E44 File Offset: 0x00004044
         private void method_2()
         {
-         //   return;
+            return;
             this.worksheet_0.PrintSettings.PageScaling = 1f;
             this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow,worksheet_0.UsedRange.EndCol);
-            //this.worksheet_0.AutoSplitPage();
-            //if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
-            //{
-            //    int num = this.worksheet_0.ColumnPageBreaks[1];
-            //    if (num == this.int_0)
-            //    {
-            //        this.worksheet_0.AutoSetMaximumScaleForPages();
-            //    }
-            //    this.worksheet_0.ChangeColumnPageBreak(num, this.int_0, true);
-            //}
+            this.worksheet_0.AutoSplitPage();
+            if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
+            {
+                int num = this.worksheet_0.ColumnPageBreaks[1];
+                if (num == this.int_0)
+                {
+                    this.worksheet_0.AutoSetMaximumScaleForPages();
+                }
+                this.worksheet_0.ChangeColumnPageBreak(num, this.int_0, true);
+            }
         }
 
         // Token: 0x06000093 RID: 147 RVA: 0x00005EC8 File Offset: 0x000040C8
@@ -448,5 +448,10 @@ namespace AppVietSo
 
         // Token: 0x04000045 RID: 69
         private PrintSession printSession_0;
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

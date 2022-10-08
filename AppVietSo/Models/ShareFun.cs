@@ -74,11 +74,13 @@ namespace AppVietSo.Models
                 double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
                 num2 -= (double)(num5 + num6);
                 ushort height = (ushort)System.Math.Floor(num2 / (double)(row + 2));
-
-                sheet.SetRowsHeight(1, row - 1, height);
+                var RowUse = row - 1;
+                var ColUse = col - 1;
+                sheet.SetRowsHeight(1, RowUse, height);
                 ushort width = (ushort)System.Math.Floor(num7 / (double)(col + 1));
-                sheet.SetColumnsWidth(1, col - 1, width);
+                sheet.SetColumnsWidth(1, ColUse, width);
                 // margrin
+
                 var heightFree = 0; //Util.LongSoHienTai.PageHeight - (num5 + num6+(height * (row -2)));
                 var weightFree = 0;// Util.LongSoHienTai.PageWidth - (num3 + num4 + (width * (col - 2)));
                 weightFree = weightFree < 0 ? 0 : weightFree;
