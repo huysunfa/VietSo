@@ -314,6 +314,7 @@ namespace AppVietSo
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Cài đặt khổ giấy";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSetupPaper_FormClosing);
             this.Load += new System.EventHandler(this.FrmSetupPaper_Load);
             ((System.ComponentModel.ISupportInitialize)(this.nmrHeight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrWidth)).EndInit();

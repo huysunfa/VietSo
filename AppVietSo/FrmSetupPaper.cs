@@ -23,6 +23,7 @@ namespace AppVietSo
         {
             label12.Text = Util.LongSoHienTai.PrinterName;
             PrinterSettings settings = new PrinterSettings();
+            this.cbxPaperSize.Items.Clear();
             foreach (PaperSize paperSize in settings.PaperSizes)
             {
                 ComboboxItem item = new ComboboxItem();
@@ -195,6 +196,16 @@ namespace AppVietSo
         private void groupBox2_Enter(object sender, EventArgs e)
         {
 
+        }
+
+        private void FrmSetupPaper_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (cbxPaperSize.SelectedIndex== -1)
+            {
+                MessageBox.Show("Vui lòng chọn khổ giấy, nếu không chọn khổ giấy thì khi in sẽ bị lỗi");
+                e.Cancel = true;
+                return;
+            }
         }
     }
 }
