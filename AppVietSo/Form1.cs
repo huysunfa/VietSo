@@ -562,7 +562,9 @@ namespace AppVietSo
             //};
             //reoGridControl1.Undid += (s, r1) =>
             //{
-            //    var row = (SetCellDataAction) r1.Action;
+            
+            //    var row = (SetCellDataAction)r1.Action;
+                 
             //    var select = new CellPosition() { Row = row.Row, Col = row.Col };
             //    RenderStyle(select.ToAddress());
             //    //SaveData();
