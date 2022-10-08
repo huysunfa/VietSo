@@ -33,15 +33,61 @@ namespace AppVietSo
                                      });
             }
         }
-        
-        public static void PreView(this ReoGridControl reoGrid ,object sender= null, EventArgs e=null)
+
+        public static void PreView(this ReoGridControl reoGrid, object sender = null, EventArgs e = null)
         {
-      //      LoadDataToDataGrid(reoGrid);
+            //      LoadDataToDataGrid(reoGrid);
 
         }
-           public static void SettingsValue(this Worksheet worksheet, object sender= null, EventArgs e=null)
+
+        public static float GetTotalWidth(this Worksheet worksheet)
         {
-             worksheet.SelectionForwardDirection = SelectionForwardDirection.Down;
+            float TotalWidth = 0;
+            for (int i = 0; i < worksheet.UsedRange.EndCol; i++)
+            {
+                var height = worksheet.GetColumnWidth(i);
+                TotalWidth += height;
+            }
+            TotalWidth += worksheet.PrintSettings.Margins.Left;
+            TotalWidth += worksheet.PrintSettings.Margins.Right;
+            return TotalWidth;
+        }
+
+        public static void SetOnePage(this Worksheet worksheet)
+        {
+            worksheet.ResetAllPageBreaks();
+            var MaxRow = worksheet.RowPageBreaks.Max(v => v);
+            var MinRow = worksheet.RowPageBreaks.Min(v => v);
+            foreach (var item in worksheet.RowPageBreaks.ToList())
+            {
+                if (item == MaxRow || item == MinRow)
+                {
+                    continue;
+                }
+
+                if (worksheet.RowPageBreaks.Contains(item))
+                {
+                    worksheet.ChangeRowPageBreak(item, MaxRow, false);
+                }
+            }
+
+            var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
+            var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
+            foreach (var item in worksheet.ColumnPageBreaks.ToList())
+            {
+                if (item == MaxCol || item == MinCol)
+                {
+                    continue;
+                }
+                if (worksheet.ColumnPageBreaks.Contains(item))
+                {
+                    worksheet.ChangeColumnPageBreak(item, MaxCol, false);
+                }
+            }
+        }
+        public static void SettingsValue(this Worksheet worksheet, object sender = null, EventArgs e = null)
+        {
+            worksheet.SelectionForwardDirection = SelectionForwardDirection.Down;
             worksheet.SetSettings(WorksheetSettings.View_ShowHeaders, false);
             worksheet.SetSettings(WorksheetSettings.Behavior_MouseWheelToScroll, false);
             worksheet.SetSettings(WorksheetSettings.Behavior_ScrollToFocusCell, false);

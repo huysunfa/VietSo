@@ -288,19 +288,37 @@ namespace AppVietSo
         // Token: 0x06000092 RID: 146 RVA: 0x00005E44 File Offset: 0x00004044
         private void method_2()
         {
-            return;
-            this.worksheet_0.PrintSettings.PageScaling = 1f;
-            this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow,worksheet_0.UsedRange.EndCol);
-            this.worksheet_0.AutoSplitPage();
-            if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
+
+            Util.LongSoHienTai.PageWidth = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
+            Util.LongSoHienTai.PageHeight = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+
+            if (this.worksheet_0.PrintSettings.Landscape == true && Util.LongSoHienTai.PageWidth < Util.LongSoHienTai.PageHeight)
             {
-                int num = this.worksheet_0.ColumnPageBreaks[1];
-                if (num == this.int_0)
-                {
-                    this.worksheet_0.AutoSetMaximumScaleForPages();
-                }
-                this.worksheet_0.ChangeColumnPageBreak(num, this.int_0, true);
+                var tmp = Util.LongSoHienTai.PageWidth;
+                Util.LongSoHienTai.PageWidth = Util.LongSoHienTai.PageHeight;
+                Util.LongSoHienTai.PageHeight = tmp;
             }
+      //      this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
+
+         //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
+           // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
+
+            var hientai = this.worksheet_0.GetTotalWidth();
+            var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+
+            var Scaling = KhoGiay / hientai;
+            this.worksheet_0.PrintSettings.PageScaling = Scaling;
+            //this.worksheet_0.AutoSplitPage();
+            //if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
+            //{
+            //    int num = this.worksheet_0.ColumnPageBreaks[1];
+            //    if (num == this.int_0)
+            //    {
+            //        this.worksheet_0.AutoSetMaximumScaleForPages();
+            //    }
+            //    this.worksheet_0.ChangeColumnPageBreak(num, this.int_0, true);
+            //}
+            this.worksheet_0.SetOnePage();
         }
 
         // Token: 0x06000093 RID: 147 RVA: 0x00005EC8 File Offset: 0x000040C8

@@ -59,7 +59,7 @@ namespace AppVietSo.Models
             }
         }
 
-        public static void SetWidthHeight(this unvell.ReoGrid.Worksheet sheet, int row, int col)
+        public static void SetWidthHeight(this unvell.ReoGrid.Worksheet sheet, int row, int col,bool setting= true)
         {
 
             try
@@ -89,11 +89,14 @@ namespace AppVietSo.Models
                 sheet.SetColumnsWidth(sheet.UsedRange.EndCol, 1, (ushort)(num4));
                 sheet.SetRowsHeight(0, 1, (ushort)(num5 + heightFree));
                 sheet.SetRowsHeight(sheet.UsedRange.EndRow, 1, (ushort)(num6));
-
-
                 sheet.PrintSettings.Margins = new PageMargins(0);
-                sheet.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
-                sheet.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
+
+                if (setting)
+                {
+                    sheet.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
+                    sheet.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
+                }
+          
             }
             catch (Exception ex)
             {

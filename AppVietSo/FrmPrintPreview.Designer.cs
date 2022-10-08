@@ -340,7 +340,6 @@ namespace AppVietSo
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Enabled = false;
             this.label3.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label3.Location = new System.Drawing.Point(12, 241);
             this.label3.Name = "label3";
@@ -352,7 +351,6 @@ namespace AppVietSo
             // cbxPaperSize
             // 
             this.cbxPaperSize.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxPaperSize.Enabled = false;
             this.cbxPaperSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxPaperSize.FormattingEnabled = true;
             this.cbxPaperSize.Items.AddRange(new object[] {
@@ -375,7 +373,6 @@ namespace AppVietSo
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Enabled = false;
             this.label2.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label2.Location = new System.Drawing.Point(12, 172);
             this.label2.Name = "label2";
@@ -386,7 +383,6 @@ namespace AppVietSo
             // cbxPrinter
             // 
             this.cbxPrinter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbxPrinter.Enabled = false;
             this.cbxPrinter.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxPrinter.FormattingEnabled = true;
             this.cbxPrinter.Location = new System.Drawing.Point(11, 198);
