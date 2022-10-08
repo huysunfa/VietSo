@@ -40,8 +40,7 @@ namespace AppVietSo
         // Token: 0x06000122 RID: 290 RVA: 0x00016C2C File Offset: 0x00014E2C
         private void FrmSetupPaper_Load(object sender, EventArgs e)
         {
-
-
+ 
             LoadPageSize();
 
             this.nmrWidth.Value = this.toMM(Util.LongSoHienTai.PageWidth);
@@ -119,6 +118,8 @@ namespace AppVietSo
         {
             [DllImport("winspool.drv", CharSet = CharSet.Auto, SetLastError = true)]
             public static extern bool SetDefaultPrinter(string Name);
+
+         
         }
 
         // Token: 0x06000127 RID: 295 RVA: 0x00016F5C File Offset: 0x0001515C

@@ -1900,7 +1900,8 @@ namespace AppVietSo
             }
             var sheet = reoGridControl1.CurrentWorksheet;
             sheet.PrintSettings.PaperName = Util.LongSoHienTai.paperSize.PaperName;
-
+            sheet.PrintSettings.PaperWidth= Util.LongSoHienTai.paperSize.Width;
+            sheet.PrintSettings.PaperHeight = Util.LongSoHienTai.paperSize.Height;
             sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
                  new unvell.ReoGrid.RangeBorderStyle
                  {
