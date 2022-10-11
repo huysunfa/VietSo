@@ -43,6 +43,7 @@ namespace AppVietSo
             this.mơLongSơTaiVêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.taiBôChưHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lâyDưLiêuMơiNhâtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.button11 = new System.Windows.Forms.Button();
             this.lbVersion = new System.Windows.Forms.Label();
@@ -85,7 +86,7 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
-            this.xóaCộtKhôngCóNộiDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox4 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -148,6 +149,7 @@ namespace AppVietSo
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel1.Controls.Add(this.checkBox4);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox3);
             this.splitContainer1.Panel1.Controls.Add(this.button11);
@@ -179,9 +181,9 @@ namespace AppVietSo
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tiênTichToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(11, 670);
+            this.menuStrip1.Location = new System.Drawing.Point(12, 716);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(255, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -222,6 +224,13 @@ namespace AppVietSo
             this.lâyDưLiêuMơiNhâtToolStripMenuItem.Text = "Lấy dữ liệu mới nhất";
             this.lâyDưLiêuMơiNhâtToolStripMenuItem.Click += new System.EventHandler(this.lâyDưLiêuMơiNhâtToolStripMenuItem_Click);
             // 
+            // xóaCộtKhôngCóNộiDungToolStripMenuItem
+            // 
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Name = "xóaCộtKhôngCóNộiDungToolStripMenuItem";
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Text = "Xóa cột không có nội dung";
+            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Click += new System.EventHandler(this.xóaCộtKhôngCóNộiDungToolStripMenuItem_Click);
+            // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
@@ -242,7 +251,7 @@ namespace AppVietSo
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button11.ForeColor = System.Drawing.Color.Transparent;
-            this.button11.Location = new System.Drawing.Point(11, 384);
+            this.button11.Location = new System.Drawing.Point(12, 430);
             this.button11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button11.Name = "button11";
             this.button11.Size = new System.Drawing.Size(146, 42);
@@ -285,7 +294,7 @@ namespace AppVietSo
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(11, 612);
+            this.button3.Location = new System.Drawing.Point(12, 658);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(146, 44);
@@ -303,7 +312,7 @@ namespace AppVietSo
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.Transparent;
-            this.button8.Location = new System.Drawing.Point(11, 564);
+            this.button8.Location = new System.Drawing.Point(12, 610);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(146, 44);
@@ -428,7 +437,7 @@ namespace AppVietSo
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Transparent;
-            this.button4.Location = new System.Drawing.Point(11, 516);
+            this.button4.Location = new System.Drawing.Point(12, 562);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(146, 44);
@@ -459,7 +468,7 @@ namespace AppVietSo
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(11, 292);
+            this.button1.Location = new System.Drawing.Point(12, 338);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(146, 42);
@@ -477,7 +486,7 @@ namespace AppVietSo
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(11, 338);
+            this.button2.Location = new System.Drawing.Point(12, 384);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(146, 42);
@@ -496,7 +505,7 @@ namespace AppVietSo
             this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.Transparent;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(11, 476);
+            this.button7.Location = new System.Drawing.Point(12, 522);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(146, 36);
@@ -514,7 +523,7 @@ namespace AppVietSo
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Transparent;
-            this.button5.Location = new System.Drawing.Point(11, 430);
+            this.button5.Location = new System.Drawing.Point(12, 476);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(146, 42);
@@ -985,12 +994,16 @@ namespace AppVietSo
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
-            // xóaCộtKhôngCóNộiDungToolStripMenuItem
+            // checkBox4
             // 
-            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Name = "xóaCộtKhôngCóNộiDungToolStripMenuItem";
-            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
-            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Text = "Xóa cột không có nội dung";
-            this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Click += new System.EventHandler(this.xóaCộtKhôngCóNộiDungToolStripMenuItem_Click);
+            this.checkBox4.AutoSize = true;
+            this.checkBox4.Location = new System.Drawing.Point(24, 288);
+            this.checkBox4.Name = "checkBox4";
+            this.checkBox4.Size = new System.Drawing.Size(98, 21);
+            this.checkBox4.TabIndex = 49;
+            this.checkBox4.Text = "Khoa cúng";
+            this.checkBox4.UseVisualStyleBackColor = true;
+            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // Form1
             // 
@@ -1081,6 +1094,7 @@ namespace AppVietSo
         private ToolStripMenuItem taiBôChưHanToolStripMenuItem;
         private ToolStripMenuItem lâyDưLiêuMơiNhâtToolStripMenuItem;
         private ToolStripMenuItem xóaCộtKhôngCóNộiDungToolStripMenuItem;
+        private CheckBox checkBox4;
     }
 }
 

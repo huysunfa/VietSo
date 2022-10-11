@@ -111,7 +111,10 @@ namespace AppVietSo.Models
                                 continue;
                             }
                             var person = PersonBO.get(ID);
-
+                            if (!string.IsNullOrEmpty(person.NgayMat))
+                            {
+                                continue;
+                            }
                             var text = txtForm.Replace("$", "@");
 
                              text = text.Replace("@canchi", person.Menh);

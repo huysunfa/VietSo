@@ -379,15 +379,17 @@ namespace AppVietSo
             {
                 for (int j = select.Col; j <= select.EndCol; j++)
                 {
-                    worksheet.Cells[i, j].Data = "";
-                    worksheet.Cells[i, j].DataFormatArgs = (worksheet.Cells[i, j].DataFormatArgs + "").Split('_').LastOrDefault();
+                    var item = worksheet.Cells[i, j];
+                    item.Data = "";
+                    item.DataFormatArgs = (item.DataFormatArgs + "").Split('_').LastOrDefault();
                     var cell = worksheet.Cells[i, j].Tag.getCellData();
                     if ((cell.Value + "") == "@tinchu")
                     {
                         render = true;
 
                     }
-                    worksheet.Cells[i, j].Tag = new CellData();
+                    item.Tag = new CellData();
+                    setColorTag(worksheet, item, Color.White);
                 }
             }
             SaveData();
@@ -542,6 +544,7 @@ namespace AppVietSo
             dynamicPanel.BringToFront();
             worksheet.CellEditTextChanging += (s, r1) =>
             {
+                
                 var txt = r1.Text;
                 loaddd(txt);
             };
@@ -549,7 +552,10 @@ namespace AppVietSo
          {
 
              var cell = r1.Cell.Tag.getCellData();
-             r1.EditText = cell.TextVN;
+             if (!String.IsNullOrEmpty(cell.TextVN))
+             {
+                 r1.EditText = cell.TextVN;
+             }
          };
 
 
@@ -560,15 +566,14 @@ namespace AppVietSo
             //    Util.LongSoHienTai.PageHeight = w;
             //    sheet.SetWidthHeight(sheet.RowCount, sheet.ColumnCount);
             //};
-            //reoGridControl1.Undid += (s, r1) =>
-            //{
-            
-            //    var row = (SetCellDataAction)r1.Action;
-                 
-            //    var select = new CellPosition() { Row = row.Row, Col = row.Col };
-            //    RenderStyle(select.ToAddress());
-            //    //SaveData();
-            //};
+            reoGridControl1.Undid += (s, r1) =>
+            {
+                var row = (SetCellDataAction)r1.Action;
+                var select = new CellPosition() { Row = row.Row, Col = row.Col };
+
+                reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col].Tag = null;
+         //       SaveData();
+            };
             //reoGridControl1.WorksheetScrolled += (s, r1) =>
             //{
             //    var tmp = (float)0.1234567890;
@@ -964,6 +969,11 @@ namespace AppVietSo
                 {
                     worksheet.ChangeColumnPageBreak(item, MaxCol, false);
                 }
+            }
+
+            if (checkBox4.Checked)
+            {
+                reoGridControl1.CurrentWorksheet.AddKhoaCung(checkBox4.Checked);
             }
         }
         public Dictionary<string, string> posSongNgu = new Dictionary<string, string>();
@@ -1391,7 +1401,7 @@ namespace AppVietSo
 
             var cell = item.Tag.getCellData();
 
-            if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
+            if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo() || color != Color.Orange)
             {
                 sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
                 {
@@ -1511,6 +1521,10 @@ namespace AppVietSo
             });
 
             reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+            if (checkBox4.Checked)
+            {
+                reoGridControl1.CurrentWorksheet.AddKhoaCung(checkBox4.Checked);
+            }
 
             if (string.IsNullOrEmpty(pos))
             {
@@ -1655,12 +1669,12 @@ namespace AppVietSo
             var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
             var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
             int row = (sheet.UsedRange.EndRow - 2);
-            var old  = TotalHeight / row;
+            var old = TotalHeight / row;
             sheet.SetRowsHeight(1, row, (ushort)old);
 
             var free = TotalHeight - (row * (int)old);
-            var colend =(ushort)( sheet.GetRowHeight(row +2)+ free);
-            sheet.SetRowsHeight(row+1, 1,colend);
+            var colend = (ushort)(sheet.GetRowHeight(row + 2) + free);
+            sheet.SetRowsHeight(row + 1, 1, colend);
 
         }
 
@@ -1708,6 +1722,7 @@ namespace AppVietSo
                             }
                             var cell = item.Tag.getCellData();
 
+                           
                             value.TextCN = cell.TextCN;
                             value.TextVN = cell.TextVN;
                             value.Value = cell.Value;
@@ -1902,7 +1917,7 @@ namespace AppVietSo
             }
             var sheet = reoGridControl1.CurrentWorksheet;
             sheet.PrintSettings.PaperName = Util.LongSoHienTai.paperSize.PaperName;
-            sheet.PrintSettings.PaperWidth= Util.LongSoHienTai.paperSize.Width;
+            sheet.PrintSettings.PaperWidth = Util.LongSoHienTai.paperSize.Width;
             sheet.PrintSettings.PaperHeight = Util.LongSoHienTai.paperSize.Height;
             sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
                  new unvell.ReoGrid.RangeBorderStyle
@@ -1917,7 +1932,7 @@ namespace AppVietSo
                 BackColor = Color.White,
             });
 
-            FrmPrintPreview frmPrintPreview = new FrmPrintPreview();
+            FrmPrintPreview frmPrintPreview = new FrmPrintPreview(checkBox4.Checked);
             frmPrintPreview.Sheet = reoGridControl1.CurrentWorksheet;
             frmPrintPreview.ShowDialog(this);
 
@@ -2069,6 +2084,12 @@ namespace AppVietSo
             SaveData();
 
             ReLoad(sender, e);
+
+        }
+
+        private void checkBox4_CheckedChanged(object sender, EventArgs e)
+        {
+            reoGridControl1.CurrentWorksheet.AddKhoaCung(checkBox4.Checked);
 
         }
     }

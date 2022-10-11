@@ -32,8 +32,8 @@ namespace AppVietSo
                 bool.TryParse(item[0].ToString(), out bool check);
                 var it = result.NewRow();
                 it[0] = check;
-                it[2] = item[1];
-                it[1] = item[2];
+                it[1] = item[1];
+                it[2] = item[2];
                 result.Rows.Add(it);
             }
 

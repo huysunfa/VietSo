@@ -12,9 +12,10 @@ namespace AppVietSo
 {
     public partial class FrmPrintPreview : Form
     {
-        // Token: 0x06000082 RID: 130 RVA: 0x0000563C File Offset: 0x0000383C
-        public FrmPrintPreview()
+        bool _KhoaCung = false;
+        public FrmPrintPreview( bool KhoaCung)
         {
+            _KhoaCung = KhoaCung;
             this.InitializeComponent();
         }
 
@@ -52,6 +53,7 @@ namespace AppVietSo
         // Token: 0x06000086 RID: 134 RVA: 0x000056C4 File Offset: 0x000038C4
         private void FrmPrintPreview_Load(object sender, EventArgs e)
         {
+            checkBox1.Checked = _KhoaCung;
             var worksheet = this.worksheet_0;
             worksheet.ResetAllPageBreaks();
             var MaxRow = worksheet.RowPageBreaks.Max(v => v);
@@ -298,10 +300,10 @@ namespace AppVietSo
                 Util.LongSoHienTai.PageWidth = Util.LongSoHienTai.PageHeight;
                 Util.LongSoHienTai.PageHeight = tmp;
             }
-      //      this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
+            //      this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
 
-         //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
-           // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
+            //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
+            // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
 
             var hientai = this.worksheet_0.GetTotalWidth();
             var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
@@ -469,6 +471,13 @@ namespace AppVietSo
 
         private void label3_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            worksheet_0.AddKhoaCung(checkBox1.Checked);
+            this.method_3();
 
         }
     }

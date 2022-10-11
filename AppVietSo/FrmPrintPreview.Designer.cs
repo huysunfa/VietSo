@@ -52,6 +52,7 @@ namespace AppVietSo
             this.nmrTop = new System.Windows.Forms.NumericUpDown();
             this.btnPrint = new System.Windows.Forms.Button();
             this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -81,6 +82,7 @@ namespace AppVietSo
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.btnClose);
             this.splitContainer1.Panel1.Controls.Add(this.btnZoomIn);
             this.splitContainer1.Panel1.Controls.Add(this.btnZoomOut);
@@ -527,6 +529,17 @@ namespace AppVietSo
             this.printPreviewControl1.Size = new System.Drawing.Size(1056, 892);
             this.printPreviewControl1.TabIndex = 1;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(16, 76);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(110, 24);
+            this.checkBox1.TabIndex = 48;
+            this.checkBox1.Text = "Khoa cúng";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // FrmPrintPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -680,5 +693,6 @@ namespace AppVietSo
 
 		// Token: 0x0400006A RID: 106
 		private global::System.Windows.Forms.Button btnCustomTitle;
-	}
+        private System.Windows.Forms.CheckBox checkBox1;
+    }
 }

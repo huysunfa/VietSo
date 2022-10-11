@@ -29,10 +29,10 @@ namespace AppVietSo
             item.PageHeight = ShareFun.toPaperSize(297);
 
             item.LgSo = new Dictionary<int, Dictionary<int, CellData>>();
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < numCol.Value; i++)
             {
                 item.LgSo.Add(i, new Dictionary<int, CellData>());
-                for (int j = 0; j < 30; j++)
+                for (int j = 0; j < numRow.Value; j++)
                 {
                     item.LgSo[i].Add(j, new CellData());
 

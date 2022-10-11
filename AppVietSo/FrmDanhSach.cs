@@ -233,7 +233,7 @@ namespace AppVietSo
                 //this.curWS.PrintSettings.PageTitleRight = Program.Stg.GetPrintSetting("TinChuH").PageTitleRight;
                 //this.curWS.PrintSettings.IsFooter = Program.Stg.GetPrintSetting("TinChuH").PageIsFooter;
                 //this.curWS.PrintSettings.ShowPageNo = Program.Stg.GetPrintSetting("TinChuH").PageIsShowPageNo;
-                FrmPrintPreview frmPrintPreview = new FrmPrintPreview();
+                FrmPrintPreview frmPrintPreview = new FrmPrintPreview(false);
                 frmPrintPreview.Sheet = this.curWS;
                 frmPrintPreview.ZoomIndex = Program.Stg.GetPrintSetting("TinChuH").ZoomIndex;
                 frmPrintPreview.ShowDialog(this);

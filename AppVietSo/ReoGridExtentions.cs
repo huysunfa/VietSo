@@ -40,6 +40,45 @@ namespace AppVietSo
 
         }
 
+        public static void AddKhoaCung(this Worksheet worksheet_0, bool Checked)
+        {
+            var cover = new RangePosition(
+                    1, 2, worksheet_0.UsedRange.EndRow - 1
+                     , worksheet_0.UsedRange.EndCol - 2);
+            worksheet_0.SetRangeBorders(cover, BorderPositions.All,
+                               new unvell.ReoGrid.RangeBorderStyle
+                               {
+                                   Style = BorderLineStyle.None,
+
+                               });
+
+            if (Checked)
+            {
+                for (int i = 2; i < worksheet_0.Columns - 1; i = i + 2)
+                {
+                    var rangedata = new RangePosition(
+                    1, i, worksheet_0.UsedRange.EndRow - 1
+                     , 2);
+                    worksheet_0.SetRangeBorders(rangedata, BorderPositions.LeftRight,
+                                     new unvell.ReoGrid.RangeBorderStyle
+                                     {
+                                         Style = BorderLineStyle.BoldSolid,
+                                         Color = Color.Black
+                                     });
+                }
+
+
+                worksheet_0.SetRangeBorders(cover, BorderPositions.TopBottom,
+                                 new unvell.ReoGrid.RangeBorderStyle
+                                 {
+                                     Style = BorderLineStyle.BoldSolid,
+                                     Color = Color.Black
+                                 });
+            }
+
+
+        }
+
         public static float GetTotalWidth(this Worksheet worksheet)
         {
             float TotalWidth = 0;
