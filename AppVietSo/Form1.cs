@@ -25,7 +25,7 @@ namespace AppVietSo
 {
     public partial class Form1 : Form
     {
-        //bool loading = false;
+         bool editting = false;
         public Form1()
         {
             InitializeComponent();
@@ -568,11 +568,35 @@ namespace AppVietSo
             //};
             reoGridControl1.Undid += (s, r1) =>
             {
-                var row = (SetCellDataAction)r1.Action;
-                var select = new CellPosition() { Row = row.Row, Col = row.Col };
+                try
+                {
 
-                reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col].Tag = null;
-         //       SaveData();
+                    var row = (SetCellDataAction)r1.Action;
+                    var select = new CellPosition() { Row = row.Row, Col = row.Col };
+
+                    reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col].Tag = null;
+                    editting = true;
+                }
+                catch  
+                {
+                     
+                }
+             }; 
+            
+            reoGridControl1.Redid += (s, r1) =>
+            {
+                try
+                {
+                    var row = (SetCellDataAction)r1.Action;
+                    var select = new CellPosition() { Row = row.Row, Col = row.Col };
+
+                    reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col].Tag = null;
+                    editting = true;
+                }
+                catch (Exception)
+                {
+ 
+                }
             };
             //reoGridControl1.WorksheetScrolled += (s, r1) =>
             //{
@@ -885,6 +909,11 @@ namespace AppVietSo
             if (reoGrid == null)
             {
                 reoGrid = reoGridControl1;
+            }
+            if (editting)
+            {
+                SaveData();
+                editting = false;
             }
             var worksheet = reoGrid.CurrentWorksheet;
             Models.LongSo.loadDataLongSo();
@@ -1689,7 +1718,7 @@ namespace AppVietSo
 
         public void SaveData()
         {
-
+            editting = false;
             LogOutput("SaveData");
             if (!rbSongNgu.Checked)
             {
@@ -1719,6 +1748,25 @@ namespace AppVietSo
                             if ((string)item.DataFormatArgs != "TextVN" && (string)item.DataFormatArgs != "TextCN")
                             {
                                 continue;
+
+                            }
+                            if (!string.IsNullOrEmpty(item.Data+"") && item.Tag==null)
+                            {
+                                var newitem= new CellData();
+
+                                if ((item.DataFormatArgs+"")== "TextCN")
+                                {
+                                    newitem.TextCN = item.Data + "";
+                                    newitem.TextVN = CNDictionary.getVN(item.Data + "");
+                                }
+                                else
+                                {
+                                    newitem.TextVN = item.Data + "";
+                                    newitem.TextCN = CNDictionary.getCN(item.Data + "");
+                                }
+                       
+                                item.Tag = newitem;
+                                
                             }
                             var cell = item.Tag.getCellData();
 
@@ -1767,6 +1815,24 @@ namespace AppVietSo
                             var item = sheet.Cells[j, i];
                             if ((string)item.DataFormatArgs == "TextVN" || item.DataFormatArgs.CheckNo("TextVN"))
                             {
+                                if (!string.IsNullOrEmpty(item.Data + "") && item.Tag == null)
+                                {
+                                    var newitem = new CellData();
+
+                                    if ((item.DataFormatArgs + "") == "TextCN")
+                                    {
+                                        newitem.TextCN = item.Data + "";
+                                        newitem.TextVN = CNDictionary.getVN(item.Data + "");
+                                    }
+                                    else
+                                    {
+                                        newitem.TextVN = item.Data + "";
+                                        newitem.TextCN = CNDictionary.getCN(item.Data + "");
+                                    }
+
+                                    item.Tag = newitem;
+
+                                }
 
                                 var cell = item.Tag.getCellData();
 
