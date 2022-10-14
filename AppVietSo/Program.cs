@@ -40,8 +40,7 @@ namespace AppVietSo
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(true);
             CheckFolder();
-
-            //    return;
+           
 
 
             var licence = CheckKey.CheckLogin();
@@ -104,8 +103,16 @@ namespace AppVietSo
                 System.Diagnostics.Process.Start(Application.ExecutablePath);
                 return;
             }
+            var ImgBG = LabelText.Get("BackgroundImage");
+            if (ImgBG == "")
+            {
+                Application.Run(new Form1());
 
-            Application.Run(new Form1());
+            }
+            else
+            {
+                Application.Run(new frmWellCome());
+            }
             //Application.Run(new frmWellCome());
 
 

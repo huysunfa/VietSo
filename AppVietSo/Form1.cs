@@ -579,7 +579,7 @@ namespace AppVietSo
                 }
                 catch  
                 {
-                     
+                    
                 }
              }; 
             
@@ -1157,6 +1157,7 @@ namespace AppVietSo
 
             cbfnameCN.SelectedItem = Data.fnameCN + "";
             cbfnameVN.SelectedItem = Data.fnameVN + "";
+            checkBox4.Checked = Data.KhoaCung;
             #endregion
         }
         private void button5_Click(object sender, EventArgs e)
@@ -1171,7 +1172,9 @@ namespace AppVietSo
         private void button7_Click(object sender, EventArgs e)
         {
             ReLoad(sender, e);
-        }
+            reoGridControl1.ClearActionHistory();
+            reoGridControl1.Refresh();
+         }
 
 
 
@@ -1871,6 +1874,7 @@ namespace AppVietSo
 
             Util.LongSoHienTai.fstyleCN = cbfstyleCN.Text;
             Util.LongSoHienTai.fstyleVN = cbfstyleVN.Text;
+            Util.LongSoHienTai.KhoaCung = checkBox4.Checked;
 
         }
 
@@ -2156,7 +2160,11 @@ namespace AppVietSo
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             reoGridControl1.CurrentWorksheet.AddKhoaCung(checkBox4.Checked);
-
+            Util.LongSoHienTai.KhoaCung = checkBox4.Checked;
+            if (checkBox4.Checked)
+            {
+                rbSongNgu.Checked = true;
+            }
         }
     }
 }

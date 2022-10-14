@@ -38,9 +38,34 @@ namespace AppVietSo
 
                 }
             }
+            if (checkBox1.Checked)
+            {
+                item.KhoaCung = checkBox1.Checked;
+                item.fsizeCN = 35;
+                item.fsizeVN = 35;
+            }
+            else
+            {
+                item.fsizeCN = 12;
+                item.fsizeVN = 12;
+            }
             LongSoData.save(item);
             Util.NameLongSoHienTai = item.LSo.FileName;
             this.Visible = false;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                numCol.Value = 8;
+                numRow.Value = 8;
+            }
+            else
+            {
+                numCol.Value = 32;
+                numRow.Value = 32;
+            }
         }
     }
 }
