@@ -2185,5 +2185,12 @@ namespace AppVietSo
         {
             
         }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            frmCreateNew frm = new frmCreateNew(true);
+            frm.ShowDialog();
+            ReLoad(sender, e);
+        }
     }
 }

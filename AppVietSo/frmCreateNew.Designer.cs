@@ -141,6 +141,7 @@ namespace AppVietSo
             this.Controls.Add(this.label1);
             this.Name = "frmCreateNew";
             this.Text = "Tạo lòng sớ mới";
+            this.Load += new System.EventHandler(this.frmCreateNew_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numRow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCol)).EndInit();
             this.ResumeLayout(false);

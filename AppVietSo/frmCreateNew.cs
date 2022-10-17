@@ -14,8 +14,10 @@ namespace AppVietSo
 {
     public partial class frmCreateNew : Form
     {
-        public frmCreateNew()
+        bool _KhoaChung = false;
+        public frmCreateNew(bool khoacung=false)
         {
+            _KhoaChung = khoacung;
             InitializeComponent();
         }
 
@@ -66,6 +68,12 @@ namespace AppVietSo
                 numCol.Value = 32;
                 numRow.Value = 32;
             }
+        }
+
+        private void frmCreateNew_Load(object sender, EventArgs e)
+        {
+            checkBox1.Checked = _KhoaChung;
+
         }
     }
 }
