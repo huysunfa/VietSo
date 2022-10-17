@@ -21,7 +21,6 @@ namespace AppVietSo
             this.btnZoomIn = new System.Windows.Forms.PictureBox();
             this.btnZoomOut = new System.Windows.Forms.PictureBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.btnCustomTitle = new System.Windows.Forms.Button();
             this.btnLastPage = new System.Windows.Forms.PictureBox();
             this.btnFirstPage = new System.Windows.Forms.PictureBox();
             this.nmrPageTo = new System.Windows.Forms.NumericUpDown();
@@ -32,7 +31,6 @@ namespace AppVietSo
             this.rbtnAllPage = new System.Windows.Forms.RadioButton();
             this.nmrPage = new System.Windows.Forms.NumericUpDown();
             this.totalPage = new System.Windows.Forms.Label();
-            this.cbxPageNumber = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rbtnLandscape = new System.Windows.Forms.RadioButton();
             this.rbtnPortrait = new System.Windows.Forms.RadioButton();
@@ -53,6 +51,8 @@ namespace AppVietSo
             this.btnPrint = new System.Windows.Forms.Button();
             this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -71,6 +71,8 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -82,6 +84,7 @@ namespace AppVietSo
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.AutoScroll = true;
+            this.splitContainer1.Panel1.Controls.Add(this.groupBox4);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.btnClose);
             this.splitContainer1.Panel1.Controls.Add(this.btnZoomIn);
@@ -142,7 +145,6 @@ namespace AppVietSo
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.btnCustomTitle);
             this.groupBox3.Controls.Add(this.btnLastPage);
             this.groupBox3.Controls.Add(this.btnFirstPage);
             this.groupBox3.Controls.Add(this.nmrPageTo);
@@ -153,24 +155,12 @@ namespace AppVietSo
             this.groupBox3.Controls.Add(this.rbtnAllPage);
             this.groupBox3.Controls.Add(this.nmrPage);
             this.groupBox3.Controls.Add(this.totalPage);
-            this.groupBox3.Controls.Add(this.cbxPageNumber);
-            this.groupBox3.Location = new System.Drawing.Point(11, 585);
+            this.groupBox3.Location = new System.Drawing.Point(11, 663);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(273, 285);
+            this.groupBox3.Size = new System.Drawing.Size(273, 217);
             this.groupBox3.TabIndex = 44;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Trang in";
-            // 
-            // btnCustomTitle
-            // 
-            this.btnCustomTitle.Location = new System.Drawing.Point(170, 232);
-            this.btnCustomTitle.Name = "btnCustomTitle";
-            this.btnCustomTitle.Size = new System.Drawing.Size(97, 31);
-            this.btnCustomTitle.TabIndex = 51;
-            this.btnCustomTitle.Text = "Thay đổi";
-            this.btnCustomTitle.UseVisualStyleBackColor = true;
-            this.btnCustomTitle.Visible = false;
-            this.btnCustomTitle.Click += new System.EventHandler(this.btnCustomTitle_Click);
             // 
             // btnLastPage
             // 
@@ -290,19 +280,6 @@ namespace AppVietSo
             this.totalPage.Size = new System.Drawing.Size(66, 20);
             this.totalPage.TabIndex = 35;
             this.totalPage.Text = "/1 trang";
-            // 
-            // cbxPageNumber
-            // 
-            this.cbxPageNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbxPageNumber.AutoSize = true;
-            this.cbxPageNumber.Location = new System.Drawing.Point(16, 234);
-            this.cbxPageNumber.Name = "cbxPageNumber";
-            this.cbxPageNumber.Size = new System.Drawing.Size(144, 24);
-            this.cbxPageNumber.TabIndex = 36;
-            this.cbxPageNumber.Text = "Header/ Footer";
-            this.cbxPageNumber.UseVisualStyleBackColor = true;
-            this.cbxPageNumber.Visible = false;
-            this.cbxPageNumber.CheckedChanged += new System.EventHandler(this.cbxPageNumber_CheckedChanged);
             // 
             // groupBox1
             // 
@@ -538,7 +515,31 @@ namespace AppVietSo
             this.checkBox1.TabIndex = 48;
             this.checkBox1.Text = "Khoa cúng";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.numericUpDown1);
+            this.groupBox4.Location = new System.Drawing.Point(11, 586);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(273, 60);
+            this.groupBox4.TabIndex = 44;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Số bản In";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(18, 26);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(5);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(134, 26);
+            this.numericUpDown1.TabIndex = 13;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // FrmPrintPreview
             // 
@@ -579,6 +580,8 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
 		}
@@ -588,9 +591,6 @@ namespace AppVietSo
 
 		// Token: 0x04000047 RID: 71
 		private global::System.Windows.Forms.SplitContainer splitContainer1;
-
-		// Token: 0x04000048 RID: 72
-		private global::System.Windows.Forms.CheckBox cbxPageNumber;
 
 		// Token: 0x04000049 RID: 73
 		private global::System.Windows.Forms.Label totalPage;
@@ -690,9 +690,8 @@ namespace AppVietSo
 
 		// Token: 0x04000069 RID: 105
 		private global::System.Windows.Forms.Button btnClose;
-
-		// Token: 0x0400006A RID: 106
-		private global::System.Windows.Forms.Button btnCustomTitle;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }

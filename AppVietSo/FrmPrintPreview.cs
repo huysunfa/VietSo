@@ -88,7 +88,7 @@ namespace AppVietSo
             this.bool_0 = true;
             this.splitContainer1.SplitterDistance = this.cbxPrinter.Width + this.cbxPrinter.Left * 2;
             this.method_0();
-            this.cbxPageNumber.Checked = true;
+            //this.cbxPageNumber.Checked = true;
             PageMargins margins = this.worksheet_0.PrintSettings.Margins;
             this.nmrTop.Value = (decimal)(margins.Top * 25.4f);
             this.nmrBottom.Value = (decimal)(margins.Bottom * 25.4f);
@@ -165,6 +165,7 @@ namespace AppVietSo
                         //	this.worksheet_0.PrintSettings.FromPage = (int)this.nmrPageFrom.Value;
                         //	this.worksheet_0.PrintSettings.ToPage = (int)this.nmrPageTo.Value;
                     }
+                    this.printSession_0.PrintDocument.PrinterSettings.Copies=(short)numericUpDown1.Value;
                     this.printSession_0.Print();
                 }
                 else
@@ -476,8 +477,7 @@ namespace AppVietSo
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            worksheet_0.AddKhoaCung(checkBox1.Checked);
-            this.method_3();
+             this.method_3();
 
         }
     }

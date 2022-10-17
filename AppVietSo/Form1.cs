@@ -965,8 +965,8 @@ namespace AppVietSo
 
             worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
 
-            RenderStyle();
             ChangeWidthSize(worksheet, checkBox2.Checked);
+            RenderStyle();
 
             AddMaSo(checkBox1.Checked);
 
@@ -1004,6 +1004,8 @@ namespace AppVietSo
             {
                 reoGridControl1.CurrentWorksheet.AddKhoaCung(checkBox4.Checked);
             }
+
+
         }
         public Dictionary<string, string> posSongNgu = new Dictionary<string, string>();
         public void LoadDataToDataGrid(Worksheet worksheet)
@@ -1172,8 +1174,7 @@ namespace AppVietSo
         private void button7_Click(object sender, EventArgs e)
         {
             ReLoad(sender, e);
-            reoGridControl1.ClearActionHistory();
-            reoGridControl1.Refresh();
+            
          }
 
 
