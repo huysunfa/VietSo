@@ -440,6 +440,7 @@ namespace AppVietSo
             this.cbHideGridLine.Text = "Hiện dòng kẻ";
             this.cbHideGridLine.UseVisualStyleBackColor = true;
             this.cbHideGridLine.CheckedChanged += new System.EventHandler(this.cbHideGridLine_CheckedChanged);
+            this.cbHideGridLine.Click += new System.EventHandler(this.cbHideGridLine_Click);
             // 
             // button4
             // 

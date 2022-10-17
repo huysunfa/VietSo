@@ -25,7 +25,7 @@ namespace AppVietSo
 {
     public partial class Form1 : Form
     {
-         bool editting = false;
+        bool editting = false;
         public Form1()
         {
             InitializeComponent();
@@ -544,7 +544,7 @@ namespace AppVietSo
             dynamicPanel.BringToFront();
             worksheet.CellEditTextChanging += (s, r1) =>
             {
-                
+
                 var txt = r1.Text;
                 loaddd(txt);
             };
@@ -577,12 +577,12 @@ namespace AppVietSo
                     reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col].Tag = null;
                     editting = true;
                 }
-                catch  
+                catch
                 {
-                    
+
                 }
-             }; 
-            
+            };
+
             reoGridControl1.Redid += (s, r1) =>
             {
                 try
@@ -595,7 +595,7 @@ namespace AppVietSo
                 }
                 catch (Exception)
                 {
- 
+
                 }
             };
             //reoGridControl1.WorksheetScrolled += (s, r1) =>
@@ -1174,8 +1174,8 @@ namespace AppVietSo
         private void button7_Click(object sender, EventArgs e)
         {
             ReLoad(sender, e);
-            
-         }
+
+        }
 
 
 
@@ -1253,7 +1253,15 @@ namespace AppVietSo
 
         private void cbHideGridLine_CheckedChanged(object sender, EventArgs e)
         {
-            reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+            if (checkBox4.Checked)
+            {
+                MessageBox.Show("Lòng sớ KHOA CÚNG không được thay đổi dòng kẻ");
+          
+            }
+            else
+            {
+                reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+            }
         }
 
         private void ctextMenuS_Opening(object sender, CancelEventArgs e)
@@ -1754,11 +1762,11 @@ namespace AppVietSo
                                 continue;
 
                             }
-                            if (!string.IsNullOrEmpty(item.Data+"") && item.Tag==null)
+                            if (!string.IsNullOrEmpty(item.Data + "") && item.Tag == null)
                             {
-                                var newitem= new CellData();
+                                var newitem = new CellData();
 
-                                if ((item.DataFormatArgs+"")== "TextCN")
+                                if ((item.DataFormatArgs + "") == "TextCN")
                                 {
                                     newitem.TextCN = item.Data + "";
                                     newitem.TextVN = CNDictionary.getVN(item.Data + "");
@@ -1768,13 +1776,13 @@ namespace AppVietSo
                                     newitem.TextVN = item.Data + "";
                                     newitem.TextCN = CNDictionary.getCN(item.Data + "");
                                 }
-                       
+
                                 item.Tag = newitem;
-                                
+
                             }
                             var cell = item.Tag.getCellData();
 
-                           
+
                             value.TextCN = cell.TextCN;
                             value.TextVN = cell.TextVN;
                             value.Value = cell.Value;
@@ -1990,11 +1998,16 @@ namespace AppVietSo
             sheet.PrintSettings.PaperName = Util.LongSoHienTai.paperSize.PaperName;
             sheet.PrintSettings.PaperWidth = Util.LongSoHienTai.paperSize.Width;
             sheet.PrintSettings.PaperHeight = Util.LongSoHienTai.paperSize.Height;
-            sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
-                 new unvell.ReoGrid.RangeBorderStyle
-                 {
-                     Style = BorderLineStyle.None,
-                 });
+            if (checkBox4.Checked == false)
+            {
+
+                sheet.SetRangeBorders(sheet.UsedRange, BorderPositions.All,
+                     new unvell.ReoGrid.RangeBorderStyle
+                     {
+                         Style = BorderLineStyle.None,
+                     });
+
+            }
             sheet.SetRangeStyles(sheet.UsedRange, new WorksheetRangeStyle
             {
                 // style item flag
@@ -2166,6 +2179,11 @@ namespace AppVietSo
             {
                 rbSongNgu.Checked = true;
             }
+        }
+
+        private void cbHideGridLine_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

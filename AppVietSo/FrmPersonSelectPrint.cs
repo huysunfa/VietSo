@@ -326,7 +326,7 @@ namespace AppVietSo
 						{
 							num = (int)value2;
 						}
-                        if (num - 1 >= dgvPerson.Rows.Count)
+                        if (num - 1 >= dgvPerson.Rows.Count || num-1 <0)
                         {
 							return;
                         }
@@ -362,7 +362,7 @@ namespace AppVietSo
         
 		{
 
-            if (e.ColumnIndex==1)
+            if (e.ColumnIndex==1 && e.RowIndex >=0)
             {
 				var val = this.dgvPerson.Rows[e.RowIndex].Cells["Checked"].Value;
 				val = val ?? false;

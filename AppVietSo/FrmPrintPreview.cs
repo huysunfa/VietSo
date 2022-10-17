@@ -53,7 +53,6 @@ namespace AppVietSo
         // Token: 0x06000086 RID: 134 RVA: 0x000056C4 File Offset: 0x000038C4
         private void FrmPrintPreview_Load(object sender, EventArgs e)
         {
-            checkBox1.Checked = _KhoaCung;
             var worksheet = this.worksheet_0;
             worksheet.ResetAllPageBreaks();
             var MaxRow = worksheet.RowPageBreaks.Max(v => v);
@@ -120,6 +119,7 @@ namespace AppVietSo
 
 
             this.bool_0 = false;
+            checkBox1.Checked = _KhoaCung;
 
         }
 
