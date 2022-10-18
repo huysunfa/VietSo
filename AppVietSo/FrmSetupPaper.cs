@@ -46,10 +46,10 @@ namespace AppVietSo
 
             this.nmrWidth.Value = this.toMM(Util.LongSoHienTai.PageWidth);
             this.nmrHeight.Value = this.toMM(Util.LongSoHienTai.PageHeight);
-            this.nmrTop.Value = this.toMM((int)Util.LongSoHienTai.PagePaddingTop);
-            this.nmrBottom.Value = this.toMM((int)Util.LongSoHienTai.PagePaddingBottom);
-            this.nmrLeft.Value = this.toMM((int)Util.LongSoHienTai.PagePaddingLeft);
-            this.nmrRight.Value = this.toMM((int)Util.LongSoHienTai.PagePaddingRight);
+            this.nmrTop.Value =  ((int)Util.LongSoHienTai.PagePaddingTop);
+            this.nmrBottom.Value =  ((int)Util.LongSoHienTai.PagePaddingBottom);
+            this.nmrLeft.Value =  ((int)Util.LongSoHienTai.PagePaddingLeft);
+            this.nmrRight.Value =  ((int)Util.LongSoHienTai.PagePaddingRight);
             //foreach (PaperSize paperSize in settings.PaperSizes)
             //{
 
@@ -91,10 +91,10 @@ namespace AppVietSo
                 {
                     Util.LongSoHienTai.PageWidth = this.toPaperSize(this.nmrWidth.Value);
                     Util.LongSoHienTai.PageHeight = this.toPaperSize(this.nmrHeight.Value);
-                    Util.LongSoHienTai.PagePaddingTop = this.toPaperSize(this.nmrTop.Value);
-                    Util.LongSoHienTai.PagePaddingBottom = this.toPaperSize(this.nmrBottom.Value);
-                    Util.LongSoHienTai.PagePaddingLeft = this.toPaperSize(this.nmrLeft.Value);
-                    Util.LongSoHienTai.PagePaddingRight = this.toPaperSize(this.nmrRight.Value);
+                    Util.LongSoHienTai.PagePaddingTop =(float)(this.nmrTop.Value);
+                    Util.LongSoHienTai.PagePaddingBottom = (float)(this.nmrBottom.Value);
+                    Util.LongSoHienTai.PagePaddingLeft = (float)(this.nmrLeft.Value);
+                    Util.LongSoHienTai.PagePaddingRight = (float)(this.nmrRight.Value);
                     LongSoData.save(Util.LongSoHienTai);
                 }
             }

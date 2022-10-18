@@ -267,14 +267,19 @@ namespace AppVietSo
 			// Use the overload that doesn't set the parent form to this very window.
 			CloseForm();
 		}
-		#endregion Event Handlers
-	}
+        #endregion Event Handlers
 
-	#region Auxiliary Classes 
-	/// <summary>
-	/// A specialized class for managing XML storage for the splash screen.
-	/// </summary>
-	internal class SplashScreenXMLStorage
+        private void SplashScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    #region Auxiliary Classes 
+    /// <summary>
+    /// A specialized class for managing XML storage for the splash screen.
+    /// </summary>
+    internal class SplashScreenXMLStorage
 	{
 		private static string ms_StoredValues = "SplashScreen.xml";
 		private static string ms_DefaultPercents = "";

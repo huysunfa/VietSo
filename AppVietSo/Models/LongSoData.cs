@@ -67,7 +67,14 @@ namespace AppVietSo.Models
                     }
                 }
             }
-          
+
+            if (result.KhoaCung==false)
+            {
+                if (result.PagePaddingLeft==0)
+                {
+                    result.PagePaddingLeft = 42;
+                }
+            }
             return result;
         }
         public static void save(LongSoData item)

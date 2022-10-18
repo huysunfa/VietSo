@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AppVietSo.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -39,6 +40,39 @@ namespace AppVietSo
             //      LoadDataToDataGrid(reoGrid);
 
         }
+        //   public static void SetOnePage(this Worksheet worksheet)
+        //{
+        //    worksheet.ResetAllPageBreaks();
+        //    var MaxRow = worksheet.RowPageBreaks.Max(v => v);
+        //    var MinRow = worksheet.RowPageBreaks.Min(v => v);
+        //    foreach (var item in worksheet.RowPageBreaks.ToList())
+        //    {
+        //        if (item == MaxRow || item == MinRow)
+        //        {
+        //            continue;
+        //        }
+
+        //        if (worksheet.RowPageBreaks.Contains(item))
+        //        {
+        //            worksheet.ChangeRowPageBreak(item, MaxRow, false);
+        //        }
+        //    }
+
+        //    var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
+        //    var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
+        //    foreach (var item in worksheet.ColumnPageBreaks.ToList())
+        //    {
+        //        if (item == MaxCol || item == MinCol)
+        //        {
+        //            continue;
+        //        }
+        //        if (worksheet.ColumnPageBreaks.Contains(item))
+        //        {
+        //            worksheet.ChangeColumnPageBreak(item, MaxCol, false);
+        //        }
+        //    }
+
+        //}
 
         public static void AddKhoaCung(this Worksheet worksheet_0, bool Checked)
         {
@@ -94,6 +128,10 @@ namespace AppVietSo
 
         public static void SetOnePage(this Worksheet worksheet)
         {
+            if (Util.LongSoHienTai.KhoaCung)
+            {
+                return;
+            }
             worksheet.ResetAllPageBreaks();
             var MaxRow = worksheet.RowPageBreaks.Max(v => v);
             var MinRow = worksheet.RowPageBreaks.Min(v => v);

@@ -965,40 +965,13 @@ namespace AppVietSo
 
             worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
 
-            ChangeWidthSize(worksheet, checkBox2.Checked);
             RenderStyle();
+            ChangeWidthSize(worksheet, checkBox2.Checked);
+            reoGrid.ClearActionHistory();
+            reoGrid.ClearActionHistoryForWorksheet(worksheet);
 
             AddMaSo(checkBox1.Checked);
-
-            worksheet.ResetAllPageBreaks();
-            var MaxRow = worksheet.RowPageBreaks.Max(v => v);
-            var MinRow = worksheet.RowPageBreaks.Min(v => v);
-            foreach (var item in worksheet.RowPageBreaks.ToList())
-            {
-                if (item == MaxRow || item == MinRow)
-                {
-                    continue;
-                }
-
-                if (worksheet.RowPageBreaks.Contains(item))
-                {
-                    worksheet.ChangeRowPageBreak(item, MaxRow, false);
-                }
-            }
-
-            var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
-            var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
-            foreach (var item in worksheet.ColumnPageBreaks.ToList())
-            {
-                if (item == MaxCol || item == MinCol)
-                {
-                    continue;
-                }
-                if (worksheet.ColumnPageBreaks.Contains(item))
-                {
-                    worksheet.ChangeColumnPageBreak(item, MaxCol, false);
-                }
-            }
+            worksheet.SetOnePage();
 
             if (checkBox4.Checked)
             {
@@ -1036,12 +1009,12 @@ namespace AppVietSo
                     {
                         if (PosText == "PHẢI" || PosText == "TRÁI")
                         {
-                            numcol = numcol * 2 + 1;
+                            numcol = numcol * 2;
                             col2 = 1;
                         }
                         if (PosText == "TRÊN" || PosText == "DƯỚI")
                         {
-                            numrow = numrow * 2 + 1;
+                            numrow = numrow * 2;
                             row2 = 1;
                         }
                     }
@@ -1256,7 +1229,7 @@ namespace AppVietSo
             if (checkBox4.Checked)
             {
                 MessageBox.Show("Lòng sớ KHOA CÚNG không được thay đổi dòng kẻ");
-          
+
             }
             else
             {
@@ -1912,6 +1885,7 @@ namespace AppVietSo
 
             SaveData();
             RenderStyle();
+            ChangeWidthSize(reoGridControl1.CurrentWorksheet, checkBox2.Checked);
         }
 
 
@@ -2183,7 +2157,7 @@ namespace AppVietSo
 
         private void cbHideGridLine_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -2191,6 +2165,11 @@ namespace AppVietSo
             frmCreateNew frm = new frmCreateNew(true);
             frm.ShowDialog();
             ReLoad(sender, e);
+        }
+
+        private void cbfnameCN_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

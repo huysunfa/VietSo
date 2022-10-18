@@ -67,10 +67,10 @@ namespace AppVietSo.Models
                 float dpi = 100f;
                 double num = Util.LongSoHienTai.PageWidth;
                 double num2 = Util.LongSoHienTai.PageHeight;
-                float num3 = Util.LongSoHienTai.PagePaddingLeft;
-                float num4 = Util.LongSoHienTai.PagePaddingRight;
-                float num5 = Util.LongSoHienTai.PagePaddingTop;
-                float num6 = Util.LongSoHienTai.PagePaddingBottom;
+                float num3 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
+                float num4 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight);
+                float num5 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingTop);
+                float num6 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingBottom);
                 double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
                 num2 -= (double)(num5 + num6);
                 ushort height = (ushort)System.Math.Floor(num2 / (double)(row + 2));

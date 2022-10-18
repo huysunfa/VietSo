@@ -27,7 +27,8 @@ namespace AppVietSo
             
                 SplashScreen.CloseForm();
                 this.Activate();
- 
+            button1.FlatAppearance.MouseOverBackColor = Color.Transparent; //color you want it to be background on hover
+
 
             var ImgBG = LabelText.Get("BackgroundImage");
             ImgBG = ImgBG.Replace(@"\",@"/");

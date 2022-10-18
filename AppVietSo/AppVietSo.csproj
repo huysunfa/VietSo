@@ -415,6 +415,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Capture.ico" />
+    <None Include="Resources\bg.png" />
     <None Include="Resources\zoomout48.png" />
     <None Include="Resources\zoomout24.png" />
     <None Include="Resources\zoomin48.png" />

@@ -104,7 +104,7 @@ namespace AppVietSo
                 return;
             }
             var ImgBG = LabelText.Get("BackgroundImage");
-            if (ImgBG == "")
+            if (ImgBG == "" || ImgBG== "BackgroundImage")
             {
                 Application.Run(new Form1());
 
@@ -113,7 +113,6 @@ namespace AppVietSo
             {
                 Application.Run(new frmWellCome());
             }
-            //Application.Run(new frmWellCome());
 
 
         }
