@@ -947,8 +947,7 @@ namespace AppVietSo
                 {
                     r = r * 2;
                 }
-                c = c + 1;
-            }
+             }
             c = c + 2;
             r = r + 2;
             ShowFontChange();
@@ -1562,7 +1561,7 @@ namespace AppVietSo
                     if (rbSongNgu.Checked)
                         ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address);
 
-                    if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo())
+                    if ((cell.Value + "").StartsWith("@") || (!string.IsNullOrEmpty(item.Data + "") && item.DataFormatArgs.CheckNo()))
                     {
                         setColorTag(sheet, item, Color.Orange);
                     }

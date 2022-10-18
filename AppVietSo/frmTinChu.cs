@@ -69,7 +69,11 @@ namespace AppVietSo
         // Token: 0x060000FB RID: 251 RVA: 0x00012D64 File Offset: 0x00010F64
         private void FrmPerson_Load(object sender, EventArgs e)
         {
-
+            var thietlaptinchuformtext = ActiveData.Get("@thietlaptinchuformtext");
+            if (thietlaptinchuformtext.Contains("$sao"))
+            {
+                checkBox1.Checked = true;
+            }
             this.splitContainer1.SplitterDistance = this.pnlChooseMa.Width;
             this.isLoading = true;
             this.show_checkBox();
@@ -689,11 +693,32 @@ namespace AppVietSo
             }
             var IDS = SelectedSoNos.Select(z => z.Value.IDs).ToList();
             var listID = new List<string>();
+            if (ckbChuSo.Checked)
+            {
+                foreach (var item in SelectedSoNos)
+                {
+                    var obj = PersonBO.getPersonObj(Program.Stg.Chua, item.Value.SoNo);
+                    foreach (var ij in obj)
+                    {
+                        if (string.IsNullOrEmpty(ij.NgayMat))
+                        {
+                            if (!listID.Contains(ij.ID))
+                            {
+                                listID.Add(ij.ID);
+                            }
+                        }
+                    }
+                }
+            }
+
             foreach (var item in IDS)
             {
                 foreach (var it in item)
                 {
-                    listID.Add(it);
+                    if (!listID.Contains(it))
+                    {
+                        listID.Add(it);
+                    }
 
                 }
             }
@@ -842,5 +867,23 @@ namespace AppVietSo
 
         // Token: 0x040000E4 RID: 228
         private object oldvalue;
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            var thietlaptinchuformtext = ActiveData.Get("@thietlaptinchuformtext");
+            if (checkBox1.Checked)
+            {
+                if (!thietlaptinchuformtext.Contains("$sao"))
+                {
+                    thietlaptinchuformtext += " Sao $sao Tinh Quân";
+                    ActiveData.Update("@thietlaptinchuformtext", thietlaptinchuformtext);
+                }
+            }
+            else
+            {
+                thietlaptinchuformtext = thietlaptinchuformtext.Replace(" Sao $sao Tinh Quân", "");
+                ActiveData.Update("@thietlaptinchuformtext", thietlaptinchuformtext);
+            }
+        }
     }
 }

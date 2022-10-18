@@ -65,7 +65,7 @@ namespace AppVietSo.Models
             return DbExecute.Select(query, dictionary);
         }
 
-         private static global::System.Collections.Generic.List<Person> getPersonObj(string A_0, int A_1)
+        public static global::System.Collections.Generic.List<Person> getPersonObj(string A_0, int A_1)
         {
         	string query = "Select * from Person WHERE PagodaID=@PagodaID AND SoNo=@SoNo ORDER BY Orders, NamSinh ASC";
         global::System.Collections.Generic.Dictionary<string, object> dictionary = new global::System.Collections.Generic.Dictionary<string, object>();

@@ -77,8 +77,8 @@ namespace AppVietSo
         public static void AddKhoaCung(this Worksheet worksheet_0, bool Checked)
         {
             var cover = new RangePosition(
-                    1, 2, worksheet_0.UsedRange.EndRow - 1
-                     , worksheet_0.UsedRange.EndCol - 2);
+                    1, 1, worksheet_0.UsedRange.EndRow - 1
+                     , worksheet_0.UsedRange.EndCol -1);
             worksheet_0.SetRangeBorders(cover, BorderPositions.All,
                                new unvell.ReoGrid.RangeBorderStyle
                                {
@@ -88,7 +88,7 @@ namespace AppVietSo
 
             if (Checked)
             {
-                for (int i = 2; i < worksheet_0.Columns - 1; i = i + 2)
+                for (int i = 1; i < worksheet_0.Columns - 1; i = i + 2)
                 {
                     var rangedata = new RangePosition(
                     1, i, worksheet_0.UsedRange.EndRow - 1
@@ -128,11 +128,28 @@ namespace AppVietSo
 
         public static void SetOnePage(this Worksheet worksheet)
         {
+         
+            worksheet.ResetAllPageBreaks();
+         
+            var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
+            var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
+            foreach (var item in worksheet.ColumnPageBreaks.ToList())
+            {
+                if (item == MaxCol || item == MinCol)
+                {
+                    continue;
+                }
+                if (worksheet.ColumnPageBreaks.Contains(item))
+                {
+                    worksheet.ChangeColumnPageBreak(item, MaxCol, false);
+                }
+            }
+
             if (Util.LongSoHienTai.KhoaCung)
             {
                 return;
             }
-            worksheet.ResetAllPageBreaks();
+
             var MaxRow = worksheet.RowPageBreaks.Max(v => v);
             var MinRow = worksheet.RowPageBreaks.Min(v => v);
             foreach (var item in worksheet.RowPageBreaks.ToList())
@@ -148,19 +165,6 @@ namespace AppVietSo
                 }
             }
 
-            var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
-            var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
-            foreach (var item in worksheet.ColumnPageBreaks.ToList())
-            {
-                if (item == MaxCol || item == MinCol)
-                {
-                    continue;
-                }
-                if (worksheet.ColumnPageBreaks.Contains(item))
-                {
-                    worksheet.ChangeColumnPageBreak(item, MaxCol, false);
-                }
-            }
         }
         public static void SettingsValue(this Worksheet worksheet, object sender = null, EventArgs e = null)
         {

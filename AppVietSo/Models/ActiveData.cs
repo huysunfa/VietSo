@@ -89,7 +89,7 @@ namespace AppVietSo.Models
                         if (!result.ContainsKey("@thietlaptinchuformtext"))
                         {
 
-                            ActiveData.Update("@thietlaptinchuformtext", "$ten Bản Mệnh Sinh Ư $canchi Niên Hành Canh $tuoi Tuế Sao $sao Tinh Quân");
+                            ActiveData.Update("@thietlaptinchuformtext", "$ten Bản Mệnh Sinh Ư $canchi Niên Hành Canh $tuoi Tuế");
 
                         }
 
