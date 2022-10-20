@@ -71,6 +71,8 @@ namespace AppVietSo.Models
                     {
                         Util.LongSoHienTai.PageBreakRow = row;
                     }
+                    rowOnePage = Util.LongSoHienTai.PageBreakRow;
+                    sheet.PrintSettings.Landscape = false;
                 }
                 float dpi = 100f;
                 double num = Util.LongSoHienTai.PageWidth;
@@ -81,11 +83,11 @@ namespace AppVietSo.Models
                 float num6 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingBottom);
                 double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
                 num2 -= (double)(num5 + num6);
-                ushort height = (ushort)System.Math.Floor(num2 / (double)(rowOnePage + 2));
+                ushort height = (ushort)System.Math.Floor(num2 / (double)(rowOnePage));
                 var RowUse = row-1;
                 var ColUse = col - 1;
                 sheet.SetRowsHeight(1, RowUse, height);
-                ushort width = (ushort)System.Math.Floor(num7 / (double)(col + 1));
+                ushort width = (ushort)System.Math.Floor(num7 / (double)(col));
                 sheet.SetColumnsWidth(1, ColUse, width);
                 // margrin
 

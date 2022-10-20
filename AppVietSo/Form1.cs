@@ -652,7 +652,14 @@ namespace AppVietSo
                 {
                     r1.IsCancelled = true;
                 }
+                //if (rbSongNgu.Checked)
+                //{
+                //    if ((cell.DataFormatArgs +"")== "TextCN")
+                //    {
+                //        r1.IsCancelled = true;
 
+                //    }
+                //}
          
             };
             worksheet.BeforeCellEdit += (s, r1) =>
