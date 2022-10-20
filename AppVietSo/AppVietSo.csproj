@@ -184,6 +184,12 @@
     <Compile Include="FrmPrintProcess.Designer.cs">
       <DependentUpon>FrmPrintProcess.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSettingLongSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettingLongSo.Designer.cs">
+      <DependentUpon>frmSettingLongSo.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSetupPaper.cs">
       <SubType>Form</SubType>
     </Compile>

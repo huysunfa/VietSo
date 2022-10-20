@@ -36,6 +36,7 @@ namespace AppVietSo.Models
         public PaperSize paperSize { get; set; }
         public float ScaleFactor { get; set; }
         public bool KhoaCung { get; set; }
+        public int PageBreakRow { get; set; }
         public static LongSoData get(string filename, LongSo LSo)
         {
             if (string.IsNullOrEmpty(filename))

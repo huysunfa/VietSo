@@ -29,7 +29,7 @@ namespace AppVietSo
             item.LSo.FileName = "/FileUpload/" + textBox1.Text + ConstData.ExtentionsFile;
             item.PageWidth = ShareFun.toPaperSize(470);
             item.PageHeight = ShareFun.toPaperSize(297);
-
+            item.PageBreakRow = (int) numRow.Value;
             item.LgSo = new Dictionary<int, Dictionary<int, CellData>>();
             for (int i = 0; i < numCol.Value; i++)
             {

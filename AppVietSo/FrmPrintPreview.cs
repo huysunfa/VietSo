@@ -13,9 +13,11 @@ namespace AppVietSo
     public partial class FrmPrintPreview : Form
     {
         bool _KhoaCung = false;
-        public FrmPrintPreview( bool KhoaCung)
+        int _PageNumber = 1;
+        public FrmPrintPreview( bool KhoaCung,int PageNumber=1)
         {
             _KhoaCung = KhoaCung;
+            _PageNumber = PageNumber;
             this.InitializeComponent();
         }
 
@@ -53,6 +55,7 @@ namespace AppVietSo
         // Token: 0x06000086 RID: 134 RVA: 0x000056C4 File Offset: 0x000038C4
         private void FrmPrintPreview_Load(object sender, EventArgs e)
         {
+            
             var worksheet = this.worksheet_0;
             worksheet.ResetAllPageBreaks();
             var MaxRow = worksheet.RowPageBreaks.Max(v => v);
@@ -120,7 +123,8 @@ namespace AppVietSo
 
             this.bool_0 = false;
             checkBox1.Checked = _KhoaCung;
-
+            nmrPage.Value = _PageNumber;
+            this.printPreviewControl1.StartPage = (int)this.nmrPage.Value - 1;
         }
 
         // Token: 0x06000087 RID: 135 RVA: 0x00005948 File Offset: 0x00003B48

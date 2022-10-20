@@ -64,6 +64,14 @@ namespace AppVietSo.Models
 
             try
             {
+                int rowOnePage = row;
+                if (Util.LongSoHienTai.KhoaCung)
+                {
+                    if (Util.LongSoHienTai.PageBreakRow==0)
+                    {
+                        Util.LongSoHienTai.PageBreakRow = row;
+                    }
+                }
                 float dpi = 100f;
                 double num = Util.LongSoHienTai.PageWidth;
                 double num2 = Util.LongSoHienTai.PageHeight;
@@ -73,8 +81,8 @@ namespace AppVietSo.Models
                 float num6 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingBottom);
                 double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
                 num2 -= (double)(num5 + num6);
-                ushort height = (ushort)System.Math.Floor(num2 / (double)(row + 2));
-                var RowUse = row - 1;
+                ushort height = (ushort)System.Math.Floor(num2 / (double)(rowOnePage + 2));
+                var RowUse = row-1;
                 var ColUse = col - 1;
                 sheet.SetRowsHeight(1, RowUse, height);
                 ushort width = (ushort)System.Math.Floor(num7 / (double)(col + 1));
@@ -86,9 +94,9 @@ namespace AppVietSo.Models
                 weightFree = weightFree < 0 ? 0 : weightFree;
                 heightFree = heightFree < 0 ? 0 : heightFree;
                 sheet.SetColumnsWidth(0, 1, (ushort)(num3 + weightFree));
-                sheet.SetColumnsWidth(sheet.UsedRange.EndCol, 1, (ushort)(num4));
+                sheet.SetColumnsWidth(col, 1, (ushort)(num4));
                 sheet.SetRowsHeight(0, 1, (ushort)(num5 + heightFree));
-                sheet.SetRowsHeight(sheet.UsedRange.EndRow, 1, (ushort)(num6));
+                sheet.SetRowsHeight(row-1, 1, (ushort)(num6));
                 sheet.PrintSettings.Margins = new PageMargins(0);
 
                 if (setting)

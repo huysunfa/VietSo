@@ -78,7 +78,7 @@ namespace AppVietSo
         {
             var cover = new RangePosition(
                     1, 1, worksheet_0.UsedRange.EndRow - 1
-                     , worksheet_0.UsedRange.EndCol -1);
+                     , worksheet_0.UsedRange.EndCol - 1);
             worksheet_0.SetRangeBorders(cover, BorderPositions.All,
                                new unvell.ReoGrid.RangeBorderStyle
                                {
@@ -128,9 +128,12 @@ namespace AppVietSo
 
         public static void SetOnePage(this Worksheet worksheet)
         {
-         
+
+            var MaxRow = worksheet.RowPageBreaks.Count > 0 ? worksheet.RowPageBreaks.Max(v => v) : 0;
+
+
             worksheet.ResetAllPageBreaks();
-         
+
             var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
             var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
             foreach (var item in worksheet.ColumnPageBreaks.ToList())
@@ -147,23 +150,40 @@ namespace AppVietSo
 
             if (Util.LongSoHienTai.KhoaCung)
             {
-                return;
-            }
 
-            var MaxRow = worksheet.RowPageBreaks.Max(v => v);
-            var MinRow = worksheet.RowPageBreaks.Min(v => v);
-            foreach (var item in worksheet.RowPageBreaks.ToList())
+                if (Util.LongSoHienTai.PageBreakRow == 0)
+                {
+                    Util.LongSoHienTai.PageBreakRow = MaxRow;
+                }
+
+                var start = 1;
+                while (start + Util.LongSoHienTai.PageBreakRow < MaxRow)
+                {
+                    start = start + Util.LongSoHienTai.PageBreakRow;
+                    worksheet.InsertRowPageBreak(start, true);
+
+                }
+            }
+            else
             {
-                if (item == MaxRow || item == MinRow)
+                var MinRow = worksheet.RowPageBreaks.Min(v => v);
+                MaxRow = worksheet.RowPageBreaks.Count > 0 ? worksheet.RowPageBreaks.Max(v => v) : 0;
+                foreach (var item in worksheet.RowPageBreaks.ToList())
                 {
-                    continue;
+                    if (item == MaxRow || item == MinRow)
+                    {
+                        continue;
+                    }
+
+                    if (worksheet.RowPageBreaks.Contains(item))
+                    {
+                        worksheet.ChangeRowPageBreak(item, MaxRow, false);
+                    }
                 }
 
-                if (worksheet.RowPageBreaks.Contains(item))
-                {
-                    worksheet.ChangeRowPageBreak(item, MaxRow, false);
-                }
             }
+
+
 
         }
         public static void SettingsValue(this Worksheet worksheet, object sender = null, EventArgs e = null)

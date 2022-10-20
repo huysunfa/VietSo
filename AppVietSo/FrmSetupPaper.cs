@@ -13,10 +13,10 @@ namespace AppVietSo
     // Token: 0x02000015 RID: 21
     public partial class FrmSetupPaper : Form
     {
-        // Token: 0x06000121 RID: 289 RVA: 0x00016C0F File Offset: 0x00014E0F
+         // Token: 0x06000121 RID: 289 RVA: 0x00016C0F File Offset: 0x00014E0F
         public FrmSetupPaper()
         {
-            isLoading = true;
+             isLoading = true;
             this.InitializeComponent();
         }
         public void LoadPageSize()
