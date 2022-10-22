@@ -64,6 +64,9 @@ namespace AppVietSo.Models
 
             try
             {
+                double num = Util.LongSoHienTai.PageWidth;
+                double num2 = Util.LongSoHienTai.PageHeight;
+
                 int rowOnePage = row;
                 if (Util.LongSoHienTai.KhoaCung)
                 {
@@ -73,10 +76,12 @@ namespace AppVietSo.Models
                     }
                     rowOnePage = Util.LongSoHienTai.PageBreakRow;
                     sheet.PrintSettings.Landscape = false;
+
+                      num = Util.LongSoHienTai.PageHeight;
+                      num2 = Util.LongSoHienTai.PageWidth;
                 }
                 float dpi = 100f;
-                double num = Util.LongSoHienTai.PageWidth;
-                double num2 = Util.LongSoHienTai.PageHeight;
+              
                 float num3 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
                 float num4 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight);
                 float num5 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingTop);
@@ -103,8 +108,20 @@ namespace AppVietSo.Models
 
                 if (setting)
                 {
-                    sheet.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
-                    sheet.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
+                    if (Util.LongSoHienTai.paperSize != null)
+                    {
+
+                        sheet.PrintSettings.PaperName = Util.LongSoHienTai.paperSize.PaperName;
+                        sheet.PrintSettings.PaperWidth = Util.LongSoHienTai.paperSize.Width;
+                        sheet.PrintSettings.PaperHeight = Util.LongSoHienTai.paperSize.Height;
+                    }
+                    else
+                    {
+
+                        sheet.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
+                        sheet.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
+                    }
+
                 }
           
             }

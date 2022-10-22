@@ -43,14 +43,18 @@ namespace AppVietSo
             if (checkBox1.Checked)
             {
                 item.KhoaCung = checkBox1.Checked;
-                item.fsizeCN = 35;
-                item.fsizeVN = 35;
+                item.fsizeCN = 22;
+                item.fsizeVN = 12;
             }
             else
             {
                 item.fsizeCN = 12;
                 item.fsizeVN = 12;
             }
+            item.PagePaddingLeft = 10;
+            item.PagePaddingRight = 10;
+            item.PagePaddingTop = 10;
+            item.PagePaddingBottom = 10;
             LongSoData.save(item);
             Util.NameLongSoHienTai = item.LSo.FileName;
             this.Visible = false;

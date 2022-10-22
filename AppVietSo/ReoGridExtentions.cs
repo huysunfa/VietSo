@@ -150,7 +150,21 @@ namespace AppVietSo
 
             if (Util.LongSoHienTai.KhoaCung)
             {
+                  var MinRow = worksheet.RowPageBreaks.Min(v => v);
+                MaxRow = worksheet.RowPageBreaks.Count > 0 ? worksheet.RowPageBreaks.Max(v => v) : 0;
+                foreach (var item in worksheet.RowPageBreaks.ToList())
+                {
+                    if (item == MaxRow || item == MinRow)
+                    {
+                        continue;
+                    }
 
+                    if (worksheet.RowPageBreaks.Contains(item))
+                    {
+                        worksheet.ChangeRowPageBreak(item, MaxRow, false);
+                    }
+                }
+ 
                 if (Util.LongSoHienTai.PageBreakRow == 0)
                 {
                     Util.LongSoHienTai.PageBreakRow = MaxRow;
@@ -160,6 +174,10 @@ namespace AppVietSo
                 while (start + Util.LongSoHienTai.PageBreakRow < MaxRow)
                 {
                     start = start + Util.LongSoHienTai.PageBreakRow;
+                    if (start+2 > MaxRow)
+                    {
+                        continue;
+                    }
                     worksheet.InsertRowPageBreak(start, true);
 
                 }

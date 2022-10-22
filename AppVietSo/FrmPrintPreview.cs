@@ -53,40 +53,106 @@ namespace AppVietSo
         }
 
         // Token: 0x06000086 RID: 134 RVA: 0x000056C4 File Offset: 0x000038C4
+        public void ChangeWidthSize(Worksheet sheet, bool check)
+        {
+            if (Util.LongSoHienTai.KhoaCung)
+            {
+                return;
+            }
+            for (int i = 1; i < sheet.RowCount; i++)
+            {
+                sheet.RowHeaders[i].IsAutoHeight = check;
+
+            }
+            for (int i = 1; i < sheet.ColumnCount; i++)
+            {
+                sheet.ColumnHeaders[i].IsAutoWidth = check;
+
+            }
+            if (check == false)
+            {
+                return;
+            }
+            sheet = this.worksheet_0;
+
+            int TotalWidth = 0;
+            for (int i = 1; i < sheet.ColumnCount; i++)
+            {
+                var oldW = sheet.GetColumnWidth(i);
+                sheet.AutoFitColumnWidth(i, check);
+
+                var newW = sheet.GetColumnWidth(i);
+
+                if (newW < oldW)
+                {
+                    newW = oldW;
+                    sheet.SetColumnsWidth(i, 1, oldW);
+
+                }
+                TotalWidth += newW;
+            }
+            //int TotalHeight = 0;
+            //for (int i = 1; i < sheet.RowCount; i = i + 1)
+            //{
+            //    var oldW = sheet.GetRowHeight(i);
+            //    sheet.AutoFitRowHeight(i, check);
+            //    var newW = sheet.GetRowHeight(i);
+            //    if (newW < oldW)
+            //    {
+            //        newW = oldW;
+            //        sheet.SetRowsHeight(i, 1, oldW);
+
+            //    }
+            //    TotalHeight += newW;
+
+            //}
+            var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
+            var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
+            int row = (sheet.UsedRange.EndRow - 2);
+            var old = TotalHeight / row;
+            sheet.SetRowsHeight(1, row, (ushort)old);
+
+            var free = TotalHeight - (row * (int)old);
+            var colend = (ushort)(sheet.GetRowHeight(row + 2) + free);
+            sheet.SetRowsHeight(row + 1, 1, colend);
+
+        }
         private void FrmPrintPreview_Load(object sender, EventArgs e)
         {
             
             var worksheet = this.worksheet_0;
-            worksheet.ResetAllPageBreaks();
-            var MaxRow = worksheet.RowPageBreaks.Max(v => v);
-            var MinRow = worksheet.RowPageBreaks.Min(v => v);
-            foreach (var item in worksheet.RowPageBreaks.ToList())
-            {
-                if (item == MaxRow || item == MinRow)
-                {
-                    continue;
-                }
 
-                if (worksheet.RowPageBreaks.Contains(item))
-                {
-                    worksheet.ChangeRowPageBreak(item, MaxRow, false);
-                }
-            }
+                                                       
+            //worksheet.ResetAllPageBreaks();
+                                                       //var MaxRow = worksheet.RowPageBreaks.Max(v => v);
+                                                       //var MinRow = worksheet.RowPageBreaks.Min(v => v);
+                                                       //foreach (var item in worksheet.RowPageBreaks.ToList())
+                                                       //{
+                                                       //    if (item == MaxRow || item == MinRow)
+                                                       //    {
+                                                       //        continue;
+                                                       //    }
 
-            var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
-            var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
-            foreach (var item in worksheet.ColumnPageBreaks.ToList())
-            {
-                if (item == MaxCol || item == MinCol)
-                {
-                    continue;
-                }
-                if (worksheet.ColumnPageBreaks.Contains(item))
-                {
-                    worksheet.ChangeColumnPageBreak(item, MaxCol, false);
-                }
-            }
+            //    if (worksheet.RowPageBreaks.Contains(item))
+            //    {
+            //        worksheet.ChangeRowPageBreak(item, MaxRow, false);
+            //    }
+            //}
 
+            //var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
+            //var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
+            //foreach (var item in worksheet.ColumnPageBreaks.ToList())
+            //{
+            //    if (item == MaxCol || item == MinCol)
+            //    {
+            //        continue;
+            //    }
+            //    if (worksheet.ColumnPageBreaks.Contains(item))
+            //    {
+            //        worksheet.ChangeColumnPageBreak(item, MaxCol, false);
+            //    }
+            //}
+         
             this.bool_0 = true;
             this.splitContainer1.SplitterDistance = this.cbxPrinter.Width + this.cbxPrinter.Left * 2;
             this.method_0();
@@ -125,6 +191,9 @@ namespace AppVietSo
             checkBox1.Checked = _KhoaCung;
             nmrPage.Value = _PageNumber;
             this.printPreviewControl1.StartPage = (int)this.nmrPage.Value - 1;
+            this.method_1();
+            this.method_2();
+
         }
 
         // Token: 0x06000087 RID: 135 RVA: 0x00005948 File Offset: 0x00003B48
@@ -296,25 +365,36 @@ namespace AppVietSo
         private void method_2()
         {
 
-            Util.LongSoHienTai.PageWidth = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
-            Util.LongSoHienTai.PageHeight = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+    //        Util.LongSoHienTai.PageWidth = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
+      //      Util.LongSoHienTai.PageHeight = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
 
-            if (this.worksheet_0.PrintSettings.Landscape == true && Util.LongSoHienTai.PageWidth < Util.LongSoHienTai.PageHeight)
-            {
-                var tmp = Util.LongSoHienTai.PageWidth;
-                Util.LongSoHienTai.PageWidth = Util.LongSoHienTai.PageHeight;
-                Util.LongSoHienTai.PageHeight = tmp;
-            }
+            //if (this.worksheet_0.PrintSettings.Landscape == true && Util.LongSoHienTai.PageWidth < Util.LongSoHienTai.PageHeight)
+            //{
+            //    var tmp = Util.LongSoHienTai.PageWidth;
+            //    Util.LongSoHienTai.PageWidth = Util.LongSoHienTai.PageHeight;
+            //    Util.LongSoHienTai.PageHeight = tmp;
+            //}
             //      this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
 
             //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
             // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
 
             var hientai = this.worksheet_0.GetTotalWidth();
-            var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+            if (worksheet_0.PrintSettings.Landscape)
+            {
+                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
 
-            var Scaling = KhoGiay / hientai;
-            this.worksheet_0.PrintSettings.PageScaling = Scaling;
+                var Scaling = KhoGiay / hientai;
+                this.worksheet_0.PrintSettings.PageScaling = Scaling;
+            }
+            else
+            {
+                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
+
+                var Scaling =Math.Round(KhoGiay / hientai,1);
+                this.worksheet_0.PrintSettings.PageScaling =(float) (Scaling-0.05);
+            }
+ 
             //this.worksheet_0.AutoSplitPage();
             //if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
             //{
@@ -325,7 +405,7 @@ namespace AppVietSo
             //    }
             //    this.worksheet_0.ChangeColumnPageBreak(num, this.int_0, true);
             //}
-            this.worksheet_0.SetOnePage();
+      //      this.worksheet_0.SetOnePage();
         }
 
         // Token: 0x06000093 RID: 147 RVA: 0x00005EC8 File Offset: 0x000040C8

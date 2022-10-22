@@ -74,14 +74,14 @@ namespace AppVietSo
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(24, 183);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(86, 25);
+            this.label2.Size = new System.Drawing.Size(214, 25);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Số dòng";
+            this.label2.Text = "Số dòng của 1 trang sớ";
             // 
             // numRow
             // 
             this.numRow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numRow.Location = new System.Drawing.Point(107, 181);
+            this.numRow.Location = new System.Drawing.Point(244, 178);
             this.numRow.Name = "numRow";
             this.numRow.Size = new System.Drawing.Size(120, 30);
             this.numRow.TabIndex = 4;
@@ -94,7 +94,7 @@ namespace AppVietSo
             // numCol
             // 
             this.numCol.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numCol.Location = new System.Drawing.Point(346, 181);
+            this.numCol.Location = new System.Drawing.Point(244, 223);
             this.numCol.Name = "numCol";
             this.numCol.Size = new System.Drawing.Size(120, 30);
             this.numCol.TabIndex = 6;
@@ -108,11 +108,11 @@ namespace AppVietSo
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(272, 183);
+            this.label3.Location = new System.Drawing.Point(24, 223);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(68, 25);
+            this.label3.Size = new System.Drawing.Size(196, 25);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Số cột";
+            this.label3.Text = "Số cột của 1 trang sớ";
             // 
             // checkBox1
             // 
@@ -130,7 +130,7 @@ namespace AppVietSo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 235);
+            this.ClientSize = new System.Drawing.Size(800, 271);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.numCol);
             this.Controls.Add(this.label3);
