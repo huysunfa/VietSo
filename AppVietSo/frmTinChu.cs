@@ -70,7 +70,7 @@ namespace AppVietSo
         private void FrmPerson_Load(object sender, EventArgs e)
         {
             var thietlaptinchuformtext = ActiveData.Get("@thietlaptinchuformtext");
-            if (thietlaptinchuformtext.Contains("$sao"))
+            if ((thietlaptinchuformtext+"").Contains("$sao"))
             {
                 checkBox1.Checked = true;
             }
@@ -247,7 +247,7 @@ namespace AppVietSo
                 this.dgvPerson.Update();
                 this.dgvPerson.Refresh();
 
-                var listIDS = ActiveData.Get("@SelectedSoNos").Split(',').Where(v => !string.IsNullOrEmpty(v)).ToList();
+                var listIDS = (ActiveData.Get("@SelectedSoNos")+"").Split(',').Where(v => !string.IsNullOrEmpty(v)).ToList();
 
                 foreach (object obj in ((System.Collections.IEnumerable)this.dgvPerson.Rows))
                 {

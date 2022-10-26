@@ -29,6 +29,7 @@ namespace AppVietSo
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmWellCome));
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -56,10 +57,11 @@ namespace AppVietSo
             this.Controls.Add(this.button1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmWellCome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frmWellCome";
+            this.Text = "Đức Việt Sớ";
             this.Load += new System.EventHandler(this.frmWellCome_Load);
             this.ResumeLayout(false);
 

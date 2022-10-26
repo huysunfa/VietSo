@@ -392,6 +392,10 @@ namespace AppVietSo
                 var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
 
                 var Scaling =Math.Round(KhoGiay / hientai,1);
+                if (Scaling>1)
+                {
+                    Scaling = 1;
+                }
                 this.worksheet_0.PrintSettings.PageScaling =(float) (Scaling-0.05);
             }
  

@@ -32,6 +32,7 @@ namespace AppVietSo
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashScreen));
             this.lblStatus = new System.Windows.Forms.Label();
             this.pnlStatus = new System.Windows.Forms.Panel();
             this.UpdateTimer = new System.Windows.Forms.Timer(this.components);
@@ -71,9 +72,10 @@ namespace AppVietSo
             this.Controls.Add(this.pnlStatus);
             this.Controls.Add(this.lblStatus);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SplashScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "SplashScreen";
+            this.Text = "Loading";
             this.Load += new System.EventHandler(this.SplashScreen_Load);
             this.DoubleClick += new System.EventHandler(this.SplashScreen_DoubleClick);
             this.ResumeLayout(false);
