@@ -380,25 +380,25 @@ namespace AppVietSo
             //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
             // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
 
-            var hientai = this.worksheet_0.GetTotalWidth();
-            if (worksheet_0.PrintSettings.Landscape)
-            {
-                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+            //var hientai = this.worksheet_0.GetTotalWidth();
+            //if (worksheet_0.PrintSettings.Landscape)
+            //{
+            //    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
 
-                var Scaling = KhoGiay / hientai;
-                this.worksheet_0.PrintSettings.PageScaling = Scaling;
-            }
-            else
-            {
-                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
+            //    var Scaling = KhoGiay / hientai;
+            //    this.worksheet_0.PrintSettings.PageScaling = Scaling;
+            //}
+            //else
+            //{
+            //    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
 
-                var Scaling = Math.Round(KhoGiay / hientai, 1);
-                if (Scaling > 1)
-                {
-                    Scaling = 1;
-                }
-                this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
-            }
+            //    var Scaling = Math.Round(KhoGiay / hientai, 1);
+            //    if (Scaling > 1)
+            //    {
+            //        Scaling = 1;
+            //    }
+            //    this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
+            //}
 
             //this.worksheet_0.AutoSplitPage();
             //if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
