@@ -14,7 +14,7 @@ namespace AppVietSo
     {
         bool _KhoaCung = false;
         int _PageNumber = 1;
-        public FrmPrintPreview( bool KhoaCung,int PageNumber=1)
+        public FrmPrintPreview(bool KhoaCung, int PageNumber = 1)
         {
             _KhoaCung = KhoaCung;
             _PageNumber = PageNumber;
@@ -119,19 +119,19 @@ namespace AppVietSo
         }
         private void FrmPrintPreview_Load(object sender, EventArgs e)
         {
-            
+
             var worksheet = this.worksheet_0;
 
-                                                       
+
             //worksheet.ResetAllPageBreaks();
-                                                       //var MaxRow = worksheet.RowPageBreaks.Max(v => v);
-                                                       //var MinRow = worksheet.RowPageBreaks.Min(v => v);
-                                                       //foreach (var item in worksheet.RowPageBreaks.ToList())
-                                                       //{
-                                                       //    if (item == MaxRow || item == MinRow)
-                                                       //    {
-                                                       //        continue;
-                                                       //    }
+            //var MaxRow = worksheet.RowPageBreaks.Max(v => v);
+            //var MinRow = worksheet.RowPageBreaks.Min(v => v);
+            //foreach (var item in worksheet.RowPageBreaks.ToList())
+            //{
+            //    if (item == MaxRow || item == MinRow)
+            //    {
+            //        continue;
+            //    }
 
             //    if (worksheet.RowPageBreaks.Contains(item))
             //    {
@@ -152,16 +152,17 @@ namespace AppVietSo
             //        worksheet.ChangeColumnPageBreak(item, MaxCol, false);
             //    }
             //}
-         
+
             this.bool_0 = true;
             this.splitContainer1.SplitterDistance = this.cbxPrinter.Width + this.cbxPrinter.Left * 2;
             this.method_0();
             //this.cbxPageNumber.Checked = true;
-            PageMargins margins = this.worksheet_0.PrintSettings.Margins;
-            this.nmrTop.Value = (decimal)(margins.Top * 25.4f);
-            this.nmrBottom.Value = (decimal)(margins.Bottom * 25.4f);
-            this.nmrLeft.Value = (decimal)(margins.Left * 25.4f);
-            this.nmrRight.Value = (decimal)(margins.Right * 25.4f);
+             this.nmrTop.Value = (decimal)Util.LongSoHienTai.PagePaddingTop;
+             this.nmrBottom.Value = (decimal)Util.LongSoHienTai.PagePaddingBottom;
+             this.nmrLeft.Value = (decimal)Util.LongSoHienTai.PagePaddingLeft;
+             this.nmrRight.Value = (decimal)Util.LongSoHienTai.PagePaddingRight;
+ 
+            
             this.printSession_0 = this.worksheet_0.CreatePrintSession();
             this.printPreviewControl1.Document = this.printSession_0.PrintDocument;
             this.rbtnLandscape.Checked = this.worksheet_0.PrintSettings.Landscape;
@@ -238,7 +239,7 @@ namespace AppVietSo
                         //	this.worksheet_0.PrintSettings.FromPage = (int)this.nmrPageFrom.Value;
                         //	this.worksheet_0.PrintSettings.ToPage = (int)this.nmrPageTo.Value;
                     }
-                    this.printSession_0.PrintDocument.PrinterSettings.Copies=(short)numericUpDown1.Value;
+                    this.printSession_0.PrintDocument.PrinterSettings.Copies = (short)numericUpDown1.Value;
                     this.printSession_0.Print();
                 }
                 else
@@ -352,11 +353,11 @@ namespace AppVietSo
                 pageSettings.PaperSize = paperSize;
             }
             pageSettings.Landscape = this.rbtnLandscape.Checked;
-            float num = (float)this.nmrTop.Value / 25.4f;
-            float num2 = (float)this.nmrBottom.Value / 25.4f;
-            float num3 = (float)this.nmrLeft.Value / 25.4f;
-            float num4 = (float)this.nmrRight.Value / 25.4f;
-            pageSettings.Margins = new PageMargins(num, num2, num3, num4);
+            Util.LongSoHienTai.PagePaddingTop = (float)this.nmrTop.Value;
+            Util.LongSoHienTai.PagePaddingBottom = (float)this.nmrBottom.Value;
+            Util.LongSoHienTai.PagePaddingLeft = (float)this.nmrLeft.Value;
+            Util.LongSoHienTai.PagePaddingRight = (float)this.nmrRight.Value;
+            LongSo.saveToFile();
             this.worksheet_0.PrintSettings.ApplySystemPageSettings(pageSettings);
             this.method_2();
         }
@@ -365,8 +366,8 @@ namespace AppVietSo
         private void method_2()
         {
 
-    //        Util.LongSoHienTai.PageWidth = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
-      //      Util.LongSoHienTai.PageHeight = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+            //        Util.LongSoHienTai.PageWidth = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
+            //      Util.LongSoHienTai.PageHeight = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
 
             //if (this.worksheet_0.PrintSettings.Landscape == true && Util.LongSoHienTai.PageWidth < Util.LongSoHienTai.PageHeight)
             //{
@@ -374,7 +375,7 @@ namespace AppVietSo
             //    Util.LongSoHienTai.PageWidth = Util.LongSoHienTai.PageHeight;
             //    Util.LongSoHienTai.PageHeight = tmp;
             //}
-            //      this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
+            this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
 
             //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
             // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
@@ -391,14 +392,14 @@ namespace AppVietSo
             {
                 var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
 
-                var Scaling =Math.Round(KhoGiay / hientai,1);
-                if (Scaling>1)
+                var Scaling = Math.Round(KhoGiay / hientai, 1);
+                if (Scaling > 1)
                 {
                     Scaling = 1;
                 }
-                this.worksheet_0.PrintSettings.PageScaling =(float) (Scaling-0.05);
+                this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
             }
- 
+
             //this.worksheet_0.AutoSplitPage();
             //if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
             //{
@@ -409,7 +410,7 @@ namespace AppVietSo
             //    }
             //    this.worksheet_0.ChangeColumnPageBreak(num, this.int_0, true);
             //}
-      //      this.worksheet_0.SetOnePage();
+            //      this.worksheet_0.SetOnePage();
         }
 
         // Token: 0x06000093 RID: 147 RVA: 0x00005EC8 File Offset: 0x000040C8
@@ -565,7 +566,7 @@ namespace AppVietSo
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-             this.method_3();
+            this.method_3();
 
         }
     }
