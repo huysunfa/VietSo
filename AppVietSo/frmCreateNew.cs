@@ -15,7 +15,7 @@ namespace AppVietSo
     public partial class frmCreateNew : Form
     {
         bool _KhoaChung = false;
-        public frmCreateNew(bool khoacung=false)
+        public frmCreateNew(bool khoacung = false)
         {
             _KhoaChung = khoacung;
             InitializeComponent();
@@ -27,9 +27,11 @@ namespace AppVietSo
             item.LSo = new LongSo();
             item.LSo.TenSo = textBox1.Text;
             item.LSo.FileName = "/FileUpload/" + textBox1.Text + ConstData.ExtentionsFile;
+            item.LSo.LoaiSo = comboBox1.Text;
+            item.LSo.ChuGiai = "SỚ CỦA THẦY";
             item.PageWidth = ShareFun.toPaperSize(470);
             item.PageHeight = ShareFun.toPaperSize(297);
-            item.PageBreakRow = (int) numRow.Value;
+            item.PageBreakRow = (int)numRow.Value;
             item.LgSo = new Dictionary<int, Dictionary<int, CellData>>();
             for (int i = 0; i < numCol.Value; i++)
             {
@@ -77,7 +79,10 @@ namespace AppVietSo
         private void frmCreateNew_Load(object sender, EventArgs e)
         {
             checkBox1.Checked = _KhoaChung;
-
+            var data = LongSo.GetLongSos().Select(v => v.LoaiSo).Distinct().ToList();
+            data.Add(LabelText.Get("SoCuaThay").ToUpper());
+            comboBox1.DataSource = data;
+            comboBox1.SelectedIndex = data.Count-1;
         }
     }
 }

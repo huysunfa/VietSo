@@ -1,4 +1,5 @@
 ﻿using AppVietSo.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,6 +24,18 @@ namespace AppVietSo
         {
             data = LongSo.GetLongSos();
 
+            var listfilelocal = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data/FileUpload", "*" + ConstData.ExtentionsFile).ToList();
+            foreach (var item in listfilelocal)
+            {
+                var json = System.IO.File.ReadAllText(item);
+                json = Security.Decrypt(json);
+                json = json.Replace("$", "@");
+                var result = JsonConvert.DeserializeObject<LongSoData>(json);
+                if (result.LSo != null && !string.IsNullOrEmpty(result.LSo.LoaiSo))
+                {
+                    data.Add(result.LSo);
+                }
+            }
             this.InitializeComponent();
 
         }
@@ -33,9 +46,10 @@ namespace AppVietSo
             foreach (var item in data.Select(z => z.LoaiSo).Distinct().ToArray().OrderBy(z => z))
             {
                 dgvParent.Rows.Add(item);
+
+                
             }
              dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
-
 
         }
         public void setDatagrid(List<LongSo> newdata = null, string text = "")
@@ -250,8 +264,9 @@ namespace AppVietSo
             this.btnClose_Click(null, null);
         }
 
+        private void dgvParent_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
-
-
+        }
     }
 }

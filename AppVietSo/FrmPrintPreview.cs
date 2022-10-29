@@ -157,12 +157,12 @@ namespace AppVietSo
             this.splitContainer1.SplitterDistance = this.cbxPrinter.Width + this.cbxPrinter.Left * 2;
             this.method_0();
             //this.cbxPageNumber.Checked = true;
-             this.nmrTop.Value = (decimal)Util.LongSoHienTai.PagePaddingTop;
-             this.nmrBottom.Value = (decimal)Util.LongSoHienTai.PagePaddingBottom;
-             this.nmrLeft.Value = (decimal)Util.LongSoHienTai.PagePaddingLeft;
-             this.nmrRight.Value = (decimal)Util.LongSoHienTai.PagePaddingRight;
- 
-            
+            this.nmrTop.Value = (decimal)Util.LongSoHienTai.PagePaddingTop;
+            this.nmrBottom.Value = (decimal)Util.LongSoHienTai.PagePaddingBottom;
+            this.nmrLeft.Value = (decimal)Util.LongSoHienTai.PagePaddingLeft;
+            this.nmrRight.Value = (decimal)Util.LongSoHienTai.PagePaddingRight;
+
+
             this.printSession_0 = this.worksheet_0.CreatePrintSession();
             this.printPreviewControl1.Document = this.printSession_0.PrintDocument;
             this.rbtnLandscape.Checked = this.worksheet_0.PrintSettings.Landscape;
@@ -375,7 +375,34 @@ namespace AppVietSo
             //    Util.LongSoHienTai.PageWidth = Util.LongSoHienTai.PageHeight;
             //    Util.LongSoHienTai.PageHeight = tmp;
             //}
-            this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
+            if (Util.LongSoHienTai.KhoaCung)
+            {
+
+                this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
+
+            }
+            else
+            {
+                var hientai = this.worksheet_0.GetTotalWidth();
+                if (worksheet_0.PrintSettings.Landscape)
+                {
+                    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+
+                    var Scaling = KhoGiay / hientai;
+                    this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
+                }
+                else
+                {
+                    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
+
+                    var Scaling = Math.Round(KhoGiay / hientai, 1);
+                    if (Scaling > 1)
+                    {
+                        Scaling = 1;
+                    }
+                    this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
+                }
+            }
 
             //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
             // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);

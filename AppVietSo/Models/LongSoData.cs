@@ -47,7 +47,10 @@ namespace AppVietSo.Models
             json = Security.Decrypt(json);
             json = json.Replace("$", "@");
             var result = JsonConvert.DeserializeObject<LongSoData>(json);
-            result.LSo = LSo;
+            if (result.LSo== null)
+            {
+                result.LSo = LSo;
+            }
             result.fsizeVN = result.fsizeVN == 0 ? result.fsizeCN : result.fsizeVN;
             if (result.ScaleFactor == 0)
             {

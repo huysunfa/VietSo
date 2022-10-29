@@ -1265,6 +1265,7 @@ namespace AppVietSo
 
         private void txtLoaiSo_Click(object sender, EventArgs e)
         {
+          
             FrmDownloadLoaiSo frm = new FrmDownloadLoaiSo();
             frm.ShowDialog();
             ReLoad(sender, e);

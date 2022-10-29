@@ -123,7 +123,7 @@ namespace AppVietSo
             this.TenSo.MinimumWidth = 6;
             this.TenSo.Name = "TenSo";
             this.TenSo.ReadOnly = true;
-            this.TenSo.Width = 89;
+            this.TenSo.Width = 110;
             // 
             // ChuGiai
             // 
@@ -154,7 +154,7 @@ namespace AppVietSo
             this.label1.Location = new System.Drawing.Point(217, 214);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 26);
+            this.label1.Size = new System.Drawing.Size(46, 31);
             this.label1.TabIndex = 2;
             this.label1.Text = ">>";
             // 
@@ -199,6 +199,7 @@ namespace AppVietSo
             this.dgvParent.RowTemplate.Height = 35;
             this.dgvParent.Size = new System.Drawing.Size(208, 691);
             this.dgvParent.TabIndex = 4;
+            this.dgvParent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParent_CellContentClick);
             this.dgvParent.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParent_CellEnter);
             // 
             // LoaiSo
@@ -216,7 +217,7 @@ namespace AppVietSo
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(2, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(198, 20);
+            this.label2.Size = new System.Drawing.Size(243, 25);
             this.label2.TabIndex = 5;
             this.label2.Text = "Nhập tên lòng sớ muốn tìm";
             // 
@@ -225,7 +226,7 @@ namespace AppVietSo
             this.txt.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt.Location = new System.Drawing.Point(202, 14);
             this.txt.Name = "txt";
-            this.txt.Size = new System.Drawing.Size(373, 30);
+            this.txt.Size = new System.Drawing.Size(373, 36);
             this.txt.TabIndex = 6;
             this.txt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txt_KeyPress);
             // 
@@ -269,14 +270,14 @@ namespace AppVietSo
             this.lblSuggestInfo.ForeColor = System.Drawing.Color.Black;
             this.lblSuggestInfo.Location = new System.Drawing.Point(28, 48);
             this.lblSuggestInfo.Name = "lblSuggestInfo";
-            this.lblSuggestInfo.Size = new System.Drawing.Size(628, 22);
+            this.lblSuggestInfo.Size = new System.Drawing.Size(759, 26);
             this.lblSuggestInfo.TabIndex = 8;
             this.lblSuggestInfo.Text = "Nếu tìm không thấy thì chỉ nhập 1 chữ vì có thể khác tên, chỉ trùng nhau 1 chữ";
             this.lblSuggestInfo.Visible = false;
             // 
             // FrmDownloadLoaiSo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1044, 691);
             this.Controls.Add(this.splitContainer1);
