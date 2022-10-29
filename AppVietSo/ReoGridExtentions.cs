@@ -34,7 +34,69 @@ namespace AppVietSo
                                      });
             }
         }
+        public static void ChangeWidthSize(this Worksheet sheet, bool check)
+        {
+            //if (Util.LongSoHienTai.KhoaCung)
+            //{
+            //    return;
+            //}
+            for (int i = 1; i < sheet.RowCount; i++)
+            {
+                sheet.RowHeaders[i].IsAutoHeight = check;
 
+            }
+            for (int i = 1; i < sheet.ColumnCount; i++)
+            {
+                sheet.ColumnHeaders[i].IsAutoWidth = check;
+
+            }
+            if (check == false)
+            {
+                return;
+            }
+ 
+            int TotalWidth = 0;
+            for (int i = 1; i < sheet.ColumnCount; i++)
+            {
+                var oldW = sheet.GetColumnWidth(i);
+                sheet.AutoFitColumnWidth(i, check);
+
+                var newW = sheet.GetColumnWidth(i);
+
+                if (newW < oldW)
+                {
+                    newW = oldW;
+                    sheet.SetColumnsWidth(i, 1, oldW);
+
+                }
+                TotalWidth += newW;
+            }
+            //int TotalHeight = 0;
+            //for (int i = 1; i < sheet.RowCount; i = i + 1)
+            //{
+            //    var oldW = sheet.GetRowHeight(i);
+            //    sheet.AutoFitRowHeight(i, check);
+            //    var newW = sheet.GetRowHeight(i);
+            //    if (newW < oldW)
+            //    {
+            //        newW = oldW;
+            //        sheet.SetRowsHeight(i, 1, oldW);
+
+            //    }
+            //    TotalHeight += newW;
+
+            //}
+            var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
+            var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
+            int row = (sheet.UsedRange.EndRow - 2);
+            var old = TotalHeight / row;
+            sheet.SetRowsHeight(1, row, (ushort)old);
+
+            var free = TotalHeight - (row * (int)old);
+            var colend = (ushort)(sheet.GetRowHeight(row + 2) + free);
+            sheet.SetRowsHeight(row + 1, 1, colend);
+
+        }
         public static void PreView(this ReoGridControl reoGrid, object sender = null, EventArgs e = null)
         {
             //      LoadDataToDataGrid(reoGrid);

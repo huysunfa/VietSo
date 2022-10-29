@@ -25,7 +25,7 @@ namespace AppVietSo
         {
             dataGridView1.RowHeadersVisible = false;
             var data = new DataTable();
-            if (_key == "thang" || _key == "mua")
+            if (_key == "thang" || _key == "mua" || _key == "gio")
             {
 
                 data = CNDictionary.databaseNguCanh.Select("nguCanh = '" + _key + "'").CopyToDataTable();
@@ -36,6 +36,8 @@ namespace AppVietSo
             {
                 data = getMonth();
             } 
+            
+            
             
             if (_key == "ngay")
             {
@@ -57,8 +59,12 @@ namespace AppVietSo
                 dt.Rows.Add(row);
 
             }
+     
             dataGridView1.DataSource = dt;
-
+            if (dt.Rows.Count == 0)
+            {
+                this.Close();
+            }
         }
 
         public DataTable getMonth()
@@ -73,7 +79,23 @@ namespace AppVietSo
                 dt.Rows.Add(it);
             }
             return dt;
-        }    public DataTable getngay()
+        }  
+        
+        public DataTable getGio()
+        {
+            var dt = new DataTable();
+            dt.Columns.Add("vn");
+
+            for (int i = 1; i <= 12; i++)
+            {
+                 var it = dt.NewRow();
+                it["vn"] = i;
+                dt.Rows.Add(it);
+            }
+            return dt;
+        }  
+        
+        public DataTable getngay()
         {
             var dt = new DataTable();
             dt.Columns.Add("vn");

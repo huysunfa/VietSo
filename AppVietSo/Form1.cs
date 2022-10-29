@@ -69,14 +69,18 @@ namespace AppVietSo
             var TSMItemAddYear = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddMonth = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddDay = new global::System.Windows.Forms.ToolStripMenuItem();
+            var TSMItemAddGio = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddNoiC = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddAdress = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddGiaChu = new global::System.Windows.Forms.ToolStripMenuItem();
+            var TSMItemAddHoGiaChu = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddTinChu = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHuongLinh = new global::System.Windows.Forms.ToolStripMenuItem();
+            var TSMItemAddHoHuongLinh = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHLinhSinh = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHLinhMat = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHLinhTho = new global::System.Windows.Forms.ToolStripMenuItem();
+            var TSMItemAddHLinhDiaChi = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddNgachSo = new global::System.Windows.Forms.ToolStripMenuItem();
 
             ctextMenuS.ImageScalingSize = new global::System.Drawing.Size(0x14, 0x14);
@@ -94,14 +98,18 @@ namespace AppVietSo
               TSMItemAddYear,
               TSMItemAddMonth,
               TSMItemAddDay,
+              TSMItemAddGio,
               TSMItemAddNoiC,
               TSMItemAddAdress,
               TSMItemAddGiaChu,
+              TSMItemAddHoGiaChu,
               TSMItemAddTinChu,
               TSMItemAddHuongLinh,
+              TSMItemAddHoHuongLinh,
               TSMItemAddHLinhSinh,
               TSMItemAddHLinhMat,
               TSMItemAddHLinhTho,
+              TSMItemAddHLinhDiaChi,
               TSMItemAddNgachSo
              });
 
@@ -172,6 +180,12 @@ namespace AppVietSo
             TSMItemAddDay.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemAddDay.Text = "Thêm ngày (@ngay)";
             TSMItemAddDay.Click += TSMItemAddDay_Click;
+
+            TSMItemAddGio.Image = global::AppVietSo.Properties.Resources.Adda;
+            TSMItemAddGio.Name = "TSMItemAddGio";
+            TSMItemAddGio.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemAddGio.Text = "Thêm giờ (@gio)";
+            TSMItemAddGio.Click += TSMItemAddGio_Click;
             TSMItemAddNoiC.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddNoiC.Name = "TSMItemAddNoiC";
             TSMItemAddNoiC.Size = new global::System.Drawing.Size(0x134, 0x1A);
@@ -185,8 +199,14 @@ namespace AppVietSo
             TSMItemAddGiaChu.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddGiaChu.Name = "TSMItemAddGiaChu";
             TSMItemAddGiaChu.Size = new global::System.Drawing.Size(0x134, 0x1A);
-            TSMItemAddGiaChu.Text = "Thêm gia chủ (@giachu)";
+            TSMItemAddGiaChu.Text = "Thêm tên gia chủ (@giachu)";
             TSMItemAddGiaChu.Click += TSMItemAddGiaChu_Click;
+
+            TSMItemAddHoGiaChu.Image = global::AppVietSo.Properties.Resources.Adda;
+            TSMItemAddHoGiaChu.Name = "TSMItemAddHoGiaChu";
+            TSMItemAddHoGiaChu.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemAddHoGiaChu.Text = "Thêm họ gia chủ (@hogiachu)";
+            TSMItemAddHoGiaChu.Click += TSMItemAddHoGiaChu_Click;
             TSMItemAddTinChu.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddTinChu.Name = "TSMItemAddTinChu";
             TSMItemAddTinChu.Size = new global::System.Drawing.Size(0x134, 0x1A);
@@ -197,6 +217,13 @@ namespace AppVietSo
             TSMItemAddHuongLinh.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemAddHuongLinh.Text = "Thêm Tên Hương linh (@hlinhten)";
             TSMItemAddHuongLinh.Click += TSMItemAddHuongLinh_Click;
+
+
+            TSMItemAddHoHuongLinh.Image = global::AppVietSo.Properties.Resources.Adda;
+            TSMItemAddHoHuongLinh.Name = "TSMItemAddHoHuongLinh";
+            TSMItemAddHoHuongLinh.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemAddHoHuongLinh.Text = "Thêm Họ Hương linh (@hlinhho)";
+            TSMItemAddHoHuongLinh.Click += TSMItemAddHoHuongLinh_Click;
             TSMItemAddHLinhSinh.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddHLinhSinh.Name = "TSMItemAddHLinhSinh";
             TSMItemAddHLinhSinh.Size = new global::System.Drawing.Size(0x134, 0x1A);
@@ -212,6 +239,14 @@ namespace AppVietSo
             TSMItemAddHLinhTho.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemAddHLinhTho.Text = "Hương linh Hưởng thọ (@hlinhtho)";
             TSMItemAddHLinhTho.Click += TSMItemAddHLinhTho_Click;
+
+            TSMItemAddHLinhDiaChi.Image = global::AppVietSo.Properties.Resources.Adda;
+            TSMItemAddHLinhDiaChi.Name = "TSMItemAddHLinhDiaChi";
+            TSMItemAddHLinhDiaChi.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemAddHLinhDiaChi.Text = "Hương linh Địa chỉ (@hlinhdiachi)";
+            TSMItemAddHLinhDiaChi.Click += TSMItemAddHLinhDiaChi_Click;
+
+
             TSMItemAddNgachSo.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddNgachSo.Name = "TSMItemAddNgachSo";
             TSMItemAddNgachSo.Size = new global::System.Drawing.Size(0x134, 0x1A);
@@ -434,6 +469,10 @@ namespace AppVietSo
         private void TSMItemAddDay_Click(object sender, global::System.EventArgs e)
         {
             addTextLongSo("@ngay", "Ngày");
+        } 
+        private void TSMItemAddGio_Click(object sender, global::System.EventArgs e)
+        {
+            addTextLongSo("@gio", "Giờ");
         }
 
         // Token: 0x060000D9 RID: 217 RVA: 0x0000E8C4 File Offset: 0x0000CAC4
@@ -490,12 +529,22 @@ namespace AppVietSo
             ActiveData.UpdateDataByID();
             addTextLongSo("@giachu", "Gia chủ");
         }
+           private void TSMItemAddHoGiaChu_Click(object sender, global::System.EventArgs e)
+        {
+            ActiveData.UpdateDataByID();
+            addTextLongSo("@hogiachu", "Gia chủ");
+        }
 
         // Token: 0x060000DE RID: 222 RVA: 0x0000E91E File Offset: 0x0000CB1E
         private void TSMItemAddHuongLinh_Click(object sender, global::System.EventArgs e)
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhten", "Hương linh");
+        }
+             private void TSMItemAddHoHuongLinh_Click(object sender, global::System.EventArgs e)
+        {
+            ActiveData.UpdateDataByID();
+            addTextLongSo("@hlinhho", "Hương linh");
         }
 
         // Token: 0x060000DF RID: 223 RVA: 0x0000E930 File Offset: 0x0000CB30
@@ -517,6 +566,11 @@ namespace AppVietSo
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhtho", "Hưởng thọ");
+        }
+            private void TSMItemAddHLinhDiaChi_Click(object sender, global::System.EventArgs e)
+        {
+            ActiveData.UpdateDataByID();
+            addTextLongSo("@hlinhdiachi", "Địa chỉ người mất");
         }
 
 
@@ -1024,7 +1078,7 @@ namespace AppVietSo
             worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
 
             RenderStyle();
-            ChangeWidthSize(worksheet, checkBox2.Checked);
+            ReoGridExtentions.ChangeWidthSize(worksheet, checkBox2.Checked);
             reoGrid.ClearActionHistory();
             reoGrid.ClearActionHistoryForWorksheet(worksheet);
             worksheet.SetOnePage();
@@ -1606,7 +1660,7 @@ namespace AppVietSo
             if (string.IsNullOrEmpty(pos))
             {
                 sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
-                ChangeWidthSize(sheet, checkBox2.Checked);
+                ReoGridExtentions.ChangeWidthSize(sheet, checkBox2.Checked);
                 sheet.SetRangeStyles(sheet.UsedRange.ToAddress(), new WorksheetRangeStyle
                 {
                     // style item flag
@@ -1701,70 +1755,7 @@ namespace AppVietSo
 
         }
 
-        public void ChangeWidthSize(Worksheet sheet, bool check)
-        {
-            //if (Util.LongSoHienTai.KhoaCung)
-            //{
-            //    return;
-            //}
-            for (int i = 1; i < sheet.RowCount; i++)
-            {
-                sheet.RowHeaders[i].IsAutoHeight = check;
-
-            }
-            for (int i = 1; i < sheet.ColumnCount; i++)
-            {
-                sheet.ColumnHeaders[i].IsAutoWidth = check;
-
-            }
-            if (check == false)
-            {
-                return;
-            }
-            sheet = reoGridControl1.CurrentWorksheet;
-
-            int TotalWidth = 0;
-            for (int i = 1; i < sheet.ColumnCount; i++)
-            {
-                var oldW = sheet.GetColumnWidth(i);
-                sheet.AutoFitColumnWidth(i, check);
-
-                var newW = sheet.GetColumnWidth(i);
-
-                if (newW < oldW)
-                {
-                    newW = oldW;
-                    sheet.SetColumnsWidth(i, 1, oldW);
-
-                }
-                TotalWidth += newW;
-            }
-            //int TotalHeight = 0;
-            //for (int i = 1; i < sheet.RowCount; i = i + 1)
-            //{
-            //    var oldW = sheet.GetRowHeight(i);
-            //    sheet.AutoFitRowHeight(i, check);
-            //    var newW = sheet.GetRowHeight(i);
-            //    if (newW < oldW)
-            //    {
-            //        newW = oldW;
-            //        sheet.SetRowsHeight(i, 1, oldW);
-
-            //    }
-            //    TotalHeight += newW;
-
-            //}
-            var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
-            var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
-            int row = (sheet.UsedRange.EndRow - 2);
-            var old = TotalHeight / row;
-            sheet.SetRowsHeight(1, row, (ushort)old);
-
-            var free = TotalHeight - (row * (int)old);
-            var colend = (ushort)(sheet.GetRowHeight(row + 2) + free);
-            sheet.SetRowsHeight(row + 1, 1, colend);
-
-        }
+  
 
 
         private void cbfsizeCN_Click(object sender, EventArgs e)
@@ -1960,7 +1951,7 @@ namespace AppVietSo
 
             SaveData();
             RenderStyle();
-            ChangeWidthSize(reoGridControl1.CurrentWorksheet, checkBox2.Checked);
+            ReoGridExtentions.ChangeWidthSize(reoGridControl1.CurrentWorksheet, checkBox2.Checked);
         }
 
 
@@ -1996,7 +1987,7 @@ namespace AppVietSo
             {
 
                 var sheet = reoGridControl1.CurrentWorksheet;
-                ChangeWidthSize(sheet, checkBox2.Checked);
+                ReoGridExtentions.ChangeWidthSize(sheet, checkBox2.Checked);
             }
             else
             {

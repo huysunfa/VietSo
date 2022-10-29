@@ -19,14 +19,20 @@ namespace AppVietSo
 
         public static List<string> keys = new List<string>() {
         "@noicung",
+        "@noicung",
+        "@noicung",
         "@diachiyvu",
         "@giachu",
+        "@hogiachu",
         "@tinchu",
         "@hlinhten",
+        "@hlinhho",
         "@hlinhsinh",
         "@hlinhmat",
         "@hlinhtho"
     };
+
+     
 
         // Token: 0x1700000D RID: 13
         // (get) Token: 0x060000F8 RID: 248 RVA: 0x00012C70 File Offset: 0x00010E70
@@ -668,20 +674,25 @@ namespace AppVietSo
                 string hlinhsinh = "";
                 string hlinhmat = "";
                 string hlinhtho = "";
+                string hlinhdiachi = "";
                 foreach (var it in user)
                 {
                     hlinhten += it.FullName + " ";
                     hlinhsinh += it.Menh + " ";
                     hlinhmat += it.DaiHanY + " ";
                     hlinhtho += it.Tuoi + " ";
+                    hlinhdiachi += it.Address + " ";
                 }
                 var gc = PersonBO.get(item.IDs.FirstOrDefault());
                 ActiveData.Update("@chua", Program.Stg.Chua);
                 ActiveData.Update("@hlinhten", hlinhten);
+                ActiveData.Update("@hlinhho", hlinhten.Split(' ').FirstOrDefault());
                 ActiveData.Update("@hlinhsinh", hlinhsinh);
                 ActiveData.Update("@hlinhmat", hlinhmat);
                 ActiveData.Update("@hlinhtho", hlinhtho);
+                ActiveData.Update("@hlinhdiachi", hlinhdiachi);
                 ActiveData.Update("@giachu", (gc.FullName));
+                ActiveData.Update("@hogiachu", (gc.FullName+"").Split(' ').FirstOrDefault());
                 ActiveData.Update("@tinchu", gc.FullName);
                 ActiveData.Update("@maso", gc.SoNo + "");
                 ActiveData.Update("@canchi", CNDictionary.getCN(gc.Menh) + "_" + gc.Menh);
