@@ -37,7 +37,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>MicrosoftTeams-image %2818%29.ico</ApplicationIcon>
+    <ApplicationIcon>MicrosoftTeams-image %2831%29.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -422,6 +422,7 @@
   <ItemGroup>
     <Content Include="Capture.ico" />
     <Content Include="MicrosoftTeams-image %2818%29.ico" />
+    <Content Include="MicrosoftTeams-image %2831%29.ico" />
     <None Include="Resources\bg.png" />
     <None Include="Resources\zoomout48.png" />
     <None Include="Resources\zoomout24.png" />

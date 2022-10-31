@@ -377,6 +377,11 @@ namespace AppVietSo
             var worksheet = reoGridControl1.CurrentWorksheet;
             var cnt = worksheet.SelectionRange.Row;
             worksheet.InsertRows(cnt, 1);
+            for (int i = 0; i < worksheet.UsedRange.EndCol; i++)
+            {
+                worksheet.Cells[cnt, i].DataFormatArgs = worksheet.Cells[cnt-1, i].DataFormatArgs;
+            }
+
             reoGridControl1.ShowBolder(false);
             SaveData();
             ReLoad(sender, e);
@@ -388,6 +393,10 @@ namespace AppVietSo
             var worksheet = reoGridControl1.CurrentWorksheet;
             var cnt = worksheet.SelectionRange.Col;
             worksheet.InsertColumns(cnt, 1);
+            for (int i = 0; i < worksheet.UsedRange.EndRow; i++)
+            {
+                worksheet.Cells[i, cnt].DataFormatArgs = "TextVN";
+            }
             reoGridControl1.ShowBolder(false);
             SaveData();
             ReLoad(sender, e);
@@ -1216,7 +1225,7 @@ namespace AppVietSo
             }
 
             cbCanChuViet.Visible = rbSongNgu.Checked;
-            lbCanChuViet.Visible = rbSongNgu.Checked;
+            //lbCanChuViet.Visible = rbSongNgu.Checked;
             cbfstyleCN.SelectedIndex = 0;
 
 

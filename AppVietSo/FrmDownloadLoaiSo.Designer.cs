@@ -22,12 +22,6 @@ namespace AppVietSo
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvLongSo = new System.Windows.Forms.DataGridView();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LoaiSo1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ChuGiai = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAction = new System.Windows.Forms.DataGridViewButtonColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvParent = new System.Windows.Forms.DataGridView();
@@ -37,6 +31,13 @@ namespace AppVietSo
             this.btnFind = new System.Windows.Forms.Button();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.lblSuggestInfo = new System.Windows.Forms.Label();
+            this.In = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LoaiSo1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ChuGiai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAction = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLongSo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -61,6 +62,7 @@ namespace AppVietSo
             this.dgvLongSo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvLongSo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLongSo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.In,
             this.ID,
             this.LoaiSo1,
             this.FileName,
@@ -84,68 +86,6 @@ namespace AppVietSo
             this.dgvLongSo.TabIndex = 1;
             this.dgvLongSo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLongSo_CellContentClick);
             this.dgvLongSo.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvLongSo_CellMouseDoubleClick);
-            // 
-            // ID
-            // 
-            this.ID.DataPropertyName = "ID";
-            this.ID.HeaderText = "ID";
-            this.ID.MinimumWidth = 6;
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            this.ID.Visible = false;
-            this.ID.Width = 125;
-            // 
-            // LoaiSo1
-            // 
-            this.LoaiSo1.DataPropertyName = "LoaiSo1";
-            this.LoaiSo1.HeaderText = "LoaiSo1";
-            this.LoaiSo1.MinimumWidth = 6;
-            this.LoaiSo1.Name = "LoaiSo1";
-            this.LoaiSo1.ReadOnly = true;
-            this.LoaiSo1.Visible = false;
-            this.LoaiSo1.Width = 125;
-            // 
-            // FileName
-            // 
-            this.FileName.DataPropertyName = "FileName";
-            this.FileName.HeaderText = "FileName";
-            this.FileName.MinimumWidth = 6;
-            this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
-            this.FileName.Visible = false;
-            this.FileName.Width = 125;
-            // 
-            // TenSo
-            // 
-            this.TenSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.TenSo.DataPropertyName = "TenSo";
-            this.TenSo.HeaderText = "Lòng Sớ";
-            this.TenSo.MinimumWidth = 6;
-            this.TenSo.Name = "TenSo";
-            this.TenSo.ReadOnly = true;
-            this.TenSo.Width = 110;
-            // 
-            // ChuGiai
-            // 
-            this.ChuGiai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ChuGiai.DataPropertyName = "ChuGiai";
-            this.ChuGiai.HeaderText = "Chú giải";
-            this.ChuGiai.MinimumWidth = 6;
-            this.ChuGiai.Name = "ChuGiai";
-            this.ChuGiai.ReadOnly = true;
-            // 
-            // btnAction
-            // 
-            this.btnAction.DataPropertyName = "btnAction";
-            this.btnAction.FlatStyle = System.Windows.Forms.FlatStyle.System;
-            this.btnAction.HeaderText = "";
-            this.btnAction.MinimumWidth = 6;
-            this.btnAction.Name = "btnAction";
-            this.btnAction.ReadOnly = true;
-            this.btnAction.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.btnAction.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.btnAction.Text = "Tải về";
-            this.btnAction.Width = 70;
             // 
             // label1
             // 
@@ -275,6 +215,76 @@ namespace AppVietSo
             this.lblSuggestInfo.Text = "Nếu tìm không thấy thì chỉ nhập 1 chữ vì có thể khác tên, chỉ trùng nhau 1 chữ";
             this.lblSuggestInfo.Visible = false;
             // 
+            // In
+            // 
+            this.In.HeaderText = "Chọn sẽ in";
+            this.In.MinimumWidth = 6;
+            this.In.Name = "In";
+            this.In.ReadOnly = true;
+            this.In.Width = 125;
+            // 
+            // ID
+            // 
+            this.ID.DataPropertyName = "ID";
+            this.ID.HeaderText = "ID";
+            this.ID.MinimumWidth = 6;
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            this.ID.Visible = false;
+            this.ID.Width = 125;
+            // 
+            // LoaiSo1
+            // 
+            this.LoaiSo1.DataPropertyName = "LoaiSo1";
+            this.LoaiSo1.HeaderText = "LoaiSo1";
+            this.LoaiSo1.MinimumWidth = 6;
+            this.LoaiSo1.Name = "LoaiSo1";
+            this.LoaiSo1.ReadOnly = true;
+            this.LoaiSo1.Visible = false;
+            this.LoaiSo1.Width = 125;
+            // 
+            // FileName
+            // 
+            this.FileName.DataPropertyName = "FileName";
+            this.FileName.HeaderText = "FileName";
+            this.FileName.MinimumWidth = 6;
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Visible = false;
+            this.FileName.Width = 125;
+            // 
+            // TenSo
+            // 
+            this.TenSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.TenSo.DataPropertyName = "TenSo";
+            this.TenSo.HeaderText = "Lòng Sớ";
+            this.TenSo.MinimumWidth = 6;
+            this.TenSo.Name = "TenSo";
+            this.TenSo.ReadOnly = true;
+            this.TenSo.Width = 110;
+            // 
+            // ChuGiai
+            // 
+            this.ChuGiai.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ChuGiai.DataPropertyName = "ChuGiai";
+            this.ChuGiai.HeaderText = "Chú giải";
+            this.ChuGiai.MinimumWidth = 6;
+            this.ChuGiai.Name = "ChuGiai";
+            this.ChuGiai.ReadOnly = true;
+            // 
+            // btnAction
+            // 
+            this.btnAction.DataPropertyName = "btnAction";
+            this.btnAction.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.btnAction.HeaderText = "";
+            this.btnAction.MinimumWidth = 6;
+            this.btnAction.Name = "btnAction";
+            this.btnAction.ReadOnly = true;
+            this.btnAction.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.btnAction.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.btnAction.Text = "Tải về";
+            this.btnAction.Width = 70;
+            // 
             // FrmDownloadLoaiSo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 22F);
@@ -336,6 +346,7 @@ namespace AppVietSo
 
         // Token: 0x0400007C RID: 124
         private global::System.Windows.Forms.Label lblSuggestInfo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn In;
         private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn LoaiSo1;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileName;

@@ -52,13 +52,6 @@ namespace AppVietSo
             this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lbCanChuViet = new System.Windows.Forms.Label();
-            this.cbCanChuViet = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.rbSongNgu = new System.Windows.Forms.RadioButton();
-            this.rbChuViet = new System.Windows.Forms.RadioButton();
-            this.rbChuHan = new System.Windows.Forms.RadioButton();
             this.cbHideGridLine = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -88,12 +81,17 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
+            this.rbChuHan = new System.Windows.Forms.RadioButton();
+            this.rbChuViet = new System.Windows.Forms.RadioButton();
+            this.rbSongNgu = new System.Windows.Forms.RadioButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.cbCanChuViet = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
@@ -125,7 +123,7 @@ namespace AppVietSo
             this.reoGridControl1.SheetTabVisible = true;
             this.reoGridControl1.SheetTabWidth = 80;
             this.reoGridControl1.ShowScrollEndSpacing = true;
-            this.reoGridControl1.Size = new System.Drawing.Size(1488, 920);
+            this.reoGridControl1.Size = new System.Drawing.Size(1387, 827);
             this.reoGridControl1.TabIndex = 2;
             this.reoGridControl1.Text = "reoGridControl1";
             this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
@@ -150,16 +148,20 @@ namespace AppVietSo
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel1.Controls.Add(this.cbCanChuViet);
+            this.splitContainer1.Panel1.Controls.Add(this.lbVersion);
+            this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.rbSongNgu);
             this.splitContainer1.Panel1.Controls.Add(this.button6);
+            this.splitContainer1.Panel1.Controls.Add(this.rbChuViet);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox4);
+            this.splitContainer1.Panel1.Controls.Add(this.rbChuHan);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox3);
             this.splitContainer1.Panel1.Controls.Add(this.button11);
-            this.splitContainer1.Panel1.Controls.Add(this.lbVersion);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox2);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button8);
-            this.splitContainer1.Panel1.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel1.Controls.Add(this.cbHideGridLine);
             this.splitContainer1.Panel1.Controls.Add(this.button4);
             this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
@@ -167,14 +169,15 @@ namespace AppVietSo
             this.splitContainer1.Panel1.Controls.Add(this.button2);
             this.splitContainer1.Panel1.Controls.Add(this.button7);
             this.splitContainer1.Panel1.Controls.Add(this.button5);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Padding = new System.Windows.Forms.Padding(11, 10, 11, 10);
             // 
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
             this.splitContainer1.Panel2.Padding = new System.Windows.Forms.Padding(11, 0, 11, 10);
-            this.splitContainer1.Size = new System.Drawing.Size(1686, 930);
-            this.splitContainer1.SplitterDistance = 172;
+            this.splitContainer1.Size = new System.Drawing.Size(1604, 837);
+            this.splitContainer1.SplitterDistance = 191;
             this.splitContainer1.TabIndex = 3;
             // 
             // button6
@@ -183,12 +186,12 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.BackColor = System.Drawing.Color.Teal;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.Transparent;
-            this.button6.Location = new System.Drawing.Point(12, 658);
+            this.button6.Location = new System.Drawing.Point(11, 549);
             this.button6.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(146, 44);
+            this.button6.Size = new System.Drawing.Size(165, 36);
             this.button6.TabIndex = 50;
             this.button6.Text = "Tạo khoa cúng";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -199,7 +202,7 @@ namespace AppVietSo
             // 
             this.checkBox4.AutoSize = true;
             this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(24, 288);
+            this.checkBox4.Location = new System.Drawing.Point(12, 239);
             this.checkBox4.Name = "checkBox4";
             this.checkBox4.Size = new System.Drawing.Size(98, 21);
             this.checkBox4.TabIndex = 49;
@@ -213,9 +216,9 @@ namespace AppVietSo
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tiênTichToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(11, 765);
+            this.menuStrip1.Location = new System.Drawing.Point(9, 627);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(107, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -266,7 +269,7 @@ namespace AppVietSo
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(25, 262);
+            this.checkBox3.Location = new System.Drawing.Point(12, 213);
             this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(132, 21);
@@ -281,12 +284,12 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button11.BackColor = System.Drawing.Color.Teal;
             this.button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button11.ForeColor = System.Drawing.Color.Transparent;
-            this.button11.Location = new System.Drawing.Point(12, 430);
+            this.button11.Location = new System.Drawing.Point(11, 355);
             this.button11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(146, 42);
+            this.button11.Size = new System.Drawing.Size(165, 34);
             this.button11.TabIndex = 29;
             this.button11.Text = "Danh sách đoàn";
             this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -298,7 +301,7 @@ namespace AppVietSo
             this.lbVersion.AutoSize = true;
             this.lbVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVersion.ForeColor = System.Drawing.Color.Red;
-            this.lbVersion.Location = new System.Drawing.Point(12, 813);
+            this.lbVersion.Location = new System.Drawing.Point(12, 675);
             this.lbVersion.Name = "lbVersion";
             this.lbVersion.Size = new System.Drawing.Size(64, 25);
             this.lbVersion.TabIndex = 28;
@@ -308,7 +311,7 @@ namespace AppVietSo
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(25, 212);
+            this.checkBox2.Location = new System.Drawing.Point(12, 163);
             this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(97, 21);
@@ -324,12 +327,12 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button3.BackColor = System.Drawing.Color.Teal;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Transparent;
-            this.button3.Location = new System.Drawing.Point(12, 707);
+            this.button3.Location = new System.Drawing.Point(11, 589);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(146, 44);
+            this.button3.Size = new System.Drawing.Size(165, 36);
             this.button3.TabIndex = 23;
             this.button3.Text = "Chia sẻ";
             this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -342,117 +345,24 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button8.BackColor = System.Drawing.Color.Teal;
             this.button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button8.ForeColor = System.Drawing.Color.Transparent;
-            this.button8.Location = new System.Drawing.Point(12, 610);
+            this.button8.Location = new System.Drawing.Point(11, 509);
             this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(146, 44);
+            this.button8.Size = new System.Drawing.Size(165, 36);
             this.button8.TabIndex = 22;
             this.button8.Text = "Tạo lòng sớ mới";
             this.button8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button8.UseVisualStyleBackColor = false;
             this.button8.Click += new System.EventHandler(this.button8_Click_2);
             // 
-            // groupBox2
-            // 
-            this.groupBox2.BackColor = System.Drawing.SystemColors.Window;
-            this.groupBox2.Controls.Add(this.lbCanChuViet);
-            this.groupBox2.Controls.Add(this.cbCanChuViet);
-            this.groupBox2.Controls.Add(this.checkBox1);
-            this.groupBox2.Controls.Add(this.rbSongNgu);
-            this.groupBox2.Controls.Add(this.rbChuViet);
-            this.groupBox2.Controls.Add(this.rbChuHan);
-            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox2.Location = new System.Drawing.Point(11, 10);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox2.Size = new System.Drawing.Size(150, 198);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
-            // 
-            // lbCanChuViet
-            // 
-            this.lbCanChuViet.AutoSize = true;
-            this.lbCanChuViet.Location = new System.Drawing.Point(7, 138);
-            this.lbCanChuViet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lbCanChuViet.Name = "lbCanChuViet";
-            this.lbCanChuViet.Size = new System.Drawing.Size(86, 17);
-            this.lbCanChuViet.TabIndex = 22;
-            this.lbCanChuViet.Text = "Căn chữ việt";
-            // 
-            // cbCanChuViet
-            // 
-            this.cbCanChuViet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCanChuViet.FormattingEnabled = true;
-            this.cbCanChuViet.Items.AddRange(new object[] {
-            "TRÊN",
-            "DƯỚI",
-            "TRÁI",
-            "PHẢI"});
-            this.cbCanChuViet.Location = new System.Drawing.Point(7, 162);
-            this.cbCanChuViet.Margin = new System.Windows.Forms.Padding(4);
-            this.cbCanChuViet.Name = "cbCanChuViet";
-            this.cbCanChuViet.Size = new System.Drawing.Size(136, 24);
-            this.cbCanChuViet.TabIndex = 21;
-            this.cbCanChuViet.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(21, 19);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 21);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "Có in mã sớ";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // rbSongNgu
-            // 
-            this.rbSongNgu.AutoSize = true;
-            this.rbSongNgu.Location = new System.Drawing.Point(21, 108);
-            this.rbSongNgu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rbSongNgu.Name = "rbSongNgu";
-            this.rbSongNgu.Size = new System.Drawing.Size(90, 21);
-            this.rbSongNgu.TabIndex = 19;
-            this.rbSongNgu.Tag = "";
-            this.rbSongNgu.Text = "Song ngữ";
-            this.rbSongNgu.UseVisualStyleBackColor = true;
-            this.rbSongNgu.CheckedChanged += new System.EventHandler(this.button1_Click);
-            // 
-            // rbChuViet
-            // 
-            this.rbChuViet.AutoSize = true;
-            this.rbChuViet.Location = new System.Drawing.Point(21, 46);
-            this.rbChuViet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rbChuViet.Name = "rbChuViet";
-            this.rbChuViet.Size = new System.Drawing.Size(80, 21);
-            this.rbChuViet.TabIndex = 17;
-            this.rbChuViet.Text = "Chữ việt";
-            this.rbChuViet.UseVisualStyleBackColor = true;
-            this.rbChuViet.CheckedChanged += new System.EventHandler(this.button1_Click);
-            // 
-            // rbChuHan
-            // 
-            this.rbChuHan.AutoSize = true;
-            this.rbChuHan.Location = new System.Drawing.Point(21, 78);
-            this.rbChuHan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rbChuHan.Name = "rbChuHan";
-            this.rbChuHan.Size = new System.Drawing.Size(82, 21);
-            this.rbChuHan.TabIndex = 18;
-            this.rbChuHan.Text = "Chữ hán";
-            this.rbChuHan.UseVisualStyleBackColor = true;
-            this.rbChuHan.CheckedChanged += new System.EventHandler(this.button1_Click);
-            // 
             // cbHideGridLine
             // 
             this.cbHideGridLine.AutoSize = true;
             this.cbHideGridLine.Checked = true;
             this.cbHideGridLine.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbHideGridLine.Location = new System.Drawing.Point(25, 237);
+            this.cbHideGridLine.Location = new System.Drawing.Point(12, 188);
             this.cbHideGridLine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbHideGridLine.Name = "cbHideGridLine";
             this.cbHideGridLine.Size = new System.Drawing.Size(114, 21);
@@ -468,12 +378,12 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button4.BackColor = System.Drawing.Color.Teal;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Transparent;
-            this.button4.Location = new System.Drawing.Point(12, 562);
+            this.button4.Location = new System.Drawing.Point(11, 469);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(146, 44);
+            this.button4.Size = new System.Drawing.Size(165, 36);
             this.button4.TabIndex = 16;
             this.button4.Text = "Xóa lòng sớ";
             this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -484,10 +394,10 @@ namespace AppVietSo
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 838);
+            this.pictureBox1.Location = new System.Drawing.Point(11, 731);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(150, 82);
+            this.pictureBox1.Size = new System.Drawing.Size(169, 96);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 15;
             this.pictureBox1.TabStop = false;
@@ -499,12 +409,12 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button1.BackColor = System.Drawing.Color.Teal;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(12, 338);
+            this.button1.Location = new System.Drawing.Point(11, 279);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(146, 42);
+            this.button1.Size = new System.Drawing.Size(165, 34);
             this.button1.TabIndex = 12;
             this.button1.Text = "Tín chủ";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -517,12 +427,12 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button2.BackColor = System.Drawing.Color.Teal;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(12, 384);
+            this.button2.Location = new System.Drawing.Point(11, 317);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(146, 42);
+            this.button2.Size = new System.Drawing.Size(165, 34);
             this.button2.TabIndex = 13;
             this.button2.Text = "Ngạch sớ";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -535,13 +445,13 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button7.ForeColor = System.Drawing.Color.Transparent;
             this.button7.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button7.Location = new System.Drawing.Point(12, 522);
+            this.button7.Location = new System.Drawing.Point(11, 431);
             this.button7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(146, 36);
+            this.button7.Size = new System.Drawing.Size(165, 34);
             this.button7.TabIndex = 9;
             this.button7.Text = "Tải lại dữ liệu";
             this.button7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -554,12 +464,12 @@ namespace AppVietSo
             | System.Windows.Forms.AnchorStyles.Right)));
             this.button5.BackColor = System.Drawing.Color.Teal;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Transparent;
-            this.button5.Location = new System.Drawing.Point(12, 476);
+            this.button5.Location = new System.Drawing.Point(11, 393);
             this.button5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(146, 42);
+            this.button5.Size = new System.Drawing.Size(165, 34);
             this.button5.TabIndex = 7;
             this.button5.Text = "Cài đặt khổ giấy";
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -574,16 +484,16 @@ namespace AppVietSo
             this.panel1.Location = new System.Drawing.Point(11, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1488, 920);
+            this.panel1.Size = new System.Drawing.Size(1387, 827);
             this.panel1.TabIndex = 3;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.richTextBox1.Location = new System.Drawing.Point(0, 824);
+            this.richTextBox1.Location = new System.Drawing.Point(0, 731);
             this.richTextBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1488, 96);
+            this.richTextBox1.Size = new System.Drawing.Size(1387, 96);
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             this.richTextBox1.Visible = false;
@@ -621,7 +531,7 @@ namespace AppVietSo
             this.bindingNavigator1.Name = "bindingNavigator1";
             this.bindingNavigator1.Padding = new System.Windows.Forms.Padding(0, 5, 0, 5);
             this.bindingNavigator1.PositionItem = null;
-            this.bindingNavigator1.Size = new System.Drawing.Size(1686, 38);
+            this.bindingNavigator1.Size = new System.Drawing.Size(1604, 38);
             this.bindingNavigator1.Stretch = true;
             this.bindingNavigator1.TabIndex = 4;
             this.bindingNavigator1.Text = "bindingNavigator1";
@@ -1028,11 +938,86 @@ namespace AppVietSo
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
+            // rbChuHan
+            // 
+            this.rbChuHan.AutoSize = true;
+            this.rbChuHan.Location = new System.Drawing.Point(12, 64);
+            this.rbChuHan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbChuHan.Name = "rbChuHan";
+            this.rbChuHan.Size = new System.Drawing.Size(82, 21);
+            this.rbChuHan.TabIndex = 18;
+            this.rbChuHan.Text = "Chữ hán";
+            this.rbChuHan.UseVisualStyleBackColor = true;
+            this.rbChuHan.CheckedChanged += new System.EventHandler(this.button1_Click);
+            // 
+            // rbChuViet
+            // 
+            this.rbChuViet.AutoSize = true;
+            this.rbChuViet.Location = new System.Drawing.Point(12, 38);
+            this.rbChuViet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbChuViet.Name = "rbChuViet";
+            this.rbChuViet.Size = new System.Drawing.Size(80, 21);
+            this.rbChuViet.TabIndex = 17;
+            this.rbChuViet.Text = "Chữ việt";
+            this.rbChuViet.UseVisualStyleBackColor = true;
+            this.rbChuViet.CheckedChanged += new System.EventHandler(this.button1_Click);
+            // 
+            // rbSongNgu
+            // 
+            this.rbSongNgu.AutoSize = true;
+            this.rbSongNgu.Location = new System.Drawing.Point(12, 90);
+            this.rbSongNgu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbSongNgu.Name = "rbSongNgu";
+            this.rbSongNgu.Size = new System.Drawing.Size(90, 21);
+            this.rbSongNgu.TabIndex = 19;
+            this.rbSongNgu.Tag = "";
+            this.rbSongNgu.Text = "Song ngữ";
+            this.rbSongNgu.UseVisualStyleBackColor = true;
+            this.rbSongNgu.CheckedChanged += new System.EventHandler(this.button1_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 12);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(104, 21);
+            this.checkBox1.TabIndex = 20;
+            this.checkBox1.Text = "Có in mã sớ";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // cbCanChuViet
+            // 
+            this.cbCanChuViet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCanChuViet.FormattingEnabled = true;
+            this.cbCanChuViet.Items.AddRange(new object[] {
+            "TRÊN",
+            "DƯỚI",
+            "TRÁI",
+            "PHẢI"});
+            this.cbCanChuViet.Location = new System.Drawing.Point(99, 87);
+            this.cbCanChuViet.Margin = new System.Windows.Forms.Padding(4);
+            this.cbCanChuViet.Name = "cbCanChuViet";
+            this.cbCanChuViet.Size = new System.Drawing.Size(86, 24);
+            this.cbCanChuViet.TabIndex = 21;
+            this.cbCanChuViet.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(9, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(176, 17);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "_____________________";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1686, 968);
+            this.ClientSize = new System.Drawing.Size(1604, 875);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.bindingNavigator1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -1052,8 +1037,6 @@ namespace AppVietSo
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
@@ -1093,16 +1076,9 @@ namespace AppVietSo
         private Button button4;
         private CheckBox cbHideGridLine;
         private ContextMenuStrip ctextMenuS;
-        private GroupBox groupBox2;
-        private CheckBox checkBox1;
-        private RadioButton rbSongNgu;
-        private RadioButton rbChuViet;
-        private RadioButton rbChuHan;
         private Button button8;
         private ToolStripLabel labelLicence;
         private RichTextBox richTextBox1;
-        private ComboBox cbCanChuViet;
-        private Label lbCanChuViet;
         private Button button3;
         private CheckBox checkBox2;
         private ToolStripButton toolStripButton2;
@@ -1119,6 +1095,12 @@ namespace AppVietSo
         private ToolStripMenuItem xóaCộtKhôngCóNộiDungToolStripMenuItem;
         private CheckBox checkBox4;
         private Button button6;
+        private ComboBox cbCanChuViet;
+        private CheckBox checkBox1;
+        private RadioButton rbSongNgu;
+        private RadioButton rbChuViet;
+        private RadioButton rbChuHan;
+        private Label label1;
     }
 }
 
