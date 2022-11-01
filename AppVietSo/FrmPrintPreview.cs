@@ -366,18 +366,31 @@ namespace AppVietSo
         private void method_2()
         {
 
+            worksheet_0.SetColumnsWidth(0, 1, 0);
+            worksheet_0.SetColumnsWidth(worksheet_0.UsedRange.Cols, 1, 0);
+            worksheet_0.SetRowsHeight(0, 1, 0);
+            worksheet_0.SetRowsHeight(worksheet_0.UsedRange.Rows, 1, 0);
+            var top = Util.LongSoHienTai.PagePaddingTop;
+            var bottom = Util.LongSoHienTai.PagePaddingBottom;
+            var left = Util.LongSoHienTai.PagePaddingLeft;
+            var right = Util.LongSoHienTai.PagePaddingRight;
 
+            top = top / 25.4f;
+            bottom = bottom / 25.4f;
+            left = left / 25.4f;
+            right = right / 25.4f;
 
+            worksheet_0.PrintSettings.Margins = new PageMargins(top, bottom, left, right);
 
-            this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
-            ReoGridExtentions.SetOnePage(worksheet_0);
+ 
+            this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
 
 
 
             var hientai = this.worksheet_0.GetTotalWidth();
             if (worksheet_0.PrintSettings.Landscape)
             {
-                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
+                   var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f)- ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
 
                 var Scaling = KhoGiay / hientai;
                 this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
@@ -393,40 +406,7 @@ namespace AppVietSo
                 }
                 this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
             }
-            //   worksheet_0.PrintSettings.PaperHeight = (int)Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi);
-            // worksheet_0.PrintSettings.PaperWidth = (int)Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi);
-
-            //var hientai = this.worksheet_0.GetTotalWidth();
-            //if (worksheet_0.PrintSettings.Landscape)
-            //{
-            //    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
-
-            //    var Scaling = KhoGiay / hientai;
-            //    this.worksheet_0.PrintSettings.PageScaling = Scaling;
-            //}
-            //else
-            //{
-            //    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
-
-            //    var Scaling = Math.Round(KhoGiay / hientai, 1);
-            //    if (Scaling > 1)
-            //    {
-            //        Scaling = 1;
-            //    }
-            //    this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
-            //}
-
-            //this.worksheet_0.AutoSplitPage();
-            //if (1 < this.int_0 && 1 < this.worksheet_0.ColumnPageBreaks.Count)
-            //{
-            //    int num = this.worksheet_0.ColumnPageBreaks[1];
-            //    if (num == this.int_0)
-            //    {
-            //        this.worksheet_0.AutoSetMaximumScaleForPages();
-            //    }
-            //    this.worksheet_0.ChangeColumnPageBreak(num, this.int_0, true);
-            //}
-            //      this.worksheet_0.SetOnePage();
+            ReoGridExtentions.SetOnePage(worksheet_0);
         }
 
         // Token: 0x06000093 RID: 147 RVA: 0x00005EC8 File Offset: 0x000040C8

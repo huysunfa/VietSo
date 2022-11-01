@@ -1043,7 +1043,7 @@ namespace AppVietSo
 
             worksheet.Reset();
             reoGrid.ClearActionHistory();
-
+            worksheet.PrintSettings.Margins = new PageMargins(0);
 
             if (worksheet.UsedRange.EndCol > 0)
             {
