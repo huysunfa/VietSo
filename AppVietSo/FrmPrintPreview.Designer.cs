@@ -17,6 +17,9 @@ namespace AppVietSo
 		private void InitializeComponent()
 		{
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnZoomIn = new System.Windows.Forms.PictureBox();
             this.btnZoomOut = new System.Windows.Forms.PictureBox();
@@ -50,13 +53,12 @@ namespace AppVietSo
             this.nmrTop = new System.Windows.Forms.NumericUpDown();
             this.btnPrint = new System.Windows.Forms.Button();
             this.printPreviewControl1 = new System.Windows.Forms.PrintPreviewControl();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).BeginInit();
             this.groupBox3.SuspendLayout();
@@ -71,8 +73,6 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).BeginInit();
-            this.groupBox4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -105,6 +105,41 @@ namespace AppVietSo
             this.splitContainer1.Size = new System.Drawing.Size(1362, 892);
             this.splitContainer1.SplitterDistance = 302;
             this.splitContainer1.TabIndex = 1;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.numericUpDown1);
+            this.groupBox4.Location = new System.Drawing.Point(11, 586);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(273, 60);
+            this.groupBox4.TabIndex = 44;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Số bản In";
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(18, 26);
+            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(5);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(134, 26);
+            this.numericUpDown1.TabIndex = 13;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(16, 76);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(110, 24);
+            this.checkBox1.TabIndex = 48;
+            this.checkBox1.Text = "Khoa cúng";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.Visible = false;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // btnClose
             // 
@@ -414,6 +449,11 @@ namespace AppVietSo
             // 
             this.nmrLeft.Location = new System.Drawing.Point(57, 77);
             this.nmrLeft.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrLeft.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nmrLeft.Name = "nmrLeft";
             this.nmrLeft.Size = new System.Drawing.Size(50, 26);
             this.nmrLeft.TabIndex = 5;
@@ -432,6 +472,11 @@ namespace AppVietSo
             // 
             this.nmrRight.Location = new System.Drawing.Point(206, 77);
             this.nmrRight.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrRight.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nmrRight.Name = "nmrRight";
             this.nmrRight.Size = new System.Drawing.Size(50, 26);
             this.nmrRight.TabIndex = 6;
@@ -459,6 +504,11 @@ namespace AppVietSo
             // 
             this.nmrBottom.Location = new System.Drawing.Point(122, 126);
             this.nmrBottom.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrBottom.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nmrBottom.Name = "nmrBottom";
             this.nmrBottom.Size = new System.Drawing.Size(50, 26);
             this.nmrBottom.TabIndex = 4;
@@ -477,6 +527,11 @@ namespace AppVietSo
             // 
             this.nmrTop.Location = new System.Drawing.Point(122, 31);
             this.nmrTop.Margin = new System.Windows.Forms.Padding(5);
+            this.nmrTop.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.nmrTop.Name = "nmrTop";
             this.nmrTop.Size = new System.Drawing.Size(50, 26);
             this.nmrTop.TabIndex = 3;
@@ -506,41 +561,6 @@ namespace AppVietSo
             this.printPreviewControl1.Size = new System.Drawing.Size(1056, 892);
             this.printPreviewControl1.TabIndex = 1;
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(16, 76);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(110, 24);
-            this.checkBox1.TabIndex = 48;
-            this.checkBox1.Text = "Khoa cúng";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.Visible = false;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.numericUpDown1);
-            this.groupBox4.Location = new System.Drawing.Point(11, 586);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(273, 60);
-            this.groupBox4.TabIndex = 44;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Số bản In";
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(18, 26);
-            this.numericUpDown1.Margin = new System.Windows.Forms.Padding(5);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(134, 26);
-            this.numericUpDown1.TabIndex = 13;
-            this.numericUpDown1.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
             // FrmPrintPreview
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -563,6 +583,8 @@ namespace AppVietSo
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnZoomIn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnZoomOut)).EndInit();
             this.groupBox3.ResumeLayout(false);
@@ -580,8 +602,6 @@ namespace AppVietSo
             ((System.ComponentModel.ISupportInitialize)(this.nmrRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrBottom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nmrTop)).EndInit();
-            this.groupBox4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
 
 		}

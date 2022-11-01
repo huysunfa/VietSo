@@ -45,8 +45,8 @@ namespace AppVietSo
             if (checkBox1.Checked)
             {
                 item.KhoaCung = checkBox1.Checked;
-                item.fsizeCN = 22;
-                item.fsizeVN = 12;
+                item.fsizeCN = 25;
+                item.fsizeVN = 22;
             }
             else
             {

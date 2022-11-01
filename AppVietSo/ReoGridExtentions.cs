@@ -36,48 +36,76 @@ namespace AppVietSo
         }
         public static void ChangeWidthSize(this Worksheet sheet)
         {
-            //if (Util.LongSoHienTai.KhoaCung)
-            //{
-            //    return;
-            //}
-            for (int i = 1; i < sheet.RowCount; i++)
+            if (Util.LongSoHienTai.KhoaCung)
             {
-                sheet.RowHeaders[i].IsAutoHeight = true;
 
-            }
-            for (int i = 1; i < sheet.ColumnCount; i++)
-            {
-                sheet.ColumnHeaders[i].IsAutoWidth = true;
-
-            }
-           
-            int TotalWidth = 0;
-            for (int i = 1; i < sheet.ColumnCount; i++)
-            {
-                var oldW = sheet.GetColumnWidth(i);
-                sheet.AutoFitColumnWidth(i, true);
-
-                var newW = sheet.GetColumnWidth(i);
-
-                if (newW < oldW)
+                int TotalWidth = 0;
+                for (int i = 0; i < sheet.ColumnCount; i++)
                 {
-                    newW = oldW;
-                    sheet.SetColumnsWidth(i, 1, oldW);
+                    var oldW = sheet.GetColumnWidth(i);
+                    sheet.AutoFitColumnWidth(i, true);
+
+                    var newW = sheet.GetColumnWidth(i);
+
+                    if (newW < oldW)
+                    {
+                        newW = oldW;
+                        sheet.SetColumnsWidth(i, 1, oldW);
+
+                    }
+                    TotalWidth += oldW;
+                }
+                var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
+                var TotalHeight = (float)Util.LongSoHienTai.PageHeight / tile;
+                int row = (sheet.UsedRange.EndRow - 1);
+                var old = TotalHeight / Util.LongSoHienTai.PageBreakRow;
+                sheet.SetRowsHeight(1, row, (ushort)old);
+
+                //var free = TotalHeight - (row * (int)old);
+                //var colend = (ushort)(sheet.GetRowHeight(row + 1) + free);
+                //sheet.SetRowsHeight(row + 1, 1, colend);
+            }
+            else
+            {
+                for (int i = 1; i < sheet.RowCount; i++)
+                {
+                    sheet.RowHeaders[i].IsAutoHeight = true;
 
                 }
-                TotalWidth += newW;
+                for (int i = 1; i < sheet.ColumnCount; i++)
+                {
+                    sheet.ColumnHeaders[i].IsAutoWidth = true;
+
+                }
+
+                int TotalWidth = 0;
+                for (int i = 1; i < sheet.ColumnCount; i++)
+                {
+                    var oldW = sheet.GetColumnWidth(i);
+                    sheet.AutoFitColumnWidth(i, true);
+
+                    var newW = sheet.GetColumnWidth(i);
+
+                    if (newW < oldW)
+                    {
+                        newW = oldW;
+                        sheet.SetColumnsWidth(i, 1, oldW);
+
+                    }
+                    TotalWidth += newW;
+                }
+
+                var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
+                var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
+                int row = (sheet.UsedRange.EndRow - 1);
+                var old = TotalHeight / row;
+                sheet.SetRowsHeight(1, row, (ushort)old);
+
+                var free = TotalHeight - (row * (int)old);
+                var colend = (ushort)(sheet.GetRowHeight(row + 1) + free);
+                sheet.SetRowsHeight(row + 1, 1, colend);
+
             }
-     
-            var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
-            var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
-            int row = (sheet.UsedRange.EndRow - 1);
-            var old = TotalHeight / row;
-            sheet.SetRowsHeight(1, row, (ushort)old);
-
-            var free = TotalHeight - (row * (int)old);
-            var colend = (ushort)(sheet.GetRowHeight(row + 1) + free);
-            sheet.SetRowsHeight(row + 1, 1, colend);
-
         }
         public static void PreView(this ReoGridControl reoGrid, object sender = null, EventArgs e = null)
         {
@@ -194,7 +222,7 @@ namespace AppVietSo
 
             if (Util.LongSoHienTai.KhoaCung)
             {
-                  var MinRow = worksheet.RowPageBreaks.Min(v => v);
+                var MinRow = worksheet.RowPageBreaks.Min(v => v);
                 MaxRow = worksheet.RowPageBreaks.Count > 0 ? worksheet.RowPageBreaks.Max(v => v) : 0;
                 foreach (var item in worksheet.RowPageBreaks.ToList())
                 {
@@ -208,7 +236,7 @@ namespace AppVietSo
                         worksheet.ChangeRowPageBreak(item, MaxRow, false);
                     }
                 }
- 
+
                 if (Util.LongSoHienTai.PageBreakRow == 0)
                 {
                     Util.LongSoHienTai.PageBreakRow = MaxRow;
@@ -218,7 +246,7 @@ namespace AppVietSo
                 while (start + Util.LongSoHienTai.PageBreakRow < MaxRow)
                 {
                     start = start + Util.LongSoHienTai.PageBreakRow;
-                    if (start+2 > MaxRow)
+                    if (start + 2 > MaxRow)
                     {
                         continue;
                     }
