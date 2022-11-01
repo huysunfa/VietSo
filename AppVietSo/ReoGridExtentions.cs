@@ -36,34 +36,29 @@ namespace AppVietSo
         }
         public static void ChangeWidthSize(this Worksheet sheet)
         {
-            if (Util.LongSoHienTai.KhoaCung)
+             if (Util.LongSoHienTai.KhoaCung)
             {
 
                 int TotalWidth = 0;
+                int TotalWidthNew = 0;
+                for (int i = 0; i < sheet.ColumnCount; i++)
+                {                   
+                    TotalWidth += sheet.GetColumnWidth(i); ;
+                } 
+                
                 for (int i = 0; i < sheet.ColumnCount; i++)
                 {
-                    var oldW = sheet.GetColumnWidth(i);
-                    sheet.AutoFitColumnWidth(i, true);
-
+                     sheet.AutoFitColumnWidth(i, true);
                     var newW = sheet.GetColumnWidth(i);
 
-                    if (newW < oldW)
-                    {
-                        newW = oldW;
-                        sheet.SetColumnsWidth(i, 1, oldW);
-
-                    }
-                    TotalWidth += oldW;
+                    TotalWidthNew += newW;
                 }
-                var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
-                var TotalHeight = (float)Util.LongSoHienTai.PageHeight / tile;
+                 var tile = (float)TotalWidthNew / TotalWidth;
+                var TotalHeight = (float)Util.LongSoHienTai.PageWidth * tile;
                 int row = (sheet.UsedRange.EndRow - 1);
                 var old = TotalHeight / Util.LongSoHienTai.PageBreakRow;
                 sheet.SetRowsHeight(1, row, (ushort)old);
-
-                //var free = TotalHeight - (row * (int)old);
-                //var colend = (ushort)(sheet.GetRowHeight(row + 1) + free);
-                //sheet.SetRowsHeight(row + 1, 1, colend);
+ 
             }
             else
             {
