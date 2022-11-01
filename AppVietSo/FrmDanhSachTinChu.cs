@@ -423,9 +423,8 @@ namespace AppVietSo
 			//this.curWS.PrintSettings.PageTitleRight = Program.Stg.GetPrintSetting("TinChuD").PageTitleRight;
 			//this.curWS.PrintSettings.IsFooter = Program.Stg.GetPrintSetting("TinChuD").PageIsFooter;
 			//this.curWS.PrintSettings.ShowPageNo = Program.Stg.GetPrintSetting("TinChuD").PageIsShowPageNo;
-			FrmPrintPreview frmPrintPreview = new FrmPrintPreview(false);
-			frmPrintPreview.Sheet = this.curWS;
-			frmPrintPreview.ZoomIndex = Program.Stg.GetPrintSetting("TinChuD").ZoomIndex;
+			FrmPrintPreview frmPrintPreview = new FrmPrintPreview(this.curWS, false);
+ 			frmPrintPreview.ZoomIndex = Program.Stg.GetPrintSetting("TinChuD").ZoomIndex;
 			frmPrintPreview.ShowDialog(this);
 			PageMargins margins = this.curWS.PrintSettings.Margins;
 			Program.Stg.GetPrintSetting("TinChuD").MarginT = margins.Top;

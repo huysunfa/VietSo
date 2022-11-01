@@ -14,8 +14,10 @@ namespace AppVietSo
     {
         bool _KhoaCung = false;
         int _PageNumber = 1;
-        public FrmPrintPreview(bool KhoaCung, int PageNumber = 1)
+        public FrmPrintPreview(Worksheet   _worksheet_0 , bool KhoaCung, int PageNumber = 1)
         {
+            this.worksheet_0 = _worksheet_0.Clone();
+            this.worksheet_0.PrintSettings = (PrintSettings)_worksheet_0.PrintSettings.Clone();
             _KhoaCung = KhoaCung;
             _PageNumber = PageNumber;
             this.InitializeComponent();
@@ -41,16 +43,7 @@ namespace AppVietSo
             }
         }
 
-        // Token: 0x17000008 RID: 8
-        // (set) Token: 0x06000085 RID: 133 RVA: 0x0000569C File Offset: 0x0000389C
-        public Worksheet Sheet
-        {
-            set
-            {
-                this.worksheet_0 = value;
-                this.worksheet_0.PrintSettings.PageOrder = PrintPageOrder.OverThenDown;
-            }
-        }
+       
 
         // Token: 0x06000086 RID: 134 RVA: 0x000056C4 File Offset: 0x000038C4
         public void ChangeWidthSize(Worksheet sheet, bool check)
@@ -381,32 +374,32 @@ namespace AppVietSo
             right = right / 25.4f;
 
             worksheet_0.PrintSettings.Margins = new PageMargins(top, bottom, left, right);
-
- 
-            this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
+            //this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
 
 
 
-            var hientai = this.worksheet_0.GetTotalWidth();
-            if (worksheet_0.PrintSettings.Landscape)
-            {
-                   var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f)- ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
+            //var hientai = this.worksheet_0.GetTotalWidth();
+            //if (worksheet_0.PrintSettings.Landscape)
+            //{
+            //       var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f)- ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
 
-                var Scaling = KhoGiay / hientai;
-                this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
-            }
-            else
-            {
-                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
+            //    var Scaling = KhoGiay / hientai;
+            //    this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
+            //}
+            //else
+            //{
+            //    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
 
-                var Scaling = Math.Round(KhoGiay / hientai, 1);
-                if (Scaling > 1)
-                {
-                    Scaling = 1;
-                }
-                this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
-            }
-            ReoGridExtentions.SetOnePage(worksheet_0);
+            //    var Scaling = Math.Round(KhoGiay / hientai, 1);
+            //    if (Scaling > 1)
+            //    {
+            //        Scaling = 1;
+            //    }
+            //    this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
+            //}
+        ReoGridExtentions.SetOnePage2(worksheet_0);
+            //var height = Util.LongSoHienTai.PageHeight / worksheet_0.UsedRange.Rows;
+            //worksheet_0.SetRowsHeight(1, worksheet_0.UsedRange.Rows, (ushort)height);
         }
 
         // Token: 0x06000093 RID: 147 RVA: 0x00005EC8 File Offset: 0x000040C8

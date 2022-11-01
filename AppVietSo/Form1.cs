@@ -1085,7 +1085,7 @@ namespace AppVietSo
             ReoGridExtentions.ChangeWidthSize(worksheet);
             reoGrid.ClearActionHistory();
             reoGrid.ClearActionHistoryForWorksheet(worksheet);
-            worksheet.SetOnePage();
+            worksheet.SetOnePage2();
             AddMaSo(checkBox1.Checked);
 
             if (checkBox4.Checked)
@@ -2065,9 +2065,8 @@ namespace AppVietSo
                 }
                 sheet.PrintSettings.Landscape = false;
             }
-            FrmPrintPreview frmPrintPreview = new FrmPrintPreview(checkBox4.Checked, PageNumber);
-            frmPrintPreview.Sheet = reoGridControl1.CurrentWorksheet;
-            frmPrintPreview.ShowDialog(this);
+            FrmPrintPreview frmPrintPreview = new FrmPrintPreview(reoGridControl1.CurrentWorksheet, checkBox4.Checked, PageNumber);
+             frmPrintPreview.ShowDialog(this);
 
             ReLoad(sender, e);
 

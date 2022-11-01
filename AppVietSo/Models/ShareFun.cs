@@ -58,7 +58,10 @@ namespace AppVietSo.Models
 
             }
         }
-
+        public static int mmToPixel(float mm)
+{
+    return (int)Math.Round((mm / 25.4)  * 100f);
+}
         public static void SetWidthHeight(this unvell.ReoGrid.Worksheet sheet, int row, int col, bool setting = true)
         {
 
@@ -82,16 +85,16 @@ namespace AppVietSo.Models
                 }
                 float dpi = 100f;
 
-                float num3 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
-                float num4 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight);
-                float num5 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingTop);
-                float num6 = ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingBottom);
+                float num3 = ShareFun.mmToPixel( Util.LongSoHienTai.PagePaddingLeft);
+                float num4 = ShareFun.mmToPixel( Util.LongSoHienTai.PagePaddingRight);
+                float num5 = ShareFun.mmToPixel( Util.LongSoHienTai.PagePaddingTop);
+                float num6 = ShareFun.mmToPixel( Util.LongSoHienTai.PagePaddingBottom);
                 double num7 = num - ((double)(num3 + num4) + (double)(num3 + num4) * 0.05);
                 num2 -= (double)(num5 + num6);
-                ushort height = (ushort)System.Math.Floor(num2 / (double)(rowOnePage));
+                var height = System.Math.Floor(num2 / (double)(rowOnePage));
                 var RowUse = row - 1;
                 var ColUse = col - 1;
-                sheet.SetRowsHeight(1, RowUse, height);
+                //sheet.SetRowsHeight(1, RowUse, height);
                 ushort width = (ushort)System.Math.Floor(num7 / (double)(col));
                 sheet.SetColumnsWidth(1, ColUse, width);
                 // margrin
@@ -125,6 +128,10 @@ namespace AppVietSo.Models
 
                 }
                 ReoGridExtentions.ChangeWidthSize(sheet);
+                var totalwith = sheet.GetTotalWidth();
+                var tile = totalwith / num;
+                height = height *tile;
+              sheet.SetRowsHeight(1, RowUse, (ushort)height);
 
             }
             catch (Exception ex)
