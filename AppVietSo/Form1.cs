@@ -1015,13 +1015,8 @@ namespace AppVietSo
                 {
                     return;
                 }
-                checkBox2.Checked = true;
-            }
-            else
-            {
-                checkBox2.Checked = false;
-
-            }
+             }
+           
         }
 
 
@@ -1087,7 +1082,7 @@ namespace AppVietSo
             worksheet.ScaleFactor = Util.LongSoHienTai.ScaleFactor;
 
             RenderStyle();
-            ReoGridExtentions.ChangeWidthSize(worksheet, checkBox2.Checked);
+            ReoGridExtentions.ChangeWidthSize(worksheet);
             reoGrid.ClearActionHistory();
             reoGrid.ClearActionHistoryForWorksheet(worksheet);
             worksheet.SetOnePage();
@@ -1670,7 +1665,7 @@ namespace AppVietSo
             if (string.IsNullOrEmpty(pos))
             {
                 sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
-                ReoGridExtentions.ChangeWidthSize(sheet, checkBox2.Checked);
+               // ReoGridExtentions.ChangeWidthSize(sheet);
                 sheet.SetRangeStyles(sheet.UsedRange.ToAddress(), new WorksheetRangeStyle
                 {
                     // style item flag
@@ -1961,7 +1956,7 @@ namespace AppVietSo
 
             SaveData();
             RenderStyle();
-            ReoGridExtentions.ChangeWidthSize(reoGridControl1.CurrentWorksheet, checkBox2.Checked);
+            ReoGridExtentions.ChangeWidthSize(reoGridControl1.CurrentWorksheet);
         }
 
 
@@ -1993,16 +1988,10 @@ namespace AppVietSo
 
         private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
         {
-            if (checkBox2.Checked)
-            {
-
+            
                 var sheet = reoGridControl1.CurrentWorksheet;
-                ReoGridExtentions.ChangeWidthSize(sheet, checkBox2.Checked);
-            }
-            else
-            {
-                ReLoad(sender, e);
-            }
+                ReoGridExtentions.ChangeWidthSize(sheet);
+            
         }
 
         private void checkBox2_Click(object sender, EventArgs e)
@@ -2014,9 +2003,8 @@ namespace AppVietSo
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            reoGridControl1.Undo();// sheet.
-                                   //var select = reoGridControl1.CurrentWorksheet.SelectionRange;
-        }
+            reoGridControl1.Undo(); 
+         }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {

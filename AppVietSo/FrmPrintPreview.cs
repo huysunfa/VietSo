@@ -365,16 +365,10 @@ namespace AppVietSo
         // Token: 0x06000092 RID: 146 RVA: 0x00005E44 File Offset: 0x00004044
         private void method_2()
         {
-
-            //        Util.LongSoHienTai.PageWidth = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
-            //      Util.LongSoHienTai.PageHeight = (int)Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f);
-
-            //if (this.worksheet_0.PrintSettings.Landscape == true && Util.LongSoHienTai.PageWidth < Util.LongSoHienTai.PageHeight)
-            //{
-            //    var tmp = Util.LongSoHienTai.PageWidth;
-            //    Util.LongSoHienTai.PageWidth = Util.LongSoHienTai.PageHeight;
-            //    Util.LongSoHienTai.PageHeight = tmp;
-            //}
+ 
+                this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.EndRow, worksheet_0.UsedRange.EndCol, false);
+                ReoGridExtentions.SetOnePage(worksheet_0);
+       
             if (Util.LongSoHienTai.KhoaCung)
             {
 
@@ -383,6 +377,7 @@ namespace AppVietSo
             }
             else
             {
+                return;
                 var hientai = this.worksheet_0.GetTotalWidth();
                 if (worksheet_0.PrintSettings.Landscape)
                 {

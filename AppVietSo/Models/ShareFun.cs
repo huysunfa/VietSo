@@ -77,8 +77,8 @@ namespace AppVietSo.Models
                     rowOnePage = Util.LongSoHienTai.PageBreakRow;
                     sheet.PrintSettings.Landscape = false;
 
-                      num = Util.LongSoHienTai.PageHeight;
-                      num2 = Util.LongSoHienTai.PageWidth;
+                    num = Util.LongSoHienTai.PageHeight;
+               num2 = Util.LongSoHienTai.PageWidth;
                 }
                 float dpi = 100f;
               
@@ -103,7 +103,7 @@ namespace AppVietSo.Models
                 sheet.SetColumnsWidth(0, 1, (ushort)(num3 + weightFree));
                 sheet.SetColumnsWidth(col, 1, (ushort)(num4));
                 sheet.SetRowsHeight(0, 1, (ushort)(num5 + heightFree));
-                sheet.SetRowsHeight(row, 1, (ushort)(num6));
+              sheet.SetRowsHeight(row, 1, (ushort)(num6));
                 sheet.PrintSettings.Margins = new PageMargins(0);
 
                 if (setting)
@@ -123,7 +123,8 @@ namespace AppVietSo.Models
                     }
 
                 }
-          
+                ReoGridExtentions.ChangeWidthSize(sheet);
+
             }
             catch (Exception ex)
             {

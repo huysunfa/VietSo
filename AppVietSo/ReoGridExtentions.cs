@@ -34,7 +34,7 @@ namespace AppVietSo
                                      });
             }
         }
-        public static void ChangeWidthSize(this Worksheet sheet, bool check)
+        public static void ChangeWidthSize(this Worksheet sheet)
         {
             //if (Util.LongSoHienTai.KhoaCung)
             //{
@@ -42,24 +42,20 @@ namespace AppVietSo
             //}
             for (int i = 1; i < sheet.RowCount; i++)
             {
-                sheet.RowHeaders[i].IsAutoHeight = check;
+                sheet.RowHeaders[i].IsAutoHeight = true;
 
             }
             for (int i = 1; i < sheet.ColumnCount; i++)
             {
-                sheet.ColumnHeaders[i].IsAutoWidth = check;
+                sheet.ColumnHeaders[i].IsAutoWidth = true;
 
             }
-            if (check == false)
-            {
-                return;
-            }
- 
+           
             int TotalWidth = 0;
             for (int i = 1; i < sheet.ColumnCount; i++)
             {
                 var oldW = sheet.GetColumnWidth(i);
-                sheet.AutoFitColumnWidth(i, check);
+                sheet.AutoFitColumnWidth(i, true);
 
                 var newW = sheet.GetColumnWidth(i);
 
@@ -71,29 +67,15 @@ namespace AppVietSo
                 }
                 TotalWidth += newW;
             }
-            //int TotalHeight = 0;
-            //for (int i = 1; i < sheet.RowCount; i = i + 1)
-            //{
-            //    var oldW = sheet.GetRowHeight(i);
-            //    sheet.AutoFitRowHeight(i, check);
-            //    var newW = sheet.GetRowHeight(i);
-            //    if (newW < oldW)
-            //    {
-            //        newW = oldW;
-            //        sheet.SetRowsHeight(i, 1, oldW);
-
-            //    }
-            //    TotalHeight += newW;
-
-            //}
+     
             var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
             var TotalHeight = (float)Util.LongSoHienTai.PageHeight * tile;
-            int row = (sheet.UsedRange.EndRow - 2);
+            int row = (sheet.UsedRange.EndRow - 1);
             var old = TotalHeight / row;
             sheet.SetRowsHeight(1, row, (ushort)old);
 
             var free = TotalHeight - (row * (int)old);
-            var colend = (ushort)(sheet.GetRowHeight(row + 2) + free);
+            var colend = (ushort)(sheet.GetRowHeight(row + 1) + free);
             sheet.SetRowsHeight(row + 1, 1, colend);
 
         }
@@ -178,7 +160,7 @@ namespace AppVietSo
         public static float GetTotalWidth(this Worksheet worksheet)
         {
             float TotalWidth = 0;
-            for (int i = 0; i < worksheet.UsedRange.EndCol; i++)
+            for (int i = 0; i <= worksheet.UsedRange.EndCol; i++)
             {
                 var height = worksheet.GetColumnWidth(i);
                 TotalWidth += height;

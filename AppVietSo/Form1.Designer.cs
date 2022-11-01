@@ -38,8 +38,14 @@ namespace AppVietSo
             this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.ctextMenuS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.cbCanChuViet = new System.Windows.Forms.ComboBox();
+            this.lbVersion = new System.Windows.Forms.Label();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.rbSongNgu = new System.Windows.Forms.RadioButton();
             this.button6 = new System.Windows.Forms.Button();
+            this.rbChuViet = new System.Windows.Forms.RadioButton();
             this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.rbChuHan = new System.Windows.Forms.RadioButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiênTichToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mơLongSơTaiVêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,8 +54,6 @@ namespace AppVietSo
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.checkBox3 = new System.Windows.Forms.CheckBox();
             this.button11 = new System.Windows.Forms.Button();
-            this.lbVersion = new System.Windows.Forms.Label();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
             this.button3 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
             this.cbHideGridLine = new System.Windows.Forms.CheckBox();
@@ -59,6 +63,7 @@ namespace AppVietSo
             this.button2 = new System.Windows.Forms.Button();
             this.button7 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -81,12 +86,6 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
-            this.rbChuHan = new System.Windows.Forms.RadioButton();
-            this.rbChuViet = new System.Windows.Forms.RadioButton();
-            this.rbSongNgu = new System.Windows.Forms.RadioButton();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.cbCanChuViet = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -159,7 +158,6 @@ namespace AppVietSo
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
             this.splitContainer1.Panel1.Controls.Add(this.checkBox3);
             this.splitContainer1.Panel1.Controls.Add(this.button11);
-            this.splitContainer1.Panel1.Controls.Add(this.checkBox2);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button8);
             this.splitContainer1.Panel1.Controls.Add(this.cbHideGridLine);
@@ -180,6 +178,59 @@ namespace AppVietSo
             this.splitContainer1.SplitterDistance = 191;
             this.splitContainer1.TabIndex = 3;
             // 
+            // cbCanChuViet
+            // 
+            this.cbCanChuViet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbCanChuViet.FormattingEnabled = true;
+            this.cbCanChuViet.Items.AddRange(new object[] {
+            "TRÊN",
+            "DƯỚI",
+            "TRÁI",
+            "PHẢI"});
+            this.cbCanChuViet.Location = new System.Drawing.Point(99, 87);
+            this.cbCanChuViet.Margin = new System.Windows.Forms.Padding(4);
+            this.cbCanChuViet.Name = "cbCanChuViet";
+            this.cbCanChuViet.Size = new System.Drawing.Size(86, 24);
+            this.cbCanChuViet.TabIndex = 21;
+            this.cbCanChuViet.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
+            // 
+            // lbVersion
+            // 
+            this.lbVersion.AutoSize = true;
+            this.lbVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVersion.ForeColor = System.Drawing.Color.Red;
+            this.lbVersion.Location = new System.Drawing.Point(12, 675);
+            this.lbVersion.Name = "lbVersion";
+            this.lbVersion.Size = new System.Drawing.Size(64, 25);
+            this.lbVersion.TabIndex = 28;
+            this.lbVersion.Text = "label1";
+            this.lbVersion.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(12, 12);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(104, 21);
+            this.checkBox1.TabIndex = 20;
+            this.checkBox1.Text = "Có in mã sớ";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // rbSongNgu
+            // 
+            this.rbSongNgu.AutoSize = true;
+            this.rbSongNgu.Location = new System.Drawing.Point(12, 90);
+            this.rbSongNgu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbSongNgu.Name = "rbSongNgu";
+            this.rbSongNgu.Size = new System.Drawing.Size(90, 21);
+            this.rbSongNgu.TabIndex = 19;
+            this.rbSongNgu.Tag = "";
+            this.rbSongNgu.Text = "Song ngữ";
+            this.rbSongNgu.UseVisualStyleBackColor = true;
+            this.rbSongNgu.CheckedChanged += new System.EventHandler(this.button1_Click);
+            // 
             // button6
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -198,6 +249,18 @@ namespace AppVietSo
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
+            // rbChuViet
+            // 
+            this.rbChuViet.AutoSize = true;
+            this.rbChuViet.Location = new System.Drawing.Point(12, 38);
+            this.rbChuViet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbChuViet.Name = "rbChuViet";
+            this.rbChuViet.Size = new System.Drawing.Size(80, 21);
+            this.rbChuViet.TabIndex = 17;
+            this.rbChuViet.Text = "Chữ việt";
+            this.rbChuViet.UseVisualStyleBackColor = true;
+            this.rbChuViet.CheckedChanged += new System.EventHandler(this.button1_Click);
+            // 
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
@@ -210,6 +273,18 @@ namespace AppVietSo
             this.checkBox4.UseVisualStyleBackColor = true;
             this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
+            // rbChuHan
+            // 
+            this.rbChuHan.AutoSize = true;
+            this.rbChuHan.Location = new System.Drawing.Point(12, 64);
+            this.rbChuHan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.rbChuHan.Name = "rbChuHan";
+            this.rbChuHan.Size = new System.Drawing.Size(82, 21);
+            this.rbChuHan.TabIndex = 18;
+            this.rbChuHan.Text = "Chữ hán";
+            this.rbChuHan.UseVisualStyleBackColor = true;
+            this.rbChuHan.CheckedChanged += new System.EventHandler(this.button1_Click);
+            // 
             // menuStrip1
             // 
             this.menuStrip1.Dock = System.Windows.Forms.DockStyle.None;
@@ -218,7 +293,7 @@ namespace AppVietSo
             this.tiênTichToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(9, 627);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(107, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -295,31 +370,6 @@ namespace AppVietSo
             this.button11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button11.UseVisualStyleBackColor = false;
             this.button11.Click += new System.EventHandler(this.button11_Click);
-            // 
-            // lbVersion
-            // 
-            this.lbVersion.AutoSize = true;
-            this.lbVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbVersion.ForeColor = System.Drawing.Color.Red;
-            this.lbVersion.Location = new System.Drawing.Point(12, 675);
-            this.lbVersion.Name = "lbVersion";
-            this.lbVersion.Size = new System.Drawing.Size(64, 25);
-            this.lbVersion.TabIndex = 28;
-            this.lbVersion.Text = "label1";
-            this.lbVersion.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // checkBox2
-            // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(12, 163);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(97, 21);
-            this.checkBox2.TabIndex = 27;
-            this.checkBox2.Text = "Tự căn cột";
-            this.checkBox2.UseVisualStyleBackColor = true;
-            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged_1);
-            this.checkBox2.Click += new System.EventHandler(this.checkBox2_Click);
             // 
             // button3
             // 
@@ -475,6 +525,16 @@ namespace AppVietSo
             this.button5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button5.UseVisualStyleBackColor = false;
             this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Location = new System.Drawing.Point(9, 126);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(176, 17);
+            this.label1.TabIndex = 51;
+            this.label1.Text = "_____________________";
             // 
             // panel1
             // 
@@ -938,81 +998,6 @@ namespace AppVietSo
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
-            // rbChuHan
-            // 
-            this.rbChuHan.AutoSize = true;
-            this.rbChuHan.Location = new System.Drawing.Point(12, 64);
-            this.rbChuHan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rbChuHan.Name = "rbChuHan";
-            this.rbChuHan.Size = new System.Drawing.Size(82, 21);
-            this.rbChuHan.TabIndex = 18;
-            this.rbChuHan.Text = "Chữ hán";
-            this.rbChuHan.UseVisualStyleBackColor = true;
-            this.rbChuHan.CheckedChanged += new System.EventHandler(this.button1_Click);
-            // 
-            // rbChuViet
-            // 
-            this.rbChuViet.AutoSize = true;
-            this.rbChuViet.Location = new System.Drawing.Point(12, 38);
-            this.rbChuViet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rbChuViet.Name = "rbChuViet";
-            this.rbChuViet.Size = new System.Drawing.Size(80, 21);
-            this.rbChuViet.TabIndex = 17;
-            this.rbChuViet.Text = "Chữ việt";
-            this.rbChuViet.UseVisualStyleBackColor = true;
-            this.rbChuViet.CheckedChanged += new System.EventHandler(this.button1_Click);
-            // 
-            // rbSongNgu
-            // 
-            this.rbSongNgu.AutoSize = true;
-            this.rbSongNgu.Location = new System.Drawing.Point(12, 90);
-            this.rbSongNgu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.rbSongNgu.Name = "rbSongNgu";
-            this.rbSongNgu.Size = new System.Drawing.Size(90, 21);
-            this.rbSongNgu.TabIndex = 19;
-            this.rbSongNgu.Tag = "";
-            this.rbSongNgu.Text = "Song ngữ";
-            this.rbSongNgu.UseVisualStyleBackColor = true;
-            this.rbSongNgu.CheckedChanged += new System.EventHandler(this.button1_Click);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 12);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 21);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "Có in mã sớ";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
-            // cbCanChuViet
-            // 
-            this.cbCanChuViet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCanChuViet.FormattingEnabled = true;
-            this.cbCanChuViet.Items.AddRange(new object[] {
-            "TRÊN",
-            "DƯỚI",
-            "TRÁI",
-            "PHẢI"});
-            this.cbCanChuViet.Location = new System.Drawing.Point(99, 87);
-            this.cbCanChuViet.Margin = new System.Windows.Forms.Padding(4);
-            this.cbCanChuViet.Name = "cbCanChuViet";
-            this.cbCanChuViet.Size = new System.Drawing.Size(86, 24);
-            this.cbCanChuViet.TabIndex = 21;
-            this.cbCanChuViet.DropDownClosed += new System.EventHandler(this.comboBox1_DropDownClosed);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(9, 126);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 17);
-            this.label1.TabIndex = 51;
-            this.label1.Text = "_____________________";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1080,7 +1065,6 @@ namespace AppVietSo
         private ToolStripLabel labelLicence;
         private RichTextBox richTextBox1;
         private Button button3;
-        private CheckBox checkBox2;
         private ToolStripButton toolStripButton2;
         private ToolStripButton toolStripButton3;
         private Label lbVersion;
