@@ -2103,7 +2103,7 @@ namespace AppVietSo
              frmPrintPreview.ShowDialog(this);
 
             ReLoad(sender, e);
-
+ 
 
         }
 

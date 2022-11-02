@@ -47,9 +47,9 @@ namespace AppVietSo
             {
                 dgvParent.Rows.Add(item);
 
-                
+
             }
-             dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
+            dgvParent.Rows.Add(LabelText.Get("SoCuaThay").ToUpper());
 
         }
         public void setDatagrid(List<LongSo> newdata = null, string text = "")
@@ -190,7 +190,7 @@ namespace AppVietSo
                         //object value2 = dataGridViewRow.Cells["TenSo"].Value;
                         //this.updateTenSo(((value2 != null) ? value2.ToString() : null) ?? "");
                         base.DialogResult = DialogResult.OK;
-                          Util.LongSoHienTai = null;
+                        Util.LongSoHienTai = null;
                         Util.NameLongSoHienTai = FName;
                         return;
                     }
@@ -214,6 +214,13 @@ namespace AppVietSo
             try
             {
                 DataGridView dataGridView = sender as DataGridView;
+                if (dataGridView.Columns[e.ColumnIndex].Name == "In")
+                {
+                    DataGridViewRow dataGridViewRow = dataGridView.Rows[e.RowIndex];
+                    var check = (bool?)dataGridViewRow.Cells["In"].Value;
+                    check = check ?? false;
+                    dataGridViewRow.Cells["In"].Value = !check;
+                }
                 if (dataGridView.Columns[e.ColumnIndex] is DataGridViewButtonColumn && dataGridView.Columns[e.ColumnIndex].Name == "btnAction")
                 {
                     DataGridViewRow dataGridViewRow = dataGridView.Rows[e.RowIndex];
@@ -224,13 +231,13 @@ namespace AppVietSo
                     else
                     {
                         var value = dataGridViewRow.Cells["FileName"].Value.ToString();
-                        var ChuGiai = dataGridViewRow.Cells["ChuGiai"].Value+"";
-                        if (ChuGiai== "SỚ CỦA THẦY")
+                        var ChuGiai = dataGridViewRow.Cells["ChuGiai"].Value + "";
+                        if (ChuGiai == "SỚ CỦA THẦY")
                         {
                             MessageBox.Show(LabelText.Get("Sớ đã nằm trong máy của thầy, không cần phải tải về nữa ạ!"));
                             return;
                         }
-                        value = value.Replace("\\","/");
+                        value = value.Replace("\\", "/");
                         if (ExchangeLongSo.downloadFile(value))
                         {
                             object value2 = dataGridViewRow.Cells["TenSo"].Value;
@@ -249,7 +256,7 @@ namespace AppVietSo
                         else
                         {
                             MessageBox.Show(LabelText.Get("TaiFileThatBai") + Util.sdtSupport, "", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                         }
+                        }
                     }
                 }
             }
@@ -267,6 +274,72 @@ namespace AppVietSo
         private void dgvParent_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            var check = checkBox1.Checked;
+
+            foreach (DataGridViewRow dataGridViewRow in dgvLongSo.Rows)
+            {
+                dataGridViewRow.Cells["In"].Value = check;
+
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+         
+            var ListPrintDownload = new List<String>();
+            var ListPrint = new List<LongSo>();
+            foreach (DataGridViewRow dataGridViewRow in dgvLongSo.Rows)
+            {
+                var check = (bool?)dataGridViewRow.Cells["In"].Value;
+                if (check == true)
+                {
+                    var value = dataGridViewRow.Cells["FileName"].Value.ToString();
+                    var FilePath = System.AppDomain.CurrentDomain.BaseDirectory + "/Data";
+
+                    value = value.Replace("\\", "/");
+                    if (!File.Exists(FilePath + value))
+                    {
+                        ListPrintDownload.Add(value);
+                    }
+                    object value2 = dataGridViewRow.Cells["TenSo"].Value;
+                    string FName = dataGridViewRow.Cells["FileName"].Value.ToString();
+                    //    FName = CovertFileName(FName);
+                    string TenSo = dataGridViewRow.Cells["TenSo"].Value.ToString();
+
+                    var LSo = new LongSo();
+                    LSo.FileName = value;
+                    LSo.TenSo = TenSo;
+                    Util.LongSoHienTai = null;
+                    Util.NameLongSoHienTai = FName;
+
+                    ListPrint.Add(LSo);
+
+                }
+
+            }
+
+            if (ListPrintDownload.Count > 0)
+            {
+                if (MessageBox.Show("Có " + ListPrintDownload.Count + " chưa được Thầy/Cô tải về, Thầy/Cô có muốn tải các sớ này về máy không ?", "Xác nhận tải", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
+                {
+                    foreach (var item in ListPrintDownload)
+                    {
+                        var value = item.Replace("\\", "/");
+                        ExchangeLongSo.downloadFile(value);
+
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Lòng sớ cần in chưa được tải về, không thể tiếp tục IN sớ !!");
+                }
+            }
+            var frmPrint = new frmSetupMultiPrint(ListPrint);
+            frmPrint.ShowDialog();
         }
     }
 }

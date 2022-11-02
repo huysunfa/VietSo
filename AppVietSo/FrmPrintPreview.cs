@@ -16,8 +16,8 @@ namespace AppVietSo
         int _PageNumber = 1;
         public FrmPrintPreview(Worksheet   _worksheet_0 , bool KhoaCung, int PageNumber = 1)
         {
-            this.worksheet_0 = _worksheet_0.Clone();
-            this.worksheet_0.PrintSettings = (PrintSettings)_worksheet_0.PrintSettings.Clone();
+            this.worksheet_0 = _worksheet_0 ;
+     //       this.worksheet_0.PrintSettings = (PrintSettings)_worksheet_0.PrintSettings.Clone();
              _KhoaCung = KhoaCung;
             _PageNumber = PageNumber;
             this.InitializeComponent();
@@ -342,7 +342,7 @@ namespace AppVietSo
             right = right / 25.4f;
 
             worksheet_0.PrintSettings.Margins = new PageMargins(top, bottom, left, right);
-            //this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
+             this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
 
 
 
