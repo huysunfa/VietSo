@@ -65,6 +65,7 @@ namespace AppVietSo
             var TSMItemDelCol = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemDelCel = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemThemChuSauTinChu = new global::System.Windows.Forms.ToolStripMenuItem();
+            var TSMItemThemChuSauHuongLinh = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddMua = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddYear = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddMonth = new global::System.Windows.Forms.ToolStripMenuItem();
@@ -76,6 +77,7 @@ namespace AppVietSo
             var TSMItemAddHoGiaChu = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddTinChu = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHuongLinh = new global::System.Windows.Forms.ToolStripMenuItem();
+            var TSMItemAddTenHuongLinh = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHoHuongLinh = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHLinhSinh = new global::System.Windows.Forms.ToolStripMenuItem();
             var TSMItemAddHLinhMat = new global::System.Windows.Forms.ToolStripMenuItem();
@@ -94,6 +96,7 @@ namespace AppVietSo
               TSMItemDelCol,
               TSMItemDelCel,
            TSMItemThemChuSauTinChu,
+           TSMItemThemChuSauHuongLinh,
               TSMItemAddMua,
               TSMItemAddYear,
               TSMItemAddMonth,
@@ -105,6 +108,7 @@ namespace AppVietSo
               TSMItemAddHoGiaChu,
               TSMItemAddTinChu,
               TSMItemAddHuongLinh,
+              TSMItemAddTenHuongLinh,
               TSMItemAddHoHuongLinh,
               TSMItemAddHLinhSinh,
               TSMItemAddHLinhMat,
@@ -160,6 +164,12 @@ namespace AppVietSo
             TSMItemThemChuSauTinChu.Size = new global::System.Drawing.Size(0x134, 0x1A);
             TSMItemThemChuSauTinChu.Text = "Khuôn mẫu Tín chủ";
             TSMItemThemChuSauTinChu.Click += TSMItemThemChuSauTinChu_Click;
+
+            TSMItemThemChuSauHuongLinh.Image = global::AppVietSo.Properties.Resources.edit;
+            TSMItemThemChuSauHuongLinh.Name = "TSMItemThemChuSauHuongLinh";
+            TSMItemThemChuSauHuongLinh.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemThemChuSauHuongLinh.Text = "Khuôn mẫu Hương linh";
+            TSMItemThemChuSauHuongLinh.Click += TSMItemThemChuSauHuongLinh_Click;
             TSMItemAddMua.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddMua.Name = "TSMItemAddMua";
             TSMItemAddMua.Size = new global::System.Drawing.Size(0x134, 0x1A);
@@ -215,8 +225,13 @@ namespace AppVietSo
             TSMItemAddHuongLinh.Image = global::AppVietSo.Properties.Resources.Adda;
             TSMItemAddHuongLinh.Name = "TSMItemAddHuongLinh";
             TSMItemAddHuongLinh.Size = new global::System.Drawing.Size(0x134, 0x1A);
-            TSMItemAddHuongLinh.Text = "Thêm Tên Hương linh (@hlinhten)";
+            TSMItemAddHuongLinh.Text = "Thêm Hương linh (@hlinh)";
             TSMItemAddHuongLinh.Click += TSMItemAddHuongLinh_Click;
+            TSMItemAddTenHuongLinh.Image = global::AppVietSo.Properties.Resources.Adda;
+            TSMItemAddTenHuongLinh.Name = "TSMItemAddTenHuongLinh";
+            TSMItemAddTenHuongLinh.Size = new global::System.Drawing.Size(0x134, 0x1A);
+            TSMItemAddTenHuongLinh.Text = "Thêm Tên Hương linh (@hlinhten)";
+            TSMItemAddTenHuongLinh.Click += TSMItemAddTenHuongLinh_Click;
 
 
             TSMItemAddHoHuongLinh.Image = global::AppVietSo.Properties.Resources.Adda;
@@ -306,6 +321,12 @@ namespace AppVietSo
             frm.ShowDialog();
             ReLoad(sender, e);
         }
+            private void TSMItemThemChuSauHuongLinh_Click(object sender, global::System.EventArgs e)
+        {
+            var frm = new FrmThietLapHuongLinh();
+            frm.ShowDialog();
+            ReLoad(sender, e);
+        } 
 
         // Token: 0x060000CF RID: 207 RVA: 0x0000E688 File Offset: 0x0000C888
         private void TSMItemPaste_Click(object sender, global::System.EventArgs e)
@@ -546,6 +567,18 @@ namespace AppVietSo
 
         // Token: 0x060000DE RID: 222 RVA: 0x0000E91E File Offset: 0x0000CB1E
         private void TSMItemAddHuongLinh_Click(object sender, global::System.EventArgs e)
+        {
+            ActiveData.UpdateDataByID();
+            addTextLongSo("@hlinh", "Hương linh");
+            var worksheet = reoGridControl1.CurrentWorksheet;
+            var Col = worksheet.SelectionRange.Col;
+            if (rbSongNgu.Checked)
+            {
+                worksheet.AutoFitColumnWidth(Col, true);
+            }
+        }   
+        
+        private void TSMItemAddTenHuongLinh_Click(object sender, global::System.EventArgs e)
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhten", "Hương linh");
@@ -1377,9 +1410,9 @@ namespace AppVietSo
             if (Tag.Contains("@"))
             {
                 Tag = Tag.ToLower();
-                if (frmTinChu.keys.Contains(Tag) || Tag == "@tinchu")
+                if (frmTinChu.keys.Contains(Tag) || Tag == "@tinchu"|| Tag == "@hlinh")
                 {
-                    frmTinChu frm = new frmTinChu();
+                    var frm =  new frmTinChu();
                     frm.ShowDialog();
                     ReLoad(sender, e);
                 }

@@ -61,10 +61,7 @@ namespace AppVietSo
             }
      
             dataGridView1.DataSource = dt;
-            if (dt.Rows.Count == 0)
-            {
-                this.Close();
-            }
+         
         }
 
         public DataTable getMonth()

@@ -208,6 +208,12 @@
     <Compile Include="frmThemMatChu.Designer.cs">
       <DependentUpon>frmThemMatChu.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmThietLapHuongLinh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmThietLapHuongLinh.Designer.cs">
+      <DependentUpon>FrmThietLapHuongLinh.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmThietLapTinChu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -342,6 +348,9 @@
     <EmbeddedResource Include="frmThemMatChu.resx">
       <DependentUpon>frmThemMatChu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmThietLapHuongLinh.resx">
+      <DependentUpon>FrmThietLapHuongLinh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmThietLapTinChu.resx">
       <DependentUpon>FrmThietLapTinChu.cs</DependentUpon>
     </EmbeddedResource>
@@ -421,7 +430,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Capture.ico" />
-    <Content Include="MicrosoftTeams-image %2818%29.ico" />
     <Content Include="MicrosoftTeams-image %2831%29.ico" />
     <None Include="Resources\bg.png" />
     <None Include="Resources\zoomout48.png" />
