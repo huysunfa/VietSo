@@ -39,7 +39,7 @@ namespace AppVietSo
         {
             if (Util.LongSoHienTai.KhoaCung)
             {
-              
+
 
                 for (int i = 1; i < sheet.RowCount; i++)
                 {
@@ -73,8 +73,8 @@ namespace AppVietSo
                 var TotalHeight = (float)Util.LongSoHienTai.PageWidth * tile;
                 int row = Util.LongSoHienTai.PageBreakRow;
                 var old = TotalHeight / row;
-                sheet.SetRowsHeight(1, sheet.UsedRange.Rows-1, (ushort)old);
- 
+                sheet.SetRowsHeight(1, sheet.UsedRange.Rows - 1, (ushort)old);
+
 
             }
             else
@@ -184,14 +184,22 @@ namespace AppVietSo
                                          Color = Color.Black
                                      });
                 }
-
+                for (int i = 1; i < worksheet_0.Rows; i=i+Util.LongSoHienTai.PageBreakRow)
+                {
+                    worksheet_0.SetRangeBorders(i,0,Util.LongSoHienTai.PageBreakRow,worksheet_0.UsedRange.Cols-1, BorderPositions.TopBottom,
+                     new unvell.ReoGrid.RangeBorderStyle
+                     {
+                         Style = BorderLineStyle.BoldSolid,
+                         Color = Color.Black
+                     });
+                }
 
                 worksheet_0.SetRangeBorders(cover, BorderPositions.TopBottom,
-                                 new unvell.ReoGrid.RangeBorderStyle
-                                 {
-                                     Style = BorderLineStyle.BoldSolid,
-                                     Color = Color.Black
-                                 });
+                     new unvell.ReoGrid.RangeBorderStyle
+                     {
+                         Style = BorderLineStyle.BoldSolid,
+                         Color = Color.Black
+                     });
             }
 
 
@@ -290,10 +298,9 @@ namespace AppVietSo
         }
         public static void SetOnePage2(this Worksheet worksheet)
         {
-
             if (Util.LongSoHienTai.KhoaCung)
             {
-                if (worksheet.RowPageBreaks.Count==0)
+                if (worksheet.RowPageBreaks.Count == 0)
                 {
                     return;
                 }
@@ -328,6 +335,14 @@ namespace AppVietSo
                     worksheet.InsertRowPageBreak(start, true);
 
                 }
+
+                var hientai = worksheet.GetTotalWidth();
+
+                var KhoGiay = Util.LongSoHienTai.PageHeight - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
+
+                var Scaling = KhoGiay / hientai;
+                worksheet.PrintSettings.PageScaling = (float)Scaling;
+
             }
             else
             {

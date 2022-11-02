@@ -18,8 +18,7 @@ namespace AppVietSo
         {
             this.worksheet_0 = _worksheet_0.Clone();
             this.worksheet_0.PrintSettings = (PrintSettings)_worksheet_0.PrintSettings.Clone();
-            this.worksheet_0 = _worksheet_0;
-            _KhoaCung = KhoaCung;
+             _KhoaCung = KhoaCung;
             _PageNumber = PageNumber;
             this.InitializeComponent();
         }
