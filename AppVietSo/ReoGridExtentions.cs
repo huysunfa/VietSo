@@ -37,29 +37,40 @@ namespace AppVietSo
         }
         public static void ChangeWidthSize(this Worksheet sheet)
         {
-             if (Util.LongSoHienTai.KhoaCung)
+            if (Util.LongSoHienTai.KhoaCung)
             {
 
                 int TotalWidth = 0;
                 int TotalWidthNew = 0;
                 for (int i = 0; i < sheet.ColumnCount; i++)
-                {                   
-                    TotalWidth += sheet.GetColumnWidth(i); ;
-                } 
-                
+                {
+                    var oldW = sheet.GetColumnWidth(i);
+                    sheet.AutoFitColumnWidth(i, true);
+
+                    var newW = sheet.GetColumnWidth(i);
+
+                    if (newW < oldW)
+                    {
+                        newW = oldW;
+                        sheet.SetColumnsWidth(i, 1, oldW);
+
+                    }
+                    TotalWidth += newW;
+                }
+
                 for (int i = 0; i < sheet.ColumnCount; i++)
                 {
-                     sheet.AutoFitColumnWidth(i, true);
+                    sheet.AutoFitColumnWidth(i, true);
                     var newW = sheet.GetColumnWidth(i);
 
                     TotalWidthNew += newW;
                 }
-                 var tile = (float)TotalWidthNew / TotalWidth;
+                var tile = (float)TotalWidthNew / TotalWidth;
                 var TotalHeight = (float)Util.LongSoHienTai.PageWidth * tile;
                 int row = (sheet.UsedRange.EndRow - 1);
                 var old = TotalHeight / Util.LongSoHienTai.PageBreakRow;
                 sheet.SetRowsHeight(1, row, (ushort)old);
- 
+
             }
             else
             {
@@ -193,7 +204,7 @@ namespace AppVietSo
             TotalWidth += worksheet.PrintSettings.Margins.Right;
             return TotalWidth;
         }
-       
+
         public static void SetOnePage(this Worksheet worksheet)
         {
 
@@ -266,7 +277,7 @@ namespace AppVietSo
                         worksheet.ChangeRowPageBreak(item, MaxRow, false);
                     }
                 }
-                
+
             }
 
 
@@ -275,28 +286,68 @@ namespace AppVietSo
         public static void SetOnePage2(this Worksheet worksheet)
         {
 
-        
-            var hientai = worksheet.GetTotalWidth();
-            var tile = hientai / (Util.LongSoHienTai.PageWidth - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingLeft) - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingRight));
-            var height = ( Util.LongSoHienTai.PageHeight - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingTop) - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingBottom)  )* tile / (worksheet.UsedRange.Rows-1);
-            worksheet.SetRowsHeight(1, worksheet.UsedRange.Rows-1, (ushort)(height));
-
-            var MaxRow = worksheet.RowPageBreaks.Count > 0 ? worksheet.RowPageBreaks.Max(v => v) : 0;
-
-
-            worksheet.ResetAllPageBreaks();
-
-            var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
-            var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
-            foreach (var item in worksheet.ColumnPageBreaks.ToList())
+            if (Util.LongSoHienTai.KhoaCung)
             {
-                if (item == MaxCol || item == MinCol)
+                if (worksheet.RowPageBreaks.Count==0)
                 {
-                    continue;
+                    return;
                 }
-                if (worksheet.ColumnPageBreaks.Contains(item))
+                var MinRow = worksheet.RowPageBreaks.Min(v => v);
+                var MaxRow = worksheet.RowPageBreaks.Count > 0 ? worksheet.RowPageBreaks.Max(v => v) : 0;
+                foreach (var item in worksheet.RowPageBreaks.ToList())
                 {
-                    worksheet.ChangeColumnPageBreak(item, MaxCol, false);
+                    if (item == MaxRow || item == MinRow)
+                    {
+                        continue;
+                    }
+
+                    if (worksheet.RowPageBreaks.Contains(item))
+                    {
+                        worksheet.ChangeRowPageBreak(item, MaxRow, false);
+                    }
+                }
+
+                if (Util.LongSoHienTai.PageBreakRow == 0)
+                {
+                    Util.LongSoHienTai.PageBreakRow = MaxRow;
+                }
+
+                var start = 1;
+                while (start + Util.LongSoHienTai.PageBreakRow < MaxRow)
+                {
+                    start = start + Util.LongSoHienTai.PageBreakRow;
+                    if (start + 2 > MaxRow)
+                    {
+                        continue;
+                    }
+                    worksheet.InsertRowPageBreak(start, true);
+
+                }
+            }
+            else
+            {
+                var hientai = worksheet.GetTotalWidth();
+                var tile = hientai / (Util.LongSoHienTai.PageWidth - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingLeft) - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingRight));
+                var height = (Util.LongSoHienTai.PageHeight - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingTop) - ShareFun.mmToPixel(Util.LongSoHienTai.PagePaddingBottom)) * tile / (worksheet.UsedRange.Rows - 1);
+                worksheet.SetRowsHeight(1, worksheet.UsedRange.Rows - 1, (ushort)(height));
+
+                var MaxRow = worksheet.RowPageBreaks.Count > 0 ? worksheet.RowPageBreaks.Max(v => v) : 0;
+
+
+                worksheet.ResetAllPageBreaks();
+
+                var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
+                var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
+                foreach (var item in worksheet.ColumnPageBreaks.ToList())
+                {
+                    if (item == MaxCol || item == MinCol)
+                    {
+                        continue;
+                    }
+                    if (worksheet.ColumnPageBreaks.Contains(item))
+                    {
+                        worksheet.ChangeColumnPageBreak(item, MaxCol, false);
+                    }
                 }
             }
             //if (Util.LongSoHienTai.KhoaCung)

@@ -1248,6 +1248,7 @@ namespace AppVietSo
             cbfnameCN.SelectedItem = Data.fnameCN + "";
             cbfnameVN.SelectedItem = Data.fnameVN + "";
             checkBox4.Checked = Data.KhoaCung;
+            checkBox3.Checked = Data.KhoaCung;
             #endregion
         }
         private void button5_Click(object sender, EventArgs e)
