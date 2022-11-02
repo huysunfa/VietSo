@@ -18,6 +18,7 @@ namespace AppVietSo
         {
             this.worksheet_0 = _worksheet_0.Clone();
             this.worksheet_0.PrintSettings = (PrintSettings)_worksheet_0.PrintSettings.Clone();
+            this.worksheet_0 = _worksheet_0;
             _KhoaCung = KhoaCung;
             _PageNumber = PageNumber;
             this.InitializeComponent();
@@ -113,44 +114,13 @@ namespace AppVietSo
         private void FrmPrintPreview_Load(object sender, EventArgs e)
         {
 
-            var worksheet = this.worksheet_0;
-
-
-            //worksheet.ResetAllPageBreaks();
-            //var MaxRow = worksheet.RowPageBreaks.Max(v => v);
-            //var MinRow = worksheet.RowPageBreaks.Min(v => v);
-            //foreach (var item in worksheet.RowPageBreaks.ToList())
-            //{
-            //    if (item == MaxRow || item == MinRow)
-            //    {
-            //        continue;
-            //    }
-
-            //    if (worksheet.RowPageBreaks.Contains(item))
-            //    {
-            //        worksheet.ChangeRowPageBreak(item, MaxRow, false);
-            //    }
-            //}
-
-            //var MaxCol = worksheet.ColumnPageBreaks.Max(v => v);
-            //var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
-            //foreach (var item in worksheet.ColumnPageBreaks.ToList())
-            //{
-            //    if (item == MaxCol || item == MinCol)
-            //    {
-            //        continue;
-            //    }
-            //    if (worksheet.ColumnPageBreaks.Contains(item))
-            //    {
-            //        worksheet.ChangeColumnPageBreak(item, MaxCol, false);
-            //    }
-            //}
+ 
+ 
 
             this.bool_0 = true;
             this.splitContainer1.SplitterDistance = this.cbxPrinter.Width + this.cbxPrinter.Left * 2;
             this.method_0();
-            //this.cbxPageNumber.Checked = true;
-            this.nmrTop.Value = (decimal)Util.LongSoHienTai.PagePaddingTop;
+             this.nmrTop.Value = (decimal)Util.LongSoHienTai.PagePaddingTop;
             this.nmrBottom.Value = (decimal)Util.LongSoHienTai.PagePaddingBottom;
             this.nmrLeft.Value = (decimal)Util.LongSoHienTai.PagePaddingLeft;
             this.nmrRight.Value = (decimal)Util.LongSoHienTai.PagePaddingRight;
@@ -186,8 +156,7 @@ namespace AppVietSo
             nmrPage.Value = _PageNumber;
             this.printPreviewControl1.StartPage = (int)this.nmrPage.Value - 1;
             this.method_1();
-            this.method_2();
-
+ 
         }
 
         // Token: 0x06000087 RID: 135 RVA: 0x00005948 File Offset: 0x00003B48

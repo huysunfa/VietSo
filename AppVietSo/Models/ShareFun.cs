@@ -95,7 +95,7 @@ namespace AppVietSo.Models
                 var RowUse = row - 1;
                 var ColUse = col - 1;
                 //sheet.SetRowsHeight(1, RowUse, height);
-                ushort width = (ushort)System.Math.Floor(num7 / (double)(col));
+                ushort width = (ushort)System.Math.Floor(num7 / (double)(ColUse-1));
                 sheet.SetColumnsWidth(1, ColUse, width);
                 // margrin
                 if (setting)

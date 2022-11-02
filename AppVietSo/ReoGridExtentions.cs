@@ -39,10 +39,21 @@ namespace AppVietSo
         {
             if (Util.LongSoHienTai.KhoaCung)
             {
+              
+
+                for (int i = 1; i < sheet.RowCount; i++)
+                {
+                    sheet.RowHeaders[i].IsAutoHeight = true;
+
+                }
+                for (int i = 1; i < sheet.ColumnCount; i++)
+                {
+                    sheet.ColumnHeaders[i].IsAutoWidth = true;
+
+                }
 
                 int TotalWidth = 0;
-                int TotalWidthNew = 0;
-                for (int i = 0; i < sheet.ColumnCount; i++)
+                for (int i = 1; i < sheet.ColumnCount; i++)
                 {
                     var oldW = sheet.GetColumnWidth(i);
                     sheet.AutoFitColumnWidth(i, true);
@@ -58,18 +69,12 @@ namespace AppVietSo
                     TotalWidth += newW;
                 }
 
-                for (int i = 0; i < sheet.ColumnCount; i++)
-                {
-                    sheet.AutoFitColumnWidth(i, true);
-                    var newW = sheet.GetColumnWidth(i);
-
-                    TotalWidthNew += newW;
-                }
-                var tile = (float)TotalWidthNew / TotalWidth;
+                var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageHeight;
                 var TotalHeight = (float)Util.LongSoHienTai.PageWidth * tile;
-                int row = (sheet.UsedRange.EndRow - 1);
-                var old = TotalHeight / Util.LongSoHienTai.PageBreakRow;
-                sheet.SetRowsHeight(1, row, (ushort)old);
+                int row = Util.LongSoHienTai.PageBreakRow;
+                var old = TotalHeight / row;
+                sheet.SetRowsHeight(1, sheet.UsedRange.Rows-1, (ushort)old);
+ 
 
             }
             else
