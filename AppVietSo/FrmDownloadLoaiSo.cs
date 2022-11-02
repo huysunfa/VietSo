@@ -90,6 +90,7 @@ namespace AppVietSo
         {
             try
             {
+                checkBox1.Checked = false;
                 DataGridViewTextBoxCell dataGridViewTextBoxCell = (DataGridViewTextBoxCell)this.dgvParent.CurrentCell;
                 if (dataGridViewTextBoxCell != null)
                 {
@@ -336,6 +337,7 @@ namespace AppVietSo
                 else
                 {
                     MessageBox.Show("Lòng sớ cần in chưa được tải về, không thể tiếp tục IN sớ !!");
+                    return;
                 }
             }
             var frmPrint = new frmSetupMultiPrint(ListPrint);
