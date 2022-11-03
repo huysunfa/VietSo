@@ -30,6 +30,7 @@ namespace AppVietSo
         private void InitializeComponent()
         {
             this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // reoGridControl1
@@ -51,11 +52,22 @@ namespace AppVietSo
             this.reoGridControl1.TabIndex = 0;
             this.reoGridControl1.Text = "reoGridControl1";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(582, 463);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(257, 109);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1489, 750);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.reoGridControl1);
             this.Name = "Form2";
             this.Text = "Form2";
@@ -68,5 +80,6 @@ namespace AppVietSo
         #endregion
 
         private unvell.ReoGrid.ReoGridControl reoGridControl1;
+        private System.Windows.Forms.Button button1;
     }
 }

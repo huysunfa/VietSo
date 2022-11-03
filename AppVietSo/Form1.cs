@@ -321,12 +321,12 @@ namespace AppVietSo
             frm.ShowDialog();
             ReLoad(sender, e);
         }
-            private void TSMItemThemChuSauHuongLinh_Click(object sender, global::System.EventArgs e)
+        private void TSMItemThemChuSauHuongLinh_Click(object sender, global::System.EventArgs e)
         {
             var frm = new FrmThietLapHuongLinh();
             frm.ShowDialog();
             ReLoad(sender, e);
-        } 
+        }
 
         // Token: 0x060000CF RID: 207 RVA: 0x0000E688 File Offset: 0x0000C888
         private void TSMItemPaste_Click(object sender, global::System.EventArgs e)
@@ -396,55 +396,262 @@ namespace AppVietSo
         {
 
             var worksheet = reoGridControl1.CurrentWorksheet;
-            var cnt = worksheet.SelectionRange.Row;
-            worksheet.InsertRows(cnt, 1);
-            for (int i = 0; i < worksheet.UsedRange.EndCol; i++)
+            var i = worksheet.SelectionRange.Row;
+            if (rbSongNgu.Checked)
             {
-                worksheet.Cells[cnt, i].DataFormatArgs = worksheet.Cells[cnt-1, i].DataFormatArgs;
+
+                var PosText = cbCanChuViet.Text;
+                if (PosText == "PHẢI")
+                {
+                    var action = new InsertRowsAction(i - 1, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÁI")
+                {
+                    var action = new InsertRowsAction(i, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÊN" || PosText == "DƯỚI")
+                {
+                    var action = new InsertRowsAction(i, 1);
+                    reoGridControl1.DoAction(action);
+                }
+
+
+            }
+            else
+            {
+                var action = new InsertRowsAction(i, 1);
+                reoGridControl1.DoAction(action);
             }
 
-            reoGridControl1.ShowBolder(false);
+
+
+            for (int cnt = 0; cnt < worksheet.UsedRange.EndCol; cnt++)
+            {
+                if (rbChuHan.Checked)
+                {
+                    worksheet.Cells[i, cnt].DataFormatArgs = "TextCN";
+                }
+                if (rbChuViet.Checked)
+                {
+                    worksheet.Cells[i, cnt].DataFormatArgs = "TextVN";
+                }
+
+                if (rbSongNgu.Checked)
+                {
+                    var PosText = cbCanChuViet.Text;
+                    if (PosText == "PHẢI")
+                    {
+                        worksheet.Cells[i, cnt - 1].DataFormatArgs = worksheet.Cells[i, cnt + 1].DataFormatArgs;
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt + 2].DataFormatArgs;
+
+                        var item = worksheet.Cells[i, cnt - 1];
+                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+
+                        var item2 = worksheet.Cells[i, cnt];
+                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+
+                    }
+                    if (PosText == "TRÁI")
+                    {
+                        worksheet.Cells[i, cnt + 1].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 2].DataFormatArgs;
+
+                        var item = worksheet.Cells[i, cnt];
+                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+
+                        var item2 = worksheet.Cells[i, cnt + 1];
+                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+                    }
+                    if (PosText == "TRÊN" || PosText == "DƯỚI")
+                    {
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
+                        var item = worksheet.Cells[i, cnt];
+                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                    }
+
+
+                }
+                else
+                {
+                    var item = worksheet.Cells[i, cnt];
+                    ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                }
+            }
+
+
+            reoGridControl1.ShowBolder(cbHideGridLine.Checked);
             SaveData();
-            ReLoad(sender, e);
+            worksheet.ScaleFactor += (float)0.001;
         }
 
-        // Token: 0x060000D1 RID: 209 RVA: 0x0000E710 File Offset: 0x0000C910
         private void TSMItemAddCol_Click(object sender, global::System.EventArgs e)
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
             var cnt = worksheet.SelectionRange.Col;
-            worksheet.InsertColumns(cnt, 1);
+            if (rbSongNgu.Checked)
+            {
+                var PosText = cbCanChuViet.Text;
+                if (PosText == "PHẢI")
+                {
+                    var action = new InsertColumnsAction(cnt - 1, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÁI")
+                {
+                    var action = new InsertColumnsAction(cnt, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÊN" || PosText == "DƯỚI")
+                {
+                    var action = new InsertColumnsAction(cnt, 1);
+                    reoGridControl1.DoAction(action);
+                }
+
+            }
+            else
+            {
+                var action = new InsertColumnsAction(cnt, 1);
+                reoGridControl1.DoAction(action);
+            }
+
+
+
             for (int i = 0; i < worksheet.UsedRange.EndRow; i++)
             {
-                worksheet.Cells[i, cnt].DataFormatArgs = "TextVN";
+                if (rbChuHan.Checked)
+                {
+                    worksheet.Cells[i, cnt].DataFormatArgs = "TextCN";
+                }
+                if (rbChuViet.Checked)
+                {
+                    worksheet.Cells[i, cnt].DataFormatArgs = "TextVN";
+                }
+
+                if (rbSongNgu.Checked)
+                {
+                    var PosText = cbCanChuViet.Text;
+                    if (PosText == "PHẢI")
+                    {
+                        worksheet.Cells[i, cnt - 1].DataFormatArgs = worksheet.Cells[i, cnt + 1].DataFormatArgs;
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt + 2].DataFormatArgs;
+
+                        var item = worksheet.Cells[i, cnt - 1];
+                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+
+                        var item2 = worksheet.Cells[i, cnt];
+                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+
+                    }
+                    if (PosText == "TRÁI")
+                    {
+                        worksheet.Cells[i, cnt + 1].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 2].DataFormatArgs;
+
+                        var item = worksheet.Cells[i, cnt];
+                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+
+                        var item2 = worksheet.Cells[i, cnt + 1];
+                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+                    }
+                    if (PosText == "TRÊN" || PosText == "DƯỚI")
+                    {
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
+                        var item = worksheet.Cells[i, cnt];
+                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                    }
+
+
+                }
+                else
+                {
+                    var item = worksheet.Cells[i, cnt];
+                    ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                }
             }
-            reoGridControl1.ShowBolder(false);
+
+
+            reoGridControl1.ShowBolder(cbHideGridLine.Checked);
             SaveData();
-            ReLoad(sender, e);
+            worksheet.ScaleFactor += (float)0.001;
         }
 
         // Token: 0x060000D2 RID: 210 RVA: 0x0000E76C File Offset: 0x0000C96C
         private void TSMItemDelRow_Click(object sender, global::System.EventArgs e)
         {
+
             var worksheet = reoGridControl1.CurrentWorksheet;
-            var cnt = worksheet.SelectionRange.Row;
-            worksheet.DeleteRows(cnt, 1);
+            var i = worksheet.SelectionRange.Row;
+            if (rbSongNgu.Checked)
+            {
+
+                var PosText = cbCanChuViet.Text;
+                if (PosText == "PHẢI")
+                {
+                    var action = new RemoveRowsAction(i - 1, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÁI")
+                {
+                    var action = new RemoveRowsAction(i, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÊN" || PosText == "DƯỚI")
+                {
+                    var action = new RemoveRowsAction(i, 1);
+                    reoGridControl1.DoAction(action);
+                }
+
+
+            }
+            else
+            {
+                var action = new RemoveRowsAction(i, 1);
+                reoGridControl1.DoAction(action);
+            }
+
+
+
+
+
             SaveData();
-            ReLoad(sender, e);
+            worksheet.ScaleFactor += (float)0.001;
         }
 
         // Token: 0x060000D3 RID: 211 RVA: 0x0000E7C8 File Offset: 0x0000C9C8
         private void TSMItemDelCol_Click(object sender, global::System.EventArgs e)
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
+            var cnt = worksheet.SelectionRange.Col;
+            if (rbSongNgu.Checked)
+            {
+                var PosText = cbCanChuViet.Text;
+                if (PosText == "PHẢI")
+                {
+                    var action = new RemoveColumnsAction(cnt - 1, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÁI")
+                {
+                    var action = new RemoveColumnsAction(cnt, 2);
+                    reoGridControl1.DoAction(action);
+                }
+                if (PosText == "TRÊN" || PosText == "DƯỚI")
+                {
+                    var action = new RemoveColumnsAction(cnt, 1);
+                    reoGridControl1.DoAction(action);
+                }
 
-            var from = worksheet.SelectionRange.Col;
-            var to = worksheet.SelectionRange.EndCol;
-            var diff = to - from + 1;
-            worksheet.DeleteColumns(from, diff);
+            }
+            else
+            {
+                var action = new RemoveColumnsAction(cnt, 1);
+                reoGridControl1.DoAction(action);
+            }
 
             SaveData();
-            ReLoad(sender, e);
+            worksheet.ScaleFactor += (float)0.001;
         }
 
         // Token: 0x060000D4 RID: 212 RVA: 0x0000E824 File Offset: 0x0000CA24
@@ -452,29 +659,34 @@ namespace AppVietSo
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
             var select = worksheet.SelectionRange;
-            var render = false;
-            for (int i = select.Row; i <= select.EndRow; i++)
-            {
-                for (int j = select.Col; j <= select.EndCol; j++)
-                {
-                    var item = worksheet.Cells[i, j];
-                    item.Data = "";
-                    item.DataFormatArgs = (item.DataFormatArgs + "").Split('_').LastOrDefault();
-                    var cell = worksheet.Cells[i, j].Tag.getCellData();
-                    if ((cell.Value + "") == "@tinchu")
-                    {
-                        render = true;
+            //var render = false;
 
-                    }
-                    item.Tag = new CellData();
-                    setColorTag(worksheet, item, Color.White);
-                }
-            }
+            var action = new RemoveRangeDataAction(select);
+            reoGridControl1.DoAction(action);
+
+
+            //for (int i = select.Row; i <= select.EndRow; i++)
+            //{
+            //    for (int j = select.Col; j <= select.EndCol; j++)
+            //    {
+            //        var item = worksheet.Cells[i, j];
+            //        item.Data = "";
+            //        item.DataFormatArgs = (item.DataFormatArgs + "").Split('_').LastOrDefault();
+            //        var cell = worksheet.Cells[i, j].Tag.getCellData();
+            //        if ((cell.Value + "") == "@tinchu")
+            //        {
+            //            render = true;
+
+            //        }
+            //        item.Tag = new CellData();
+            //        setColorTag(worksheet, item, Color.White);
+            //    }
+            //}
             SaveData();
-            if (render)
-            {
-                ReLoad(sender, e);
-            }
+            //if (render)
+            //{
+            //    ReLoad(sender, e);
+            //}
         }
 
         private void TSMItemAddMua_Click(object sender, global::System.EventArgs e)
@@ -499,7 +711,7 @@ namespace AppVietSo
         private void TSMItemAddDay_Click(object sender, global::System.EventArgs e)
         {
             addTextLongSo("@ngay", "Ngày");
-        } 
+        }
         private void TSMItemAddGio_Click(object sender, global::System.EventArgs e)
         {
             addTextLongSo("@gio", "Giờ");
@@ -559,7 +771,7 @@ namespace AppVietSo
             ActiveData.UpdateDataByID();
             addTextLongSo("@giachu", "Gia chủ");
         }
-           private void TSMItemAddHoGiaChu_Click(object sender, global::System.EventArgs e)
+        private void TSMItemAddHoGiaChu_Click(object sender, global::System.EventArgs e)
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@hogiachu", "Gia chủ");
@@ -576,14 +788,14 @@ namespace AppVietSo
             {
                 worksheet.AutoFitColumnWidth(Col, true);
             }
-        }   
-        
+        }
+
         private void TSMItemAddTenHuongLinh_Click(object sender, global::System.EventArgs e)
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhten", "Hương linh");
         }
-             private void TSMItemAddHoHuongLinh_Click(object sender, global::System.EventArgs e)
+        private void TSMItemAddHoHuongLinh_Click(object sender, global::System.EventArgs e)
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhho", "Hương linh");
@@ -609,7 +821,7 @@ namespace AppVietSo
             ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhtho", "Hưởng thọ");
         }
-            private void TSMItemAddHLinhDiaChi_Click(object sender, global::System.EventArgs e)
+        private void TSMItemAddHLinhDiaChi_Click(object sender, global::System.EventArgs e)
         {
             ActiveData.UpdateDataByID();
             addTextLongSo("@hlinhdiachi", "Địa chỉ người mất");
@@ -688,7 +900,8 @@ namespace AppVietSo
                 }
                 catch
                 {
-
+                    worksheet.ScaleFactor += (float)0.001;
+                    SaveData();
                 }
             };
 
@@ -704,7 +917,8 @@ namespace AppVietSo
                 }
                 catch (Exception)
                 {
-
+                    worksheet.ScaleFactor += (float)0.001;
+                    SaveData();
                 }
             };
             //reoGridControl1.WorksheetScrolled += (s, r1) =>
@@ -787,7 +1001,7 @@ namespace AppVietSo
                     r1.IsCancelled = true;
 
 
-                
+
                 }
 
 
@@ -981,13 +1195,36 @@ namespace AppVietSo
             {
                 RenderStyle(item.Address);
             }
-            if (posSongNgu.ContainsKey(item.Address) && item.Style.BackColor != Color.LightBlue)
+
+            if (rbSongNgu.Checked && item.Style.BackColor != Color.LightBlue)
             {
-                var cn = posSongNgu[item.Address];
-                RenderStyle(cn);
-
+                var PosText = cbCanChuViet.Text;
+                if (PosText == "PHẢI")
+                {
+                    SetTextSongNgu(worksheet, item, Col - 1, Row);
+                }
+                if (PosText == "TRÁI")
+                {
+                    SetTextSongNgu(worksheet, item, Col + 1, Row);
+                }
+                if (PosText == "TRÊN")
+                {
+                    SetTextSongNgu(worksheet, item, Col, Row + 1);
+                }
+                if (PosText == "DƯỚI")
+                {
+                    SetTextSongNgu(worksheet, item, Col, Row - 1);
+                }
             }
+        }
 
+        public void SetTextSongNgu(Worksheet worksheet, unvell.ReoGrid.Cell item, int Col, int Row)
+        {
+            var itemCN = worksheet.Cells[new CellPosition() { Col = Col, Row = Row }];
+            itemCN.Tag = item.Tag;
+            RenderStyle(itemCN.Address);
+            worksheet.AutoFitColumnWidth(itemCN.Column, true);
+            worksheet.AutoFitColumnWidth(item.Column, true);
         }
         private void DynamicButton_Click(object sender, EventArgs e)
         {
@@ -1048,8 +1285,8 @@ namespace AppVietSo
                 {
                     return;
                 }
-             }
-           
+            }
+
         }
 
 
@@ -1128,15 +1365,10 @@ namespace AppVietSo
 
 
         }
-        public Dictionary<string, string> posSongNgu = new Dictionary<string, string>();
         public void LoadDataToDataGrid(Worksheet worksheet)
         {
             var songngu = rbSongNgu.Checked;
             var PosText = cbCanChuViet.Text;
-            if (songngu)
-            {
-                posSongNgu = new Dictionary<string, string>();
-            }
 
             foreach (var item in Util.LongSoHienTai.LgSo.OrderBy(z => z.Key))
             {
@@ -1214,12 +1446,6 @@ namespace AppVietSo
 
                         if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
                         if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
-                        if (PosText == "PHẢI" || PosText == "DƯỚI")
-                        {
-                            posSongNgu.Add(col.ToAddress(), cell2.ToAddress());
-                        }
-
-
                     }
                     #endregion
 
@@ -1303,7 +1529,7 @@ namespace AppVietSo
 
         private void txtLoaiSo_Click(object sender, EventArgs e)
         {
-          
+
             FrmDownloadLoaiSo frm = new FrmDownloadLoaiSo();
             frm.ShowDialog();
             ReLoad(sender, e);
@@ -1410,9 +1636,9 @@ namespace AppVietSo
             if (Tag.Contains("@"))
             {
                 Tag = Tag.ToLower();
-                if (frmTinChu.keys.Contains(Tag) || Tag == "@tinchu"|| Tag == "@hlinh")
+                if (frmTinChu.keys.Contains(Tag) || Tag == "@tinchu" || Tag == "@hlinh")
                 {
-                    var frm =  new frmTinChu();
+                    var frm = new frmTinChu();
                     frm.ShowDialog();
                     ReLoad(sender, e);
                 }
@@ -1699,7 +1925,7 @@ namespace AppVietSo
             if (string.IsNullOrEmpty(pos))
             {
                 sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
-               // ReoGridExtentions.ChangeWidthSize(sheet);
+                // ReoGridExtentions.ChangeWidthSize(sheet);
                 sheet.SetRangeStyles(sheet.UsedRange.ToAddress(), new WorksheetRangeStyle
                 {
                     // style item flag
@@ -1794,7 +2020,7 @@ namespace AppVietSo
 
         }
 
-  
+
 
 
         private void cbfsizeCN_Click(object sender, EventArgs e)
@@ -1861,14 +2087,18 @@ namespace AppVietSo
                             var cell = item.Tag.getCellData();
 
 
-                            value.TextCN = cell.TextCN;
-                            value.TextVN = cell.TextVN;
-                            value.Value = cell.Value;
-                            if (string.IsNullOrEmpty(value.Value + "") && (value.TextVN + "").StartsWith("@"))
+                            if (!string.IsNullOrEmpty(item.Data + "") || (value.TextVN + "").StartsWith("@"))
                             {
-                                value.Value = value.TextVN;
-                            }
 
+
+                                value.TextCN = cell.TextCN;
+                                value.TextVN = cell.TextVN;
+                                value.Value = cell.Value;
+                                if (string.IsNullOrEmpty(value.Value + "") && (value.TextVN + "").StartsWith("@"))
+                                {
+                                    value.Value = value.TextVN;
+                                }
+                            }
                         }
 
                         LgSo[i - 1].Add(j - 1, value);
@@ -2022,10 +2252,10 @@ namespace AppVietSo
 
         private void checkBox2_CheckedChanged_1(object sender, EventArgs e)
         {
-            
-                var sheet = reoGridControl1.CurrentWorksheet;
-                ReoGridExtentions.ChangeWidthSize(sheet);
-            
+
+            var sheet = reoGridControl1.CurrentWorksheet;
+            ReoGridExtentions.ChangeWidthSize(sheet);
+
         }
 
         private void checkBox2_Click(object sender, EventArgs e)
@@ -2037,8 +2267,8 @@ namespace AppVietSo
 
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
-            reoGridControl1.Undo(); 
-         }
+            reoGridControl1.Undo();
+        }
 
         private void toolStripButton3_Click(object sender, EventArgs e)
         {
@@ -2100,10 +2330,10 @@ namespace AppVietSo
                 sheet.PrintSettings.Landscape = false;
             }
             FrmPrintPreview frmPrintPreview = new FrmPrintPreview(reoGridControl1.CurrentWorksheet, checkBox4.Checked, PageNumber);
-             frmPrintPreview.ShowDialog(this);
+            frmPrintPreview.ShowDialog(this);
 
             ReLoad(sender, e);
- 
+
 
         }
 
@@ -2202,18 +2432,18 @@ namespace AppVietSo
                     {
                         continue;
                     }
-                        var col = reoGridControl1.CurrentWorksheet.UsedRange.EndCol;
+                    var col = reoGridControl1.CurrentWorksheet.UsedRange.EndCol;
 
                     if (row != 0)
                     {
                         for (int i = 1; i < reoGridControl1.CurrentWorksheet.UsedRange.EndCol - 1; i++)
                         {
-                          
-                        
+
+
                             var celli = reoGridControl1.CurrentWorksheet.Cells[row, i];
                             setColorTag(reoGridControl1.CurrentWorksheet, celli, Color.LightGray);
                             celli.Data = "";
-                            
+
                         }
                         var cell = reoGridControl1.CurrentWorksheet.Cells[row, col - 1];
                         setColorTag(reoGridControl1.CurrentWorksheet, cell, Color.LightBlue);

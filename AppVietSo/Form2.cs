@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using unvell.ReoGrid;
+using unvell.ReoGrid.Actions;
 
 namespace AppVietSo
 {
@@ -54,6 +55,19 @@ namespace AppVietSo
                 m_bLayoutCalled = true;
                 this.Activate();
                 SplashScreen.CloseForm();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            var worksheet = reoGridControl1.CurrentWorksheet;
+            var cnt = worksheet.SelectionRange.Col;
+            var action = new InsertColumnsAction(cnt, 1);
+            reoGridControl1.DoAction(action);
+
+            for (int i = 0; i < worksheet.UsedRange.EndRow; i++)
+            {
+                worksheet.Cells[i, cnt].Data = "頂";
             }
         }
     }
