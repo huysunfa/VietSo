@@ -66,11 +66,11 @@ namespace AppVietSo
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cbCanChuViet = new System.Windows.Forms.ComboBox();
             this.lbVersion = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.InMaSo = new System.Windows.Forms.CheckBox();
             this.rbSongNgu = new System.Windows.Forms.RadioButton();
             this.button6 = new System.Windows.Forms.Button();
             this.rbChuViet = new System.Windows.Forms.RadioButton();
-            this.checkBox4 = new System.Windows.Forms.CheckBox();
+            this.KhoaCung = new System.Windows.Forms.CheckBox();
             this.rbChuHan = new System.Windows.Forms.RadioButton();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiênTichToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -78,7 +78,7 @@ namespace AppVietSo
             this.taiBôChưHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lâyDưLiêuMơiNhâtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.checkBox3 = new System.Windows.Forms.CheckBox();
+            this.ShowPageBreaks = new System.Windows.Forms.CheckBox();
             this.button11 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button8 = new System.Windows.Forms.Button();
@@ -414,14 +414,14 @@ namespace AppVietSo
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
             this.splitContainer1.Panel1.Controls.Add(this.cbCanChuViet);
             this.splitContainer1.Panel1.Controls.Add(this.lbVersion);
-            this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
+            this.splitContainer1.Panel1.Controls.Add(this.InMaSo);
             this.splitContainer1.Panel1.Controls.Add(this.rbSongNgu);
             this.splitContainer1.Panel1.Controls.Add(this.button6);
             this.splitContainer1.Panel1.Controls.Add(this.rbChuViet);
-            this.splitContainer1.Panel1.Controls.Add(this.checkBox4);
+            this.splitContainer1.Panel1.Controls.Add(this.KhoaCung);
             this.splitContainer1.Panel1.Controls.Add(this.rbChuHan);
             this.splitContainer1.Panel1.Controls.Add(this.menuStrip1);
-            this.splitContainer1.Panel1.Controls.Add(this.checkBox3);
+            this.splitContainer1.Panel1.Controls.Add(this.ShowPageBreaks);
             this.splitContainer1.Panel1.Controls.Add(this.button11);
             this.splitContainer1.Panel1.Controls.Add(this.button3);
             this.splitContainer1.Panel1.Controls.Add(this.button8);
@@ -471,17 +471,17 @@ namespace AppVietSo
             this.lbVersion.Text = "label1";
             this.lbVersion.Click += new System.EventHandler(this.label1_Click);
             // 
-            // checkBox1
+            // InMaSo
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(12, 12);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(104, 21);
-            this.checkBox1.TabIndex = 20;
-            this.checkBox1.Text = "Có in mã sớ";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.InMaSo.AutoSize = true;
+            this.InMaSo.Location = new System.Drawing.Point(12, 12);
+            this.InMaSo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InMaSo.Name = "InMaSo";
+            this.InMaSo.Size = new System.Drawing.Size(104, 21);
+            this.InMaSo.TabIndex = 20;
+            this.InMaSo.Text = "Có in mã sớ";
+            this.InMaSo.UseVisualStyleBackColor = true;
+            this.InMaSo.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // rbSongNgu
             // 
@@ -526,17 +526,17 @@ namespace AppVietSo
             this.rbChuViet.UseVisualStyleBackColor = true;
             this.rbChuViet.CheckedChanged += new System.EventHandler(this.button1_Click);
             // 
-            // checkBox4
+            // KhoaCung
             // 
-            this.checkBox4.AutoSize = true;
-            this.checkBox4.Enabled = false;
-            this.checkBox4.Location = new System.Drawing.Point(12, 239);
-            this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(98, 21);
-            this.checkBox4.TabIndex = 49;
-            this.checkBox4.Text = "Khoa cúng";
-            this.checkBox4.UseVisualStyleBackColor = true;
-            this.checkBox4.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
+            this.KhoaCung.AutoSize = true;
+            this.KhoaCung.Enabled = false;
+            this.KhoaCung.Location = new System.Drawing.Point(12, 239);
+            this.KhoaCung.Name = "KhoaCung";
+            this.KhoaCung.Size = new System.Drawing.Size(98, 21);
+            this.KhoaCung.TabIndex = 49;
+            this.KhoaCung.Text = "Khoa cúng";
+            this.KhoaCung.UseVisualStyleBackColor = true;
+            this.KhoaCung.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // rbChuHan
             // 
@@ -606,17 +606,17 @@ namespace AppVietSo
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Text = "Xóa cột không có nội dung";
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Click += new System.EventHandler(this.xóaCộtKhôngCóNộiDungToolStripMenuItem_Click);
             // 
-            // checkBox3
+            // ShowPageBreaks
             // 
-            this.checkBox3.AutoSize = true;
-            this.checkBox3.Location = new System.Drawing.Point(12, 213);
-            this.checkBox3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox3.Name = "checkBox3";
-            this.checkBox3.Size = new System.Drawing.Size(132, 21);
-            this.checkBox3.TabIndex = 30;
-            this.checkBox3.Text = "Hiện phân trang";
-            this.checkBox3.UseVisualStyleBackColor = true;
-            this.checkBox3.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.ShowPageBreaks.AutoSize = true;
+            this.ShowPageBreaks.Location = new System.Drawing.Point(12, 213);
+            this.ShowPageBreaks.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.ShowPageBreaks.Name = "ShowPageBreaks";
+            this.ShowPageBreaks.Size = new System.Drawing.Size(132, 21);
+            this.ShowPageBreaks.TabIndex = 30;
+            this.ShowPageBreaks.Text = "Hiện phân trang";
+            this.ShowPageBreaks.UseVisualStyleBackColor = true;
+            this.ShowPageBreaks.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
             // 
             // button11
             // 
@@ -1344,17 +1344,17 @@ namespace AppVietSo
         private Label lbVersion;
         private ToolStripButton toolStripButton4;
         private Button button11;
-        private CheckBox checkBox3;
+        private CheckBox ShowPageBreaks;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem tiênTichToolStripMenuItem;
         private ToolStripMenuItem mơLongSơTaiVêToolStripMenuItem;
         private ToolStripMenuItem taiBôChưHanToolStripMenuItem;
         private ToolStripMenuItem lâyDưLiêuMơiNhâtToolStripMenuItem;
         private ToolStripMenuItem xóaCộtKhôngCóNộiDungToolStripMenuItem;
-        private CheckBox checkBox4;
+        private CheckBox KhoaCung;
         private Button button6;
         private ComboBox cbCanChuViet;
-        private CheckBox checkBox1;
+        private CheckBox InMaSo;
         private RadioButton rbSongNgu;
         private RadioButton rbChuViet;
         private RadioButton rbChuHan;

@@ -40,8 +40,6 @@ namespace AppVietSo
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSetupMultiPrint));
             this.dgvParent = new System.Windows.Forms.DataGridView();
-            this.LoaiSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
             this.dgvPerson = new System.Windows.Forms.DataGridView();
             this.DanhXung = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -71,7 +69,7 @@ namespace AppVietSo
             this.nmrHeight = new System.Windows.Forms.NumericUpDown();
             this.nmrWidth = new System.Windows.Forms.NumericUpDown();
             this.cbCanChuViet = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.InMaSo = new System.Windows.Forms.CheckBox();
             this.rbSongNgu = new System.Windows.Forms.RadioButton();
             this.rbChuViet = new System.Windows.Forms.RadioButton();
             this.rbChuHan = new System.Windows.Forms.RadioButton();
@@ -89,6 +87,11 @@ namespace AppVietSo
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xemTrướcBảnINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LoaiSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.View = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerson)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -105,6 +108,7 @@ namespace AppVietSo
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvParent
@@ -123,8 +127,9 @@ namespace AppVietSo
             this.dgvParent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvParent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.LoaiSo,
-            this.FileName});
-            this.dgvParent.Dock = System.Windows.Forms.DockStyle.Left;
+            this.FileName,
+            this.View});
+            this.dgvParent.ContextMenuStrip = this.contextMenuStrip1;
             this.dgvParent.Location = new System.Drawing.Point(0, 0);
             this.dgvParent.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
             this.dgvParent.Name = "dgvParent";
@@ -134,32 +139,15 @@ namespace AppVietSo
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvParent.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvParent.RowTemplate.Height = 35;
-            this.dgvParent.Size = new System.Drawing.Size(355, 666);
+            this.dgvParent.Size = new System.Drawing.Size(513, 324);
             this.dgvParent.TabIndex = 5;
-            // 
-            // LoaiSo
-            // 
-            this.LoaiSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LoaiSo.DataPropertyName = "LoaiSo";
-            this.LoaiSo.HeaderText = "Lòng sớ sẽ IN";
-            this.LoaiSo.MinimumWidth = 6;
-            this.LoaiSo.Name = "LoaiSo";
-            this.LoaiSo.ReadOnly = true;
-            // 
-            // FileName
-            // 
-            this.FileName.HeaderText = "Column1";
-            this.FileName.MinimumWidth = 6;
-            this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
-            this.FileName.Visible = false;
-            this.FileName.Width = 125;
+            this.dgvParent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParent_CellContentClick);
             // 
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.Gold;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(355, 0);
+            this.button1.Location = new System.Drawing.Point(536, 0);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(355, 34);
             this.button1.TabIndex = 7;
@@ -195,7 +183,7 @@ namespace AppVietSo
             dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPerson.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvPerson.Location = new System.Drawing.Point(366, 41);
+            this.dgvPerson.Location = new System.Drawing.Point(536, 41);
             this.dgvPerson.Margin = new System.Windows.Forms.Padding(4);
             this.dgvPerson.MultiSelect = false;
             this.dgvPerson.Name = "dgvPerson";
@@ -209,7 +197,7 @@ namespace AppVietSo
             this.dgvPerson.RowHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvPerson.RowHeadersWidth = 51;
             this.dgvPerson.RowTemplate.Height = 31;
-            this.dgvPerson.Size = new System.Drawing.Size(1205, 283);
+            this.dgvPerson.Size = new System.Drawing.Size(733, 283);
             this.dgvPerson.TabIndex = 8;
             // 
             // DanhXung
@@ -262,7 +250,7 @@ namespace AppVietSo
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(1211, 470);
+            this.label12.Location = new System.Drawing.Point(849, 461);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(68, 20);
             this.label12.TabIndex = 27;
@@ -272,7 +260,7 @@ namespace AppVietSo
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(895, 337);
+            this.label1.Location = new System.Drawing.Point(533, 328);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(230, 17);
             this.label1.TabIndex = 24;
@@ -281,7 +269,7 @@ namespace AppVietSo
             // btnPrintSetting
             // 
             this.btnPrintSetting.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPrintSetting.Location = new System.Drawing.Point(1215, 499);
+            this.btnPrintSetting.Location = new System.Drawing.Point(853, 490);
             this.btnPrintSetting.Name = "btnPrintSetting";
             this.btnPrintSetting.Size = new System.Drawing.Size(164, 28);
             this.btnPrintSetting.TabIndex = 22;
@@ -300,7 +288,7 @@ namespace AppVietSo
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.nmrTop);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(898, 473);
+            this.groupBox2.Location = new System.Drawing.Point(536, 464);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(287, 158);
             this.groupBox2.TabIndex = 23;
@@ -396,7 +384,7 @@ namespace AppVietSo
             this.groupBox1.Controls.Add(this.nmrHeight);
             this.groupBox1.Controls.Add(this.nmrWidth);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(898, 359);
+            this.groupBox1.Location = new System.Drawing.Point(536, 350);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(481, 100);
             this.groupBox1.TabIndex = 21;
@@ -494,31 +482,31 @@ namespace AppVietSo
             "DƯỚI",
             "TRÁI",
             "PHẢI"});
-            this.cbCanChuViet.Location = new System.Drawing.Point(504, 598);
+            this.cbCanChuViet.Location = new System.Drawing.Point(152, 583);
             this.cbCanChuViet.Margin = new System.Windows.Forms.Padding(4);
             this.cbCanChuViet.Name = "cbCanChuViet";
             this.cbCanChuViet.Size = new System.Drawing.Size(140, 33);
             this.cbCanChuViet.TabIndex = 32;
             // 
-            // checkBox1
+            // InMaSo
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Checked = true;
-            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.checkBox1.Location = new System.Drawing.Point(379, 445);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(138, 29);
-            this.checkBox1.TabIndex = 31;
-            this.checkBox1.Text = "Có in mã sớ";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.InMaSo.AutoSize = true;
+            this.InMaSo.Checked = true;
+            this.InMaSo.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.InMaSo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InMaSo.Location = new System.Drawing.Point(27, 430);
+            this.InMaSo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.InMaSo.Name = "InMaSo";
+            this.InMaSo.Size = new System.Drawing.Size(138, 29);
+            this.InMaSo.TabIndex = 31;
+            this.InMaSo.Text = "Có in mã sớ";
+            this.InMaSo.UseVisualStyleBackColor = true;
             // 
             // rbSongNgu
             // 
             this.rbSongNgu.AutoSize = true;
             this.rbSongNgu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbSongNgu.Location = new System.Drawing.Point(379, 599);
+            this.rbSongNgu.Location = new System.Drawing.Point(27, 584);
             this.rbSongNgu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbSongNgu.Name = "rbSongNgu";
             this.rbSongNgu.Size = new System.Drawing.Size(118, 29);
@@ -531,7 +519,7 @@ namespace AppVietSo
             // 
             this.rbChuViet.AutoSize = true;
             this.rbChuViet.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbChuViet.Location = new System.Drawing.Point(379, 494);
+            this.rbChuViet.Location = new System.Drawing.Point(27, 479);
             this.rbChuViet.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbChuViet.Name = "rbChuViet";
             this.rbChuViet.Size = new System.Drawing.Size(105, 29);
@@ -544,7 +532,7 @@ namespace AppVietSo
             this.rbChuHan.AutoSize = true;
             this.rbChuHan.Checked = true;
             this.rbChuHan.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbChuHan.Location = new System.Drawing.Point(379, 547);
+            this.rbChuHan.Location = new System.Drawing.Point(27, 532);
             this.rbChuHan.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rbChuHan.Name = "rbChuHan";
             this.rbChuHan.Size = new System.Drawing.Size(108, 29);
@@ -565,7 +553,7 @@ namespace AppVietSo
             this.cbfnameVN,
             this.cbfsizeVN,
             this.cbfstyleVN});
-            this.bindingNavigator2.Location = new System.Drawing.Point(360, 376);
+            this.bindingNavigator2.Location = new System.Drawing.Point(9, 372);
             this.bindingNavigator2.MoveFirstItem = null;
             this.bindingNavigator2.MoveLastItem = null;
             this.bindingNavigator2.MoveNextItem = null;
@@ -908,7 +896,7 @@ namespace AppVietSo
             this.toolStripSeparator1,
             this.cbfsizeCN,
             this.cbfstyleCN});
-            this.bindingNavigator1.Location = new System.Drawing.Point(360, 328);
+            this.bindingNavigator1.Location = new System.Drawing.Point(9, 324);
             this.bindingNavigator1.MoveFirstItem = null;
             this.bindingNavigator1.MoveLastItem = null;
             this.bindingNavigator1.MoveNextItem = null;
@@ -938,7 +926,7 @@ namespace AppVietSo
             // 
             this.groupBox4.Controls.Add(this.numericUpDown1);
             this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox4.Location = new System.Drawing.Point(1215, 563);
+            this.groupBox4.Location = new System.Drawing.Point(853, 554);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(164, 60);
             this.groupBox4.TabIndex = 45;
@@ -952,7 +940,7 @@ namespace AppVietSo
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Image = global::AppVietSo.Properties.Resources.print;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(1385, 542);
+            this.button2.Location = new System.Drawing.Point(1083, 497);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(186, 119);
             this.button2.TabIndex = 46;
@@ -961,17 +949,61 @@ namespace AppVietSo
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xemTrướcBảnINToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(196, 28);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // xemTrướcBảnINToolStripMenuItem
+            // 
+            this.xemTrướcBảnINToolStripMenuItem.Name = "xemTrướcBảnINToolStripMenuItem";
+            this.xemTrướcBảnINToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
+            this.xemTrướcBảnINToolStripMenuItem.Text = "Xem trước bản IN";
+            this.xemTrướcBảnINToolStripMenuItem.Click += new System.EventHandler(this.xemTrướcBảnINToolStripMenuItem_Click);
+            // 
+            // LoaiSo
+            // 
+            this.LoaiSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LoaiSo.DataPropertyName = "LoaiSo";
+            this.LoaiSo.HeaderText = "Lòng sớ sẽ IN";
+            this.LoaiSo.MinimumWidth = 6;
+            this.LoaiSo.Name = "LoaiSo";
+            this.LoaiSo.ReadOnly = true;
+            // 
+            // FileName
+            // 
+            this.FileName.HeaderText = "Column1";
+            this.FileName.MinimumWidth = 6;
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Visible = false;
+            this.FileName.Width = 125;
+            // 
+            // View
+            // 
+            this.View.HeaderText = "Xem trước";
+            this.View.MinimumWidth = 6;
+            this.View.Name = "View";
+            this.View.ReadOnly = true;
+            this.View.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.View.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.View.Width = 125;
+            // 
             // frmSetupMultiPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1573, 666);
+            this.ClientSize = new System.Drawing.Size(1281, 666);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.bindingNavigator2);
             this.Controls.Add(this.bindingNavigator1);
             this.Controls.Add(this.cbCanChuViet);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.InMaSo);
             this.Controls.Add(this.rbSongNgu);
             this.Controls.Add(this.rbChuViet);
             this.Controls.Add(this.rbChuHan);
@@ -1007,6 +1039,7 @@ namespace AppVietSo
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1015,8 +1048,6 @@ namespace AppVietSo
         #endregion
 
         private System.Windows.Forms.DataGridView dgvParent;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LoaiSo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridView dgvPerson;
         private System.Windows.Forms.DataGridViewTextBoxColumn DanhXung;
@@ -1046,7 +1077,7 @@ namespace AppVietSo
         private System.Windows.Forms.NumericUpDown nmrHeight;
         private System.Windows.Forms.NumericUpDown nmrWidth;
         private System.Windows.Forms.ComboBox cbCanChuViet;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox InMaSo;
         private System.Windows.Forms.RadioButton rbSongNgu;
         private System.Windows.Forms.RadioButton rbChuViet;
         private System.Windows.Forms.RadioButton rbChuHan;
@@ -1064,5 +1095,10 @@ namespace AppVietSo
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem xemTrướcBảnINToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LoaiSo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FileName;
+        private System.Windows.Forms.DataGridViewButtonColumn View;
     }
 }
