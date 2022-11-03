@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using unvell.ReoGrid;
+using unvell.ReoGrid.Print;
 
 namespace AppVietSo
 {
@@ -28,7 +29,7 @@ namespace AppVietSo
         {
             foreach (var item in ListPrint)
             {
-                dgvParent.Rows.Add(item.TenSo, item.FileName,"Xem");
+                dgvParent.Rows.Add(item.TenSo, item.FileName, "Xem");
             }
             loadTinchu();
             LoadPageSize();
@@ -68,7 +69,7 @@ namespace AppVietSo
         {
             PrinterSettings settings = new PrinterSettings();
             this.cbxPaperSize.Items.Clear();
-            foreach (PaperSize paperSize in settings.PaperSizes)
+            foreach (System.Drawing.Printing.PaperSize paperSize in settings.PaperSizes)
             {
                 ComboboxItem item = new ComboboxItem();
                 item.Text = paperSize.PaperName;
@@ -148,7 +149,7 @@ namespace AppVietSo
             {
                 if (this.cbxPaperSize.SelectedItem != null)
                 {
-                    PaperSize paperSize = (this.cbxPaperSize.SelectedItem as ComboboxItem).Value as PaperSize;
+                    System.Drawing.Printing.PaperSize paperSize = (this.cbxPaperSize.SelectedItem as ComboboxItem).Value as System.Drawing.Printing.PaperSize;
                     int height = paperSize.Height;
                     int width = paperSize.Width;
                     this.setSize(this.toMM(height), this.toMM(width));
@@ -161,8 +162,74 @@ namespace AppVietSo
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            //    MessageBox.Show("Tính năng đang update ...........");
-          
+            foreach (DataGridViewRow cur in dgvParent.Rows)
+            {
+                var FileName = cur.Cells["FileName"].Value + "";
+                var TenSo = cur.Cells["LoaiSo"].Value + "";
+                var item = new LongSo() { FileName = FileName, TenSo = TenSo, };
+                {
+                    Util.NameLongSoHienTai = "FileUpload/" + item.NameFileOnly;
+                    Models.LongSo.loadDataLongSo();
+
+                    System.Drawing.Printing.PaperSize paperSize = (this.cbxPaperSize.SelectedItem as ComboboxItem).Value as System.Drawing.Printing.PaperSize;
+                    Util.LongSoHienTai.paperSize = paperSize;
+                    Util.LongSoHienTai.PageWidth = paperSize.Height;
+                    Util.LongSoHienTai.PageHeight = paperSize.Width;
+                    Util.LongSoHienTai.PagePaddingBottom = (float)nmrBottom.Value;
+                    Util.LongSoHienTai.PagePaddingTop = (float)nmrTop.Value;
+                    Util.LongSoHienTai.PagePaddingLeft = (float)nmrLeft.Value;
+                    Util.LongSoHienTai.PagePaddingRight = (float)nmrRight.Value;
+
+
+                    var reogrid = new unvell.ReoGrid.ReoGridControl();
+                    reogrid.CreateWorksheet("AXX");
+                    ReoGridExtentions.ReLoad(reogrid, rbSongNgu.Checked, cbCanChuViet.Text,
+                        InMaSo.Checked,
+                             false,
+                  rbChuViet.Checked,
+                  rbChuHan.Checked,
+                   false,
+                    false,
+                    cbfnameCN.Text,
+                  cbfstyleCN.Text,
+                  cbfsizeCN.Text,
+                  cbfnameVN.Text,
+                  cbfstyleVN.Text,
+                  cbfsizeVN.Text
+                        );
+
+                    reogrid.CurrentWorksheet.SetRangeStyles(reogrid.CurrentWorksheet.UsedRange, new WorksheetRangeStyle
+                    {
+                        // style item flag
+                        Flag = PlainStyleFlag.BackColor,
+                        // style item
+                        BackColor = Color.White,
+                    });
+                    var worksheet_0 = reogrid.CurrentWorksheet;
+                    worksheet_0.SetColumnsWidth(0, 1, 0);
+                    worksheet_0.SetColumnsWidth(worksheet_0.UsedRange.Cols, 1, 0);
+                    worksheet_0.SetRowsHeight(0, 1, 0);
+                    worksheet_0.SetRowsHeight(worksheet_0.UsedRange.Rows, 1, 0);
+                    var top = Util.LongSoHienTai.PagePaddingTop;
+                    var bottom = Util.LongSoHienTai.PagePaddingBottom;
+                    var left = Util.LongSoHienTai.PagePaddingLeft;
+                    var right = Util.LongSoHienTai.PagePaddingRight;
+
+                    top = top / 25.4f;
+                    bottom = bottom / 25.4f;
+                    left = left / 25.4f;
+                    right = right / 25.4f;
+
+                    worksheet_0.PrintSettings.Margins = new PageMargins(top, bottom, left, right);
+                    worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
+                    ReoGridExtentions.SetOnePage2(worksheet_0);
+
+
+                    var session = reogrid.CurrentWorksheet.CreatePrintSession();
+                    session.PrintDocument.DocumentName = item.TenSo;
+                     session.Print();
+                }
+            }
         }
 
         private void xemTrướcBảnINToolStripMenuItem_Click(object sender, EventArgs e)
@@ -171,12 +238,12 @@ namespace AppVietSo
 
             var FileName = cur.Cells["FileName"].Value + "";
             var TenSo = cur.Cells["LoaiSo"].Value + "";
-             var item = new LongSo() { FileName= FileName, TenSo= TenSo, };
+            var item = new LongSo() { FileName = FileName, TenSo = TenSo, };
             {
                 Util.NameLongSoHienTai = "FileUpload/" + item.NameFileOnly;
                 Models.LongSo.loadDataLongSo();
 
-                PaperSize paperSize = (this.cbxPaperSize.SelectedItem as ComboboxItem).Value as PaperSize;
+                System.Drawing.Printing.PaperSize paperSize = (this.cbxPaperSize.SelectedItem as ComboboxItem).Value as System.Drawing.Printing.PaperSize;
                 Util.LongSoHienTai.paperSize = paperSize;
                 Util.LongSoHienTai.PageWidth = paperSize.Height;
                 Util.LongSoHienTai.PageHeight = paperSize.Width;

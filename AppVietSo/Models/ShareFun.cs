@@ -133,6 +133,20 @@ namespace AppVietSo.Models
                 height = height *tile;
               sheet.SetRowsHeight(1, RowUse, (ushort)height);
 
+                var freeW = num - totalwith;
+                int Col = 1;
+                while (freeW>0)
+                {
+                    if (Col==ColUse)
+                    {
+                        Col = 1;
+                    }
+                    var w = sheet.GetColumnWidth(Col) +1;
+                    sheet.SetColumnsWidth(col,1,(ushort) w);
+                    freeW = freeW - 1;
+                    Col++;
+                }   
+              
             }
             catch (Exception ex)
             {

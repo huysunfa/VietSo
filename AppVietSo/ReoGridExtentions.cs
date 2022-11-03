@@ -218,6 +218,18 @@ namespace AppVietSo
             TotalWidth += worksheet.PrintSettings.Margins.Right;
             return TotalWidth;
         }
+   public static float GetTotalHeight(this Worksheet worksheet)
+        {
+            float TotalWidth = 0;
+            for (int i = 0; i <= worksheet.UsedRange.EndRow; i++)
+            {
+                var height = worksheet.GetRowHeight(i);
+                TotalWidth += height;
+            }
+            TotalWidth += worksheet.PrintSettings.Margins.Top;
+            TotalWidth += worksheet.PrintSettings.Margins.Bottom;
+            return TotalWidth;
+        }
 
         public static void SetOnePage(this Worksheet worksheet)
         {
