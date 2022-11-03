@@ -401,17 +401,17 @@ namespace AppVietSo
             {
 
                 var PosText = cbCanChuViet.Text;
-                if (PosText == "PHẢI")
+                if (PosText == "DƯỚI")
                 {
                     var action = new InsertRowsAction(i - 1, 2);
                     reoGridControl1.DoAction(action);
                 }
-                if (PosText == "TRÁI")
+                if (PosText == "TRÊN")
                 {
                     var action = new InsertRowsAction(i, 2);
                     reoGridControl1.DoAction(action);
                 }
-                if (PosText == "TRÊN" || PosText == "DƯỚI")
+                if (PosText == "PHẢI" || PosText == "TRÁI")
                 {
                     var action = new InsertRowsAction(i, 1);
                     reoGridControl1.DoAction(action);
@@ -441,32 +441,32 @@ namespace AppVietSo
                 if (rbSongNgu.Checked)
                 {
                     var PosText = cbCanChuViet.Text;
-                    if (PosText == "PHẢI")
+                    if (PosText == "DƯỚI")
                     {
-                        worksheet.Cells[i, cnt - 1].DataFormatArgs = worksheet.Cells[i, cnt + 1].DataFormatArgs;
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt + 2].DataFormatArgs;
+                        worksheet.Cells[i - 1, cnt].DataFormatArgs = worksheet.Cells[i + 1, cnt].DataFormatArgs;
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i + 2, cnt].DataFormatArgs;
 
-                        var item = worksheet.Cells[i, cnt - 1];
+                        var item = worksheet.Cells[i - 1, cnt];
                         ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
 
                         var item2 = worksheet.Cells[i, cnt];
                         ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
 
                     }
-                    if (PosText == "TRÁI")
+                    if (PosText == "TRÊN")
                     {
-                        worksheet.Cells[i, cnt + 1].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 2].DataFormatArgs;
+                        worksheet.Cells[i + 1, cnt].DataFormatArgs = worksheet.Cells[i - 1, cnt].DataFormatArgs;
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i - 2, cnt].DataFormatArgs;
 
                         var item = worksheet.Cells[i, cnt];
                         ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
 
-                        var item2 = worksheet.Cells[i, cnt + 1];
+                        var item2 = worksheet.Cells[i + 1, cnt];
                         ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
                     }
-                    if (PosText == "TRÊN" || PosText == "DƯỚI")
+                    if (PosText == "PHẢI" || PosText == "TRÁI")
                     {
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
+                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i - 1, cnt].DataFormatArgs;
                         var item = worksheet.Cells[i, cnt];
                         ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
                     }
