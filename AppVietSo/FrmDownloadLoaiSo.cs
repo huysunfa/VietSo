@@ -290,8 +290,8 @@ namespace AppVietSo
 
         private void button1_Click(object sender, EventArgs e)
         {
-         
-            var ListPrintDownload = new List<String>();
+
+            var ListPrintDownload = new List<LongSo>();
             var ListPrint = new List<LongSo>();
             foreach (DataGridViewRow dataGridViewRow in dgvLongSo.Rows)
             {
@@ -301,44 +301,45 @@ namespace AppVietSo
                     var value = dataGridViewRow.Cells["FileName"].Value.ToString();
                     var FilePath = System.AppDomain.CurrentDomain.BaseDirectory + "/Data";
 
-                    value = value.Replace("\\", "/");
-                    if (!File.Exists(FilePath + value))
-                    {
-                        ListPrintDownload.Add(value);
-                    }
-                    object value2 = dataGridViewRow.Cells["TenSo"].Value;
-                    string FName = dataGridViewRow.Cells["FileName"].Value.ToString();
-                    //    FName = CovertFileName(FName);
-                    string TenSo = dataGridViewRow.Cells["TenSo"].Value.ToString();
+                  
+                     string FName = dataGridViewRow.Cells["FileName"].Value.ToString();
+                     string TenSo = dataGridViewRow.Cells["TenSo"].Value.ToString();
 
+                    value = value.Replace("\\", "/");
                     var LSo = new LongSo();
                     LSo.FileName = value;
                     LSo.TenSo = TenSo;
-                    Util.LongSoHienTai = null;
-                    Util.NameLongSoHienTai = FName;
-
+                  
                     ListPrint.Add(LSo);
 
+                    if (!File.Exists(FilePath + value))
+                    {
+                        ListPrintDownload.Add(LSo);
+                    }
                 }
 
             }
 
             if (ListPrintDownload.Count > 0)
             {
-                if (MessageBox.Show("Có " + ListPrintDownload.Count + " chưa được Thầy/Cô tải về, Thầy/Cô có muốn tải các sớ này về máy không ?", "Xác nhận tải", MessageBoxButtons.YesNo, MessageBoxIcon.Asterisk) == DialogResult.Yes)
-                {
-                    foreach (var item in ListPrintDownload)
-                    {
-                        var value = item.Replace("\\", "/");
-                        ExchangeLongSo.downloadFile(value);
+                var frmconfirm = new frmConfirmDownload(ListPrintDownload);
+                var dialog = frmconfirm.ShowDialog();
 
-                    }
+                if (dialog == DialogResult.OK)
+                {
+                 
                 }
                 else
                 {
                     MessageBox.Show("Lòng sớ cần in chưa được tải về, không thể tiếp tục IN sớ !!");
                     return;
                 }
+            }
+            if (ListPrint.Count==0)
+            {
+                MessageBox.Show("Vui lòng chọn ít nhất 1 sớ để IN");
+                
+                return;
             }
             var frmPrint = new frmSetupMultiPrint(ListPrint);
             frmPrint.ShowDialog();

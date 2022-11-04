@@ -40,6 +40,11 @@ namespace AppVietSo
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSetupMultiPrint));
             this.dgvParent = new System.Windows.Forms.DataGridView();
+            this.LoaiSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.View = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xemTrướcBảnINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button1 = new System.Windows.Forms.Button();
             this.dgvPerson = new System.Windows.Forms.DataGridView();
             this.DanhXung = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -87,12 +92,8 @@ namespace AppVietSo
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.xemTrướcBảnINToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.LoaiSo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.View = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvParent)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerson)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nmrLeft)).BeginInit();
@@ -108,7 +109,6 @@ namespace AppVietSo
             this.bindingNavigator1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.groupBox4.SuspendLayout();
-            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvParent
@@ -142,6 +142,50 @@ namespace AppVietSo
             this.dgvParent.Size = new System.Drawing.Size(513, 324);
             this.dgvParent.TabIndex = 5;
             this.dgvParent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvParent_CellContentClick);
+            // 
+            // LoaiSo
+            // 
+            this.LoaiSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.LoaiSo.DataPropertyName = "LoaiSo";
+            this.LoaiSo.HeaderText = "Lòng sớ sẽ IN";
+            this.LoaiSo.MinimumWidth = 6;
+            this.LoaiSo.Name = "LoaiSo";
+            this.LoaiSo.ReadOnly = true;
+            // 
+            // FileName
+            // 
+            this.FileName.HeaderText = "Column1";
+            this.FileName.MinimumWidth = 6;
+            this.FileName.Name = "FileName";
+            this.FileName.ReadOnly = true;
+            this.FileName.Visible = false;
+            this.FileName.Width = 125;
+            // 
+            // View
+            // 
+            this.View.HeaderText = "Xem trước";
+            this.View.MinimumWidth = 6;
+            this.View.Name = "View";
+            this.View.ReadOnly = true;
+            this.View.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.View.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.View.Width = 125;
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xemTrướcBảnINToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(196, 28);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // xemTrướcBảnINToolStripMenuItem
+            // 
+            this.xemTrướcBảnINToolStripMenuItem.Name = "xemTrướcBảnINToolStripMenuItem";
+            this.xemTrướcBảnINToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
+            this.xemTrướcBảnINToolStripMenuItem.Text = "Xem trước bản IN";
+            this.xemTrướcBảnINToolStripMenuItem.Click += new System.EventHandler(this.xemTrướcBảnINToolStripMenuItem_Click);
             // 
             // button1
             // 
@@ -949,50 +993,6 @@ namespace AppVietSo
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xemTrướcBảnINToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(196, 28);
-            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
-            // 
-            // xemTrướcBảnINToolStripMenuItem
-            // 
-            this.xemTrướcBảnINToolStripMenuItem.Name = "xemTrướcBảnINToolStripMenuItem";
-            this.xemTrướcBảnINToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
-            this.xemTrướcBảnINToolStripMenuItem.Text = "Xem trước bản IN";
-            this.xemTrướcBảnINToolStripMenuItem.Click += new System.EventHandler(this.xemTrướcBảnINToolStripMenuItem_Click);
-            // 
-            // LoaiSo
-            // 
-            this.LoaiSo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.LoaiSo.DataPropertyName = "LoaiSo";
-            this.LoaiSo.HeaderText = "Lòng sớ sẽ IN";
-            this.LoaiSo.MinimumWidth = 6;
-            this.LoaiSo.Name = "LoaiSo";
-            this.LoaiSo.ReadOnly = true;
-            // 
-            // FileName
-            // 
-            this.FileName.HeaderText = "Column1";
-            this.FileName.MinimumWidth = 6;
-            this.FileName.Name = "FileName";
-            this.FileName.ReadOnly = true;
-            this.FileName.Visible = false;
-            this.FileName.Width = 125;
-            // 
-            // View
-            // 
-            this.View.HeaderText = "Xem trước";
-            this.View.MinimumWidth = 6;
-            this.View.Name = "View";
-            this.View.ReadOnly = true;
-            this.View.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.View.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.View.Width = 125;
-            // 
             // frmSetupMultiPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1015,11 +1015,14 @@ namespace AppVietSo
             this.Controls.Add(this.dgvPerson);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dgvParent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSetupMultiPrint";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "In nhiều sớ";
             this.Load += new System.EventHandler(this.frmSetupMultiPrint_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvParent)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPerson)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -1039,7 +1042,6 @@ namespace AppVietSo
             this.bindingNavigator1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.groupBox4.ResumeLayout(false);
-            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
