@@ -206,10 +206,7 @@ namespace AppVietSo
                         BackColor = Color.White,
                     });
                     var worksheet_0 = reogrid.CurrentWorksheet;
-                    worksheet_0.SetColumnsWidth(0, 1, 0);
-                    worksheet_0.SetColumnsWidth(worksheet_0.UsedRange.Cols, 1, 0);
-                    worksheet_0.SetRowsHeight(0, 1, 0);
-                    worksheet_0.SetRowsHeight(worksheet_0.UsedRange.Rows, 1, 0);
+
                     var top = Util.LongSoHienTai.PagePaddingTop;
                     var bottom = Util.LongSoHienTai.PagePaddingBottom;
                     var left = Util.LongSoHienTai.PagePaddingLeft;
@@ -219,15 +216,38 @@ namespace AppVietSo
                     bottom = bottom / 25.4f;
                     left = left / 25.4f;
                     right = right / 25.4f;
-
+                    worksheet_0.SetColumnsWidth(0, 1, 0);
+                    worksheet_0.SetColumnsWidth(worksheet_0.UsedRange.Cols, 1, 0);
+                    worksheet_0.SetRowsHeight(0, 1, 0);
+                    worksheet_0.SetRowsHeight(worksheet_0.UsedRange.Rows, 1, 0);
                     worksheet_0.PrintSettings.Margins = new PageMargins(top, bottom, left, right);
-                    worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
-                    ReoGridExtentions.SetOnePage2(worksheet_0);
+                  //  worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
+                    PageSettings pageSettings = reogrid.CurrentWorksheet.PrintSettings.CreateSystemPageSettings();
+                    pageSettings.PaperSize = paperSize;
+
+                    pageSettings.Landscape = true;
+                //    LongSo.saveToFile();
+                    worksheet_0.PrintSettings.ApplySystemPageSettings(pageSettings);
+
 
 
                     var session = reogrid.CurrentWorksheet.CreatePrintSession();
                     session.PrintDocument.DocumentName = item.TenSo;
-                     session.Print();
+                    session.PrintDocument.DefaultPageSettings.PaperSize = pageSettings.PaperSize;
+                    session.PrintDocument.DefaultPageSettings.Landscape = pageSettings.Landscape;
+                    session.PrintDocument.DefaultPageSettings.Margins = pageSettings.Margins;
+                    
+                    session.PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = pageSettings.PaperSize;
+                    session.PrintDocument.PrinterSettings.DefaultPageSettings.Landscape = pageSettings.Landscape;
+                    session.PrintDocument.PrinterSettings.DefaultPageSettings.Margins = pageSettings.Margins;
+                    ReoGridExtentions.SetOnePage2(worksheet_0);
+
+                    session.Print();
+                   
+                    //PrintPreviewDialog frmlog = new PrintPreviewDialog();
+                    //frmlog.Document = session.PrintDocument;
+                    //frmlog.Bounds = Screen.PrimaryScreen.Bounds;
+                    //frmlog.ShowDialog();
                 }
             }
         }
