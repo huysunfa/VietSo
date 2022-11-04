@@ -98,8 +98,8 @@ namespace AppVietSo
             {
                 setText(Row, Col, bm, bm);
             }
-            //   RenderStyle(item.Address);
-        }
+            SaveData();
+         }
 
         #endregion
 
@@ -182,8 +182,7 @@ namespace AppVietSo
             SaveData();
         }
 
-        // Token: 0x060000D0 RID: 208 RVA: 0x0000E6B4 File Offset: 0x0000C8B4
-        private void TSMItemAddRow_Click(object sender, global::System.EventArgs e)
+         private void TSMItemAddRow_Click(object sender, global::System.EventArgs e)
         {
 
             var worksheet = reoGridControl1.CurrentWorksheet;
@@ -577,6 +576,7 @@ namespace AppVietSo
             {
                 worksheet.AutoFitColumnWidth(Col, true);
             }
+            ctextMenuS.Close();
         }
 
         // Token: 0x060000DD RID: 221 RVA: 0x0000E90C File Offset: 0x0000CB0C
@@ -602,6 +602,8 @@ namespace AppVietSo
             {
                 worksheet.AutoFitColumnWidth(Col, true);
             }
+            ctextMenuS.Close();
+
         }
 
         private void TSMItemAddTenHuongLinh_Click(object sender, global::System.EventArgs e)
@@ -1107,6 +1109,8 @@ namespace AppVietSo
 
         public void ReLoad(object sender, EventArgs e)
         {
+            SaveData();
+
             ShowFontChange();
             Models.LongSo.loadDataLongSo();
             loadSettingFont();
@@ -1388,6 +1392,11 @@ namespace AppVietSo
 
         public void SaveData()
         {
+
+            if (reoGridControl1.CurrentWorksheet.UsedRange.Rows<=1)
+            {
+                return;
+            }
             editting = false;
             LogOutput("SaveData");
             if (!rbSongNgu.Checked)
@@ -1851,6 +1860,11 @@ namespace AppVietSo
         }
 
         private void cbfnameCN_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
         {
 
         }
