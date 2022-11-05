@@ -218,7 +218,7 @@ namespace AppVietSo
             TotalWidth += worksheet.PrintSettings.Margins.Right;
             return TotalWidth;
         }
-   public static float GetTotalHeight(this Worksheet worksheet)
+        public static float GetTotalHeight(this Worksheet worksheet)
         {
             float TotalWidth = 0;
             for (int i = 0; i <= worksheet.UsedRange.EndRow; i++)
@@ -368,7 +368,7 @@ namespace AppVietSo
 
                 worksheet.ResetAllPageBreaks();
 
-                 var MaxRow = worksheet.UsedRange.Rows;
+                var MaxRow = worksheet.UsedRange.Rows;
                 var MaxCol = worksheet.UsedRange.Cols;
                 var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
                 var MinRow = worksheet.RowPageBreaks.Min(v => v);
@@ -382,8 +382,8 @@ namespace AppVietSo
                     {
                         worksheet.ChangeColumnPageBreak(item, MaxCol, false);
                     }
-                }     
-                
+                }
+
                 foreach (var item in worksheet.RowPageBreaks.ToList())
                 {
                     if (item == MaxRow || item == MinRow)
@@ -396,7 +396,7 @@ namespace AppVietSo
                     }
                 }
             }
-         
+
 
 
         }
@@ -433,13 +433,12 @@ namespace AppVietSo
         {
 
             var worksheet = reoGrid.CurrentWorksheet;
-           // Models.LongSo.loadDataLongSo();
+            // Models.LongSo.loadDataLongSo();
             var Data = Util.LongSoHienTai;
             if (Data == null || Data.LgSo == null || Data.LgSo.Count == 0)
             {
                 return;
             }
-
             worksheet.Reset();
             reoGrid.ClearActionHistory();
             worksheet.PrintSettings.Margins = new PageMargins(0);
@@ -575,7 +574,7 @@ namespace AppVietSo
                 row.Tag = cell;
 
 
-                if (k > 0)
+                if (k > 0 && row.DataFormatArgs.CheckSkip() == false)
                 {
                     row.DataFormatArgs = "NO_" + DataFormatArgs;
                 }
@@ -667,7 +666,7 @@ namespace AppVietSo
                     {
                         if (item.DataFormatArgs.CheckNo())
                         {
-                            item.IsReadOnly = true;
+                            //  item.IsReadOnly = true;
                             continue;
                         }
 
@@ -828,87 +827,162 @@ namespace AppVietSo
             var songngu = rbSongNgu;
             var PosText = cbCanChuViet;
 
-            foreach (var item in Util.LongSoHienTai.LgSo.OrderBy(z => z.Key))
+            var position = worksheet.UsedRange;
+            var LgSo = Util.LongSoHienTai.LgSo;
+
+            var col = 0;
+            for (int i = 1; i < position.Cols - 1; i++)
             {
-                // hiển thị từng dòng
-                foreach (var it in item.Value.OrderBy(z => z.Key))
+
+                var row = 0;
+
+                for (int j = 1; j < position.Rows - 1; j++)
                 {
-                    if (!string.IsNullOrEmpty(it.Value.Value + ""))
+                    var item = worksheet.Cells[j, i];
+                    if (rbChuViet) item.DataFormatArgs = "TextVN";
+                    if (rbChuHan) item.DataFormatArgs = "TextCN";
+
+
+                    if (LgSo.ContainsKey(col))
                     {
-                        it.Value.TextCN = (it.Value.Value + "").ToLower();
-                        it.Value.TextVN = it.Value.TextCN;
-                    }
-                    var numcol = item.Key + 1;
-                    var numrow = it.Key + 1;
-                    var row2 = 0;
-                    var col2 = 0;
-                    // nếu là song ngữ thì tách cột ra
-                    if (songngu)
-                    {
-                        if (PosText == "PHẢI" || PosText == "TRÁI")
+                        if (LgSo[col].ContainsKey(row))
                         {
-                            numcol = numcol * 2;
-                            col2 = 1;
+                            var cell = LgSo[col][row];
+                            item.Tag = cell;
                         }
+                    }
+                    if (rbSongNgu)
+                    {
+
+                        switch (PosText)
+                        {
+                            case "TRÁI":
+
+                                item.DataFormatArgs = "TextVN";
+                                worksheet.Cells[j, i + 1].Tag = item.Tag;
+                                worksheet.Cells[j, i + 1].DataFormatArgs = "SKIP_TextCN";
+                                break;
+                            case "PHẢI":
+                                item.DataFormatArgs = "SKIP_TextCN";
+
+                                worksheet.Cells[j, i + 1].Tag = item.Tag;
+                                worksheet.Cells[j, i + 1].DataFormatArgs = "TextVN";
+
+                                break;
+                            case "TRÊN":
+                                item.DataFormatArgs = "TextVN";
+                                worksheet.Cells[j + 1, i].Tag = item.Tag;
+                                worksheet.Cells[j + 1, i].DataFormatArgs = "SKIP_TextCN";
+                                break;
+                            case "DƯỚI":
+                                item.DataFormatArgs = "SKIP_TextCN";
+                                worksheet.Cells[j + 1, i].Tag = item.Tag;
+                                worksheet.Cells[j + 1, i].DataFormatArgs = "TextVN";
+                                break;
+                            default:
+                                break;
+                        }
+
+
                         if (PosText == "TRÊN" || PosText == "DƯỚI")
                         {
-                            numrow = numrow * 2;
-                            row2 = 1;
+                            j = j + 1;
                         }
                     }
-
-                    if (worksheet.ColumnCount < numcol + 1 || worksheet.RowCount < numrow + 1)
-                    {
-                        continue;
-                    }
-                    var col = new CellPosition() { Col = numcol, Row = numrow };
-
-
-
-                    #region Hiển thị dữ liệu theo hạng mục người dùng chọn
-                    if (rbChuViet)
-                    {
-                        worksheet.Cells[col].DataFormatArgs = "TextVN";
-                        it.Value.cellCN = new CellPos();
-                        it.Value.cellVN = new CellPos() { ColNo = numcol, RowNo = numrow };
-                    }
-                    if (rbChuHan)
-                    {
-                        worksheet.Cells[col].DataFormatArgs = "TextCN";
-                        it.Value.cellVN = new CellPos();
-                        it.Value.cellCN = new CellPos() { ColNo = numcol, RowNo = numrow };
-                    }
-
-                    if ((it.Value.Value + "").StartsWith("@"))
-                    {
-                        ActiveData.Get(it.Value.Value + "", out string CN, out string VN);
-                        it.Value.TextVN = VN;
-                        it.Value.TextCN = CN;
-
-                    }
-                    worksheet.Cells[col].Tag = it.Value;
-
-                    worksheet.Cells[col].DataFormat = unvell.ReoGrid.DataFormat.CellDataFormatFlag.Text;
-
-                    if (songngu)
-                    {
-                        if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[col].DataFormatArgs = "TextCN";
-                        if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[col].DataFormatArgs = "TextVN";
-
-                        var cell2 = new CellPosition() { Col = numcol - col2, Row = numrow - row2 };
-
-                        it.Value.cellVN = new CellPos();
-                        it.Value.cellCN = new CellPos() { ColNo = cell2.Col, RowNo = cell2.Row };
-
-                        worksheet.Cells[cell2].Tag = it.Value;
-
-                        if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
-                        if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[cell2].DataFormatArgs = "TextCN";
-                    }
-                    #endregion
-
+                    row++;
                 }
+
+                if (songngu)
+                {
+                    if (PosText == "PHẢI" || PosText == "TRÁI")
+                    {
+                        i = i + 1;
+                    }
+                }
+                col++;
+
             }
+            //foreach (var item in Util.LongSoHienTai.LgSo.OrderBy(z => z.Key))
+            //{
+            //    // hiển thị từng dòng
+            //    foreach (var it in item.Value.OrderBy(z => z.Key))
+            //    {
+            //        if (!string.IsNullOrEmpty(it.Value.Value + ""))
+            //        {
+            //            it.Value.TextCN = (it.Value.Value + "").ToLower();
+            //            it.Value.TextVN = it.Value.TextCN;
+            //        }
+            //        var numcol = item.Key + 1;
+            //        var numrow = it.Key + 1;
+            //        var row2 = 0;
+            //        var col2 = 0;
+            //        // nếu là song ngữ thì tách cột ra
+            //        if (songngu)
+            //        {
+            //            if (PosText == "PHẢI" || PosText == "TRÁI")
+            //            {
+            //                numcol = numcol * 2;
+            //                col2 = 1;
+            //            }
+            //            if (PosText == "TRÊN" || PosText == "DƯỚI")
+            //            {
+            //                numrow = numrow * 2;
+            //                row2 = 1;
+            //            }
+            //        }
+
+            //        if (worksheet.ColumnCount < numcol + 1 || worksheet.RowCount < numrow + 1)
+            //        {
+            //            continue;
+            //        }
+            //        var col = new CellPosition() { Col = numcol, Row = numrow };
+
+
+
+            //        #region Hiển thị dữ liệu theo hạng mục người dùng chọn
+            //        if (rbChuViet)
+            //        {
+            //            worksheet.Cells[col].DataFormatArgs = "TextVN";
+            //            it.Value.cellCN = new CellPos();
+            //            it.Value.cellVN = new CellPos() { ColNo = numcol, RowNo = numrow };
+            //        }
+            //        if (rbChuHan)
+            //        {
+            //            worksheet.Cells[col].DataFormatArgs = "TextCN";
+            //            it.Value.cellVN = new CellPos();
+            //            it.Value.cellCN = new CellPos() { ColNo = numcol, RowNo = numrow };
+            //        }
+
+            //        if ((it.Value.Value + "").StartsWith("@"))
+            //        {
+            //            ActiveData.Get(it.Value.Value + "", out string CN, out string VN);
+            //            it.Value.TextVN = VN;
+            //            it.Value.TextCN = CN;
+
+            //        }
+            //        worksheet.Cells[col].Tag = it.Value;
+
+            //        worksheet.Cells[col].DataFormat = unvell.ReoGrid.DataFormat.CellDataFormatFlag.Text;
+
+            //        if (songngu)
+            //        {
+            //            if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[col].DataFormatArgs = "SKIP_TextCN";
+            //            if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[col].DataFormatArgs = "TextVN";
+
+            //            var cell2 = new CellPosition() { Col = numcol - col2, Row = numrow - row2 };
+
+            //            it.Value.cellVN = new CellPos();
+            //            it.Value.cellCN = new CellPos() { ColNo = cell2.Col, RowNo = cell2.Row };
+
+            //            worksheet.Cells[cell2].Tag = it.Value;
+
+            //            if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
+            //            if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[cell2].DataFormatArgs = "SKIP_TextCN";
+            //        }
+            //        #endregion
+
+            //    }
+            //}
         }
         public static void setColorTag(Worksheet sheet, unvell.ReoGrid.Cell item, Color color)
         {

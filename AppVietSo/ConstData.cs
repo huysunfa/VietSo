@@ -48,6 +48,19 @@ namespace AppVietSo
             }
             return false;
         }
+             public static bool CheckSkip(this object input, string Duoi = "")
+        {
+
+            if ((input + "").StartsWith("SKIP"))
+            {
+                if (!string.IsNullOrEmpty(Duoi) && !(input + "").EndsWith(Duoi))
+                {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
 
         public static DataTable ToDataTable(this DataGridView dataGridView, string tableName)
         {
