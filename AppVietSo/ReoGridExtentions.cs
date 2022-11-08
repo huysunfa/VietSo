@@ -57,7 +57,7 @@ namespace AppVietSo
                 for (int i = 1; i < sheet.ColumnCount; i++)
                 {
                     var oldW = sheet.GetColumnWidth(i);
-                    sheet.AutoFitColumnWidth(i, true);
+                    sheet.AutoFitColumnWidth(i, false);
 
                     var newW = sheet.GetColumnWidth(i);
 
@@ -95,7 +95,7 @@ namespace AppVietSo
                 for (int i = 1; i < sheet.ColumnCount; i++)
                 {
                     var oldW = sheet.GetColumnWidth(i);
-                    sheet.AutoFitColumnWidth(i, true);
+                    sheet.AutoFitColumnWidth(i, false);
 
                     var newW = sheet.GetColumnWidth(i);
 
@@ -1001,6 +1001,16 @@ namespace AppVietSo
                     Flag = PlainStyleFlag.BackColor,
                     // style item
                     BackColor = color,
+                });
+            }
+            else
+            {
+                sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
+                {
+                    // style item flag
+                    Flag = PlainStyleFlag.BackColor,
+                    // style item
+                    BackColor = Color.White,
                 });
             }
         }

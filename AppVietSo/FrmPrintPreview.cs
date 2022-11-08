@@ -318,6 +318,22 @@ namespace AppVietSo
             Util.LongSoHienTai.PagePaddingBottom = (float)this.nmrBottom.Value;
             Util.LongSoHienTai.PagePaddingLeft = (float)this.nmrLeft.Value;
             Util.LongSoHienTai.PagePaddingRight = (float)this.nmrRight.Value;
+            if (pageSettings.Landscape)
+            {
+
+                Util.LongSoHienTai.PageWidth = pageSettings.PaperSize.Height;
+                Util.LongSoHienTai.PageHeight = pageSettings.PaperSize.Width;
+
+            }
+            else
+            {
+
+                Util.LongSoHienTai.PageWidth = pageSettings.PaperSize.Width;
+                Util.LongSoHienTai.PageHeight = pageSettings.PaperSize.Height;
+
+
+            }
+            Util.LongSoHienTai.paperSize = pageSettings.PaperSize;
             LongSo.saveToFile();
             this.worksheet_0.PrintSettings.ApplySystemPageSettings(pageSettings);
             this.method_2();
