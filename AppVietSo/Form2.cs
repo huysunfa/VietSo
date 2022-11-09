@@ -24,9 +24,19 @@ namespace AppVietSo
             var sheet = reoGridControl1.CurrentWorksheet;
             var row = sheet.UsedRange.Row;
             var col = sheet.UsedRange.Row;
-            sheet.SetCols(10);
-            sheet.SetRows(10);
-         
+            sheet.SetCols(32);
+            sheet.SetRows(32);
+
+
+            for (int i = 0; i < 32; i++)
+            {
+                for (int j = 0; j <32; j++)
+                {
+                    sheet.Cells[i, j].Data = "頂";
+
+                }
+            }
+
 
             sheet.SetRowsHeight(0, 10, 30);
             sheet.SetColumnsWidth(0, 10, 59);
@@ -60,15 +70,31 @@ namespace AppVietSo
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var worksheet = reoGridControl1.CurrentWorksheet;
-            var cnt = worksheet.SelectionRange.Col;
-            var action = new InsertColumnsAction(cnt, 1);
-            reoGridControl1.DoAction(action);
+            System.Drawing.Printing.PrintDocument doc = null;
 
-            for (int i = 0; i < worksheet.UsedRange.EndRow; i++)
+            try
             {
-                worksheet.Cells[i, cnt].Data = "頂";
+                doc = reoGridControl1.CurrentWorksheet.CreatePrintSession().PrintDocument;
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(this, ex.Message, this.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            using (var pd = new System.Windows.Forms.PrintDialog())
+            {
+                pd.Document = doc;
+                pd.UseEXDialog = true;  // in 64bit Windows
+
+                if (pd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    doc.PrinterSettings = pd.PrinterSettings;
+                    doc.Print();
+                }
+            }
+
+            if (doc != null) doc.Dispose();
         }
     }
 }

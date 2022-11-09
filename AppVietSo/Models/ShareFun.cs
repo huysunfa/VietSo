@@ -116,8 +116,8 @@ namespace AppVietSo.Models
                     {
 
                         sheet.PrintSettings.PaperName = Util.LongSoHienTai.paperSize.PaperName;
-                        sheet.PrintSettings.PaperWidth = Util.LongSoHienTai.paperSize.Width;
-                        sheet.PrintSettings.PaperHeight = Util.LongSoHienTai.paperSize.Height;
+                        sheet.PrintSettings.PaperWidth =  Util.PixelToInch(Util.LongSoHienTai.PageWidth, dpi); ;
+                        sheet.PrintSettings.PaperHeight = Util.PixelToInch(Util.LongSoHienTai.PageHeight, dpi); ;
                     }
                     else
                     {

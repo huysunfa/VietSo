@@ -74,9 +74,11 @@ namespace AppVietSo.Models
 
             if (result.KhoaCung==false)
             {
-                if (result.PagePaddingLeft==0)
+              //  if (result.PagePaddingLeft==0)
                 {
-                    result.PagePaddingLeft = 42;
+                    result.PagePaddingLeft = 20;
+                    result.PagePaddingTop = 10;
+                    result.PagePaddingLeft = 10;
                 }
             }
             return result;
