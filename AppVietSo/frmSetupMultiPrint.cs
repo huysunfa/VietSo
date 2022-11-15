@@ -231,7 +231,8 @@ namespace AppVietSo
 
 
 
-                    var session = reogrid.CurrentWorksheet.CreatePrintSession();
+                 var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();
+                    var session = reogrid.CurrentWorksheet.CreatePrintSession(printsetting);
                     session.PrintDocument.DocumentName = item.TenSo;
                     session.PrintDocument.DefaultPageSettings.PaperSize = pageSettings.PaperSize;
                     session.PrintDocument.DefaultPageSettings.Landscape = pageSettings.Landscape;

@@ -1878,5 +1878,11 @@ namespace AppVietSo
         {
 
         }
+
+        private void càiĐặtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var frm = new frmSettings();
+            frm.ShowDialog();
+        }
     }
 }

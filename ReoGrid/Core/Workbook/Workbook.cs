@@ -933,7 +933,7 @@ namespace unvell.ReoGrid
 		#endregion
 
 #if PRINT
-		public PrintSession CreatePrintSession()
+		public PrintSession CreatePrintSession(bool CustomSetting = true)
 		{
 			var ps = new PrintSession();
 
@@ -942,7 +942,7 @@ namespace unvell.ReoGrid
 				ps.worksheets.Add(sheet);
 			}
 
-			ps.Init();
+			ps.Init(CustomSetting);
 
 			return ps;
 		}

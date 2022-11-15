@@ -366,7 +366,7 @@ namespace AppVietSo
 
 
 
-                worksheet.ResetAllPageBreaks();
+          //      worksheet.ResetAllPageBreaks();
 
                 var MaxRow = worksheet.UsedRange.Rows;
                 var MaxCol = worksheet.UsedRange.Cols;

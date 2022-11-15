@@ -1375,9 +1375,9 @@ namespace unvell.ReoGrid
 		/// Create a print session to print all worksheets.
 		/// </summary>
 		/// <returns>Print session to print specified worksheets.</returns>
-		public Print.PrintSession CreatePrintSession()
+		public Print.PrintSession CreatePrintSession(bool CustomSetting = true)
 		{
-			return this.workbook.CreatePrintSession();
+			return this.workbook.CreatePrintSession(CustomSetting);
 		}
 #endif // PRINT
 

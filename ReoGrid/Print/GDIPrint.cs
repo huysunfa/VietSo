@@ -43,14 +43,17 @@ namespace unvell.ReoGrid.Print
 		// used in GDI print
 		private System.Drawing.Printing.PageSettings currentGDIPageSettings;
 
-		internal void Init()
+		internal void Init(bool CustomSetting= true)
 		{
 			this.printDocument = new PrintDocument();
 			
 			this.printDocument.PrintPage += doc_PrintPage;
 			this.printDocument.BeginPrint += doc_BeginPrint;
 			this.printDocument.EndPrint += doc_EndPrint;
-	//		this.printDocument.QueryPageSettings += printDocument_QueryPageSettings;
+            if (CustomSetting)
+            {
+				this.printDocument.QueryPageSettings += printDocument_QueryPageSettings;
+			}
 		}
 		
 		#region Print Events

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AppVietSo.Models
 {
-    public class ActiveData
+    public static class ActiveData
     {
         public static void Update(string b, string t)
         {
@@ -183,6 +183,13 @@ namespace AppVietSo.Models
             return null;
 
         }
+
+        public static bool ToBool(this string b)
+        {
+            Boolean.TryParse(b, out bool ouput);
+            return ouput;
+        }
+
 
         public static Dictionary<string, string> GetAll()
         {

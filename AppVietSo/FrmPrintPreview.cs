@@ -123,9 +123,8 @@ namespace AppVietSo
             this.nmrBottom.Value = (decimal)Util.LongSoHienTai.PagePaddingBottom;
             this.nmrLeft.Value = (decimal)Util.LongSoHienTai.PagePaddingLeft;
             this.nmrRight.Value = (decimal)Util.LongSoHienTai.PagePaddingRight;
-
-
-            this.printSession_0 = this.worksheet_0.CreatePrintSession();
+            var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();            
+            this.printSession_0 = this.worksheet_0.CreatePrintSession(printsetting);
             this.printPreviewControl1.Document = this.printSession_0.PrintDocument;
             this.rbtnLandscape.Checked = this.worksheet_0.PrintSettings.Landscape;
             this.rbtnPortrait.Checked = !this.rbtnLandscape.Checked;
@@ -362,14 +361,14 @@ namespace AppVietSo
 
 
 
-            //var hientai = this.worksheet_0.GetTotalWidth();
-            //if (worksheet_0.PrintSettings.Landscape)
-            //{
-            //       var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f)- ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
+            var hientai = this.worksheet_0.GetTotalWidth();
+            if (worksheet_0.PrintSettings.Landscape)
+            {
+                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
 
-            //    var Scaling = KhoGiay / hientai;
-            //    this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
-            //}
+                var Scaling = KhoGiay / hientai;
+                this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
+            }
             //else
             //{
             //    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperWidth, 100f);
@@ -381,7 +380,7 @@ namespace AppVietSo
             //    }
             //    this.worksheet_0.PrintSettings.PageScaling = (float)(Scaling - 0.05);
             //}
-        ReoGridExtentions.SetOnePage2(worksheet_0);
+            ReoGridExtentions.SetOnePage2(worksheet_0);
             //var height = Util.LongSoHienTai.PageHeight / worksheet_0.UsedRange.Rows;
             //worksheet_0.SetRowsHeight(1, worksheet_0.UsedRange.Rows, (ushort)height);
         }

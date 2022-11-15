@@ -60,10 +60,11 @@ namespace AppVietSo
         private void button1_Click(object sender, EventArgs e)
         {
             System.Drawing.Printing.PrintDocument doc = null;
+            var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();
 
             try
             {
-                doc = reoGridControl1.CurrentWorksheet.CreatePrintSession().PrintDocument;
+                doc = reoGridControl1.CurrentWorksheet.CreatePrintSession(printsetting).PrintDocument;
             }
             catch (Exception ex)
             {

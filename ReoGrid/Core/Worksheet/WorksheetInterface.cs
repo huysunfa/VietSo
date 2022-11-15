@@ -9,7 +9,7 @@ namespace unvell.ReoGrid.Print
 {
 	public interface IPrintableContainer
 	{
-		PrintSession CreatePrintSession();
+		PrintSession CreatePrintSession(bool CustomSetting = true);
 	}
 }
 

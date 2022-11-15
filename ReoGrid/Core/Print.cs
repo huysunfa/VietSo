@@ -930,7 +930,7 @@ namespace unvell.ReoGrid
 		/// </summary>
 		/// <returns>Print session created from this worksheet.</returns>
 		/// <exception cref="NoPrintableContentException">Exception will be thrown if nothing found to be printed.</exception>
-		public PrintSession CreatePrintSession()
+		public PrintSession CreatePrintSession(bool CustomSetting = true)
 		{
 			if (this.pageBreakRows == null || this.pageBreakCols == null
 				|| this.pageBreakRows.Count == 0 || this.pageBreakCols.Count == 0)
@@ -953,7 +953,7 @@ namespace unvell.ReoGrid
 
 			session.worksheets.Add(this);
 
-			session.Init();
+			session.Init(CustomSetting);
 
 			return session;
 		}

@@ -100,7 +100,8 @@ namespace AppVietSo
 				// style item
 				BackColor = Color.White,
 			});
-			using (var session = sheet.CreatePrintSession())
+            var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();
+			using (var session = sheet.CreatePrintSession(printsetting))
 			{
 				 
 					session.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
