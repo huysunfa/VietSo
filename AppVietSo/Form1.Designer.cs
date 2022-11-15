@@ -35,7 +35,6 @@ namespace AppVietSo
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.ctextMenuS = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.TSMItemEditText = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMItemPaste = new System.Windows.Forms.ToolStripMenuItem();
@@ -82,6 +81,7 @@ namespace AppVietSo
             this.taiBôChưHanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lâyDưLiêuMơiNhâtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.càiĐặtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ShowPageBreaks = new System.Windows.Forms.CheckBox();
             this.button11 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -117,7 +117,8 @@ namespace AppVietSo
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
             this.TSMItemThemChuSauHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
-            this.càiĐặtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cbHienMauEdit = new System.Windows.Forms.CheckBox();
+            this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.ctextMenuS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -135,32 +136,6 @@ namespace AppVietSo
             this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
-            // 
-            // reoGridControl1
-            // 
-            this.reoGridControl1.BackColor = System.Drawing.Color.Silver;
-            this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
-            this.reoGridControl1.ContextMenuStrip = this.ctextMenuS;
-            this.reoGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reoGridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reoGridControl1.LeadHeaderContextMenuStrip = null;
-            this.reoGridControl1.Location = new System.Drawing.Point(0, 0);
-            this.reoGridControl1.Margin = new System.Windows.Forms.Padding(200, 2, 3, 2);
-            this.reoGridControl1.Name = "reoGridControl1";
-            this.reoGridControl1.Padding = new System.Windows.Forms.Padding(200, 0, 0, 0);
-            this.reoGridControl1.RowHeaderContextMenuStrip = null;
-            this.reoGridControl1.Script = null;
-            this.reoGridControl1.SheetTabContextMenuStrip = null;
-            this.reoGridControl1.SheetTabNewButtonVisible = true;
-            this.reoGridControl1.SheetTabVisible = true;
-            this.reoGridControl1.SheetTabWidth = 80;
-            this.reoGridControl1.ShowScrollEndSpacing = true;
-            this.reoGridControl1.Size = new System.Drawing.Size(1387, 827);
-            this.reoGridControl1.TabIndex = 2;
-            this.reoGridControl1.Text = "reoGridControl1";
-            this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
-            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
-            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_DoubleClick);
             // 
             // ctextMenuS
             // 
@@ -453,6 +428,7 @@ namespace AppVietSo
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel1.Controls.Add(this.cbHienMauEdit);
             this.splitContainer1.Panel1.Controls.Add(this.cbCanChuViet);
             this.splitContainer1.Panel1.Controls.Add(this.lbVersion);
             this.splitContainer1.Panel1.Controls.Add(this.InMaSo);
@@ -571,12 +547,13 @@ namespace AppVietSo
             // 
             this.KhoaCung.AutoSize = true;
             this.KhoaCung.Enabled = false;
-            this.KhoaCung.Location = new System.Drawing.Point(12, 239);
+            this.KhoaCung.Location = new System.Drawing.Point(18, 705);
             this.KhoaCung.Name = "KhoaCung";
             this.KhoaCung.Size = new System.Drawing.Size(98, 21);
             this.KhoaCung.TabIndex = 49;
             this.KhoaCung.Text = "Khoa cúng";
             this.KhoaCung.UseVisualStyleBackColor = true;
+            this.KhoaCung.Visible = false;
             this.KhoaCung.CheckedChanged += new System.EventHandler(this.checkBox4_CheckedChanged);
             // 
             // rbChuHan
@@ -599,7 +576,7 @@ namespace AppVietSo
             this.tiênTichToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(9, 627);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(255, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(107, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -647,6 +624,13 @@ namespace AppVietSo
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Text = "Xóa cột không có nội dung";
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem.Click += new System.EventHandler(this.xóaCộtKhôngCóNộiDungToolStripMenuItem_Click);
+            // 
+            // càiĐặtToolStripMenuItem
+            // 
+            this.càiĐặtToolStripMenuItem.Name = "càiĐặtToolStripMenuItem";
+            this.càiĐặtToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.càiĐặtToolStripMenuItem.Text = "Cài đặt";
+            this.càiĐặtToolStripMenuItem.Click += new System.EventHandler(this.càiĐặtToolStripMenuItem_Click);
             // 
             // ShowPageBreaks
             // 
@@ -1313,12 +1297,43 @@ namespace AppVietSo
             this.TSMItemThemChuSauHuongLinh.Text = "Khuôn mẫu Hương linh";
             this.TSMItemThemChuSauHuongLinh.Click += new System.EventHandler(this.TSMItemThemChuSauHuongLinh_Click);
             // 
-            // càiĐặtToolStripMenuItem
+            // cbHienMauEdit
             // 
-            this.càiĐặtToolStripMenuItem.Name = "càiĐặtToolStripMenuItem";
-            this.càiĐặtToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
-            this.càiĐặtToolStripMenuItem.Text = "Cài đặt";
-            this.càiĐặtToolStripMenuItem.Click += new System.EventHandler(this.càiĐặtToolStripMenuItem_Click);
+            this.cbHienMauEdit.AutoSize = true;
+            this.cbHienMauEdit.Location = new System.Drawing.Point(11, 238);
+            this.cbHienMauEdit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.cbHienMauEdit.Name = "cbHienMauEdit";
+            this.cbHienMauEdit.Size = new System.Drawing.Size(138, 21);
+            this.cbHienMauEdit.TabIndex = 52;
+            this.cbHienMauEdit.Text = "Hiện màu ô nhập";
+            this.cbHienMauEdit.UseVisualStyleBackColor = true;
+            this.cbHienMauEdit.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_1);
+            // 
+            // reoGridControl1
+            // 
+            this.reoGridControl1.BackColor = System.Drawing.Color.Silver;
+            this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
+            this.reoGridControl1.ContextMenuStrip = this.ctextMenuS;
+            this.reoGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reoGridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reoGridControl1.LeadHeaderContextMenuStrip = null;
+            this.reoGridControl1.Location = new System.Drawing.Point(0, 0);
+            this.reoGridControl1.Margin = new System.Windows.Forms.Padding(200, 2, 3, 2);
+            this.reoGridControl1.Name = "reoGridControl1";
+            this.reoGridControl1.Padding = new System.Windows.Forms.Padding(200, 0, 0, 0);
+            this.reoGridControl1.RowHeaderContextMenuStrip = null;
+            this.reoGridControl1.Script = null;
+            this.reoGridControl1.SheetTabContextMenuStrip = null;
+            this.reoGridControl1.SheetTabNewButtonVisible = true;
+            this.reoGridControl1.SheetTabVisible = true;
+            this.reoGridControl1.SheetTabWidth = 80;
+            this.reoGridControl1.ShowScrollEndSpacing = true;
+            this.reoGridControl1.Size = new System.Drawing.Size(1387, 827);
+            this.reoGridControl1.TabIndex = 2;
+            this.reoGridControl1.Text = "reoGridControl1";
+            this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
+            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
+            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_DoubleClick);
             // 
             // Form1
             // 
@@ -1440,6 +1455,7 @@ namespace AppVietSo
         private ToolStripMenuItem hươngLinhHưởngThọhlinhthoToolStripMenuItem;
         private ToolStripMenuItem hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem;
         private ToolStripMenuItem càiĐặtToolStripMenuItem;
+        private CheckBox cbHienMauEdit;
     }
 }
 

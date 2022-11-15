@@ -785,6 +785,11 @@ namespace AppVietSo
                         luiCN = true;
                         reoGridControl1.Undo();
                     };
+                   var input=(cells.DataFormatArgs+"").ToListData();
+                    for (int i = 0; i < input.Count(); i++)
+                    {
+                        reoGridControl1.Undo();
+                    }
                     luiCN = false;
                     ReoGridExtentions.setColorTag(worksheet, cells, Color.Orange);
 
@@ -833,10 +838,10 @@ namespace AppVietSo
                 var Row = r1.StartRow;
                 var Col = r1.StartCol;
                 var cell = worksheet.Cells[Row, Col];
-                if (cell.CheckNo() || cell.DataFormatArgs.CheckNo())
-                {
-                    r1.IsCancelled = true;
-                }
+                //if (cell.CheckNo() || cell.DataFormatArgs.CheckNo())
+                //{
+                //    r1.IsCancelled = true;
+                //}
 
                 if (Util.LongSoHienTai.KhoaCung)
                 {
@@ -1065,8 +1070,18 @@ namespace AppVietSo
             var action = new SetCellDataAction(item.Row, item.Column, text);
             reoGridControl1.DoAction(reoGridControl1.CurrentWorksheet, action);
 
+
+
             if (TextVN.Contains("@"))
             {
+                var cnt = (cell.TextCN + "").Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
+                if ((worksheet.UsedRange.EndRow - Row - cnt) < 0)
+                {
+                    var colAdd = cnt / (worksheet.UsedRange.EndRow - Row);
+                    worksheet.InsertColumns(Col, colAdd-1);
+                    worksheet.ScaleFactor += (float)0.001;
+                }
+
                 RenderStyle(item.Address);
             }
 
@@ -1105,7 +1120,23 @@ namespace AppVietSo
             //  RenderStyle(itemCN.Address);
             worksheet.AutoFitColumnWidth(itemCN.Column, false);
             worksheet.AutoFitColumnWidth(item.Column, false);
-        }
+        } 
+        
+        //public void SetText(Worksheet worksheet, unvell.ReoGrid.Cell item)
+        //{
+        //    var text = item.renderViewText();
+
+        //    var itemCN = worksheet.Cells[new CellPosition() { Col = Col, Row = Row }];
+        //    itemCN.Tag = item.Tag;
+        //    var TextCN = item.Tag.getCellData().TextCN;
+        //    //        itemCN.Data = TextCN;
+        //    var action = new SetCellDataAction(itemCN.Row, itemCN.Column, TextCN);
+        //    reoGridControl1.DoAction(reoGridControl1.CurrentWorksheet, action);
+
+        //    //  RenderStyle(itemCN.Address);
+        //    worksheet.AutoFitColumnWidth(itemCN.Column, false);
+        //    worksheet.AutoFitColumnWidth(item.Column, false);
+        //}
         private void DynamicButton_Click(object sender, EventArgs e)
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
@@ -1193,7 +1224,8 @@ namespace AppVietSo
               cbfsizeCN.Text,
               cbfnameVN.Text,
               cbfstyleVN.Text,
-              cbfsizeVN.Text
+              cbfsizeVN.Text,
+              cbHienMauEdit.Checked
               );
         }
 
@@ -1402,7 +1434,14 @@ namespace AppVietSo
         public void showSugget(string key, string t)
         {
             var position = reoGridControl1.CurrentWorksheet.SelectionRange;
-            Util.strDataSugget = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col].Data + "";
+            var cell = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col];
+            Util.strDataSugget = cell.Data + "";
+
+            if (cell.CheckNo() || cell.DataFormatArgs.CheckNo() || cell.DataFormatArgs.CheckSkip())
+            {
+                return;
+            }
+
             var oldData = Util.strDataSugget;
             if (key == "@ngachso")
             {
@@ -1883,6 +1922,13 @@ namespace AppVietSo
         {
             var frm = new frmSettings();
             frm.ShowDialog();
+        }
+
+        private void checkBox1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            ReoGridExtentions.AddColorEdit(reoGridControl1, cbHienMauEdit.Checked);
+
+
         }
     }
 }

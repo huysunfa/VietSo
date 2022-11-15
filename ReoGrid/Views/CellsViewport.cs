@@ -499,6 +499,15 @@ namespace unvell.ReoGrid.Views
 			var sheet = view.ViewportController.Worksheet;
 			Rectangle rangeRect = sheet.GetRangeBounds(startPos, endPos);
 
+            if (sheet.rows.Count< startPos.Row)
+            {
+				return rangeRect;
+			}    
+			
+			if (sheet.cols.Count< startPos.Col)
+            {
+				return rangeRect;
+			}
 			var rowHead = sheet.rows[startPos.Row];
 			var colHead = sheet.cols[startPos.Col];
 			var toRowHead = sheet.rows[endPos.Row];

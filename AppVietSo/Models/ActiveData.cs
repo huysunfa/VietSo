@@ -37,7 +37,7 @@ namespace AppVietSo.Models
 
         public static void UpdateDataByID()
         {
-            var user = ActiveData.Get("@SelectedSoNos").Split(',').Where(v => !string.IsNullOrEmpty(v)).FirstOrDefault();
+            var user = (ActiveData.Get("@SelectedSoNos")+"").Split(',').Where(v => !string.IsNullOrEmpty(v)).FirstOrDefault();
             if (user == null)
             {
                 return;

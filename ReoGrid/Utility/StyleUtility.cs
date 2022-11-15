@@ -202,8 +202,12 @@ namespace unvell.ReoGrid.Utility
 
 			if ((flag & PlainStyleFlag.FontName) == PlainStyleFlag.FontName)
 			{
-				targetStyle.FontName = sourceStyle.FontName;
-				System.Diagnostics.Debug.Assert(!string.IsNullOrEmpty(targetStyle.FontName));
+                if (!String.IsNullOrEmpty(sourceStyle.FontName))
+				{
+					targetStyle.FontName = sourceStyle.FontName;
+					System.Diagnostics.Debug.Assert(!string.IsNullOrEmpty(targetStyle.FontName));
+
+				}
 			}
 
 			if ((flag & PlainStyleFlag.FontSize) == PlainStyleFlag.FontSize)

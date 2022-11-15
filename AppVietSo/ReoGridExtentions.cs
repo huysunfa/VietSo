@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using unvell.ReoGrid;
+using unvell.ReoGrid.Actions;
 using unvell.ReoGrid.Print;
 
 namespace AppVietSo
@@ -366,7 +367,7 @@ namespace AppVietSo
 
 
 
-          //      worksheet.ResetAllPageBreaks();
+                //      worksheet.ResetAllPageBreaks();
 
                 var MaxRow = worksheet.UsedRange.Rows;
                 var MaxCol = worksheet.UsedRange.Cols;
@@ -428,7 +429,8 @@ namespace AppVietSo
             string cbfsizeCN = null,
             string cbfnameVN = null,
             string cbfstyleVN = null,
-            string cbfsizeVN = null
+            string cbfsizeVN = null,
+            bool ColorEdit = false
             )
         {
 
@@ -499,6 +501,7 @@ namespace AppVietSo
             reoGrid.ClearActionHistoryForWorksheet(worksheet);
             worksheet.SetOnePage2();
             AddMaSo(reoGrid, InMaSo);
+            AddColorEdit(reoGrid, ColorEdit);
 
             if (KhoaCung)
             {
@@ -508,8 +511,9 @@ namespace AppVietSo
 
         }
 
-        public static void renderText(Worksheet sheet, string CN, string VN, int i, int j, bool songngu = false, string cbCanChuViet = null)
+        public static void renderText(ReoGridControl reoGrid, string CN, string VN, int i, int j, bool songngu = false, string cbCanChuViet = null)
         {
+            var sheet = reoGrid.CurrentWorksheet;
             if (string.IsNullOrEmpty(VN))
             {
                 sheet.Cells[i, j].Data = VN;
@@ -533,6 +537,7 @@ namespace AppVietSo
             var DataFormatArgs = "";
             var cnt = VN.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
             var cntCN = CN.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
+
             for (int k = 0; k < cnt.Count; k++)
             {
                 var item = sheet.Ranges[new CellPosition() { Row = i, Col = j }.ToAddress()];
@@ -583,13 +588,20 @@ namespace AppVietSo
                     DataFormatArgs = row.DataFormatArgs + "";
                 }
 
+
                 if (DataFormatArgs == "TextVN")
                 {
-                    row.Data = cell.TextVN;
+
+                     var text = cell.TextVN;
+                    var action = new SetCellDataAction(row.Row, row.Column, text);
+                    reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
+
                 }
                 else
                 {
-                    row.Data = cell.TextCN;
+                    var text = cell.TextCN;
+                    var action = new SetCellDataAction(row.Row, row.Column, text);
+                    reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
                 }
             }
         }
@@ -659,7 +671,7 @@ namespace AppVietSo
 
                         ActiveData.Get(cell.Value + "", out string CN, out string VN);
 
-                        renderText(sheet, CN, VN, i, j, rbSongNgu, cbCanChuViet);
+                        renderText(reoGridControl1, CN, VN, i, j, rbSongNgu, cbCanChuViet);
 
                     }
                     else
@@ -727,7 +739,7 @@ namespace AppVietSo
 
             if (string.IsNullOrEmpty(pos))
             {
-                sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
+                //sheet.SetWidthHeight(sheet.UsedRange.EndRow, sheet.UsedRange.EndCol);
                 // ReoGridExtentions.ChangeWidthSize(sheet);
                 sheet.SetRangeStyles(sheet.UsedRange.ToAddress(), new WorksheetRangeStyle
                 {
@@ -760,6 +772,12 @@ namespace AppVietSo
 
                     if ((cell.Value + "").StartsWith("@") || (!string.IsNullOrEmpty(item.Data + "") && item.DataFormatArgs.CheckNo()))
                     {
+                        if (rbSongNgu && item.DataFormatArgs.CheckSkip())
+                        {
+
+                            continue;
+
+                        }
                         setColorTag(sheet, item, Color.Orange);
                     }
 
@@ -1056,6 +1074,42 @@ namespace AppVietSo
                 else
                 {
                     cell.Data = null;
+                }
+            }
+        }
+        public static void AddColorEdit(ReoGridControl reoGridControl1 = null, bool input = false)
+        {
+            var sheet = reoGridControl1.CurrentWorksheet;
+            var position = sheet.UsedRange;
+            if (position.Cols <= 1)
+            {
+                return;
+            }
+            for (int i = 1; i < position.Cols - 1; i++)
+            {
+                for (int j = 1; j < position.Rows - 1; j++)
+                {
+                    if (position.EndCol >= i && position.EndRow >= j)
+                    {
+
+                        var item = sheet.Cells[j, i];
+                        var cell = item.Tag.getCellData();
+                        if ((cell.Value + "").StartsWith("@") || item.CheckNo() || item.DataFormatArgs.CheckSkip() || item.DataFormatArgs.CheckSkip() || item.DataFormatArgs.CheckNo())
+                        {
+                            continue;
+                        }
+                        if (input)
+                        {
+                            ReoGridExtentions.setColorTag(sheet, item, Color.LightSteelBlue);
+
+                        }
+                        else
+                        {
+                            ReoGridExtentions.setColorTag(sheet, item, Color.White);
+
+                        }
+
+                    }
                 }
             }
         }

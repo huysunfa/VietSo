@@ -1398,17 +1398,20 @@ namespace unvell.ReoGrid
 
 			if (col > this.cols.Count)
 			{
-				throw new ArgumentOutOfRangeException("col");
+			//	throw new ArgumentOutOfRangeException("col");
+				return;
 			}
 
 			if (cols.Count + count > cells.ColCapacity)
 			{
-				throw new ArgumentOutOfRangeException("count");
+				return;
+		//		throw new ArgumentOutOfRangeException("count");
 			}
 
 			if (count < 1)
 			{
-				throw new ArgumentException("count must be >= 1");
+				return;
+		//		throw new ArgumentException("count must be >= 1");
 			}
 
 			if (col == this.cols.Count)

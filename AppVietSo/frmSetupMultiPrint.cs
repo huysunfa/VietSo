@@ -195,7 +195,7 @@ namespace AppVietSo
                   cbfsizeCN.Text,
                   cbfnameVN.Text,
                   cbfstyleVN.Text,
-                  cbfsizeVN.Text
+                  cbfsizeVN.Text,false
                         );
 
                     reogrid.CurrentWorksheet.SetRangeStyles(reogrid.CurrentWorksheet.UsedRange, new WorksheetRangeStyle
@@ -288,7 +288,7 @@ namespace AppVietSo
               cbfsizeCN.Text,
               cbfnameVN.Text,
               cbfstyleVN.Text,
-              cbfsizeVN.Text
+              cbfsizeVN.Text,false
                     );
 
                 reogrid.CurrentWorksheet.SetRangeStyles(reogrid.CurrentWorksheet.UsedRange, new WorksheetRangeStyle

@@ -35,6 +35,12 @@ namespace AppVietSo
             }
             return null;
         }
+        public static List<string> ToListData(this string input)
+        {
+            var result = (input + "").Split(' ').Where(v =>  !string.IsNullOrEmpty(v+"")).ToList();
+
+            return result;
+        }
         public static bool CheckNo(this object input, string Duoi = "")
         {
 
