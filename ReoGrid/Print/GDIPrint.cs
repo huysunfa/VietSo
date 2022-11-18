@@ -41,7 +41,7 @@ namespace unvell.ReoGrid.Print
 	partial class PrintSession
 	{
 		// used in GDI print
-		private System.Drawing.Printing.PageSettings currentGDIPageSettings;
+	//	private System.Drawing.Printing.PageSettings currentGDIPageSettings;
 
 		internal void Init(bool CustomSetting= true)
 		{
@@ -60,9 +60,17 @@ namespace unvell.ReoGrid.Print
 
 		void printDocument_QueryPageSettings(object sender, QueryPageSettingsEventArgs e)
 		{
-			e.PageSettings = this.currentGDIPageSettings;
-		}
-		
+		var PaperName   =e.PageSettings.PaperSize.PaperName;
+			var doc = (PrintDocument)sender;
+ 
+			var PaperSize = doc.PrinterSettings.PaperSizes.Cast<System.Drawing.Printing.PaperSize>().ToList().Where(V => V.PaperName == PaperName).FirstOrDefault();
+
+			e.PageSettings = new System.Drawing.Printing.PageSettings()
+			{
+				PaperSize = PaperSize
+			};
+ 		}
+
 		void doc_BeginPrint(object sender, PrintEventArgs e)
 		{
 			if (this.IsPrinting)

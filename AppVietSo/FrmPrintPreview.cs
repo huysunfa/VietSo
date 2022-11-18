@@ -125,6 +125,7 @@ namespace AppVietSo
             this.nmrRight.Value = (decimal)Util.LongSoHienTai.PagePaddingRight;
             var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();            
             this.printSession_0 = this.worksheet_0.CreatePrintSession(printsetting);
+
             this.printPreviewControl1.Document = this.printSession_0.PrintDocument;
             this.rbtnLandscape.Checked = this.worksheet_0.PrintSettings.Landscape;
             this.rbtnPortrait.Checked = !this.rbtnLandscape.Checked;
@@ -335,6 +336,17 @@ namespace AppVietSo
             Util.LongSoHienTai.paperSize = pageSettings.PaperSize;
             LongSo.saveToFile();
             this.worksheet_0.PrintSettings.ApplySystemPageSettings(pageSettings);
+
+            PrinterSettings settings = new PrinterSettings();
+            var PaperSize = settings.PaperSizes.Cast<System.Drawing.Printing.PaperSize>().ToList().Where(V => V.PaperName == Util.LongSoHienTai.paperSize.PaperName).FirstOrDefault();
+
+            var PageSettings = new System.Drawing.Printing.PageSettings()
+            {
+                PaperSize = PaperSize
+            };
+            worksheet_0.PrintSettings.ApplySystemPageSettings(PageSettings);
+            this.printSession_0.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
+
             this.method_2();
         }
 

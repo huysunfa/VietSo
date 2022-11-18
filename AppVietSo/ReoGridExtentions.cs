@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -445,6 +446,14 @@ namespace AppVietSo
             reoGrid.ClearActionHistory();
             worksheet.PrintSettings.Margins = new PageMargins(0);
 
+            PrinterSettings settings = new PrinterSettings();
+            var PaperSize = settings.PaperSizes.Cast<System.Drawing.Printing.PaperSize>().ToList().Where(V => V.PaperName == Util.LongSoHienTai.paperSize.PaperName).FirstOrDefault();
+
+            var PageSettings = new System.Drawing.Printing.PageSettings()
+            {
+                PaperSize = PaperSize
+            };
+            worksheet.PrintSettings.ApplySystemPageSettings(PageSettings);
             if (worksheet.UsedRange.EndCol > 0)
             {
                 worksheet.DeleteColumns(0, worksheet.UsedRange.EndCol - 1);

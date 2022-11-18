@@ -143,7 +143,7 @@ namespace unvell.ReoGrid.Print
 			var currentPS = sheet.PrintSettings;
 
 #if WINFORM
-			this.currentGDIPageSettings = sheet.CreateGDIPageSettings();
+		 
 #endif // WINFORM
 
 		}

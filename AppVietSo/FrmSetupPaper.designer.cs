@@ -114,6 +114,7 @@ namespace AppVietSo
             0,
             0});
             this.nmrHeight.Name = "nmrHeight";
+            this.nmrHeight.ReadOnly = true;
             this.nmrHeight.Size = new System.Drawing.Size(101, 26);
             this.nmrHeight.TabIndex = 2;
             this.nmrHeight.ValueChanged += new System.EventHandler(this.nmr_ValueChanged);
@@ -128,6 +129,7 @@ namespace AppVietSo
             0,
             0});
             this.nmrWidth.Name = "nmrWidth";
+            this.nmrWidth.ReadOnly = true;
             this.nmrWidth.Size = new System.Drawing.Size(101, 26);
             this.nmrWidth.TabIndex = 1;
             this.nmrWidth.ValueChanged += new System.EventHandler(this.nmr_ValueChanged);
