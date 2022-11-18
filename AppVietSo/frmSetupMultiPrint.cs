@@ -221,7 +221,7 @@ namespace AppVietSo
                     worksheet_0.SetRowsHeight(0, 1, 0);
                     worksheet_0.SetRowsHeight(worksheet_0.UsedRange.Rows, 1, 0);
                     worksheet_0.PrintSettings.Margins = new PageMargins(top, bottom, left, right);
-                  //  worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
+                    worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
                     PageSettings pageSettings = reogrid.CurrentWorksheet.PrintSettings.CreateSystemPageSettings();
                     pageSettings.PaperSize = paperSize;
 
@@ -233,6 +233,7 @@ namespace AppVietSo
 
                  var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();
                     var session = reogrid.CurrentWorksheet.CreatePrintSession(printsetting);
+                    session.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
                     session.PrintDocument.DocumentName = item.TenSo;
                     session.PrintDocument.DefaultPageSettings.PaperSize = pageSettings.PaperSize;
                     session.PrintDocument.DefaultPageSettings.Landscape = pageSettings.Landscape;
@@ -241,6 +242,16 @@ namespace AppVietSo
                     session.PrintDocument.PrinterSettings.DefaultPageSettings.PaperSize = pageSettings.PaperSize;
                     session.PrintDocument.PrinterSettings.DefaultPageSettings.Landscape = pageSettings.Landscape;
                     session.PrintDocument.PrinterSettings.DefaultPageSettings.Margins = pageSettings.Margins;
+
+                    var hientai = reogrid.CurrentWorksheet.GetTotalWidth();
+                    if (worksheet_0.PrintSettings.Landscape)
+                    {
+                        var KhoGiay = Util.InchToPixel(reogrid.CurrentWorksheet.PrintSettings.PaperHeight, 100f) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
+
+                        var Scaling = KhoGiay / hientai;
+                        reogrid.CurrentWorksheet.PrintSettings.PageScaling = (float)Scaling;
+                    }
+
                     ReoGridExtentions.SetOnePage2(worksheet_0);
 
                     session.Print();

@@ -368,13 +368,13 @@ namespace AppVietSo
 
 
 
-                //      worksheet.ResetAllPageBreaks();
+                 worksheet.ResetAllPageBreaks();
 
                 var MaxRow = worksheet.UsedRange.Rows;
                 var MaxCol = worksheet.UsedRange.Cols;
                 var MinCol = worksheet.ColumnPageBreaks.Min(v => v);
                 var MinRow = worksheet.RowPageBreaks.Min(v => v);
-                foreach (var item in worksheet.ColumnPageBreaks.ToList())
+                foreach (var item in worksheet.ColumnPageBreaks)
                 {
                     if (item == MaxCol || item == MinCol)
                     {
@@ -447,13 +447,17 @@ namespace AppVietSo
             worksheet.PrintSettings.Margins = new PageMargins(0);
 
             PrinterSettings settings = new PrinterSettings();
-            var PaperSize = settings.PaperSizes.Cast<System.Drawing.Printing.PaperSize>().ToList().Where(V => V.PaperName == Util.LongSoHienTai.paperSize.PaperName).FirstOrDefault();
-
-            var PageSettings = new System.Drawing.Printing.PageSettings()
+            if (Util.LongSoHienTai.paperSize!=null)
             {
-                PaperSize = PaperSize
-            };
+                var PaperSize = settings.PaperSizes.Cast<System.Drawing.Printing.PaperSize>().ToList().Where(V => V.PaperName == Util.LongSoHienTai.paperSize.PaperName).FirstOrDefault();
+
+                var PageSettings = new System.Drawing.Printing.PageSettings()
+                {
+                    PaperSize = PaperSize
+                };
             worksheet.PrintSettings.ApplySystemPageSettings(PageSettings);
+            }
+
             if (worksheet.UsedRange.EndCol > 0)
             {
                 worksheet.DeleteColumns(0, worksheet.UsedRange.EndCol - 1);
