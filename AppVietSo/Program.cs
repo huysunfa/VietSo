@@ -140,9 +140,11 @@ namespace AppVietSo
             var value = new Dictionary<string, string>();
             value.Add("Key", key);
             value.Add("Error", e.Exception.ToString());
-            CNDictionary.PostDataFromUrl(Util.mainURL + "/AppSync/SubmitError", value);
-
-            //MessageBox.Show(LabelText.Get("Application_ThreadException") + " \n " + e.Exception.ToString());
+            Task.Run(() =>
+            {
+                CNDictionary.PostDataFromUrl(Util.mainURL + "/AppSync/SubmitError", value);
+            });
+                //MessageBox.Show(LabelText.Get("Application_ThreadException") + " \n " + e.Exception.ToString());
 
             Application.Exit();
             System.Diagnostics.Process.Start(Application.ExecutablePath);
