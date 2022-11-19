@@ -193,6 +193,10 @@ namespace unvell.ReoGrid
 
 		internal Rectangle GetGridBounds(int row, int col)
 		{
+            if (col>=cols.Count || row>=rows.Count)
+            {
+				return new Rectangle();
+            }
 			return new Rectangle(cols[col].Left, rows[row].Top, cols[col].InnerWidth + 1, rows[row].InnerHeight + 1);
 		}
 

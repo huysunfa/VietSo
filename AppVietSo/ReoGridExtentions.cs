@@ -486,7 +486,7 @@ namespace AppVietSo
             // hiển thị từng cột
 
 
-            LoadDataToDataGrid(worksheet, rbSongNgu, cbCanChuViet, rbChuViet, rbChuHan);
+            LoadDataToDataGrid(worksheet, rbSongNgu, cbCanChuViet, rbChuViet, rbChuHan, worksheet.UsedRange);
 
             #endregion
 
@@ -606,6 +606,7 @@ namespace AppVietSo
                 {
 
                     var text = cell.TextVN;
+                    row.Data = text;
                     var action = new SetCellDataAction(row.Row, row.Column, text);
                     reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
 
@@ -613,6 +614,7 @@ namespace AppVietSo
                 else
                 {
                     var text = cell.TextCN;
+                    row.Data = text;
                     var action = new SetCellDataAction(row.Row, row.Column, text);
                     reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
                 }
@@ -853,21 +855,24 @@ namespace AppVietSo
             });
 
         }
-        public static void LoadDataToDataGrid(Worksheet worksheet, bool rbSongNgu, string cbCanChuViet, bool rbChuViet, bool rbChuHan)
+        public static void LoadDataToDataGrid(Worksheet worksheet, bool rbSongNgu, string cbCanChuViet, bool rbChuViet, bool rbChuHan, RangePosition position)
         {
+            if (position == null)
+            {
+                position = worksheet.UsedRange;
+            }
             var songngu = rbSongNgu;
             var PosText = cbCanChuViet;
 
-            var position = worksheet.UsedRange;
             var LgSo = Util.LongSoHienTai.LgSo;
 
             var col = 0;
-            for (int i = 1; i < position.Cols - 1; i++)
+            for (int i = (position.Col==0? 1 : position.Col); i <  position.EndCol; i++)
             {
 
                 var row = 0;
 
-                for (int j = 1; j < position.Rows - 1; j++)
+                for (int j = (position.Row==0?1: position.Row); j <  position.EndRow; j++)
                 {
                     var item = worksheet.Cells[j, i];
                     if (rbChuViet) item.DataFormatArgs = "TextVN";
