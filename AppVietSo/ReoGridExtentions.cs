@@ -368,7 +368,7 @@ namespace AppVietSo
 
 
 
-                 worksheet.ResetAllPageBreaks();
+                worksheet.ResetAllPageBreaks();
 
                 var MaxRow = worksheet.UsedRange.Rows;
                 var MaxCol = worksheet.UsedRange.Cols;
@@ -447,7 +447,7 @@ namespace AppVietSo
             worksheet.PrintSettings.Margins = new PageMargins(0);
 
             PrinterSettings settings = new PrinterSettings();
-            if (Util.LongSoHienTai.paperSize!=null)
+            if (Util.LongSoHienTai.paperSize != null)
             {
                 var PaperSize = settings.PaperSizes.Cast<System.Drawing.Printing.PaperSize>().ToList().Where(V => V.PaperName == Util.LongSoHienTai.paperSize.PaperName).FirstOrDefault();
 
@@ -455,7 +455,7 @@ namespace AppVietSo
                 {
                     PaperSize = PaperSize
                 };
-            worksheet.PrintSettings.ApplySystemPageSettings(PageSettings);
+                worksheet.PrintSettings.ApplySystemPageSettings(PageSettings);
             }
 
             if (worksheet.UsedRange.EndCol > 0)
@@ -605,7 +605,7 @@ namespace AppVietSo
                 if (DataFormatArgs == "TextVN")
                 {
 
-                     var text = cell.TextVN;
+                    var text = cell.TextVN;
                     var action = new SetCellDataAction(row.Row, row.Column, text);
                     reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
 
@@ -1045,6 +1045,26 @@ namespace AppVietSo
                 });
             }
         }
+
+        public static void setColorTag(Worksheet sheet, RangePosition rangePosition, Color color)
+        {
+
+            if (color == null)
+            {
+                color = Color.Orange;
+            }
+
+            sheet.SetRangeStyles(rangePosition, new WorksheetRangeStyle
+            {
+                // style item flag
+                Flag = PlainStyleFlag.BackColor,
+                // style item
+                BackColor = color,
+            });
+
+        }
+
+
         public static void AddMaSo(ReoGridControl reoGridControl1 = null, bool input = false)
         {
             if (Util.LongSoHienTai.KhoaCung)

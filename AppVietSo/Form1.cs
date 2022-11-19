@@ -774,25 +774,56 @@ namespace AppVietSo
             {
                 try
                 {
+                    var GetType = r1.Action.GetType();
 
-                    var row = (SetCellDataAction)r1.Action;
-                    var select = new CellPosition() { Row = row.Row, Col = row.Col };
-                    var cells = reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col];
-                    cells.DataFormatArgs = cells.Tag;
-                    cells.Tag = null;
-                    if (luiCN == false && rbSongNgu.Checked)
+                    if (GetType.Name == (typeof(SetRangeDataAction).Name))
                     {
-                        luiCN = true;
-                        reoGridControl1.Undo();
-                    };
-                   var input=(cells.DataFormatArgs+"").ToListData();
-                    for (int i = 0; i < input.Count(); i++)
-                    {
-                        reoGridControl1.Undo();
+
+                        var row = (SetRangeDataAction)r1.Action;
+
+                        for (int i = row.Range.Row; i <= row.Range.EndRow; i++)
+                        {
+                            for (int j = row.Range.Col; j <= row.Range.EndCol; j++)
+                            {
+                                var item = reoGridControl1.CurrentWorksheet.Cells[i,j];
+                                var lastdata =item.Data;
+                                if (string.IsNullOrEmpty(lastdata + "") && item.Style.BackColor == Color.Orange)
+                                {
+                                    ReoGridExtentions.setColorTag(worksheet, row.Range, Color.White);
+                                    var tag = item.Tag.getCellData();
+                                    tag.TextCN = "";
+                                    tag.TextVN = "";
+                                    item.Tag = tag;
+                                }
+                            }
+                        }
+                
                     }
-                    luiCN = false;
-                    ReoGridExtentions.setColorTag(worksheet, cells, Color.Orange);
 
+                    //if (GetType.Name == (typeof(SetCellDataAction).Name))
+                    //{
+
+
+                    //    var row = (SetCellDataAction)r1.Action;
+                    //    var select = new CellPosition() { Row = row.Row, Col = row.Col };
+                    //    var cells = reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col];
+                    //    cells.DataFormatArgs = cells.Tag;
+                    //    cells.Tag = null;
+                    //    if (luiCN == false && rbSongNgu.Checked)
+                    //    {
+                    //        luiCN = true;
+                    //        reoGridControl1.Undo();
+                    //    };
+                    //    var input = (cells.DataFormatArgs + "").ToListData();
+                    //    for (int i = 0; i < input.Count(); i++)
+                    //    {
+                    //        reoGridControl1.Undo();
+                    //    }
+                    //    luiCN = false;
+                    //    ReoGridExtentions.setColorTag(worksheet, cells, Color.Orange);
+                    //}
+                    worksheet.ScaleFactor += (float)0.001;
+                    SaveData();
                 }
                 catch
                 {
@@ -805,16 +836,49 @@ namespace AppVietSo
             {
                 try
                 {
-                    var row = (SetCellDataAction)r1.Action;
-                    var select = new CellPosition() { Row = row.Row, Col = row.Col };
-                    var cells = reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col];
+                    var GetType = r1.Action.GetType();
 
-                    reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col].Tag = cells.DataFormatArgs.getCellData();
-                    editting = true;
-                    ReoGridExtentions.setColorTag(worksheet, cells, Color.Orange);
+                    if (GetType.Name == (typeof(SetRangeDataAction).Name))
+                    {
 
+                        var row = (SetRangeDataAction)r1.Action;
+
+                        for (int i = row.Range.Row; i <= row.Range.EndRow; i++)
+                        {
+                            for (int j = row.Range.Col; j <= row.Range.EndCol; j++)
+                            {
+                                var item = reoGridControl1.CurrentWorksheet.Cells[i, j];
+                                var lastdata = item.Data;
+                                if (string.IsNullOrEmpty(lastdata + "") && item.Style.BackColor == Color.Orange)
+                                {
+                                    ReoGridExtentions.setColorTag(worksheet, row.Range, Color.White);
+                                    var tag = item.Tag.getCellData();
+                                    tag.TextCN = "";
+                                    tag.TextVN = "";
+                                    tag.Value = "";
+                                    item.Tag = tag;
+                                }
+                            }
+                        }
+
+                    }
+
+                    //if (GetType.Name == (typeof(SetCellDataAction).Name))
+                    //{
+
+
+                    //    var row = (SetCellDataAction)r1.Action;
+                    //    var select = new CellPosition() { Row = row.Row, Col = row.Col };
+                    //    var cells = reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col];
+                    //    cells.DataFormatArgs = cells.Tag;
+                    //    cells.Tag = null;
+         
+                    //     ReoGridExtentions.setColorTag(worksheet, cells, Color.Orange);
+                    //}
+                    worksheet.ScaleFactor += (float)0.001;
+                    SaveData();
                 }
-                catch (Exception)
+                catch
                 {
                     worksheet.ScaleFactor += (float)0.001;
                     SaveData();
@@ -1045,7 +1109,26 @@ namespace AppVietSo
         }
 
 
+        public SetRangeDataAction setTextAction(string text, unvell.ReoGrid.Cell cell, ReoGridControl reoGrid)
+        {
 
+
+
+            // process
+            var listObj = (text + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
+            object[,] data = new object[listObj.Count, 1];
+            var ranger = new RangePosition(cell.Row, cell.Column, listObj.Count, 1);
+
+            for (int i = 0; i < listObj.Count; i++)
+            {
+                data[i, 0] = listObj[i];
+                //    ranger.EndRow = cell.Row+i;
+            }
+            // end process
+
+            var rand = new SetRangeDataAction(ranger, data);
+            return rand;
+        }
         public void setText(int Row, int Col, string TextVN = "", string TextCN = "")
         {
             var worksheet = reoGridControl1.CurrentWorksheet;
@@ -1067,10 +1150,17 @@ namespace AppVietSo
 
             SaveData();
             var text = item.renderViewText();
-            var action = new SetCellDataAction(item.Row, item.Column, text);
+
+            var action = setTextAction(text, item, reoGridControl1);
+            //var action = new SetCellDataAction(item.Row, item.Column, text);
+
             reoGridControl1.DoAction(reoGridControl1.CurrentWorksheet, action);
 
+            ReoGridExtentions.setColorTag(worksheet, action.Range, Color.Orange);
 
+            worksheet.ScaleFactor += (float)0.001;
+
+            return;
 
             if (TextVN.Contains("@"))
             {
@@ -1078,7 +1168,7 @@ namespace AppVietSo
                 if ((worksheet.UsedRange.EndRow - Row - cnt) < 0)
                 {
                     var colAdd = cnt / (worksheet.UsedRange.EndRow - Row);
-                    worksheet.InsertColumns(Col, colAdd-1);
+                    worksheet.InsertColumns(Col, colAdd - 1);
                     worksheet.ScaleFactor += (float)0.001;
                 }
 
@@ -1120,8 +1210,8 @@ namespace AppVietSo
             //  RenderStyle(itemCN.Address);
             worksheet.AutoFitColumnWidth(itemCN.Column, false);
             worksheet.AutoFitColumnWidth(item.Column, false);
-        } 
-        
+        }
+
         //public void SetText(Worksheet worksheet, unvell.ReoGrid.Cell item)
         //{
         //    var text = item.renderViewText();
@@ -1298,8 +1388,7 @@ namespace AppVietSo
 
         private void button7_Click(object sender, EventArgs e)
         {
-            SaveData();
-            ReLoad(sender, e);
+         
 
         }
 
@@ -1569,10 +1658,11 @@ namespace AppVietSo
                             {
                                 value.Value = value.TextVN;
                             }
-                            if (string.IsNullOrEmpty(item.Data + "") && !(value.TextVN + "").StartsWith("@"))
+                            if (string.IsNullOrEmpty(item.Data + "") && !(value.TextVN + "").StartsWith("@") )
                             {
                                 value = new CellData();
                             }
+                         
                         }
                         else
                         {
@@ -1611,6 +1701,9 @@ namespace AppVietSo
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            SaveData();
+            ReLoad(sender, e);
+            
             //richTextBox1.Visible = true;
             //richTextBox1.Text = "";
         }
