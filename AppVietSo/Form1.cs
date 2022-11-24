@@ -787,14 +787,28 @@ namespace AppVietSo
                             {
                                 var item = reoGridControl1.CurrentWorksheet.Cells[i, j];
                                 var lastdata = item.Data;
-                                if (string.IsNullOrEmpty(lastdata + "") && item.Style.BackColor == Color.Orange)
+                                var cell = item.Tag.getCellData();
+                                cell.Value = null;
+                                ReoGridExtentions.setColorTag(worksheet, row.Range, Color.White);
+                                if ((item.DataFormatArgs+"")== "TextCN")
                                 {
-                                    ReoGridExtentions.setColorTag(worksheet, row.Range, Color.White);
-                                    var tag = item.Tag.getCellData();
-                                    tag.TextCN = "";
-                                    tag.TextVN = "";
-                                    item.Tag = tag;
+                                    cell.TextCN = item.DisplayText;
+                                    cell.TextVN = CNDictionary.getVN(item.DisplayText);
                                 }
+                                else
+                                {
+
+                                    cell.TextVN = item.DisplayText;
+                                    cell.TextCN = CNDictionary.getCN(item.DisplayText);
+                                }
+                                //if (string.IsNullOrEmpty(lastdata + "") && item.Style.BackColor == Color.Orange)
+                                //{
+                                //   
+                                //    var tag = item.Tag.getCellData();
+                                //    tag.TextCN = "";
+                                //    tag.TextVN = "";
+                                //    item.Tag = tag;
+                                //}
                             }
                         }
 
@@ -1536,6 +1550,7 @@ namespace AppVietSo
         {
             var frm = new frmTinChu();
             frm.ShowDialog();
+            SaveData();
             RenderStyle();
             ReoGridExtentions.AddMaSo(reoGridControl1, InMaSo.Checked);
         }
