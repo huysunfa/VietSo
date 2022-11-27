@@ -1571,7 +1571,7 @@ namespace AppVietSo
             cbfnameCN.SelectedItem = Data.fnameCN + "";
             cbfnameVN.SelectedItem = Data.fnameVN + "";
             KhoaCung.Checked = Data.KhoaCung;
-            ShowPageBreaks.Checked = Data.KhoaCung;
+            //ShowPageBreaks.Checked = Data.KhoaCung;
             #endregion
         }
         private void button5_Click(object sender, EventArgs e)
@@ -2220,6 +2220,11 @@ namespace AppVietSo
         {
             ReoGridExtentions.AddColorEdit(reoGridControl1, cbHienMauEdit.Checked);
 
+
+        }
+
+        private void ShowPageBreaks_Click(object sender, EventArgs e)
+        {
 
         }
     }

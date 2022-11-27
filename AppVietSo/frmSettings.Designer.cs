@@ -31,6 +31,7 @@ namespace AppVietSo
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSettings));
             this.cb_SuDungCauHinhMayInMacDinh = new System.Windows.Forms.CheckBox();
+            this.ckPageScaling = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // cb_SuDungCauHinhMayInMacDinh
@@ -45,11 +46,24 @@ namespace AppVietSo
             this.cb_SuDungCauHinhMayInMacDinh.UseVisualStyleBackColor = true;
             this.cb_SuDungCauHinhMayInMacDinh.CheckedChanged += new System.EventHandler(this.cb_SuDungCauHinhMayInMacDinh_CheckedChanged);
             // 
+            // ckPageScaling
+            // 
+            this.ckPageScaling.AutoSize = true;
+            this.ckPageScaling.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckPageScaling.Location = new System.Drawing.Point(34, 114);
+            this.ckPageScaling.Name = "ckPageScaling";
+            this.ckPageScaling.Size = new System.Drawing.Size(364, 33);
+            this.ckPageScaling.TabIndex = 1;
+            this.ckPageScaling.Text = "Không sử dụng PageScaling";
+            this.ckPageScaling.UseVisualStyleBackColor = true;
+            this.ckPageScaling.CheckedChanged += new System.EventHandler(this.ckPageScaling_CheckedChanged);
+            // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 588);
+            this.Controls.Add(this.ckPageScaling);
             this.Controls.Add(this.cb_SuDungCauHinhMayInMacDinh);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSettings";
@@ -63,5 +77,6 @@ namespace AppVietSo
         #endregion
 
         private System.Windows.Forms.CheckBox cb_SuDungCauHinhMayInMacDinh;
+        private System.Windows.Forms.CheckBox ckPageScaling;
     }
 }

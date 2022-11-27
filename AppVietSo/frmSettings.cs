@@ -21,14 +21,22 @@ namespace AppVietSo
         private void frmSettings_Load(object sender, EventArgs e)
         {
             var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();
+            var checkPageScaling = ActiveData.Get("@checkPageScaling").ToBool();
 
             cb_SuDungCauHinhMayInMacDinh.Checked =  printsetting;
+            ckPageScaling.Checked = checkPageScaling;
 
         }
 
         private void cb_SuDungCauHinhMayInMacDinh_CheckedChanged(object sender, EventArgs e)
         {
             ActiveData.Update("@SuDungCauHinhMayInMacDinh", cb_SuDungCauHinhMayInMacDinh.Checked.ToString());
+        }
+
+        private void ckPageScaling_CheckedChanged(object sender, EventArgs e)
+        {
+            ActiveData.Update("@checkPageScaling", ckPageScaling.Checked.ToString());
+
         }
     }
 }

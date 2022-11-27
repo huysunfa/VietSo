@@ -14,11 +14,11 @@ namespace AppVietSo
     {
         bool _KhoaCung = false;
         int _PageNumber = 1;
-        public FrmPrintPreview(Worksheet   _worksheet_0 , bool KhoaCung, int PageNumber = 1)
+        public FrmPrintPreview(Worksheet _worksheet_0, bool KhoaCung, int PageNumber = 1)
         {
-            this.worksheet_0 = _worksheet_0 ;
-     //       this.worksheet_0.PrintSettings = (PrintSettings)_worksheet_0.PrintSettings.Clone();
-             _KhoaCung = KhoaCung;
+            this.worksheet_0 = _worksheet_0;
+            //       this.worksheet_0.PrintSettings = (PrintSettings)_worksheet_0.PrintSettings.Clone();
+            _KhoaCung = KhoaCung;
             _PageNumber = PageNumber;
             this.InitializeComponent();
         }
@@ -43,7 +43,7 @@ namespace AppVietSo
             }
         }
 
-       
+
 
         // Token: 0x06000086 RID: 134 RVA: 0x000056C4 File Offset: 0x000038C4
         public void ChangeWidthSize(Worksheet sheet, bool check)
@@ -113,17 +113,17 @@ namespace AppVietSo
         private void FrmPrintPreview_Load(object sender, EventArgs e)
         {
 
- 
- 
+
+
 
             this.bool_0 = true;
             this.splitContainer1.SplitterDistance = this.cbxPrinter.Width + this.cbxPrinter.Left * 2;
             this.method_0();
-             this.nmrTop.Value = (decimal)Util.LongSoHienTai.PagePaddingTop;
+            this.nmrTop.Value = (decimal)Util.LongSoHienTai.PagePaddingTop;
             this.nmrBottom.Value = (decimal)Util.LongSoHienTai.PagePaddingBottom;
             this.nmrLeft.Value = (decimal)Util.LongSoHienTai.PagePaddingLeft;
             this.nmrRight.Value = (decimal)Util.LongSoHienTai.PagePaddingRight;
-            var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();            
+            var printsetting = ActiveData.Get("@SuDungCauHinhMayInMacDinh").ToBool();
             this.printSession_0 = this.worksheet_0.CreatePrintSession(printsetting);
 
             this.printPreviewControl1.Document = this.printSession_0.PrintDocument;
@@ -155,7 +155,7 @@ namespace AppVietSo
             nmrPage.Value = _PageNumber;
             this.printPreviewControl1.StartPage = (int)this.nmrPage.Value - 1;
             this.method_1();
- 
+
         }
 
         // Token: 0x06000087 RID: 135 RVA: 0x00005948 File Offset: 0x00003B48
@@ -369,17 +369,20 @@ namespace AppVietSo
             right = right / 25.4f;
 
             worksheet_0.PrintSettings.Margins = new PageMargins(top, bottom, left, right);
-             this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
+            this.worksheet_0.SetWidthHeight(worksheet_0.UsedRange.Rows, worksheet_0.UsedRange.Cols, false);
 
+            var checkPageScaling = ActiveData.Get("@checkPageScaling").ToBool();
 
-
-            var hientai = this.worksheet_0.GetTotalWidth();
-            if (worksheet_0.PrintSettings.Landscape)
+            if (checkPageScaling == false)
             {
-                var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
+                var hientai = this.worksheet_0.GetTotalWidth();
+                if (worksheet_0.PrintSettings.Landscape)
+                {
+                    var KhoGiay = Util.InchToPixel(this.worksheet_0.PrintSettings.PaperHeight, 100f) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingRight) - ShareFun.toPaperSize((decimal)Util.LongSoHienTai.PagePaddingLeft);
 
-                var Scaling = KhoGiay / hientai;
-                this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
+                    var Scaling = KhoGiay / hientai;
+                    this.worksheet_0.PrintSettings.PageScaling = (float)Scaling;
+                }
             }
             //else
             //{

@@ -96,7 +96,6 @@ namespace AppVietSo
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
@@ -118,6 +117,7 @@ namespace AppVietSo
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
             this.TSMItemThemChuSauHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
+            this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.ctextMenuS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -586,7 +586,7 @@ namespace AppVietSo
             this.tiênTichToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(9, 589);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(107, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -653,6 +653,7 @@ namespace AppVietSo
             this.ShowPageBreaks.Text = "Hiện phân trang";
             this.ShowPageBreaks.UseVisualStyleBackColor = true;
             this.ShowPageBreaks.CheckedChanged += new System.EventHandler(this.checkBox3_CheckedChanged);
+            this.ShowPageBreaks.Click += new System.EventHandler(this.ShowPageBreaks_Click);
             // 
             // button11
             // 
@@ -839,32 +840,6 @@ namespace AppVietSo
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             this.richTextBox1.Visible = false;
-            // 
-            // reoGridControl1
-            // 
-            this.reoGridControl1.BackColor = System.Drawing.Color.Silver;
-            this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
-            this.reoGridControl1.ContextMenuStrip = this.ctextMenuS;
-            this.reoGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reoGridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reoGridControl1.LeadHeaderContextMenuStrip = null;
-            this.reoGridControl1.Location = new System.Drawing.Point(0, 0);
-            this.reoGridControl1.Margin = new System.Windows.Forms.Padding(200, 2, 3, 2);
-            this.reoGridControl1.Name = "reoGridControl1";
-            this.reoGridControl1.Padding = new System.Windows.Forms.Padding(200, 0, 0, 0);
-            this.reoGridControl1.RowHeaderContextMenuStrip = null;
-            this.reoGridControl1.Script = null;
-            this.reoGridControl1.SheetTabContextMenuStrip = null;
-            this.reoGridControl1.SheetTabNewButtonVisible = true;
-            this.reoGridControl1.SheetTabVisible = true;
-            this.reoGridControl1.SheetTabWidth = 80;
-            this.reoGridControl1.ShowScrollEndSpacing = true;
-            this.reoGridControl1.Size = new System.Drawing.Size(1387, 827);
-            this.reoGridControl1.TabIndex = 2;
-            this.reoGridControl1.Text = "reoGridControl1";
-            this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
-            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
-            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_DoubleClick);
             // 
             // bindingNavigator1
             // 
@@ -1055,66 +1030,99 @@ namespace AppVietSo
             this.cbfsizeCN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfsizeCN.Items.AddRange(new object[] {
             "6",
-            "6.75",
             "7",
-            "7.5",
             "8",
-            "8.25",
             "9",
-            "9.75",
             "10",
-            "10.5",
             "11",
-            "11.25",
             "12",
-            "12.75",
             "13",
-            "13.5",
             "14",
-            "14.25",
             "15",
-            "15.75",
             "16",
-            "16.5",
             "17",
-            "17.25",
             "18",
-            "18.75",
             "19",
-            "19.5",
             "20",
-            "20.25",
             "21",
-            "21.75",
             "22",
-            "22.5",
             "23",
-            "23.25",
             "24",
-            "24.75",
             "25",
-            "25.5",
             "26",
-            "26.25",
             "27",
-            "27.75",
             "28",
-            "28.5",
             "29",
-            "29.25",
             "30",
-            "30.75",
             "31",
-            "31.5",
             "32",
-            "32.25",
             "33",
-            "33.75",
             "34",
-            "34.5",
             "35",
-            "35.25",
-            "36"});
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"});
             this.cbfsizeCN.Name = "cbfsizeCN";
             this.cbfsizeCN.Size = new System.Drawing.Size(99, 28);
             this.cbfsizeCN.DropDownClosed += new System.EventHandler(this.RenderFontSizeChanged);
@@ -1221,66 +1229,99 @@ namespace AppVietSo
             this.cbfsizeVN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbfsizeVN.Items.AddRange(new object[] {
             "6",
-            "6.75",
             "7",
-            "7.5",
             "8",
-            "8.25",
             "9",
-            "9.75",
             "10",
-            "10.5",
             "11",
-            "11.25",
             "12",
-            "12.75",
             "13",
-            "13.5",
             "14",
-            "14.25",
             "15",
-            "15.75",
             "16",
-            "16.5",
             "17",
-            "17.25",
             "18",
-            "18.75",
             "19",
-            "19.5",
             "20",
-            "20.25",
             "21",
-            "21.75",
             "22",
-            "22.5",
             "23",
-            "23.25",
             "24",
-            "24.75",
             "25",
-            "25.5",
             "26",
-            "26.25",
             "27",
-            "27.75",
             "28",
-            "28.5",
             "29",
-            "29.25",
             "30",
-            "30.75",
             "31",
-            "31.5",
             "32",
-            "32.25",
             "33",
-            "33.75",
             "34",
-            "34.5",
             "35",
-            "35.25",
-            "36"});
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59",
+            "60",
+            "61",
+            "62",
+            "63",
+            "64",
+            "65",
+            "66",
+            "67",
+            "68",
+            "69",
+            "70",
+            "71",
+            "72",
+            "73",
+            "74",
+            "75",
+            "76",
+            "77",
+            "78",
+            "79",
+            "80",
+            "81",
+            "82",
+            "83",
+            "84",
+            "85",
+            "86",
+            "87",
+            "88",
+            "89",
+            "90",
+            "91",
+            "92",
+            "93",
+            "94",
+            "95",
+            "96",
+            "97",
+            "98",
+            "99"});
             this.cbfsizeVN.Name = "cbfsizeVN";
             this.cbfsizeVN.Size = new System.Drawing.Size(99, 28);
             this.cbfsizeVN.DropDownClosed += new System.EventHandler(this.RenderFontSizeChanged);
@@ -1302,7 +1343,7 @@ namespace AppVietSo
             this.labelLicence.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLicence.ForeColor = System.Drawing.Color.Red;
             this.labelLicence.Name = "labelLicence";
-            this.labelLicence.Size = new System.Drawing.Size(116, 25);
+            this.labelLicence.Size = new System.Drawing.Size(116, 20);
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
@@ -1313,6 +1354,32 @@ namespace AppVietSo
             this.TSMItemThemChuSauHuongLinh.Size = new System.Drawing.Size(314, 26);
             this.TSMItemThemChuSauHuongLinh.Text = "Khuôn mẫu Hương linh";
             this.TSMItemThemChuSauHuongLinh.Click += new System.EventHandler(this.TSMItemThemChuSauHuongLinh_Click);
+            // 
+            // reoGridControl1
+            // 
+            this.reoGridControl1.BackColor = System.Drawing.Color.Silver;
+            this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
+            this.reoGridControl1.ContextMenuStrip = this.ctextMenuS;
+            this.reoGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reoGridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reoGridControl1.LeadHeaderContextMenuStrip = null;
+            this.reoGridControl1.Location = new System.Drawing.Point(0, 0);
+            this.reoGridControl1.Margin = new System.Windows.Forms.Padding(200, 2, 3, 2);
+            this.reoGridControl1.Name = "reoGridControl1";
+            this.reoGridControl1.Padding = new System.Windows.Forms.Padding(200, 0, 0, 0);
+            this.reoGridControl1.RowHeaderContextMenuStrip = null;
+            this.reoGridControl1.Script = null;
+            this.reoGridControl1.SheetTabContextMenuStrip = null;
+            this.reoGridControl1.SheetTabNewButtonVisible = true;
+            this.reoGridControl1.SheetTabVisible = true;
+            this.reoGridControl1.SheetTabWidth = 80;
+            this.reoGridControl1.ShowScrollEndSpacing = true;
+            this.reoGridControl1.Size = new System.Drawing.Size(1387, 827);
+            this.reoGridControl1.TabIndex = 2;
+            this.reoGridControl1.Text = "reoGridControl1";
+            this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
+            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
+            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_DoubleClick);
             // 
             // Form1
             // 

@@ -368,7 +368,7 @@ namespace AppVietSo
 
 
 
-                worksheet.ResetAllPageBreaks();
+     //           worksheet.ResetAllPageBreaks();
 
                 var MaxRow = worksheet.UsedRange.Rows;
                 var MaxCol = worksheet.UsedRange.Cols;
@@ -386,7 +386,7 @@ namespace AppVietSo
                     }
                 }
 
-                foreach (var item in worksheet.RowPageBreaks.ToList())
+                foreach (var item in worksheet.RowPageBreaks)
                 {
                     if (item == MaxRow || item == MinRow)
                     {
