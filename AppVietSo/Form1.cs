@@ -65,7 +65,7 @@ namespace AppVietSo
             var Row = worksheet.SelectionRange.Row;
             var Col = worksheet.SelectionRange.Col;
             var item = worksheet.Cells[Row, Col];
-            var selection = item.DataFormatArgs + "";
+            var selection = item.Comment + "";
             if (selection.CheckNo() || Row == 0 || Col == 0)
             {
                 return;
@@ -171,7 +171,7 @@ namespace AppVietSo
         //            var cell = item.Tag.getCellData();
 
 
-        //            if ((string)item.DataFormatArgs == "TextVN")
+        //            if ((string)item.Comment == "TextVN")
         //            {
         //                cell.Value = null;
         //                cell.TextVN = row[j];
@@ -232,7 +232,7 @@ namespace AppVietSo
                     var cell = item.Tag.getCellData();
 
 
-                    if ((string)item.DataFormatArgs == "TextVN")
+                    if ((string)item.Comment == "TextVN")
                     {
                         cell.Value = null;
                         cell.TextVN = row[j];
@@ -291,11 +291,11 @@ namespace AppVietSo
             {
                 if (rbChuHan.Checked)
                 {
-                    worksheet.Cells[i, cnt].DataFormatArgs = "TextCN";
+                    worksheet.Cells[i, cnt].Comment = "TextCN";
                 }
                 if (rbChuViet.Checked)
                 {
-                    worksheet.Cells[i, cnt].DataFormatArgs = "TextVN";
+                    worksheet.Cells[i, cnt].Comment = "TextVN";
                 }
 
                 if (rbSongNgu.Checked)
@@ -303,32 +303,32 @@ namespace AppVietSo
                     var PosText = cbCanChuViet.Text;
                     if (PosText == "DƯỚI")
                     {
-                        worksheet.Cells[i - 1, cnt].DataFormatArgs = worksheet.Cells[i + 1, cnt].DataFormatArgs;
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i + 2, cnt].DataFormatArgs;
+                        worksheet.Cells[i - 1, cnt].Comment = worksheet.Cells[i + 1, cnt].Comment;
+                        worksheet.Cells[i, cnt].Comment = worksheet.Cells[i + 2, cnt].Comment;
 
                         var item = worksheet.Cells[i - 1, cnt];
-                        ReoGridExtentions.ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address, cbfnameCN.Text, cbfstyleCN.Text, cbfsizeCN.Text, cbfnameVN.Text, cbfstyleVN.Text, cbfsizeVN.Text);
+                        ReoGridExtentions.ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address, cbfnameCN.Text, cbfstyleCN.Text, cbfsizeCN.Text, cbfnameVN.Text, cbfstyleVN.Text, cbfsizeVN.Text);
 
                         var item2 = worksheet.Cells[i, cnt];
-                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+                        ChangeFontAndSize(worksheet, (item2.Comment + ""), item2.Address);
 
                     }
                     if (PosText == "TRÊN")
                     {
-                        worksheet.Cells[i + 1, cnt].DataFormatArgs = worksheet.Cells[i - 1, cnt].DataFormatArgs;
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i - 2, cnt].DataFormatArgs;
+                        worksheet.Cells[i + 1, cnt].Comment = worksheet.Cells[i - 1, cnt].Comment;
+                        worksheet.Cells[i, cnt].Comment = worksheet.Cells[i - 2, cnt].Comment;
 
                         var item = worksheet.Cells[i, cnt];
-                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                        ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address);
 
                         var item2 = worksheet.Cells[i + 1, cnt];
-                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+                        ChangeFontAndSize(worksheet, (item2.Comment + ""), item2.Address);
                     }
                     if (PosText == "PHẢI" || PosText == "TRÁI")
                     {
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i - 1, cnt].DataFormatArgs;
+                        worksheet.Cells[i, cnt].Comment = worksheet.Cells[i - 1, cnt].Comment;
                         var item = worksheet.Cells[i, cnt];
-                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                        ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address);
                     }
 
 
@@ -336,7 +336,7 @@ namespace AppVietSo
                 else
                 {
                     var item = worksheet.Cells[i, cnt];
-                    ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                    ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address);
                 }
             }
 
@@ -388,11 +388,11 @@ namespace AppVietSo
             {
                 if (rbChuHan.Checked)
                 {
-                    worksheet.Cells[i, cnt].DataFormatArgs = "TextCN";
+                    worksheet.Cells[i, cnt].Comment = "TextCN";
                 }
                 if (rbChuViet.Checked)
                 {
-                    worksheet.Cells[i, cnt].DataFormatArgs = "TextVN";
+                    worksheet.Cells[i, cnt].Comment = "TextVN";
                 }
 
                 if (rbSongNgu.Checked)
@@ -400,32 +400,32 @@ namespace AppVietSo
                     var PosText = cbCanChuViet.Text;
                     if (PosText == "PHẢI")
                     {
-                        worksheet.Cells[i, cnt - 1].DataFormatArgs = worksheet.Cells[i, cnt + 1].DataFormatArgs;
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt + 2].DataFormatArgs;
+                        worksheet.Cells[i, cnt - 1].Comment = worksheet.Cells[i, cnt + 1].Comment;
+                        worksheet.Cells[i, cnt].Comment = worksheet.Cells[i, cnt + 2].Comment;
 
                         var item = worksheet.Cells[i, cnt - 1];
-                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                        ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address);
 
                         var item2 = worksheet.Cells[i, cnt];
-                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+                        ChangeFontAndSize(worksheet, (item2.Comment + ""), item2.Address);
 
                     }
                     if (PosText == "TRÁI")
                     {
-                        worksheet.Cells[i, cnt + 1].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 2].DataFormatArgs;
+                        worksheet.Cells[i, cnt + 1].Comment = worksheet.Cells[i, cnt - 1].Comment;
+                        worksheet.Cells[i, cnt].Comment = worksheet.Cells[i, cnt - 2].Comment;
 
                         var item = worksheet.Cells[i, cnt];
-                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                        ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address);
 
                         var item2 = worksheet.Cells[i, cnt + 1];
-                        ChangeFontAndSize(worksheet, (item2.DataFormatArgs + ""), item2.Address);
+                        ChangeFontAndSize(worksheet, (item2.Comment + ""), item2.Address);
                     }
                     if (PosText == "TRÊN" || PosText == "DƯỚI")
                     {
-                        worksheet.Cells[i, cnt].DataFormatArgs = worksheet.Cells[i, cnt - 1].DataFormatArgs;
+                        worksheet.Cells[i, cnt].Comment = worksheet.Cells[i, cnt - 1].Comment;
                         var item = worksheet.Cells[i, cnt];
-                        ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                        ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address);
                     }
 
 
@@ -433,7 +433,7 @@ namespace AppVietSo
                 else
                 {
                     var item = worksheet.Cells[i, cnt];
-                    ChangeFontAndSize(worksheet, (item.DataFormatArgs + ""), item.Address);
+                    ChangeFontAndSize(worksheet, (item.Comment + ""), item.Address);
                 }
             }
 
@@ -539,7 +539,7 @@ namespace AppVietSo
             //    {
             //        var item = worksheet.Cells[i, j];
             //        item.Data = "";
-            //        item.DataFormatArgs = (item.DataFormatArgs + "").Split('_').LastOrDefault();
+            //        item.Comment = (item.Comment + "").Split('_').LastOrDefault();
             //        var cell = worksheet.Cells[i, j].Tag.getCellData();
             //        if ((cell.Value + "") == "@tinchu")
             //        {
@@ -769,8 +769,7 @@ namespace AppVietSo
              }
          };
 
-            var luiCN = false;
-            reoGridControl1.Undid += (s, r1) =>
+             reoGridControl1.Undid += (s, r1) =>
             {
                 try
                 {
@@ -786,29 +785,43 @@ namespace AppVietSo
                             for (int j = row.Range.Col; j <= row.Range.EndCol; j++)
                             {
                                 var item = reoGridControl1.CurrentWorksheet.Cells[i, j];
-                                var lastdata = item.Data;
-                                var cell = item.Tag.getCellData();
-                                cell.Value = null;
-                                ReoGridExtentions.setColorTag(worksheet, row.Range, Color.White);
-                                if ((item.DataFormatArgs+"")== "TextCN")
+                                var history = (HistoryCell)item.DataFormatArgs;
+                                if (history != null)
                                 {
-                                    cell.TextCN = item.DisplayText;
-                                    cell.TextVN = CNDictionary.getVN(item.DisplayText);
-                                }
-                                else
-                                {
+                                    var back = history.BackItem();
+                                    if (back != null)
+                                    {
+                                    history.Index -= 1;
+                                        item.Tag = back.Tag;
+                                        item.Style.BackColor = back.Style.BackColor;
+                                        item.Style.HAlign = back.Style.HAlign;
+                                        item.Style.VAlign = back.Style.VAlign;
+                                    //    item.Style.TextColor = back.Style.TextColor;
+                                        item.Style.FontName = back.Style.FontName;
+                                        item.Style.FontSize = back.Style.FontSize;
+                                        item.Style.Bold = back.Style.Bold;
+                                        item.Style.Italic = back.Style.Italic;
+                                        item.Style.Strikethrough = back.Style.Strikethrough;
+                                        item.Style.Underline = back.Style.Underline;
+                                        item.Style.TextWrap = back.Style.TextWrap;
+                                        item.Style.Indent = back.Style.Indent;
+                                        item.Style.Padding = back.Style.Padding;
+                                        item.Style.RotateAngle = back.Style.RotateAngle;
+                                        item.Data = back.Data;
+                                        item.Comment = back.Comment;
 
-                                    cell.TextVN = item.DisplayText;
-                                    cell.TextCN = CNDictionary.getCN(item.DisplayText);
+                                        //if (!string.IsNullOrEmpty(back.Comment))
+                                        //{
+                                        //    item.Comment = back.Comment;
+
+                                        //}
+                                        //else
+                                        //{
+                                        //    item.Comment = (item.Comment + "").Split('_').LastOrDefault();
+                                        //}
+                                    }
                                 }
-                                //if (string.IsNullOrEmpty(lastdata + "") && item.Style.BackColor == Color.Orange)
-                                //{
-                                //   
-                                //    var tag = item.Tag.getCellData();
-                                //    tag.TextCN = "";
-                                //    tag.TextVN = "";
-                                //    item.Tag = tag;
-                                //}
+                                
                             }
                         }
 
@@ -821,14 +834,14 @@ namespace AppVietSo
                     //    var row = (SetCellDataAction)r1.Action;
                     //    var select = new CellPosition() { Row = row.Row, Col = row.Col };
                     //    var cells = reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col];
-                    //    cells.DataFormatArgs = cells.Tag;
+                    //    cells.Comment = cells.Tag;
                     //    cells.Tag = null;
                     //    if (luiCN == false && rbSongNgu.Checked)
                     //    {
                     //        luiCN = true;
                     //        reoGridControl1.Undo();
                     //    };
-                    //    var input = (cells.DataFormatArgs + "").ToListData();
+                    //    var input = (cells.Comment + "").ToListData();
                     //    for (int i = 0; i < input.Count(); i++)
                     //    {
                     //        reoGridControl1.Undo();
@@ -862,38 +875,47 @@ namespace AppVietSo
                             for (int j = row.Range.Col; j <= row.Range.EndCol; j++)
                             {
                                 var item = reoGridControl1.CurrentWorksheet.Cells[i, j];
-                                var lastdata = item.Data;
-                                if (string.IsNullOrEmpty(lastdata + "") && item.Style.BackColor == Color.Orange)
+                                var history = (HistoryCell)item.DataFormatArgs;
+                                if (history != null)
                                 {
-                                    ReoGridExtentions.setColorTag(worksheet, row.Range, Color.White);
-                                    var tag = item.Tag.getCellData();
-                                    tag.TextCN = "";
-                                    tag.TextVN = "";
-                                    tag.Value = "";
-                                    item.Tag = tag;
-                                }
-                                if ((item.Tag.getCellData().Value + "").StartsWith("@"))
-                                {
-                                    ReoGridExtentions.setColorTag(worksheet, row.Range, Color.Orange);
+                                    var back = history.NextItem();
+                                    if (back != null)
+                                    {
+                                    history.Index += 1;
+                                        item.Tag = back.Tag;
+                                        item.Style.BackColor = back.Style.BackColor;
+                                        item.Style.HAlign = back.Style.HAlign;
+                                        item.Style.VAlign = back.Style.VAlign;
+                                        //    item.Style.TextColor = back.Style.TextColor;
+                                        item.Style.FontName = back.Style.FontName;
+                                        item.Style.FontSize = back.Style.FontSize;
+                                        item.Style.Bold = back.Style.Bold;
+                                        item.Style.Italic = back.Style.Italic;
+                                        item.Style.Strikethrough = back.Style.Strikethrough;
+                                        item.Style.Underline = back.Style.Underline;
+                                        item.Style.TextWrap = back.Style.TextWrap;
+                                        item.Style.Indent = back.Style.Indent;
+                                        item.Style.Padding = back.Style.Padding;
+                                        item.Style.RotateAngle = back.Style.RotateAngle;
+                                        item.Data = back.Data;
+                                        if (!string.IsNullOrEmpty(back.Comment))
+                                        {
+                                            item.Comment = back.Comment;
 
+                                        }
+                                        else
+                                        {
+                                            item.Comment = (item.Comment + "").Split('_').LastOrDefault();
+                                        }
+                                    }
                                 }
+
                             }
                         }
 
                     }
 
-                    //if (GetType.Name == (typeof(SetCellDataAction).Name))
-                    //{
-
-
-                    //    var row = (SetCellDataAction)r1.Action;
-                    //    var select = new CellPosition() { Row = row.Row, Col = row.Col };
-                    //    var cells = reoGridControl1.CurrentWorksheet.Cells[row.Row, row.Col];
-                    //    cells.DataFormatArgs = cells.Tag;
-                    //    cells.Tag = null;
-
-                    //     ReoGridExtentions.setColorTag(worksheet, cells, Color.Orange);
-                    //}
+                   
                     worksheet.ScaleFactor += (float)0.000001;
                     SaveData();
                 }
@@ -921,7 +943,7 @@ namespace AppVietSo
                 var Row = r1.StartRow;
                 var Col = r1.StartCol;
                 var cell = worksheet.Cells[Row, Col];
-                //if (cell.CheckNo() || cell.DataFormatArgs.CheckNo())
+                //if (cell.CheckNo() || cell.Comment.CheckNo())
                 //{
                 //    r1.IsCancelled = true;
                 //}
@@ -966,19 +988,19 @@ namespace AppVietSo
             worksheet.BeforeCellEdit += (s, r1) =>
             {
 
-                if (r1.Cell != null && r1.Cell.DataFormatArgs.CheckNo())
+                if (r1.Cell != null && r1.Cell.Comment.CheckNo())
                 {
                     r1.IsCancelled = true;
                     return;
                 }
-                if (r1.Cell != null && r1.Cell.DataFormatArgs.CheckSkip())
+                if (r1.Cell != null && r1.Cell.Comment.CheckSkip())
                 {
                     r1.IsCancelled = true;
                     return;
                 }
                 if (rbSongNgu.Checked)
                 {
-                    if (r1.Cell != null && (String)r1.Cell.DataFormatArgs == "TextCN")
+                    if (r1.Cell != null && (String)r1.Cell.Comment == "TextCN")
                     {
                         r1.IsCancelled = true;
                         //   MessageBox.Show("Khi ở chế độ song ngữ, vui lòng chỉ sửa chữ việt, chữ hán việt sẽ đi theo chữ việt");
@@ -1128,12 +1150,14 @@ namespace AppVietSo
         }
 
 
-        public SetRangeDataAction setTextAction(string text, unvell.ReoGrid.Cell cell, ReoGridControl reoGrid, bool rbSongNgu, String PosText)
+        public SetRangeDataAction setTextAction(string text, unvell.ReoGrid.Cell cell, ReoGridControl reoGrid, bool rbSongNgu, String PosText,
+
+           String TextCN, String TextVN)
         {
 
             if (rbSongNgu)
             {
-                return setTextActionSongNgu(cell, reoGrid, PosText);
+                return setTextActionSongNgu(cell, reoGrid, PosText, TextCN, TextVN);
             }
 
             // process
@@ -1161,20 +1185,18 @@ namespace AppVietSo
             return rand;
         }
 
-        public SetRangeDataAction setTextActionSongNgu(unvell.ReoGrid.Cell cell, ReoGridControl reoGrid, String PosText)
+        public SetRangeDataAction setTextActionSongNgu(unvell.ReoGrid.Cell cell, ReoGridControl reoGrid, String PosText, String TextCN, String TextVN)
         {
             var ranger = new RangePosition();
 
-            var TextCN = cell.Tag.getCellData().TextCN;
-            var TextVN = cell.Tag.getCellData().TextVN;
-            // process
+              // process
             var listObjCN = (TextCN + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
             var listObVN = (TextVN + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
 
             var totalRow = reoGrid.CurrentWorksheet.UsedRange.EndRow;
             var col = cell.Column;
 
-            object[,] data =null;
+            object[,] data = null;
             if (PosText == "PHẢI")
             {
                 data = new object[listObVN.Count, 2];
@@ -1201,8 +1223,8 @@ namespace AppVietSo
             }
             if (PosText == "TRÊN")
             {
-                data = new object[listObVN.Count*2, 1];
-                ranger = new RangePosition(cell.Row, cell.Column, listObVN.Count * 2,1);
+                data = new object[listObVN.Count * 2, 1];
+                ranger = new RangePosition(cell.Row, cell.Column, listObVN.Count * 2, 1);
 
                 for (int i = 0; i < listObVN.Count; i++)
                 {
@@ -1212,17 +1234,17 @@ namespace AppVietSo
                     data[vn, 0] = listObVN[i];
                     //    ranger.EndRow = cell.Row+i;
                 }
-            }    
-            
+            }
+
             if (PosText == "DƯỚI")
             {
-                data = new object[listObVN.Count*2, 1];
-                ranger = new RangePosition(cell.Row-1, cell.Column, listObVN.Count * 2,1);
+                data = new object[listObVN.Count * 2, 1];
+                ranger = new RangePosition(cell.Row - 1, cell.Column, listObVN.Count * 2, 1);
 
                 for (int i = 0; i < listObVN.Count; i++)
                 {
                     var vn = i * 2 + 1;
-                    var cn = i * 2 ;
+                    var cn = i * 2;
                     data[cn, 0] = listObjCN[i];
                     data[vn, 0] = listObVN[i];
                     //    ranger.EndRow = cell.Row+i;
@@ -1249,26 +1271,22 @@ namespace AppVietSo
         }
         public void setText(int Row, int Col, string TextVN = "", string TextCN = "", bool action = true)
         {
+            string Value = "";
             var worksheet = reoGridControl1.CurrentWorksheet;
             var item = worksheet.Cells[new CellPosition() { Col = Col, Row = Row }];
             TextVN += "";
             var cell = item.Tag.getCellData();
             if (TextVN.Contains("@"))
             {
-                cell.TextCN = TextCN.Split('_').FirstOrDefault();
-                cell.TextVN = TextCN.Split('_').LastOrDefault();
-                cell.Value = TextVN;
+                Value = TextVN;
+                TextVN = TextCN.Split('_').LastOrDefault();
+                TextCN = TextCN.Split('_').FirstOrDefault();
             }
-            else
-            {
-                cell.TextCN = TextCN;
-                cell.TextVN = TextVN;
-            }
-            item.Tag = cell;
 
-            SaveData();
+            //          item.Tag = cell;
 
-            if (TextVN.Contains("@"))
+
+            if (Value.Contains("@"))
             {
                 var cnt = (cell.TextCN + "").Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
                 if ((worksheet.UsedRange.EndRow - Row - cnt) < 0)
@@ -1281,53 +1299,100 @@ namespace AppVietSo
                 //           RenderStyle(item.Address);
             }
 
-            var text = item.renderViewText();
+            var text = item.Comment == "TextVN" ? TextVN : TextCN;
 
-            var Faction = setTextAction(text, item, reoGridControl1, rbSongNgu.Checked, cbCanChuViet.Text);
+            var Faction = setTextAction(text, item, reoGridControl1, rbSongNgu.Checked, cbCanChuViet.Text, TextCN, TextVN);
             //var action = new SetCellDataAction(item.Row, item.Column, text);
-            if (action)
-            {
-                reoGridControl1.DoAction(reoGridControl1.CurrentWorksheet, Faction);
-            }
+           
 
-            if (TextVN.Contains("@"))
-            {
-                ReoGridExtentions.setColorTag(worksheet, Faction.Range, Color.Orange);
-            }
             worksheet.ScaleFactor += (float)0.000001;
             for (int i = Faction.Range.Col; i <= Faction.Range.EndCol; i++)
             {
-                if (i>=worksheet.UsedRange.Cols)
+                if (i >= worksheet.UsedRange.Cols)
                 {
                     continue;
                 }
                 worksheet.AutoFitColumnWidth(i, false);
 
             }
-            //        return;
+            if (action)
+            {
 
+                for (int i = Faction.Range.Row; i <= Faction.Range.EndRow; i++)
+                {
+                    for (int j = Faction.Range.Col; j <= Faction.Range.EndCol; j++)
+                    {
+                        var newcell = worksheet.Cells[i, j];
+                        var history = (HistoryCell)worksheet.Cells[i, j].DataFormatArgs;
+                        if (history == null)
+                        {
+                            history = new HistoryCell();
+                            history.cell = new Dictionary<int, ItemHistory>();
 
+                            history.Index = history.cell.Count + 1;
 
-            //if (rbSongNgu.Checked && item.Style.BackColor != Color.LightBlue)
-            //{
-            //    var PosText = cbCanChuViet.Text;
-            //    if (PosText == "PHẢI")
-            //    {
-            //        SetTextSongNgu(worksheet, item, Col - 1, Row);
-            //    }
-            //    if (PosText == "TRÁI")
-            //    {
-            //        SetTextSongNgu(worksheet, item, Col + 1, Row);
-            //    }
-            //    if (PosText == "TRÊN")
-            //    {
-            //        SetTextSongNgu(worksheet, item, Col, Row + 1);
-            //    }
-            //    if (PosText == "DƯỚI")
-            //    {
-            //        SetTextSongNgu(worksheet, item, Col, Row - 1);
-            //    }
-            //}
+                            history.cell.Add(history.Index, new ItemHistory()
+                            {
+                                Data = newcell.Data,
+                                Style = CellStyle.Clone(newcell.Style),
+                                Tag = newcell.Tag.getCellData().CloneCell(),
+                                Comment = newcell.Comment,
+
+                            });
+                            worksheet.Cells[i, j].DataFormatArgs = history;
+                        }
+                    }
+                }
+
+                reoGridControl1.DoAction(reoGridControl1.CurrentWorksheet, Faction);
+                if (Value.Contains("@"))
+                {
+                    cell.Value = Value;
+                    ReoGridExtentions.setColorTag(worksheet, Faction.Range, Color.Orange);
+                }
+               
+                for (int i = Faction.Range.Row; i <= Faction.Range.EndRow; i++)
+                {
+                    for (int j = Faction.Range.Col; j <= Faction.Range.EndCol; j++)
+                    {
+                        if (Value.Contains("@"))
+                        {
+
+                            if (!(worksheet.Cells[i, j].Tag.getCellData().Value + "").Contains("@") && worksheet.Cells[i, j].Comment.CheckNo() == false && worksheet.Cells[i, j].Comment.CheckSkip() == false)
+                            {
+                                worksheet.Cells[i, j].Comment = "NO_" + worksheet.Cells[i, j].Comment;
+                            }
+                        }
+                        var newcell = worksheet.Cells[i, j];
+                        var history = (HistoryCell)worksheet.Cells[i, j].DataFormatArgs;
+                        if (history == null)
+                        {
+                            history = new HistoryCell();
+                            history.cell = new Dictionary<int, ItemHistory>();
+                        }
+                        history.Index = history.cell.Count + 1;
+
+                        history.cell.Add(history.Index, new ItemHistory()
+                        {
+                            Data = newcell.Data,
+                            Style = CellStyle.Clone(newcell.Style),
+                            Tag = newcell.Tag.getCellData().CloneCell(),
+                            Comment = newcell.Comment
+
+                        });
+                        worksheet.Cells[i, j].DataFormatArgs = history;
+
+                    }
+                }
+
+            }
+            else
+            {
+                cell.TextCN = TextCN;
+                cell.TextVN = TextVN;
+            }
+            SaveData();
+
         }
 
         public void SetTextSongNgu(Worksheet worksheet, unvell.ReoGrid.Cell item, int Col, int Row)
@@ -1622,7 +1687,7 @@ namespace AppVietSo
             var select = worksheet.SelectionRange;
             if (rbSongNgu.Checked)
             {
-                if (worksheet.Cells[select.Row, select.Col].DataFormatArgs.CheckSkip())
+                if (worksheet.Cells[select.Row, select.Col].Comment.CheckSkip())
                 {
                     e.Cancel = true;
                     return;
@@ -1660,7 +1725,7 @@ namespace AppVietSo
             var cell = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col];
             Util.strDataSugget = cell.Data + "";
 
-            if (cell.CheckNo() || cell.DataFormatArgs.CheckNo() || cell.DataFormatArgs.CheckSkip())
+            if (cell.CheckNo() || cell.Comment.CheckNo() || cell.Comment.CheckSkip())
             {
                 return;
             }
@@ -1756,18 +1821,18 @@ namespace AppVietSo
                     {
 
                         var item = sheet.Cells[j, i];
-                        if (item.DataFormatArgs.CheckSkip())
+                        if (item.Comment.CheckSkip())
                         {
                             continue;
                         }
-                        if (!item.DataFormatArgs.CheckNo())
+                        if (!item.Comment.CheckNo())
                         {
 
                             if (!string.IsNullOrEmpty(item.Data + "") && item.Tag == null)
                             {
                                 var newitem = new CellData();
 
-                                if ((item.DataFormatArgs + "") == "TextCN")
+                                if ((item.Comment + "") == "TextCN")
                                 {
                                     newitem.TextCN = item.Data + "";
                                     newitem.TextVN = CNDictionary.getVN(item.Data + "");

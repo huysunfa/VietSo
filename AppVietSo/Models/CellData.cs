@@ -7,13 +7,15 @@ using System.Threading.Tasks;
 
 namespace AppVietSo.Models
 {
-    public class CellPos
+	[Serializable]
+	public class CellPos
     {
         public int RowNo { get; set; }
         public int ColNo { get; set; }
        }
 
-        public class CellData
+	[Serializable]
+	public class CellData
     {
         public RectangleF Rct;
         public int RowNoOrg;

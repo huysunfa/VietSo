@@ -547,7 +547,7 @@ namespace AppVietSo
             }
             var startRow = i;
             var startCol = j;
-            var DataFormatArgs = "";
+            var Comment = "";
             var cnt = VN.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
             var cntCN = CN.Split(' ').Where(v => !string.IsNullOrEmpty(v)).ToList();
 
@@ -592,31 +592,31 @@ namespace AppVietSo
                 row.Tag = cell;
 
 
-                if (k > 0 && row.DataFormatArgs.CheckSkip() == false)
+                if (k > 0 && row.Comment.CheckSkip() == false)
                 {
-                    row.DataFormatArgs = "NO_" + DataFormatArgs;
+                    row.Comment = "NO_" + Comment;
                 }
                 else
                 {
-                    DataFormatArgs = row.DataFormatArgs + "";
+                    Comment = row.Comment + "";
                 }
 
 
-                if (DataFormatArgs == "TextVN")
+                if (Comment == "TextVN")
                 {
 
                     var text = cell.TextVN;
                     row.Data = text;
-                    var action = new SetCellDataAction(row.Row, row.Column, text);
-                    reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
+               //     var action = new SetCellDataAction(row.Row, row.Column, text);
+                 //   reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
 
                 }
                 else
                 {
                     var text = cell.TextCN;
                     row.Data = text;
-                    var action = new SetCellDataAction(row.Row, row.Column, text);
-                    reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
+                    //       var action = new SetCellDataAction(row.Row, row.Column, text);
+                    //      reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
                 }
             }
         }
@@ -691,7 +691,7 @@ namespace AppVietSo
                     }
                     else
                     {
-                        if (item.DataFormatArgs.CheckNo())
+                        if (item.Comment.CheckNo())
                         {
                             //  item.IsReadOnly = true;
                             continue;
@@ -703,7 +703,7 @@ namespace AppVietSo
 
                             case "TextVN": item.Data = cell.TextVN; break;
                             case "TextCN": item.Data = cell.TextCN; break;
-                            case "TextSN": item.Data = ((item.DataFormatArgs + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
+                            case "TextSN": item.Data = ((item.Comment + "") == "TextVN") ? cell.TextVN : cell.TextCN; break;
 
                         }
                         //switch (Status)
@@ -783,11 +783,11 @@ namespace AppVietSo
                     var item = sheet.Cells[i, j];
                     var cell = item.Tag.getCellData();
                     if (rbSongNgu)
-                        ChangeFontAndSize(sheet, (item.DataFormatArgs + ""), item.Address, cbfnameCN, cbfstyleCN, cbfsizeCN, cbfnameVN, cbfstyleVN, cbfsizeVN);
+                        ChangeFontAndSize(sheet, (item.Comment + ""), item.Address, cbfnameCN, cbfstyleCN, cbfsizeCN, cbfnameVN, cbfstyleVN, cbfsizeVN);
 
-                    if ((cell.Value + "").StartsWith("@") || (!string.IsNullOrEmpty(item.Data + "") && item.DataFormatArgs.CheckNo()))
+                    if ((cell.Value + "").StartsWith("@") || (!string.IsNullOrEmpty(item.Data + "") && item.Comment.CheckNo()))
                     {
-                        if (rbSongNgu && item.DataFormatArgs.CheckSkip())
+                        if (rbSongNgu && item.Comment.CheckSkip())
                         {
 
                             continue;
@@ -875,8 +875,8 @@ namespace AppVietSo
                 for (int j = (position.Row==0?1: position.Row); j <  position.EndRow; j++)
                 {
                     var item = worksheet.Cells[j, i];
-                    if (rbChuViet) item.DataFormatArgs = "TextVN";
-                    if (rbChuHan) item.DataFormatArgs = "TextCN";
+                    if (rbChuViet) item.Comment = "TextVN";
+                    if (rbChuHan) item.Comment = "TextCN";
 
 
                     if (LgSo.ContainsKey(col))
@@ -894,26 +894,26 @@ namespace AppVietSo
                         {
                             case "TRÁI":
 
-                                item.DataFormatArgs = "TextVN";
+                                item.Comment = "TextVN";
                                 worksheet.Cells[j, i + 1].Tag = item.Tag;
-                                worksheet.Cells[j, i + 1].DataFormatArgs = "SKIP_TextCN";
+                                worksheet.Cells[j, i + 1].Comment = "SKIP_TextCN";
                                 break;
                             case "PHẢI":
-                                item.DataFormatArgs = "SKIP_TextCN";
+                                item.Comment = "SKIP_TextCN";
 
                                 worksheet.Cells[j, i + 1].Tag = item.Tag;
-                                worksheet.Cells[j, i + 1].DataFormatArgs = "TextVN";
+                                worksheet.Cells[j, i + 1].Comment = "TextVN";
 
                                 break;
                             case "TRÊN":
-                                item.DataFormatArgs = "TextVN";
+                                item.Comment = "TextVN";
                                 worksheet.Cells[j + 1, i].Tag = item.Tag;
-                                worksheet.Cells[j + 1, i].DataFormatArgs = "SKIP_TextCN";
+                                worksheet.Cells[j + 1, i].Comment = "SKIP_TextCN";
                                 break;
                             case "DƯỚI":
-                                item.DataFormatArgs = "SKIP_TextCN";
+                                item.Comment = "SKIP_TextCN";
                                 worksheet.Cells[j + 1, i].Tag = item.Tag;
-                                worksheet.Cells[j + 1, i].DataFormatArgs = "TextVN";
+                                worksheet.Cells[j + 1, i].Comment = "TextVN";
                                 break;
                             default:
                                 break;
@@ -978,13 +978,13 @@ namespace AppVietSo
             //        #region Hiển thị dữ liệu theo hạng mục người dùng chọn
             //        if (rbChuViet)
             //        {
-            //            worksheet.Cells[col].DataFormatArgs = "TextVN";
+            //            worksheet.Cells[col].Comment = "TextVN";
             //            it.Value.cellCN = new CellPos();
             //            it.Value.cellVN = new CellPos() { ColNo = numcol, RowNo = numrow };
             //        }
             //        if (rbChuHan)
             //        {
-            //            worksheet.Cells[col].DataFormatArgs = "TextCN";
+            //            worksheet.Cells[col].Comment = "TextCN";
             //            it.Value.cellVN = new CellPos();
             //            it.Value.cellCN = new CellPos() { ColNo = numcol, RowNo = numrow };
             //        }
@@ -1002,8 +1002,8 @@ namespace AppVietSo
 
             //        if (songngu)
             //        {
-            //            if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[col].DataFormatArgs = "SKIP_TextCN";
-            //            if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[col].DataFormatArgs = "TextVN";
+            //            if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[col].Comment = "SKIP_TextCN";
+            //            if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[col].Comment = "TextVN";
 
             //            var cell2 = new CellPosition() { Col = numcol - col2, Row = numrow - row2 };
 
@@ -1012,8 +1012,8 @@ namespace AppVietSo
 
             //            worksheet.Cells[cell2].Tag = it.Value;
 
-            //            if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[cell2].DataFormatArgs = "TextVN";
-            //            if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[cell2].DataFormatArgs = "SKIP_TextCN";
+            //            if (PosText == "TRÁI" || PosText == "TRÊN") worksheet.Cells[cell2].Comment = "TextVN";
+            //            if (PosText == "PHẢI" || PosText == "DƯỚI") worksheet.Cells[cell2].Comment = "SKIP_TextCN";
             //        }
             //        #endregion
 
@@ -1029,7 +1029,7 @@ namespace AppVietSo
 
             var cell = item.Tag.getCellData();
 
-            if ((cell.Value + "").StartsWith("@") || item.DataFormatArgs.CheckNo() || color != Color.Orange)
+            if ((cell.Value + "").StartsWith("@") || item.Comment.CheckNo() || color != Color.Orange)
             {
                 sheet.SetRangeStyles(item.Address, new WorksheetRangeStyle
                 {
@@ -1132,7 +1132,7 @@ namespace AppVietSo
 
                         var item = sheet.Cells[j, i];
                         var cell = item.Tag.getCellData();
-                        if ((cell.Value + "").StartsWith("@") || item.CheckNo() || item.DataFormatArgs.CheckSkip() || item.DataFormatArgs.CheckSkip() || item.DataFormatArgs.CheckNo())
+                        if ((cell.Value + "").StartsWith("@") || item.CheckNo() || item.Comment.CheckSkip() || item.Comment.CheckSkip() || item.Comment.CheckNo())
                         {
                             continue;
                         }

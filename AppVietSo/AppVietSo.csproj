@@ -264,6 +264,7 @@
     <Compile Include="Models\ExchangeLongSo.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\Family.cs" />
+    <Compile Include="Models\HistoryCell.cs" />
     <Compile Include="Models\IKT.cs" />
     <Compile Include="Models\LabelText.cs" />
     <Compile Include="Models\LePhat.cs" />

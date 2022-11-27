@@ -2,7 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,7 +27,7 @@ namespace AppVietSo
         }
         public static string renderViewText(this unvell.ReoGrid.Cell input)
         {
-            var Status = input.DataFormatArgs + "";
+            var Status = input.Comment + "";
             var cell = input.Tag.getCellData();
             switch (Status)
             {
@@ -117,6 +120,23 @@ namespace AppVietSo
             }
 
             return table;
+        }
+
+        public static T CloneCell<T>(this T source)
+        {
+            if (!typeof(T).IsSerializable)
+            {
+                throw new ArgumentException("The type must be serializable.", nameof(source));
+            }
+
+            // Don't serialize a null object, simply return the default for that object
+            if (ReferenceEquals(source, null)) return default;
+
+                Stream stream = new MemoryStream();
+            IFormatter formatter = new BinaryFormatter();
+            formatter.Serialize(stream, source);
+            stream.Seek(0, SeekOrigin.Begin);
+            return (T)formatter.Deserialize(stream);
         }
     }
 }
