@@ -1925,7 +1925,7 @@ namespace AppVietSo
 
             SaveData();
             RenderStyle();
-            ReoGridExtentions.ChangeWidthSize(reoGridControl1.CurrentWorksheet);
+            ReoGridExtentions.ChangeWidthSize(reoGridControl1.CurrentWorksheet,true);
         }
 
 

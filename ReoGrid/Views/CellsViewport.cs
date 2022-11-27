@@ -508,6 +508,17 @@ namespace unvell.ReoGrid.Views
             {
 				return rangeRect;
 			}
+            if (sheet.rows.Count<=startPos.Row)
+            {
+				startPos.Row = sheet.rows.Count - 1;
+
+			}  
+			
+			if (sheet.rows.Count<= endPos.Row)
+            {
+				endPos.Row = sheet.rows.Count - 1;
+
+			}
 			var rowHead = sheet.rows[startPos.Row];
 			var colHead = sheet.cols[startPos.Col];
 			var toRowHead = sheet.rows[endPos.Row];

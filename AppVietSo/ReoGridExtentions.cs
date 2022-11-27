@@ -38,7 +38,7 @@ namespace AppVietSo
                                      });
             }
         }
-        public static void ChangeWidthSize(this Worksheet sheet)
+        public static void ChangeWidthSize(this Worksheet sheet, bool SetMin = false)
         {
             if (Util.LongSoHienTai.KhoaCung)
             {
@@ -98,16 +98,21 @@ namespace AppVietSo
                 {
                     var oldW = sheet.GetColumnWidth(i);
                     sheet.AutoFitColumnWidth(i, false);
-
-                    var newW = sheet.GetColumnWidth(i);
-
-                    if (newW < oldW)
+                        var newW = sheet.GetColumnWidth(i);
+                    if (SetMin == false)
                     {
-                        newW = oldW;
-                        sheet.SetColumnsWidth(i, 1, oldW);
+
+
+                        if (newW < oldW)
+                        {
+                            newW = oldW;
+                            sheet.SetColumnsWidth(i, 1, oldW);
+
+                        }
 
                     }
                     TotalWidth += newW;
+
                 }
 
                 var tile = (float)TotalWidth / (float)Util.LongSoHienTai.PageWidth;
@@ -368,7 +373,7 @@ namespace AppVietSo
 
 
 
-     //           worksheet.ResetAllPageBreaks();
+                //           worksheet.ResetAllPageBreaks();
 
                 var MaxRow = worksheet.UsedRange.Rows;
                 var MaxCol = worksheet.UsedRange.Cols;
@@ -607,8 +612,8 @@ namespace AppVietSo
 
                     var text = cell.TextVN;
                     row.Data = text;
-               //     var action = new SetCellDataAction(row.Row, row.Column, text);
-                 //   reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
+                    //     var action = new SetCellDataAction(row.Row, row.Column, text);
+                    //   reoGrid.DoAction(reoGrid.CurrentWorksheet, action);
 
                 }
                 else
@@ -867,12 +872,12 @@ namespace AppVietSo
             var LgSo = Util.LongSoHienTai.LgSo;
 
             var col = 0;
-            for (int i = (position.Col==0? 1 : position.Col); i <  position.EndCol; i++)
+            for (int i = (position.Col == 0 ? 1 : position.Col); i < position.EndCol; i++)
             {
 
                 var row = 0;
 
-                for (int j = (position.Row==0?1: position.Row); j <  position.EndRow; j++)
+                for (int j = (position.Row == 0 ? 1 : position.Row); j < position.EndRow; j++)
                 {
                     var item = worksheet.Cells[j, i];
                     if (rbChuViet) item.Comment = "TextVN";
