@@ -314,6 +314,7 @@ namespace AppVietSo
                 pageSettings.PaperSize = paperSize;
             }
             pageSettings.Landscape = this.rbtnLandscape.Checked;
+            worksheet_0.PrintSettings.Landscape = this.rbtnLandscape.Checked;
             Util.LongSoHienTai.PagePaddingTop = (float)this.nmrTop.Value;
             Util.LongSoHienTai.PagePaddingBottom = (float)this.nmrBottom.Value;
             Util.LongSoHienTai.PagePaddingLeft = (float)this.nmrLeft.Value;
@@ -321,8 +322,9 @@ namespace AppVietSo
             if (pageSettings.Landscape)
             {
 
-                Util.LongSoHienTai.PageWidth = pageSettings.PaperSize.Height;
-                Util.LongSoHienTai.PageHeight = pageSettings.PaperSize.Width;
+                Util.LongSoHienTai.PageWidth = pageSettings.PaperSize.Height > pageSettings.PaperSize.Width ? pageSettings.PaperSize.Height : pageSettings.PaperSize.Width;
+                Util.LongSoHienTai.PageHeight = pageSettings.PaperSize.Height > pageSettings.PaperSize.Width ? pageSettings.PaperSize.Width : pageSettings.PaperSize.Height;
+         //       Util.LongSoHienTai.PageHeight = pageSettings.PaperSize.Width;
 
             }
             else
@@ -344,7 +346,9 @@ namespace AppVietSo
             {
                 PaperSize = PaperSize
             };
+            PageSettings.Landscape = worksheet_0.PrintSettings.Landscape;
             worksheet_0.PrintSettings.ApplySystemPageSettings(PageSettings);
+           
             this.printSession_0.PrintDocument.DefaultPageSettings.PaperSize = Util.LongSoHienTai.paperSize;
 
             this.method_2();

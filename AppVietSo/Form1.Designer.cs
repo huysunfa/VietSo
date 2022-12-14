@@ -96,6 +96,7 @@ namespace AppVietSo
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
@@ -117,7 +118,7 @@ namespace AppVietSo
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
             this.TSMItemThemChuSauHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
-            this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
+            this.cắtÔToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ctextMenuS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -154,7 +155,7 @@ namespace AppVietSo
             this.TSMItemAddHuongLinh,
             this.TSMItemAddNgachSo});
             this.ctextMenuS.Name = "ctextMenuS";
-            this.ctextMenuS.Size = new System.Drawing.Size(266, 342);
+            this.ctextMenuS.Size = new System.Drawing.Size(266, 370);
             this.ctextMenuS.Opening += new System.ComponentModel.CancelEventHandler(this.ctextMenuS_Opening);
             // 
             // TSMItemEditText
@@ -205,7 +206,8 @@ namespace AppVietSo
             this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.xóaDòngToolStripMenuItem,
             this.xóaCộtToolStripMenuItem,
-            this.xóaÔToolStripMenuItem});
+            this.xóaÔToolStripMenuItem,
+            this.cắtÔToolStripMenuItem});
             this.toolStripMenuItem2.Image = global::AppVietSo.Properties.Resources.Delete;
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
             this.toolStripMenuItem2.Size = new System.Drawing.Size(265, 26);
@@ -215,14 +217,14 @@ namespace AppVietSo
             // xóaDòngToolStripMenuItem
             // 
             this.xóaDòngToolStripMenuItem.Name = "xóaDòngToolStripMenuItem";
-            this.xóaDòngToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.xóaDòngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.xóaDòngToolStripMenuItem.Text = "Xóa dòng";
             this.xóaDòngToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelRow_Click);
             // 
             // xóaCộtToolStripMenuItem
             // 
             this.xóaCộtToolStripMenuItem.Name = "xóaCộtToolStripMenuItem";
-            this.xóaCộtToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.xóaCộtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.xóaCộtToolStripMenuItem.Text = "Xóa cột";
             this.xóaCộtToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelCol_Click);
             // 
@@ -230,7 +232,7 @@ namespace AppVietSo
             // 
             this.xóaÔToolStripMenuItem.Name = "xóaÔToolStripMenuItem";
             this.xóaÔToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.xóaÔToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.xóaÔToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.xóaÔToolStripMenuItem.Text = "Xóa ô";
             this.xóaÔToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelCel_Click);
             // 
@@ -586,7 +588,7 @@ namespace AppVietSo
             this.tiênTichToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(9, 589);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(107, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -840,6 +842,32 @@ namespace AppVietSo
             this.richTextBox1.TabIndex = 3;
             this.richTextBox1.Text = "";
             this.richTextBox1.Visible = false;
+            // 
+            // reoGridControl1
+            // 
+            this.reoGridControl1.BackColor = System.Drawing.Color.Silver;
+            this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
+            this.reoGridControl1.ContextMenuStrip = this.ctextMenuS;
+            this.reoGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.reoGridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reoGridControl1.LeadHeaderContextMenuStrip = null;
+            this.reoGridControl1.Location = new System.Drawing.Point(0, 0);
+            this.reoGridControl1.Margin = new System.Windows.Forms.Padding(200, 2, 3, 2);
+            this.reoGridControl1.Name = "reoGridControl1";
+            this.reoGridControl1.Padding = new System.Windows.Forms.Padding(200, 0, 0, 0);
+            this.reoGridControl1.RowHeaderContextMenuStrip = null;
+            this.reoGridControl1.Script = null;
+            this.reoGridControl1.SheetTabContextMenuStrip = null;
+            this.reoGridControl1.SheetTabNewButtonVisible = true;
+            this.reoGridControl1.SheetTabVisible = true;
+            this.reoGridControl1.SheetTabWidth = 80;
+            this.reoGridControl1.ShowScrollEndSpacing = true;
+            this.reoGridControl1.Size = new System.Drawing.Size(1387, 827);
+            this.reoGridControl1.TabIndex = 2;
+            this.reoGridControl1.Text = "reoGridControl1";
+            this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
+            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
+            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_DoubleClick);
             // 
             // bindingNavigator1
             // 
@@ -1343,7 +1371,7 @@ namespace AppVietSo
             this.labelLicence.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLicence.ForeColor = System.Drawing.Color.Red;
             this.labelLicence.Name = "labelLicence";
-            this.labelLicence.Size = new System.Drawing.Size(116, 20);
+            this.labelLicence.Size = new System.Drawing.Size(116, 25);
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
@@ -1355,31 +1383,13 @@ namespace AppVietSo
             this.TSMItemThemChuSauHuongLinh.Text = "Khuôn mẫu Hương linh";
             this.TSMItemThemChuSauHuongLinh.Click += new System.EventHandler(this.TSMItemThemChuSauHuongLinh_Click);
             // 
-            // reoGridControl1
+            // cắtÔToolStripMenuItem
             // 
-            this.reoGridControl1.BackColor = System.Drawing.Color.Silver;
-            this.reoGridControl1.ColumnHeaderContextMenuStrip = null;
-            this.reoGridControl1.ContextMenuStrip = this.ctextMenuS;
-            this.reoGridControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reoGridControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.reoGridControl1.LeadHeaderContextMenuStrip = null;
-            this.reoGridControl1.Location = new System.Drawing.Point(0, 0);
-            this.reoGridControl1.Margin = new System.Windows.Forms.Padding(200, 2, 3, 2);
-            this.reoGridControl1.Name = "reoGridControl1";
-            this.reoGridControl1.Padding = new System.Windows.Forms.Padding(200, 0, 0, 0);
-            this.reoGridControl1.RowHeaderContextMenuStrip = null;
-            this.reoGridControl1.Script = null;
-            this.reoGridControl1.SheetTabContextMenuStrip = null;
-            this.reoGridControl1.SheetTabNewButtonVisible = true;
-            this.reoGridControl1.SheetTabVisible = true;
-            this.reoGridControl1.SheetTabWidth = 80;
-            this.reoGridControl1.ShowScrollEndSpacing = true;
-            this.reoGridControl1.Size = new System.Drawing.Size(1387, 827);
-            this.reoGridControl1.TabIndex = 2;
-            this.reoGridControl1.Text = "reoGridControl1";
-            this.reoGridControl1.TextChanged += new System.EventHandler(this.reoGridControl1_TextChanged);
-            this.reoGridControl1.Click += new System.EventHandler(this.reoGridControl1_Click_1);
-            this.reoGridControl1.DoubleClick += new System.EventHandler(this.reoGridControl1_DoubleClick);
+            this.cắtÔToolStripMenuItem.Name = "cắtÔToolStripMenuItem";
+            this.cắtÔToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cắtÔToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.cắtÔToolStripMenuItem.Text = "Cắt ô";
+            this.cắtÔToolStripMenuItem.Click += new System.EventHandler(this.cắtÔToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1501,6 +1511,7 @@ namespace AppVietSo
         private ToolStripMenuItem hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem;
         private ToolStripMenuItem càiĐặtToolStripMenuItem;
         private CheckBox cbHienMauEdit;
+        private ToolStripMenuItem cắtÔToolStripMenuItem;
     }
 }
 

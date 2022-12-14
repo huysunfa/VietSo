@@ -529,9 +529,45 @@ namespace AppVietSo
 
             var action = new RemoveRangeDataAction(select);
             var action2 = new RemoveRangeStyleAction(select, PlainStyleFlag.BackColor);
-            reoGridControl1.DoAction(action2);
+             reoGridControl1.DoAction(action2);
             reoGridControl1.DoAction(action);
 
+
+
+            for (int i = action.Range.Row; i <= action.Range.EndRow; i++)
+            {
+                for (int j = action.Range.Col; j <= action.Range.EndCol; j++)
+                {
+                    var Value = worksheet.Cells[i, j].Data+"";
+                    if (Value.Contains("@"))
+                    {
+
+                        if (!(worksheet.Cells[i, j].Tag.getCellData().Value + "").Contains("@") && worksheet.Cells[i, j].Comment.CheckNo() == false && worksheet.Cells[i, j].Comment.CheckSkip() == false)
+                        {
+                            worksheet.Cells[i, j].Comment = "NO_" + worksheet.Cells[i, j].Comment;
+                        }
+                    }
+                    var newcell = worksheet.Cells[i, j];
+                    var history = (HistoryCell)worksheet.Cells[i, j].DataFormatArgs;
+                    if (history == null)
+                    {
+                        history = new HistoryCell();
+                        history.cell = new Dictionary<int, ItemHistory>();
+                    }
+                    history.Index = history.cell.Count + 1;
+
+                    history.cell.Add(history.Index, new ItemHistory()
+                    {
+                        Data = newcell.Data,
+                        Style = CellStyle.Clone(newcell.Style),
+                        Tag = newcell.Tag.getCellData().CloneCell(),
+                        Comment = newcell.Comment
+
+                    });
+                    worksheet.Cells[i, j].DataFormatArgs = history;
+                    newcell.Tag = null;
+                }
+            }
 
             //for (int i = select.Row; i <= select.EndRow; i++)
             //{
@@ -775,14 +811,23 @@ namespace AppVietSo
                 {
                     var GetType = r1.Action.GetType();
 
-                    if (GetType.Name == (typeof(SetRangeDataAction).Name))
+                    if (GetType.Name == (typeof(SetRangeDataAction).Name) || GetType.Name == (typeof(RemoveRangeDataAction).Name) )
                     {
 
-                        var row = (SetRangeDataAction)r1.Action;
-
-                        for (int i = row.Range.Row; i <= row.Range.EndRow; i++)
+                         var rand = new RangePosition();
+                        if (GetType.Name == (typeof(SetRangeDataAction).Name))
                         {
-                            for (int j = row.Range.Col; j <= row.Range.EndCol; j++)
+                            rand = ((SetRangeDataAction)r1.Action).Range;
+                        }     
+                        
+                        if (GetType.Name == (typeof(RemoveRangeDataAction).Name))
+                        {
+                            rand = ((RemoveRangeDataAction)r1.Action).Range;
+                        }
+
+                        for (int i = rand.Row; i <= rand.EndRow; i++)
+                        {
+                            for (int j = rand.Col; j <= rand.EndCol; j++)
                             {
                                 var item = reoGridControl1.CurrentWorksheet.Cells[i, j];
                                 var history = (HistoryCell)item.DataFormatArgs;
@@ -865,14 +910,23 @@ namespace AppVietSo
                 {
                     var GetType = r1.Action.GetType();
 
-                    if (GetType.Name == (typeof(SetRangeDataAction).Name))
+                    if (GetType.Name == (typeof(SetRangeDataAction).Name) || GetType.Name == (typeof(RemoveRangeDataAction).Name))
                     {
 
-                        var row = (SetRangeDataAction)r1.Action;
-
-                        for (int i = row.Range.Row; i <= row.Range.EndRow; i++)
+                        var rand = new RangePosition();
+                        if (GetType.Name == (typeof(SetRangeDataAction).Name))
                         {
-                            for (int j = row.Range.Col; j <= row.Range.EndCol; j++)
+                            rand = ((SetRangeDataAction)r1.Action).Range;
+                        }
+
+                        if (GetType.Name == (typeof(RemoveRangeDataAction).Name))
+                        {
+                            rand = ((RemoveRangeDataAction)r1.Action).Range;
+                        }
+
+                        for (int i = rand.Row; i <= rand.EndRow; i++)
+                        {
+                            for (int j = rand.Col; j <= rand.EndCol; j++)
                             {
                                 var item = reoGridControl1.CurrentWorksheet.Cells[i, j];
                                 var history = (HistoryCell)item.DataFormatArgs;
@@ -1032,10 +1086,10 @@ namespace AppVietSo
                             TextCN = TextVN;
                         }
                     }
-                    setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN, false);
+                    setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN, true);
                     ///            r1.EndReason = EndEditReason.Cancel;
-                    r1.NewData = r1.Cell.renderViewText();
-
+                    //        r1.NewData = r1.Cell.renderViewText();
+                    r1.EndReason = EndEditReason.Cancel;
 
                 }
 
@@ -1723,7 +1777,7 @@ namespace AppVietSo
         {
             var position = reoGridControl1.CurrentWorksheet.SelectionRange;
             var cell = reoGridControl1.CurrentWorksheet.Cells[position.Row, position.Col];
-            Util.strDataSugget = cell.Data + "";
+            Util.strDataSugget = cell.Tag.getCellData().TextCN + "_"+ cell.Tag.getCellData().TextVN;
 
             if (cell.CheckNo() || cell.Comment.CheckNo() || cell.Comment.CheckSkip())
             {
@@ -2226,6 +2280,11 @@ namespace AppVietSo
         private void ShowPageBreaks_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void cắtÔToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TSMItemDelCel_Click(sender, e);
         }
     }
 }

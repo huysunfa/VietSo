@@ -69,6 +69,7 @@ namespace unvell.ReoGrid.Print
 			{
 				PaperSize = PaperSize
 			};
+		e.PageSettings.Landscape = doc.PrinterSettings.LandscapeAngle==90 ? true : false;
  		}
 
 		void doc_BeginPrint(object sender, PrintEventArgs e)

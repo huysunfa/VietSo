@@ -156,8 +156,10 @@ namespace AppVietSo
                     PaperSize paperSize = (this.cbxPaperSize.SelectedItem as ComboboxItem).Value as PaperSize;
                     int height = paperSize.Height;
                     int width = paperSize.Width;
+
                     this.setSize(this.toMM(height), this.toMM(width));
                     Util.LongSoHienTai.paperSize = paperSize;
+                  
                 }
             }
             catch (Exception ex)

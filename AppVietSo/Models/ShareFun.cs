@@ -83,6 +83,17 @@ namespace AppVietSo.Models
                     num = Util.LongSoHienTai.PageHeight;
                     num2 = Util.LongSoHienTai.PageWidth;
                 }
+                else
+                {
+
+                    if (num2 > num && Util.LongSoHienTai.KhoaCung == false)
+                    {
+                        Util.LongSoHienTai.PageLandscape = true;
+                        var tmp = num2;
+                        num2 = num;
+                        num = tmp;
+                    }
+                }
                 float dpi = 100f;
 
                 float num3 = ShareFun.mmToPixel( Util.LongSoHienTai.PagePaddingLeft);
