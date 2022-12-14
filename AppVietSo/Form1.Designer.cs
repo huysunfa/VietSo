@@ -36,36 +36,6 @@ namespace AppVietSo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctextMenuS = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.TSMItemEditText = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmDòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmCộtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.xóaDòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xóaCộtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.xóaÔToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemThemChuSauTinChu = new System.Windows.Forms.ToolStripMenuItem();
-            this.khuônMẫuTínChủToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.khuônMẫuHươngLinhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddMua = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddYear = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddMonth = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddDay = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddGio = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddTinChu = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmNơiCúngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmĐịaChỉToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmTênGiaChủToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmHọGiaChủToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmTênHươngLinhhlinhtenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.thêmHọHươngLinhhlinhhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hươngLinhNămMấthlinhmatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.TSMItemAddNgachSo = new System.Windows.Forms.ToolStripMenuItem();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.cbHienMauEdit = new System.Windows.Forms.CheckBox();
             this.cbCanChuViet = new System.Windows.Forms.ComboBox();
@@ -89,7 +59,6 @@ namespace AppVietSo
             this.button8 = new System.Windows.Forms.Button();
             this.cbHideGridLine = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -99,13 +68,8 @@ namespace AppVietSo
             this.reoGridControl1 = new unvell.ReoGrid.ReoGridControl();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.bindingNavigator1 = new System.Windows.Forms.BindingNavigator(this.components);
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
-            this.txtLoaiSo = new System.Windows.Forms.ToolStripButton();
             this.labelCN = new System.Windows.Forms.ToolStripLabel();
             this.cbfnameCN = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -117,18 +81,55 @@ namespace AppVietSo
             this.cbfsizeVN = new System.Windows.Forms.ToolStripComboBox();
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
-            this.TSMItemThemChuSauHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.TSMItemEditText = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemPaste = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmDòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmCộtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaDòngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaCộtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xóaÔToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cắtÔToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemThemChuSauTinChu = new System.Windows.Forms.ToolStripMenuItem();
+            this.khuônMẫuTínChủToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.khuônMẫuHươngLinhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddMua = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddYear = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddMonth = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddDay = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddGio = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddTinChu = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmNơiCúngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmĐịaChỉToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmTênGiaChủToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmHọGiaChủToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmTênHươngLinhhlinhtenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thêmHọHươngLinhhlinhhoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hươngLinhNămMấthlinhmatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemAddNgachSo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.txtLoaiSo = new System.Windows.Forms.ToolStripButton();
+            this.TSMItemThemChuSauHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
             this.ctextMenuS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).BeginInit();
             this.bindingNavigator1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip2
@@ -142,6 +143,7 @@ namespace AppVietSo
             this.ctextMenuS.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ctextMenuS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.TSMItemEditText,
+            this.toolStripTextBox1,
             this.TSMItemPaste,
             this.toolStripMenuItem1,
             this.toolStripMenuItem2,
@@ -155,268 +157,8 @@ namespace AppVietSo
             this.TSMItemAddHuongLinh,
             this.TSMItemAddNgachSo});
             this.ctextMenuS.Name = "ctextMenuS";
-            this.ctextMenuS.Size = new System.Drawing.Size(266, 370);
+            this.ctextMenuS.Size = new System.Drawing.Size(266, 396);
             this.ctextMenuS.Opening += new System.ComponentModel.CancelEventHandler(this.ctextMenuS_Opening);
-            // 
-            // TSMItemEditText
-            // 
-            this.TSMItemEditText.Image = global::AppVietSo.Properties.Resources.edit;
-            this.TSMItemEditText.Name = "TSMItemEditText";
-            this.TSMItemEditText.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemEditText.Text = "Sửa lại mặt chữ";
-            this.TSMItemEditText.Click += new System.EventHandler(this.TSMItemEditText_Click);
-            // 
-            // TSMItemPaste
-            // 
-            this.TSMItemPaste.Image = global::AppVietSo.Properties.Resources.Paste;
-            this.TSMItemPaste.Name = "TSMItemPaste";
-            this.TSMItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.TSMItemPaste.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemPaste.Text = "Dán";
-            this.TSMItemPaste.Click += new System.EventHandler(this.TSMItemPaste_Click);
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thêmDòngToolStripMenuItem,
-            this.thêmCộtToolStripMenuItem});
-            this.toolStripMenuItem1.Image = global::AppVietSo.Properties.Resources.Add1;
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(265, 26);
-            this.toolStripMenuItem1.Text = "Thêm";
-            // 
-            // thêmDòngToolStripMenuItem
-            // 
-            this.thêmDòngToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Add1;
-            this.thêmDòngToolStripMenuItem.Name = "thêmDòngToolStripMenuItem";
-            this.thêmDòngToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
-            this.thêmDòngToolStripMenuItem.Text = "Thêm dòng";
-            this.thêmDòngToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddRow_Click);
-            // 
-            // thêmCộtToolStripMenuItem
-            // 
-            this.thêmCộtToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Add1;
-            this.thêmCộtToolStripMenuItem.Name = "thêmCộtToolStripMenuItem";
-            this.thêmCộtToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
-            this.thêmCộtToolStripMenuItem.Text = "Thêm cột";
-            this.thêmCộtToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddCol_Click);
-            // 
-            // toolStripMenuItem2
-            // 
-            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.xóaDòngToolStripMenuItem,
-            this.xóaCộtToolStripMenuItem,
-            this.xóaÔToolStripMenuItem,
-            this.cắtÔToolStripMenuItem});
-            this.toolStripMenuItem2.Image = global::AppVietSo.Properties.Resources.Delete;
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(265, 26);
-            this.toolStripMenuItem2.Text = "Xóa";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
-            // 
-            // xóaDòngToolStripMenuItem
-            // 
-            this.xóaDòngToolStripMenuItem.Name = "xóaDòngToolStripMenuItem";
-            this.xóaDòngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.xóaDòngToolStripMenuItem.Text = "Xóa dòng";
-            this.xóaDòngToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelRow_Click);
-            // 
-            // xóaCộtToolStripMenuItem
-            // 
-            this.xóaCộtToolStripMenuItem.Name = "xóaCộtToolStripMenuItem";
-            this.xóaCộtToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.xóaCộtToolStripMenuItem.Text = "Xóa cột";
-            this.xóaCộtToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelCol_Click);
-            // 
-            // xóaÔToolStripMenuItem
-            // 
-            this.xóaÔToolStripMenuItem.Name = "xóaÔToolStripMenuItem";
-            this.xóaÔToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.xóaÔToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.xóaÔToolStripMenuItem.Text = "Xóa ô";
-            this.xóaÔToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelCel_Click);
-            // 
-            // TSMItemThemChuSauTinChu
-            // 
-            this.TSMItemThemChuSauTinChu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.khuônMẫuTínChủToolStripMenuItem,
-            this.khuônMẫuHươngLinhToolStripMenuItem});
-            this.TSMItemThemChuSauTinChu.Image = global::AppVietSo.Properties.Resources.edit;
-            this.TSMItemThemChuSauTinChu.Name = "TSMItemThemChuSauTinChu";
-            this.TSMItemThemChuSauTinChu.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemThemChuSauTinChu.Text = "Khuôn mẫu";
-            // 
-            // khuônMẫuTínChủToolStripMenuItem
-            // 
-            this.khuônMẫuTínChủToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.edit;
-            this.khuônMẫuTínChủToolStripMenuItem.Name = "khuônMẫuTínChủToolStripMenuItem";
-            this.khuônMẫuTínChủToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
-            this.khuônMẫuTínChủToolStripMenuItem.Text = "Khuôn mẫu Tín Chủ";
-            this.khuônMẫuTínChủToolStripMenuItem.Click += new System.EventHandler(this.TSMItemThemChuSauTinChu_Click);
-            // 
-            // khuônMẫuHươngLinhToolStripMenuItem
-            // 
-            this.khuônMẫuHươngLinhToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.edit;
-            this.khuônMẫuHươngLinhToolStripMenuItem.Name = "khuônMẫuHươngLinhToolStripMenuItem";
-            this.khuônMẫuHươngLinhToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
-            this.khuônMẫuHươngLinhToolStripMenuItem.Text = "Khuôn mẫu Hương Linh";
-            this.khuônMẫuHươngLinhToolStripMenuItem.Click += new System.EventHandler(this.TSMItemThemChuSauHuongLinh_Click);
-            // 
-            // TSMItemAddMua
-            // 
-            this.TSMItemAddMua.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddMua.Name = "TSMItemAddMua";
-            this.TSMItemAddMua.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddMua.Text = "Thêm mùa (@mua)";
-            this.TSMItemAddMua.Click += new System.EventHandler(this.TSMItemAddMua_Click);
-            // 
-            // TSMItemAddYear
-            // 
-            this.TSMItemAddYear.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddYear.Name = "TSMItemAddYear";
-            this.TSMItemAddYear.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddYear.Text = "Thêm năm (@nam)";
-            this.TSMItemAddYear.Click += new System.EventHandler(this.TSMItemAddYear_Click);
-            // 
-            // TSMItemAddMonth
-            // 
-            this.TSMItemAddMonth.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddMonth.Name = "TSMItemAddMonth";
-            this.TSMItemAddMonth.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddMonth.Text = "Thêm tháng (@thang)";
-            this.TSMItemAddMonth.Click += new System.EventHandler(this.TSMItemAddMonth_Click);
-            // 
-            // TSMItemAddDay
-            // 
-            this.TSMItemAddDay.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddDay.Name = "TSMItemAddDay";
-            this.TSMItemAddDay.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddDay.Text = "Thêm ngày (@ngay)";
-            this.TSMItemAddDay.Click += new System.EventHandler(this.TSMItemAddDay_Click);
-            // 
-            // TSMItemAddGio
-            // 
-            this.TSMItemAddGio.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddGio.Name = "TSMItemAddGio";
-            this.TSMItemAddGio.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddGio.Text = "Thêm giờ (@gio)";
-            this.TSMItemAddGio.Click += new System.EventHandler(this.TSMItemAddGio_Click);
-            // 
-            // TSMItemAddTinChu
-            // 
-            this.TSMItemAddTinChu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thêmNơiCúngToolStripMenuItem,
-            this.thêmĐịaChỉToolStripMenuItem,
-            this.thêmTênGiaChủToolStripMenuItem,
-            this.thêmHọGiaChủToolStripMenuItem});
-            this.TSMItemAddTinChu.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddTinChu.Name = "TSMItemAddTinChu";
-            this.TSMItemAddTinChu.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddTinChu.Text = "Thêm tín chủ (@tinchu)";
-            this.TSMItemAddTinChu.Click += new System.EventHandler(this.TSMItemAddTinChu_Click);
-            // 
-            // thêmNơiCúngToolStripMenuItem
-            // 
-            this.thêmNơiCúngToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.thêmNơiCúngToolStripMenuItem.Name = "thêmNơiCúngToolStripMenuItem";
-            this.thêmNơiCúngToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
-            this.thêmNơiCúngToolStripMenuItem.Text = "Thêm nơi cúng (@noicung)";
-            this.thêmNơiCúngToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddNoiC_Click);
-            // 
-            // thêmĐịaChỉToolStripMenuItem
-            // 
-            this.thêmĐịaChỉToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.thêmĐịaChỉToolStripMenuItem.Name = "thêmĐịaChỉToolStripMenuItem";
-            this.thêmĐịaChỉToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
-            this.thêmĐịaChỉToolStripMenuItem.Text = "Thêm địa chỉ (@diachiyvu)";
-            this.thêmĐịaChỉToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddAdress_Click);
-            // 
-            // thêmTênGiaChủToolStripMenuItem
-            // 
-            this.thêmTênGiaChủToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.thêmTênGiaChủToolStripMenuItem.Name = "thêmTênGiaChủToolStripMenuItem";
-            this.thêmTênGiaChủToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
-            this.thêmTênGiaChủToolStripMenuItem.Text = "Thêm tên gia chủ (@giachu)";
-            this.thêmTênGiaChủToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddGiaChu_Click);
-            // 
-            // thêmHọGiaChủToolStripMenuItem
-            // 
-            this.thêmHọGiaChủToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.thêmHọGiaChủToolStripMenuItem.Name = "thêmHọGiaChủToolStripMenuItem";
-            this.thêmHọGiaChủToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
-            this.thêmHọGiaChủToolStripMenuItem.Text = "Thêm họ gia chủ (@hogiachu)";
-            this.thêmHọGiaChủToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHoGiaChu_Click);
-            // 
-            // TSMItemAddHuongLinh
-            // 
-            this.TSMItemAddHuongLinh.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.thêmTênHươngLinhhlinhtenToolStripMenuItem,
-            this.thêmHọHươngLinhhlinhhoToolStripMenuItem,
-            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem,
-            this.hươngLinhNămMấthlinhmatToolStripMenuItem,
-            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem,
-            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem});
-            this.TSMItemAddHuongLinh.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddHuongLinh.Name = "TSMItemAddHuongLinh";
-            this.TSMItemAddHuongLinh.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddHuongLinh.Text = "Thêm Hương linh (@hlinh)";
-            this.TSMItemAddHuongLinh.Click += new System.EventHandler(this.TSMItemAddHuongLinh_Click);
-            // 
-            // thêmTênHươngLinhhlinhtenToolStripMenuItem
-            // 
-            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Name = "thêmTênHươngLinhhlinhtenToolStripMenuItem";
-            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
-            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Text = "Thêm Tên Hương linh (@hlinhten)";
-            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddTenHuongLinh_Click);
-            // 
-            // thêmHọHươngLinhhlinhhoToolStripMenuItem
-            // 
-            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Name = "thêmHọHươngLinhhlinhhoToolStripMenuItem";
-            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
-            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Text = "Thêm Họ Hương linh (@hlinhho)";
-            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHoHuongLinh_Click);
-            // 
-            // hươngLinhNămSinhhlinhsinhToolStripMenuItem
-            // 
-            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Name = "hươngLinhNămSinhhlinhsinhToolStripMenuItem";
-            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
-            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Text = "Hương linh Năm sinh (@hlinhsinh)";
-            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhSinh_Click);
-            // 
-            // hươngLinhNămMấthlinhmatToolStripMenuItem
-            // 
-            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Name = "hươngLinhNămMấthlinhmatToolStripMenuItem";
-            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
-            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Text = "Hương linh Năm mất (@hlinhmat)";
-            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhMat_Click);
-            // 
-            // hươngLinhHưởngThọhlinhthoToolStripMenuItem
-            // 
-            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Name = "hươngLinhHưởngThọhlinhthoToolStripMenuItem";
-            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
-            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Text = "Hương linh Hưởng thọ (@hlinhtho)";
-            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhTho_Click);
-            // 
-            // hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem
-            // 
-            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Name = "hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem";
-            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
-            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Text = "Hương linh Địa chỉ (@hlinhdiachi)";
-            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhDiaChi_Click);
-            // 
-            // TSMItemAddNgachSo
-            // 
-            this.TSMItemAddNgachSo.Image = global::AppVietSo.Properties.Resources.Adda;
-            this.TSMItemAddNgachSo.Name = "TSMItemAddNgachSo";
-            this.TSMItemAddNgachSo.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemAddNgachSo.Text = "Thêm ngạch sớ (@ngachso)";
-            this.TSMItemAddNgachSo.Click += new System.EventHandler(this.TSMItemAddNgachSo_Click);
             // 
             // splitContainer1
             // 
@@ -588,7 +330,7 @@ namespace AppVietSo
             this.tiênTichToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(9, 589);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(105, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(107, 48);
             this.menuStrip1.TabIndex = 31;
             this.menuStrip1.Text = "Tiện ích";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
@@ -744,19 +486,6 @@ namespace AppVietSo
             this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click_1);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(11, 731);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(169, 96);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 15;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
-            // 
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -907,49 +636,11 @@ namespace AppVietSo
             this.bindingNavigator1.TabIndex = 4;
             this.bindingNavigator1.Text = "bindingNavigator1";
             // 
-            // toolStripButton4
-            // 
-            this.toolStripButton4.Image = global::AppVietSo.Properties.Resources.print;
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(64, 25);
-            this.toolStripButton4.Text = "In sớ";
-            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = global::AppVietSo.Properties.Resources.print;
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(143, 25);
-            this.toolStripButton1.Text = "In nhiều gia đình";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Margin = new System.Windows.Forms.Padding(0, 0, 50, 0);
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(6, 28);
-            // 
-            // toolStripButton2
-            // 
-            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton2.Image = global::AppVietSo.Properties.Resources.undo;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 25);
-            this.toolStripButton2.Text = "Lùi";
-            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::AppVietSo.Properties.Resources.redo;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(29, 25);
-            this.toolStripButton3.Text = "Tiến";
-            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripLabel3
             // 
@@ -957,17 +648,6 @@ namespace AppVietSo
             this.toolStripLabel3.Name = "toolStripLabel3";
             this.toolStripLabel3.Size = new System.Drawing.Size(58, 25);
             this.toolStripLabel3.Text = "Loại sớ";
-            // 
-            // txtLoaiSo
-            // 
-            this.txtLoaiSo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.txtLoaiSo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.txtLoaiSo.Image = ((System.Drawing.Image)(resources.GetObject("txtLoaiSo.Image")));
-            this.txtLoaiSo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.txtLoaiSo.Name = "txtLoaiSo";
-            this.txtLoaiSo.Size = new System.Drawing.Size(64, 25);
-            this.txtLoaiSo.Text = ".................";
-            this.txtLoaiSo.Click += new System.EventHandler(this.txtLoaiSo_Click);
             // 
             // labelCN
             // 
@@ -1375,6 +1055,345 @@ namespace AppVietSo
             this.labelLicence.Text = "toolStripLabel1";
             this.labelLicence.Click += new System.EventHandler(this.labelLicence_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(11, 731);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(169, 96);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 15;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // TSMItemEditText
+            // 
+            this.TSMItemEditText.Image = global::AppVietSo.Properties.Resources.edit;
+            this.TSMItemEditText.Name = "TSMItemEditText";
+            this.TSMItemEditText.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemEditText.Text = "Sửa lại mặt chữ";
+            this.TSMItemEditText.Click += new System.EventHandler(this.TSMItemEditText_Click);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Image = global::AppVietSo.Properties.Resources.copy;
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.toolStripTextBox1.Size = new System.Drawing.Size(265, 26);
+            this.toolStripTextBox1.Text = "Copy";
+            this.toolStripTextBox1.Click += new System.EventHandler(this.toolStripTextBox1_Click);
+            // 
+            // TSMItemPaste
+            // 
+            this.TSMItemPaste.Image = global::AppVietSo.Properties.Resources.Paste;
+            this.TSMItemPaste.Name = "TSMItemPaste";
+            this.TSMItemPaste.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
+            this.TSMItemPaste.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemPaste.Text = "Dán";
+            this.TSMItemPaste.Click += new System.EventHandler(this.TSMItemPaste_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thêmDòngToolStripMenuItem,
+            this.thêmCộtToolStripMenuItem});
+            this.toolStripMenuItem1.Image = global::AppVietSo.Properties.Resources.Add1;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(265, 26);
+            this.toolStripMenuItem1.Text = "Thêm";
+            // 
+            // thêmDòngToolStripMenuItem
+            // 
+            this.thêmDòngToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Add1;
+            this.thêmDòngToolStripMenuItem.Name = "thêmDòngToolStripMenuItem";
+            this.thêmDòngToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.thêmDòngToolStripMenuItem.Text = "Thêm dòng";
+            this.thêmDòngToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddRow_Click);
+            // 
+            // thêmCộtToolStripMenuItem
+            // 
+            this.thêmCộtToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Add1;
+            this.thêmCộtToolStripMenuItem.Name = "thêmCộtToolStripMenuItem";
+            this.thêmCộtToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
+            this.thêmCộtToolStripMenuItem.Text = "Thêm cột";
+            this.thêmCộtToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddCol_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xóaDòngToolStripMenuItem,
+            this.xóaCộtToolStripMenuItem,
+            this.xóaÔToolStripMenuItem,
+            this.cắtÔToolStripMenuItem});
+            this.toolStripMenuItem2.Image = global::AppVietSo.Properties.Resources.Delete;
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(265, 26);
+            this.toolStripMenuItem2.Text = "Xóa";
+            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            // 
+            // xóaDòngToolStripMenuItem
+            // 
+            this.xóaDòngToolStripMenuItem.Name = "xóaDòngToolStripMenuItem";
+            this.xóaDòngToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.xóaDòngToolStripMenuItem.Text = "Xóa dòng";
+            this.xóaDòngToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelRow_Click);
+            // 
+            // xóaCộtToolStripMenuItem
+            // 
+            this.xóaCộtToolStripMenuItem.Name = "xóaCộtToolStripMenuItem";
+            this.xóaCộtToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.xóaCộtToolStripMenuItem.Text = "Xóa cột";
+            this.xóaCộtToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelCol_Click);
+            // 
+            // xóaÔToolStripMenuItem
+            // 
+            this.xóaÔToolStripMenuItem.Name = "xóaÔToolStripMenuItem";
+            this.xóaÔToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
+            this.xóaÔToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.xóaÔToolStripMenuItem.Text = "Xóa ô";
+            this.xóaÔToolStripMenuItem.Click += new System.EventHandler(this.TSMItemDelCel_Click);
+            // 
+            // cắtÔToolStripMenuItem
+            // 
+            this.cắtÔToolStripMenuItem.Name = "cắtÔToolStripMenuItem";
+            this.cắtÔToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
+            this.cắtÔToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.cắtÔToolStripMenuItem.Text = "Cắt ô";
+            this.cắtÔToolStripMenuItem.Click += new System.EventHandler(this.cắtÔToolStripMenuItem_Click);
+            // 
+            // TSMItemThemChuSauTinChu
+            // 
+            this.TSMItemThemChuSauTinChu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.khuônMẫuTínChủToolStripMenuItem,
+            this.khuônMẫuHươngLinhToolStripMenuItem});
+            this.TSMItemThemChuSauTinChu.Image = global::AppVietSo.Properties.Resources.edit;
+            this.TSMItemThemChuSauTinChu.Name = "TSMItemThemChuSauTinChu";
+            this.TSMItemThemChuSauTinChu.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemThemChuSauTinChu.Text = "Khuôn mẫu";
+            // 
+            // khuônMẫuTínChủToolStripMenuItem
+            // 
+            this.khuônMẫuTínChủToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.edit;
+            this.khuônMẫuTínChủToolStripMenuItem.Name = "khuônMẫuTínChủToolStripMenuItem";
+            this.khuônMẫuTínChủToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.khuônMẫuTínChủToolStripMenuItem.Text = "Khuôn mẫu Tín Chủ";
+            this.khuônMẫuTínChủToolStripMenuItem.Click += new System.EventHandler(this.TSMItemThemChuSauTinChu_Click);
+            // 
+            // khuônMẫuHươngLinhToolStripMenuItem
+            // 
+            this.khuônMẫuHươngLinhToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.edit;
+            this.khuônMẫuHươngLinhToolStripMenuItem.Name = "khuônMẫuHươngLinhToolStripMenuItem";
+            this.khuônMẫuHươngLinhToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.khuônMẫuHươngLinhToolStripMenuItem.Text = "Khuôn mẫu Hương Linh";
+            this.khuônMẫuHươngLinhToolStripMenuItem.Click += new System.EventHandler(this.TSMItemThemChuSauHuongLinh_Click);
+            // 
+            // TSMItemAddMua
+            // 
+            this.TSMItemAddMua.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddMua.Name = "TSMItemAddMua";
+            this.TSMItemAddMua.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddMua.Text = "Thêm mùa (@mua)";
+            this.TSMItemAddMua.Click += new System.EventHandler(this.TSMItemAddMua_Click);
+            // 
+            // TSMItemAddYear
+            // 
+            this.TSMItemAddYear.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddYear.Name = "TSMItemAddYear";
+            this.TSMItemAddYear.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddYear.Text = "Thêm năm (@nam)";
+            this.TSMItemAddYear.Click += new System.EventHandler(this.TSMItemAddYear_Click);
+            // 
+            // TSMItemAddMonth
+            // 
+            this.TSMItemAddMonth.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddMonth.Name = "TSMItemAddMonth";
+            this.TSMItemAddMonth.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddMonth.Text = "Thêm tháng (@thang)";
+            this.TSMItemAddMonth.Click += new System.EventHandler(this.TSMItemAddMonth_Click);
+            // 
+            // TSMItemAddDay
+            // 
+            this.TSMItemAddDay.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddDay.Name = "TSMItemAddDay";
+            this.TSMItemAddDay.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddDay.Text = "Thêm ngày (@ngay)";
+            this.TSMItemAddDay.Click += new System.EventHandler(this.TSMItemAddDay_Click);
+            // 
+            // TSMItemAddGio
+            // 
+            this.TSMItemAddGio.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddGio.Name = "TSMItemAddGio";
+            this.TSMItemAddGio.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddGio.Text = "Thêm giờ (@gio)";
+            this.TSMItemAddGio.Click += new System.EventHandler(this.TSMItemAddGio_Click);
+            // 
+            // TSMItemAddTinChu
+            // 
+            this.TSMItemAddTinChu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thêmNơiCúngToolStripMenuItem,
+            this.thêmĐịaChỉToolStripMenuItem,
+            this.thêmTênGiaChủToolStripMenuItem,
+            this.thêmHọGiaChủToolStripMenuItem});
+            this.TSMItemAddTinChu.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddTinChu.Name = "TSMItemAddTinChu";
+            this.TSMItemAddTinChu.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddTinChu.Text = "Thêm tín chủ (@tinchu)";
+            this.TSMItemAddTinChu.Click += new System.EventHandler(this.TSMItemAddTinChu_Click);
+            // 
+            // thêmNơiCúngToolStripMenuItem
+            // 
+            this.thêmNơiCúngToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.thêmNơiCúngToolStripMenuItem.Name = "thêmNơiCúngToolStripMenuItem";
+            this.thêmNơiCúngToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            this.thêmNơiCúngToolStripMenuItem.Text = "Thêm nơi cúng (@noicung)";
+            this.thêmNơiCúngToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddNoiC_Click);
+            // 
+            // thêmĐịaChỉToolStripMenuItem
+            // 
+            this.thêmĐịaChỉToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.thêmĐịaChỉToolStripMenuItem.Name = "thêmĐịaChỉToolStripMenuItem";
+            this.thêmĐịaChỉToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            this.thêmĐịaChỉToolStripMenuItem.Text = "Thêm địa chỉ (@diachiyvu)";
+            this.thêmĐịaChỉToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddAdress_Click);
+            // 
+            // thêmTênGiaChủToolStripMenuItem
+            // 
+            this.thêmTênGiaChủToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.thêmTênGiaChủToolStripMenuItem.Name = "thêmTênGiaChủToolStripMenuItem";
+            this.thêmTênGiaChủToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            this.thêmTênGiaChủToolStripMenuItem.Text = "Thêm tên gia chủ (@giachu)";
+            this.thêmTênGiaChủToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddGiaChu_Click);
+            // 
+            // thêmHọGiaChủToolStripMenuItem
+            // 
+            this.thêmHọGiaChủToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.thêmHọGiaChủToolStripMenuItem.Name = "thêmHọGiaChủToolStripMenuItem";
+            this.thêmHọGiaChủToolStripMenuItem.Size = new System.Drawing.Size(291, 26);
+            this.thêmHọGiaChủToolStripMenuItem.Text = "Thêm họ gia chủ (@hogiachu)";
+            this.thêmHọGiaChủToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHoGiaChu_Click);
+            // 
+            // TSMItemAddHuongLinh
+            // 
+            this.TSMItemAddHuongLinh.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.thêmTênHươngLinhhlinhtenToolStripMenuItem,
+            this.thêmHọHươngLinhhlinhhoToolStripMenuItem,
+            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem,
+            this.hươngLinhNămMấthlinhmatToolStripMenuItem,
+            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem,
+            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem});
+            this.TSMItemAddHuongLinh.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddHuongLinh.Name = "TSMItemAddHuongLinh";
+            this.TSMItemAddHuongLinh.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddHuongLinh.Text = "Thêm Hương linh (@hlinh)";
+            this.TSMItemAddHuongLinh.Click += new System.EventHandler(this.TSMItemAddHuongLinh_Click);
+            // 
+            // thêmTênHươngLinhhlinhtenToolStripMenuItem
+            // 
+            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Name = "thêmTênHươngLinhhlinhtenToolStripMenuItem";
+            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
+            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Text = "Thêm Tên Hương linh (@hlinhten)";
+            this.thêmTênHươngLinhhlinhtenToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddTenHuongLinh_Click);
+            // 
+            // thêmHọHươngLinhhlinhhoToolStripMenuItem
+            // 
+            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Name = "thêmHọHươngLinhhlinhhoToolStripMenuItem";
+            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
+            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Text = "Thêm Họ Hương linh (@hlinhho)";
+            this.thêmHọHươngLinhhlinhhoToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHoHuongLinh_Click);
+            // 
+            // hươngLinhNămSinhhlinhsinhToolStripMenuItem
+            // 
+            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Name = "hươngLinhNămSinhhlinhsinhToolStripMenuItem";
+            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
+            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Text = "Hương linh Năm sinh (@hlinhsinh)";
+            this.hươngLinhNămSinhhlinhsinhToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhSinh_Click);
+            // 
+            // hươngLinhNămMấthlinhmatToolStripMenuItem
+            // 
+            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Name = "hươngLinhNămMấthlinhmatToolStripMenuItem";
+            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
+            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Text = "Hương linh Năm mất (@hlinhmat)";
+            this.hươngLinhNămMấthlinhmatToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhMat_Click);
+            // 
+            // hươngLinhHưởngThọhlinhthoToolStripMenuItem
+            // 
+            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Name = "hươngLinhHưởngThọhlinhthoToolStripMenuItem";
+            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
+            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Text = "Hương linh Hưởng thọ (@hlinhtho)";
+            this.hươngLinhHưởngThọhlinhthoToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhTho_Click);
+            // 
+            // hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem
+            // 
+            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Name = "hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem";
+            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Size = new System.Drawing.Size(324, 26);
+            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Text = "Hương linh Địa chỉ (@hlinhdiachi)";
+            this.hươngLinhĐịaChỉhlinhdiachiToolStripMenuItem.Click += new System.EventHandler(this.TSMItemAddHLinhDiaChi_Click);
+            // 
+            // TSMItemAddNgachSo
+            // 
+            this.TSMItemAddNgachSo.Image = global::AppVietSo.Properties.Resources.Adda;
+            this.TSMItemAddNgachSo.Name = "TSMItemAddNgachSo";
+            this.TSMItemAddNgachSo.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemAddNgachSo.Text = "Thêm ngạch sớ (@ngachso)";
+            this.TSMItemAddNgachSo.Click += new System.EventHandler(this.TSMItemAddNgachSo_Click);
+            // 
+            // toolStripButton4
+            // 
+            this.toolStripButton4.Image = global::AppVietSo.Properties.Resources.print;
+            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton4.Name = "toolStripButton4";
+            this.toolStripButton4.Size = new System.Drawing.Size(64, 25);
+            this.toolStripButton4.Text = "In sớ";
+            this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = global::AppVietSo.Properties.Resources.print;
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(143, 25);
+            this.toolStripButton1.Text = "In nhiều gia đình";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton2.Image = global::AppVietSo.Properties.Resources.undo;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(29, 25);
+            this.toolStripButton2.Text = "Lùi";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
+            // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::AppVietSo.Properties.Resources.redo;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(29, 25);
+            this.toolStripButton3.Text = "Tiến";
+            this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
+            // 
+            // txtLoaiSo
+            // 
+            this.txtLoaiSo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.txtLoaiSo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.txtLoaiSo.Image = ((System.Drawing.Image)(resources.GetObject("txtLoaiSo.Image")));
+            this.txtLoaiSo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.txtLoaiSo.Name = "txtLoaiSo";
+            this.txtLoaiSo.Size = new System.Drawing.Size(64, 25);
+            this.txtLoaiSo.Text = ".................";
+            this.txtLoaiSo.Click += new System.EventHandler(this.txtLoaiSo_Click);
+            // 
             // TSMItemThemChuSauHuongLinh
             // 
             this.TSMItemThemChuSauHuongLinh.Image = global::AppVietSo.Properties.Resources.edit;
@@ -1382,14 +1401,6 @@ namespace AppVietSo
             this.TSMItemThemChuSauHuongLinh.Size = new System.Drawing.Size(314, 26);
             this.TSMItemThemChuSauHuongLinh.Text = "Khuôn mẫu Hương linh";
             this.TSMItemThemChuSauHuongLinh.Click += new System.EventHandler(this.TSMItemThemChuSauHuongLinh_Click);
-            // 
-            // cắtÔToolStripMenuItem
-            // 
-            this.cắtÔToolStripMenuItem.Name = "cắtÔToolStripMenuItem";
-            this.cắtÔToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cắtÔToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.cắtÔToolStripMenuItem.Text = "Cắt ô";
-            this.cắtÔToolStripMenuItem.Click += new System.EventHandler(this.cắtÔToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -1416,11 +1427,11 @@ namespace AppVietSo
             this.splitContainer1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bindingNavigator1)).EndInit();
             this.bindingNavigator1.ResumeLayout(false);
             this.bindingNavigator1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1512,6 +1523,7 @@ namespace AppVietSo
         private ToolStripMenuItem càiĐặtToolStripMenuItem;
         private CheckBox cbHienMauEdit;
         private ToolStripMenuItem cắtÔToolStripMenuItem;
+        private ToolStripMenuItem toolStripTextBox1;
     }
 }
 

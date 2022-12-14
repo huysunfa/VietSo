@@ -471,6 +471,7 @@
   <ItemGroup>
     <Content Include="Capture.ico" />
     <Content Include="MicrosoftTeams-image %2831%29.ico" />
+    <None Include="Resources\copy.png" />
     <None Include="Resources\bg.png" />
     <None Include="Resources\zoomout48.png" />
     <None Include="Resources\zoomout24.png" />
