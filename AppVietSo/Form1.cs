@@ -1265,13 +1265,17 @@ namespace AppVietSo
             {
                 insertrow = (totalRow - cell.Row + 1);
                 insertcol = listObj.Count / insertrow;
-                insertcol = insertcol + 1;
+                if (listObj.Count % insertrow != 0)
+                {
+                    insertcol = insertcol + 1;
+            //        col = col - 1;
+               }
                 col = col - insertcol;
 
-
+                col = col + 1;
             }
 
-            object[,] data = new object[listObj.Count, insertcol];
+            object[,] data = new object[insertrow, insertcol];
             var ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
 
             var sttI = 0;
@@ -1464,7 +1468,7 @@ namespace AppVietSo
                             var cells = worksheet.Cells[i, j];
                             if (!(cells.Tag.getCellData().Value + "").Contains("@") && cells.Comment.CheckNo() == false && cells.Comment.CheckSkip() == false)
                             {
-                                cells.Comment = "NO_" + cells.Comment;
+                                //cells.Comment = "NO_" + cells.Comment;
                             }
                         }
                         var newcell = worksheet.Cells[i, j];
