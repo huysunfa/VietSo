@@ -243,7 +243,7 @@ namespace AppVietSo
                     }
 
 
-                    var history = (HistoryCell)worksheet.Cells[i, j].DataFormatArgs;
+                    var history = (HistoryCell)item.DataFormatArgs;
                     if (history == null)
                     {
                         history = new HistoryCell();
@@ -259,7 +259,7 @@ namespace AppVietSo
                         Comment = item.Comment
 
                     });
-                    worksheet.Cells[i, j].DataFormatArgs = history;
+                    item.DataFormatArgs = history;
 
 
 
@@ -282,7 +282,16 @@ namespace AppVietSo
 
 
                     item.Tag = cell;
+                    history.Index = history.cell.Count + 1;
 
+                    history.cell.Add(history.Index, new ItemHistory()
+                    {
+                        Data = item.Data,
+                        Style = CellStyle.Clone(item.Style),
+                        Tag = item.Tag.getCellData().CloneCell(),
+                        Comment = item.Comment
+
+                    });
 
 
                 }
