@@ -1306,33 +1306,92 @@ namespace AppVietSo
             var listObjCN = (TextCN + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
             var listObVN = (TextVN + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
 
-            var totalRow = reoGrid.CurrentWorksheet.UsedRange.EndRow;
+            var totalRow = reoGrid.CurrentWorksheet.UsedRange.EndRow-1;
             var col = cell.Column;
 
             object[,] data = null;
             if (PosText == "PHẢI")
             {
-                data = new object[listObVN.Count, 2];
-                ranger = new RangePosition(cell.Row, cell.Column - 1, listObVN.Count, 2);
+
+                 var insertcol = 1;
+                var insertrow = listObjCN.Count;
+                if (totalRow < (listObjCN.Count + cell.Row))
+                {
+                    insertrow = (totalRow - cell.Row + 1);
+                    insertcol = listObjCN.Count / insertrow;
+                    if (listObjCN.Count % insertrow != 0)
+                    {
+                        insertcol = insertcol + 1;
+                        //        col = col - 1;
+                    }
+                    col = col - insertcol;
+
+                    col = col + 1;
+                }
+
+                insertcol = insertcol * 2;
+                data = new object[insertrow, insertcol];
+                ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
+
+                var STTI = 0;
+                var STTJ = insertcol-2;
 
                 for (int i = 0; i < listObVN.Count; i++)
                 {
-                    data[i, 0] = listObjCN[i];
-                    data[i, 1] = listObVN[i];
+                    if (cell.Row+STTI> totalRow)
+                    {
+                        STTI = 0;
+                        STTJ= STTJ-2;
+                    }
+                    data[STTI, STTJ+ 0] = listObjCN[i];
+                    data[STTI, STTJ+ 1] = listObVN[i];
                     //    ranger.EndRow = cell.Row+i;
+                    STTI++;
                 }
             }
             if (PosText == "TRÁI")
             {
-                data = new object[listObVN.Count, 2];
-                ranger = new RangePosition(cell.Row, cell.Column, listObVN.Count, 2);
+
+
+                var insertcol = 1;
+                var insertrow = listObjCN.Count;
+                if (totalRow < (listObjCN.Count + cell.Row))
+                {
+                    insertrow = (totalRow - cell.Row + 1);
+                    insertcol = listObjCN.Count / insertrow;
+                    if (listObjCN.Count % insertrow != 0)
+                    {
+                        insertcol = insertcol + 1;
+                        //        col = col - 1;
+                    }
+                    col = col - insertcol;
+
+                    col = col + 1;
+                }
+
+                insertcol = insertcol * 2;
+                data = new object[insertrow, insertcol];
+                ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
+
+                var STTI = 0;
+                var STTJ = insertcol - 2;
 
                 for (int i = 0; i < listObVN.Count; i++)
                 {
-                    data[i, 1] = listObjCN[i];
-                    data[i, 0] = listObVN[i];
+                    if (cell.Row + STTI > totalRow)
+                    {
+                        STTI = 0;
+                        STTJ = STTJ - 2;
+                    }
+                    data[STTI, STTJ + 0] = listObVN[i];
+                    data[STTI, STTJ + 1] = listObjCN[i];
                     //    ranger.EndRow = cell.Row+i;
+                    STTI++;
                 }
+
+
+
+                
             }
             if (PosText == "TRÊN")
             {
@@ -1398,8 +1457,7 @@ namespace AppVietSo
 
             //          item.Tag = cell;
 
-            var render = false;
-            if (Value.Contains("@"))
+             if (Value.Contains("@"))
             {
                 var cnt = (TextCN + "").Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
                 if ((worksheet.UsedRange.EndRow - Row - cnt) < 0)
@@ -1409,8 +1467,7 @@ namespace AppVietSo
                     worksheet.ScaleFactor += (float)0.000001;
 
                     reoGridControl1.ShowBolder(cbHideGridLine.Checked);
-                    render = true;
-                }
+                 }
 
                 //           RenderStyle(item.Address);
             }
@@ -1511,10 +1568,7 @@ namespace AppVietSo
 
             }
 
-            if (render)
-            {
-                RenderStyle();
-            }
+          
         }
 
         public void SetTextSongNgu(Worksheet worksheet, unvell.ReoGrid.Cell item, int Col, int Row)
