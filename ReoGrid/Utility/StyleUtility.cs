@@ -369,7 +369,7 @@ namespace unvell.ReoGrid.Utility
 		{
 			RowHeader rowhead = grid.RetrieveRowHeader(cell.InternalRow);
 
-			if (rowhead.InnerStyle != null)
+			if (rowhead != null && rowhead.InnerStyle != null)
 			{
 				cell.InnerStyle = rowhead.InnerStyle;
 				cell.StyleParentKind = StyleParentKind.Row;

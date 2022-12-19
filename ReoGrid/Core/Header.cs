@@ -2812,6 +2812,11 @@ namespace unvell.ReoGrid
 		/// <returns>instance of row header</returns>
 		internal RowHeader RetrieveRowHeader(int index)
 		{
+            if (index >= this.rows.Count)
+            {
+				return null;
+
+            }
 			return this.rows[index];
 		}
 

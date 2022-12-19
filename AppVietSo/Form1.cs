@@ -204,8 +204,24 @@ namespace AppVietSo
             var text = Clipboard.GetText();
 
 
-            var input = text.Split('\n');
+            var input = text.Split('\n').Where(v => !string.IsNullOrEmpty(v)).ToArray();
+            if (input.Length == 0)
+            {
+                return;
+            }
             var select = worksheet.SelectionRange;
+
+            var Numrow = input.Count();
+            var col = input.Select(v => v.Split('\t').Count()).Max(v => v);
+            object[,] data = new object[Numrow, col];
+
+            var ranger = new RangePosition(select.Row, select.Col, Numrow, col);
+
+
+            // end process
+
+            var rand = new SetRangeDataAction(ranger, data);
+
             for (int i = 0; i < input.Length; i++)
             {
                 var row = input[i].Split('\t');
@@ -227,6 +243,25 @@ namespace AppVietSo
                     }
 
 
+                    var history = (HistoryCell)worksheet.Cells[i, j].DataFormatArgs;
+                    if (history == null)
+                    {
+                        history = new HistoryCell();
+                        history.cell = new Dictionary<int, ItemHistory>();
+                    }
+                    history.Index = history.cell.Count + 1;
+
+                    history.cell.Add(history.Index, new ItemHistory()
+                    {
+                        Data = item.Data,
+                        Style = CellStyle.Clone(item.Style),
+                        Tag = item.Tag.getCellData().CloneCell(),
+                        Comment = item.Comment
+
+                    });
+                    worksheet.Cells[i, j].DataFormatArgs = history;
+
+
 
                     var cell = item.Tag.getCellData();
 
@@ -235,19 +270,25 @@ namespace AppVietSo
                     cell.TextCN = CNDictionary.getCN(row[j]);
                     if ((string)item.Comment == "TextVN")
                     {
-                        item.Data = cell.TextVN;
-
+                        //      item.Data = cell.TextVN;
+                        data[i, j] = cell.TextVN;
                     }
                     else
                     {
-                        item.Data = cell.TextCN;
+                        //    item.Data = cell.TextCN;
+                        data[i, j] = cell.TextCN;
 
                     }
+
+
                     item.Tag = cell;
+
 
 
                 }
             }
+            reoGridControl1.DoAction(reoGridControl1.CurrentWorksheet, rand);
+
             SaveData();
         }
 
@@ -1085,10 +1126,10 @@ namespace AppVietSo
                             TextCN = TextVN;
                         }
                     }
-                    setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN, true);
+                    setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN, false);
                     ///            r1.EndReason = EndEditReason.Cancel;
-                    //        r1.NewData = r1.Cell.renderViewText();
-                    r1.EndReason = EndEditReason.Cancel;
+                    r1.NewData = r1.Cell.renderViewText();
+                    r1.EndReason = EndEditReason.NormalFinish;
 
                 }
 
@@ -1216,20 +1257,35 @@ namespace AppVietSo
             // process
             var listObj = (text + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
 
-            var totalRow = reoGrid.CurrentWorksheet.UsedRange.EndRow;
+            var totalRow = reoGrid.CurrentWorksheet.UsedRange.EndRow - 1;
             var col = cell.Column;
+            var insertcol = 1;
+            var insertrow = listObj.Count;
             if (totalRow < (listObj.Count + cell.Row))
             {
-                var insertcol = listObj.Count / (totalRow - cell.Row);
+                insertrow = (totalRow - cell.Row + 1);
+                insertcol = listObj.Count / insertrow;
+                insertcol = insertcol + 1;
                 col = col - insertcol;
+
+
             }
 
-            object[,] data = new object[listObj.Count, 1];
-            var ranger = new RangePosition(cell.Row, cell.Column, listObj.Count, 1);
+            object[,] data = new object[listObj.Count, insertcol];
+            var ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
 
+            var sttI = 0;
+            var sttj = insertcol;
             for (int i = 0; i < listObj.Count; i++)
             {
-                data[i, 0] = listObj[i];
+                if (cell.Row + sttI > totalRow)
+                {
+                    sttI = 0;
+                    sttj--;
+
+                }
+                data[sttI, sttj - 1] = listObj[i];
+                sttI++;
                 //    ranger.EndRow = cell.Row+i;
             }
             // end process
@@ -1338,15 +1394,18 @@ namespace AppVietSo
 
             //          item.Tag = cell;
 
-
+            var render = false;
             if (Value.Contains("@"))
             {
-                var cnt = (cell.TextCN + "").Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
+                var cnt = (TextCN + "").Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
                 if ((worksheet.UsedRange.EndRow - Row - cnt) < 0)
                 {
                     var colAdd = cnt / (worksheet.UsedRange.EndRow - Row);
                     worksheet.InsertColumns(Col, colAdd - 1);
                     worksheet.ScaleFactor += (float)0.000001;
+
+                    reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+                    render = true;
                 }
 
                 //           RenderStyle(item.Address);
@@ -1358,16 +1417,7 @@ namespace AppVietSo
             //var action = new SetCellDataAction(item.Row, item.Column, text);
 
 
-            worksheet.ScaleFactor += (float)0.000001;
-            for (int i = Faction.Range.Col; i <= Faction.Range.EndCol; i++)
-            {
-                if (i >= worksheet.UsedRange.Cols)
-                {
-                    continue;
-                }
-                worksheet.AutoFitColumnWidth(i, false);
-
-            }
+          
             if (action)
             {
 
@@ -1401,6 +1451,7 @@ namespace AppVietSo
                 if (Value.Contains("@"))
                 {
                     cell.Value = Value;
+                    item.Tag = cell;
                     ReoGridExtentions.setColorTag(worksheet, Faction.Range, Color.Orange);
                 }
 
@@ -1410,10 +1461,10 @@ namespace AppVietSo
                     {
                         if (Value.Contains("@"))
                         {
-
-                            if (!(worksheet.Cells[i, j].Tag.getCellData().Value + "").Contains("@") && worksheet.Cells[i, j].Comment.CheckNo() == false && worksheet.Cells[i, j].Comment.CheckSkip() == false)
+                            var cells = worksheet.Cells[i, j];
+                            if (!(cells.Tag.getCellData().Value + "").Contains("@") && cells.Comment.CheckNo() == false && cells.Comment.CheckSkip() == false)
                             {
-                                worksheet.Cells[i, j].Comment = "NO_" + worksheet.Cells[i, j].Comment;
+                                cells.Comment = "NO_" + cells.Comment;
                             }
                         }
                         var newcell = worksheet.Cells[i, j];
@@ -1445,7 +1496,21 @@ namespace AppVietSo
                 cell.TextVN = TextVN;
             }
             SaveData();
+            worksheet.ScaleFactor += (float)0.000001;
+            for (int i = Faction.Range.Col; i <= Faction.Range.EndCol; i++)
+            {
+                if (i >= worksheet.UsedRange.Cols)
+                {
+                    continue;
+                }
+                worksheet.AutoFitColumnWidth(i, false);
 
+            }
+
+            if (render)
+            {
+                RenderStyle();
+            }
         }
 
         public void SetTextSongNgu(Worksheet worksheet, unvell.ReoGrid.Cell item, int Col, int Row)
@@ -2303,9 +2368,9 @@ namespace AppVietSo
                     {
                         txtrow += "\t";
                     }
-                    txtrow += reoGridControl1.CurrentWorksheet.Cells[j, i].Tag.getCellData().TextVN ;
+                    txtrow += reoGridControl1.CurrentWorksheet.Cells[j, i].Tag.getCellData().TextVN;
                 }
-                txt += txtrow+ "\n";
+                txt += txtrow + "\n";
             }
             Clipboard.SetText(txt);
 
