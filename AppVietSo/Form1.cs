@@ -1390,19 +1390,39 @@ namespace AppVietSo
                 var insertrow = listObjCN.Count;
                 if (totalRow < (listObjCN.Count + cell.Row))
                 {
-                    insertrow = (totalRow - cell.Row + 1);
+                    insertrow = (totalRow - (cell.Row)) + 1;
                     insertcol = listObjCN.Count / insertrow;
                     if (listObjCN.Count % insertrow != 0)
                     {
                         insertcol = insertcol + 1;
                         //        col = col - 1;
                     }
-                    col = col - insertcol;
 
-                    col = col + 1;
                 }
 
+
+
+                var cnt = listObjCN.Count();
+                if ((reoGridControl1.CurrentWorksheet.UsedRange.EndRow - cell.Row - cnt) < 0)
+                {
+                    reoGridControl1.CurrentWorksheet.InsertColumns(col - 1, (insertcol - 1) * 2);
+                    reoGridControl1.CurrentWorksheet.ScaleFactor += (float)0.000001;
+
+                    reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+
+                    for (int i = col; i < col + (insertcol - 1) * 2; i = i + 2)
+                    {
+                        for (int j = 0; j <= totalRow; j++)
+                        {
+                            reoGrid.CurrentWorksheet.Cells[j, i + 1].Comment = "SKIP_TextCN";
+                            reoGrid.CurrentWorksheet.Cells[j, i ].Comment = "TextVN";
+                        }
+                    }
+                }
                 insertcol = insertcol * 2;
+
+           
+
                 data = new object[insertrow, insertcol];
                 ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
 
@@ -1416,29 +1436,86 @@ namespace AppVietSo
                         STTI = 0;
                         STTJ = STTJ - 2;
                     }
-                    data[STTI, STTJ + 0] = listObVN[i];
                     data[STTI, STTJ + 1] = listObjCN[i];
-                    //    ranger.EndRow = cell.Row+i;
+                    data[STTI, STTJ + 0] = listObVN[i];
+                     STTI++;
+                }
+
+
+            }
+            if (PosText == "TRÊN")
+            {
+
+
+                var insertcol = 1;
+                var insertrow = listObjCN.Count;
+
+                if (totalRow < (listObjCN.Count*2 + cell.Row))
+                {
+                    insertrow = (totalRow - (cell.Row)) + 1;
+                    insertcol = listObjCN.Count / insertrow;
+                    if (listObjCN.Count % insertrow != 0)
+                    {
+                        insertcol = insertcol + 1;
+                        //        col = col - 1;
+                    }
+
+                }
+
+
+
+                var cnt = listObjCN.Count();
+                if ((reoGridControl1.CurrentWorksheet.UsedRange.EndCol - cell.Column - cnt) < 0)
+                {
+                    reoGridControl1.CurrentWorksheet.InsertColumns(col - 1, (insertcol - 1) * 2);
+                    reoGridControl1.CurrentWorksheet.ScaleFactor += (float)0.000001;
+
+                    reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+
+                    for (int i = col; i < col + (insertcol - 1) * 2; i = i + 2)
+                    {
+                        for (int j = 0; j <= totalRow; j++)
+                        {
+                            reoGrid.CurrentWorksheet.Cells[j, i + 1].Comment = "SKIP_TextCN";
+                            reoGrid.CurrentWorksheet.Cells[j, i].Comment = "TextVN";
+                        }
+                    }
+                }
+     //           insertrow = insertrow * 2;
+
+
+                col = col - 1;
+
+                data = new object[insertrow, insertcol];
+                ranger = new RangePosition(cell.Row, col,  insertrow, insertcol);
+
+                var STTI = 0;
+                var STTJ = insertcol - 2;
+
+                for (int i = 0; i < listObVN.Count; i++)
+                {
+                    if (cell.Row + STTI > totalRow)
+                    {
+                        STTI = 0;
+                        STTJ = STTJ - 2;
+                    }
+                    data[ STTI  ,STTJ + 1] = listObjCN[i];
+                    data[  STTI,STTJ + 0] = listObVN[i];
                     STTI++;
                 }
 
 
+                //data = new object[listObVN.Count * 2, 1];
+                //ranger = new RangePosition(cell.Row, cell.Column, listObVN.Count * 2, 1);
 
-                
-            }
-            if (PosText == "TRÊN")
-            {
-                data = new object[listObVN.Count * 2, 1];
-                ranger = new RangePosition(cell.Row, cell.Column, listObVN.Count * 2, 1);
-
-                for (int i = 0; i < listObVN.Count; i++)
-                {
-                    var vn = i * 2;
-                    var cn = i * 2 + 1;
-                    data[cn, 0] = listObjCN[i];
-                    data[vn, 0] = listObVN[i];
-                    //    ranger.EndRow = cell.Row+i;
-                }
+                //for (int i = 0; i < listObVN.Count; i++)
+                //{
+                //    var vn = i * 2;
+                //    var cn = i * 2 + 1;
+                //    data[cn, 0] = listObjCN[i];
+                //    data[vn, 0] = listObVN[i];
+                //    //    ranger.EndRow = cell.Row+i;
+                //}
             }
 
             if (PosText == "DƯỚI")
