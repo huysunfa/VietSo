@@ -1322,23 +1322,47 @@ namespace AppVietSo
             if (PosText == "PHẢI")
             {
 
-                 var insertcol = 1;
+              
+                var insertcol = 1;
                 var insertrow = listObjCN.Count;
                 if (totalRow < (listObjCN.Count + cell.Row))
                 {
-                    insertrow = (totalRow - cell.Row + 1);
+                    insertrow = (totalRow -( cell.Row ))+1;
                     insertcol = listObjCN.Count / insertrow;
                     if (listObjCN.Count % insertrow != 0)
                     {
                         insertcol = insertcol + 1;
                         //        col = col - 1;
                     }
-                    col = col - insertcol;
 
-                    col = col + 1;
                 }
 
+
+
+                var cnt = listObjCN.Count();
+                if ((reoGridControl1.CurrentWorksheet.UsedRange.EndRow - cell.Row - cnt) < 0)
+                {
+                    reoGridControl1.CurrentWorksheet.InsertColumns(col-1, (insertcol-1)*2);
+                    reoGridControl1.CurrentWorksheet.ScaleFactor += (float)0.000001;
+
+                    reoGridControl1.ShowBolder(cbHideGridLine.Checked);
+
+                    for (int i = col - 1; i < col+(insertcol - 1) *2; i=i+2)
+                    {
+                        for (int j = 0; j <= totalRow; j++)
+                        {
+                            reoGrid.CurrentWorksheet.Cells[j, i].Comment = "SKIP_TextCN";
+                            reoGrid.CurrentWorksheet.Cells[j, i+1].Comment = "TextVN";
+                        }
+                    }
+                }
                 insertcol = insertcol * 2;
+
+                //       col = col - insertcol;
+
+                col = col - 1;
+
+
                 data = new object[insertrow, insertcol];
                 ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
 
@@ -1466,7 +1490,7 @@ namespace AppVietSo
 
             //          item.Tag = cell;
 
-             if (Value.Contains("@"))
+             if (Value.Contains("@") && rbSongNgu.Checked==false)
             {
                 var cnt = (TextCN + "").Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
                 if ((worksheet.UsedRange.EndRow - Row - cnt) < 0)
@@ -1534,7 +1558,11 @@ namespace AppVietSo
                             var cells = worksheet.Cells[i, j];
                             if (!(cells.Tag.getCellData().Value + "").Contains("@") && cells.Comment.CheckNo() == false && cells.Comment.CheckSkip() == false)
                             {
-                                //cells.Comment = "NO_" + cells.Comment;
+                                if (rbSongNgu.Checked)
+                                {
+                                    cells.Comment = "SKIP_" + cells.Comment;
+
+                                }
                             }
                         }
                         var newcell = worksheet.Cells[i, j];
@@ -1566,7 +1594,6 @@ namespace AppVietSo
                 cell.TextVN = TextVN;
             }
             SaveData();
-            worksheet.ScaleFactor += (float)0.000001;
             for (int i = Faction.Range.Col; i <= Faction.Range.EndCol; i++)
             {
                 if (i >= worksheet.UsedRange.Cols)
@@ -1576,8 +1603,7 @@ namespace AppVietSo
                 worksheet.AutoFitColumnWidth(i, false);
 
             }
-
-          
+            worksheet.ScaleFactor += (float)0.000001;
         }
 
         public void SetTextSongNgu(Worksheet worksheet, unvell.ReoGrid.Cell item, int Col, int Row)
