@@ -36,7 +36,6 @@ namespace AppVietSo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctextMenuS = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.TSMItemEditText = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMItemPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,6 +119,8 @@ namespace AppVietSo
             this.cbfstyleVN = new System.Windows.Forms.ToolStripComboBox();
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
             this.TSMItemThemChuSauHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
+            this.TSMItemEditText = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ctextMenuS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -142,7 +143,7 @@ namespace AppVietSo
             // 
             this.ctextMenuS.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.ctextMenuS.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSMItemEditText,
+            this.toolStripComboBox1,
             this.toolStripTextBox1,
             this.TSMItemPaste,
             this.toolStripMenuItem1,
@@ -157,16 +158,8 @@ namespace AppVietSo
             this.TSMItemAddHuongLinh,
             this.TSMItemAddNgachSo});
             this.ctextMenuS.Name = "ctextMenuS";
-            this.ctextMenuS.Size = new System.Drawing.Size(266, 368);
+            this.ctextMenuS.Size = new System.Drawing.Size(266, 396);
             this.ctextMenuS.Opening += new System.ComponentModel.CancelEventHandler(this.ctextMenuS_Opening);
-            // 
-            // TSMItemEditText
-            // 
-            this.TSMItemEditText.Image = global::AppVietSo.Properties.Resources.edit;
-            this.TSMItemEditText.Name = "TSMItemEditText";
-            this.TSMItemEditText.Size = new System.Drawing.Size(265, 26);
-            this.TSMItemEditText.Text = "Sửa lại mặt chữ";
-            this.TSMItemEditText.Click += new System.EventHandler(this.TSMItemEditText_Click);
             // 
             // toolStripTextBox1
             // 
@@ -1402,6 +1395,23 @@ namespace AppVietSo
             this.TSMItemThemChuSauHuongLinh.Text = "Khuôn mẫu Hương linh";
             this.TSMItemThemChuSauHuongLinh.Click += new System.EventHandler(this.TSMItemThemChuSauHuongLinh_Click);
             // 
+            // TSMItemEditText
+            // 
+            this.TSMItemEditText.Image = global::AppVietSo.Properties.Resources.edit;
+            this.TSMItemEditText.Name = "TSMItemEditText";
+            this.TSMItemEditText.Size = new System.Drawing.Size(265, 26);
+            this.TSMItemEditText.Text = "Sửa lại mặt chữ";
+            this.TSMItemEditText.Click += new System.EventHandler(this.TSMItemEditText_Click);
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Image = global::AppVietSo.Properties.Resources.print;
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.toolStripComboBox1.Size = new System.Drawing.Size(265, 26);
+            this.toolStripComboBox1.Text = "In Sớ";
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1489,7 +1499,6 @@ namespace AppVietSo
         private RadioButton rbChuViet;
         private RadioButton rbChuHan;
         private Label label1;
-        private ToolStripMenuItem TSMItemEditText;
         private ToolStripMenuItem TSMItemPaste;
         private ToolStripMenuItem TSMItemThemChuSauTinChu;
         private ToolStripMenuItem TSMItemAddMua;
@@ -1524,6 +1533,8 @@ namespace AppVietSo
         private CheckBox cbHienMauEdit;
         private ToolStripMenuItem cắtÔToolStripMenuItem;
         private ToolStripMenuItem toolStripTextBox1;
+        private ToolStripMenuItem toolStripComboBox1;
+        private ToolStripMenuItem TSMItemEditText;
     }
 }
 

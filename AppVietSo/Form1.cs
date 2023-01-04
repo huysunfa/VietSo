@@ -2554,5 +2554,10 @@ namespace AppVietSo
             Clipboard.SetText(txt);
 
         }
+
+        private void toolStripComboBox1_Click(object sender, EventArgs e)
+        {
+            toolStripButton4_Click(sender, e);
+        }
     }
 }
