@@ -1135,7 +1135,8 @@ namespace AppVietSo
                             TextCN = TextVN;
                         }
                     }
-                    setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN, false);
+                    
+                    setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN, rbSongNgu.Checked);
                     ///            r1.EndReason = EndEditReason.Cancel;
                     r1.NewData = r1.Cell.renderViewText();
                     r1.EndReason = EndEditReason.NormalFinish;
@@ -1625,6 +1626,11 @@ namespace AppVietSo
                     item.Tag = cell;
                     ReoGridExtentions.setColorTag(worksheet, Faction.Range, Color.Orange);
                 }
+                else
+                {
+                    cell.TextCN = TextCN;
+                    cell.TextVN = TextVN;
+                }
 
                 for (int i = Faction.Range.Row; i <= Faction.Range.EndRow; i++)
                 {
@@ -1995,8 +2001,11 @@ namespace AppVietSo
                 if (frmTinChu.keys.Contains(Tag) || Tag == "@tinchu" || Tag == "@hlinh")
                 {
                     var frm = new frmTinChu();
-                    frm.ShowDialog();
-                    ReLoad(sender, e);
+                    var result=  frm.ShowDialog();
+                    if (result==DialogResult.OK)
+                    {
+                        ReLoad(sender, e);
+                    }
                 }
                 else
                 {

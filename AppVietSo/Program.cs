@@ -113,6 +113,7 @@ namespace AppVietSo
             {
                 Application.Run(new frmWellCome());
             }
+           ActiveData.Update("@Application_ThreadException", "0");
 
 
         }
@@ -135,6 +136,21 @@ namespace AppVietSo
         }
         private static void Application_ThreadException(object sender, ThreadExceptionEventArgs e)
         {
+            var ThreadException = ActiveData.Get("@Application_ThreadException").ToInt()+1;
+
+            if (ThreadException>3)
+            {
+                var listfilelocal = Directory.GetFiles(System.AppDomain.CurrentDomain.BaseDirectory + "/Data", "*.config").ToList();
+                foreach (var item in listfilelocal)
+                {
+                    File.Delete(item);
+                }
+                File.Delete(System.AppDomain.CurrentDomain.BaseDirectory + "/data/Active");
+
+                ThreadException = 0;
+            }
+            ActiveData.Update("@Application_ThreadException", ThreadException+"");
+
             var key = CheckKey.LocalKey();
 
             var value = new Dictionary<string, string>();

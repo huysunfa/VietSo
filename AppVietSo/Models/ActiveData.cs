@@ -127,6 +127,10 @@ namespace AppVietSo.Models
                                 continue;
                             }
                             var person = PersonBO.get(ID);
+                            if (person==null)
+                            {
+                                continue;
+                            } 
                             if (!string.IsNullOrEmpty(person.NgayMat)&& b == "@tinchu")
                             {
                                 continue;
@@ -190,6 +194,12 @@ namespace AppVietSo.Models
             return ouput;
         }
 
+
+        public static int ToInt(this string b)
+        {
+            int.TryParse(b, out int ouput);
+            return ouput;
+        }
 
         public static Dictionary<string, string> GetAll()
         {
