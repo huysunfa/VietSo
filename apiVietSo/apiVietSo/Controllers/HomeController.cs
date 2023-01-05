@@ -1,4 +1,5 @@
-﻿using System;
+﻿using apiVietSo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -10,6 +11,7 @@ namespace apiVietSo.Controllers
     {
         public ActionResult Index()
         {
+                //    SendMailExtentions.SendEmail(new string[] { "huy1965@robotech.com.vn" }, "SubmitError", "cccccccccccccccc");
             return Redirect("/LicenceDatas");
         }
 
