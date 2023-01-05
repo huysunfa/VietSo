@@ -40,7 +40,12 @@ namespace AppVietSo
         }
         public static void ChangeWidthSize(this Worksheet sheet, bool SetMin = false)
         {
-     //       return;
+
+            if (SetMin==false)
+            {
+                  SetMin = ActiveData.Get("@khonggiancot").ToBool();
+            }
+            //       return;
             if (Util.LongSoHienTai.KhoaCung)
             {
 

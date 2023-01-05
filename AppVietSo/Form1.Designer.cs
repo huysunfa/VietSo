@@ -36,6 +36,7 @@ namespace AppVietSo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.contextMenuStrip2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ctextMenuS = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMItemPaste = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -120,7 +121,8 @@ namespace AppVietSo
             this.labelLicence = new System.Windows.Forms.ToolStripLabel();
             this.TSMItemThemChuSauHuongLinh = new System.Windows.Forms.ToolStripMenuItem();
             this.TSMItemEditText = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripComboBox1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoWidthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.ctextMenuS.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -158,8 +160,17 @@ namespace AppVietSo
             this.TSMItemAddHuongLinh,
             this.TSMItemAddNgachSo});
             this.ctextMenuS.Name = "ctextMenuS";
-            this.ctextMenuS.Size = new System.Drawing.Size(266, 396);
+            this.ctextMenuS.Size = new System.Drawing.Size(266, 368);
             this.ctextMenuS.Opening += new System.ComponentModel.CancelEventHandler(this.ctextMenuS_Opening);
+            // 
+            // toolStripComboBox1
+            // 
+            this.toolStripComboBox1.Image = global::AppVietSo.Properties.Resources.print;
+            this.toolStripComboBox1.Name = "toolStripComboBox1";
+            this.toolStripComboBox1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
+            this.toolStripComboBox1.Size = new System.Drawing.Size(265, 26);
+            this.toolStripComboBox1.Text = "In Sớ";
+            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
             // 
             // toolStripTextBox1
             // 
@@ -441,6 +452,7 @@ namespace AppVietSo
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.SystemColors.Window;
+            this.splitContainer1.Panel1.Controls.Add(this.checkBox1);
             this.splitContainer1.Panel1.Controls.Add(this.cbHienMauEdit);
             this.splitContainer1.Panel1.Controls.Add(this.cbCanChuViet);
             this.splitContainer1.Panel1.Controls.Add(this.lbVersion);
@@ -613,7 +625,8 @@ namespace AppVietSo
             this.taiBôChưHanToolStripMenuItem,
             this.lâyDưLiêuMơiNhâtToolStripMenuItem,
             this.xóaCộtKhôngCóNộiDungToolStripMenuItem,
-            this.càiĐặtToolStripMenuItem});
+            this.càiĐặtToolStripMenuItem,
+            this.autoWidthToolStripMenuItem});
             this.tiênTichToolStripMenuItem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F);
             this.tiênTichToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tiênTichToolStripMenuItem.Name = "tiênTichToolStripMenuItem";
@@ -1403,14 +1416,23 @@ namespace AppVietSo
             this.TSMItemEditText.Text = "Sửa lại mặt chữ";
             this.TSMItemEditText.Click += new System.EventHandler(this.TSMItemEditText_Click);
             // 
-            // toolStripComboBox1
+            // autoWidthToolStripMenuItem
             // 
-            this.toolStripComboBox1.Image = global::AppVietSo.Properties.Resources.print;
-            this.toolStripComboBox1.Name = "toolStripComboBox1";
-            this.toolStripComboBox1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.toolStripComboBox1.Size = new System.Drawing.Size(265, 26);
-            this.toolStripComboBox1.Text = "In Sớ";
-            this.toolStripComboBox1.Click += new System.EventHandler(this.toolStripComboBox1_Click);
+            this.autoWidthToolStripMenuItem.Name = "autoWidthToolStripMenuItem";
+            this.autoWidthToolStripMenuItem.Size = new System.Drawing.Size(289, 26);
+            this.autoWidthToolStripMenuItem.Text = "AutoWidth";
+            this.autoWidthToolStripMenuItem.Click += new System.EventHandler(this.autoWidthToolStripMenuItem_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(11, 162);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(125, 21);
+            this.checkBox1.TabIndex = 53;
+            this.checkBox1.Text = "Không giãn cột";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged_2);
             // 
             // Form1
             // 
@@ -1535,6 +1557,8 @@ namespace AppVietSo
         private ToolStripMenuItem toolStripTextBox1;
         private ToolStripMenuItem toolStripComboBox1;
         private ToolStripMenuItem TSMItemEditText;
+        private ToolStripMenuItem autoWidthToolStripMenuItem;
+        private CheckBox checkBox1;
     }
 }
 

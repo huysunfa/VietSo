@@ -816,6 +816,10 @@ namespace AppVietSo
 
             }
 
+            var khonggiancot = ActiveData.Get("@khonggiancot").ToBool();
+
+            checkBox1.Checked = khonggiancot;
+
             //return;
             pfc.AddFontFile("data/fontCN/CN_KHAI.TTF");
             cbCanChuViet.SelectedItem = "PHẢI";
@@ -1135,7 +1139,7 @@ namespace AppVietSo
                             TextCN = TextVN;
                         }
                     }
-                    
+
                     setText(r1.Cell.Row, r1.Cell.Column, TextVN, TextCN, rbSongNgu.Checked);
                     ///            r1.EndReason = EndEditReason.Cancel;
                     r1.NewData = r1.Cell.renderViewText();
@@ -1278,8 +1282,8 @@ namespace AppVietSo
                 if (listObj.Count % insertrow != 0)
                 {
                     insertcol = insertcol + 1;
-            //        col = col - 1;
-               }
+                    //        col = col - 1;
+                }
                 col = col - insertcol;
 
                 col = col + 1;
@@ -1316,19 +1320,19 @@ namespace AppVietSo
             var listObjCN = (TextCN + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
             var listObVN = (TextVN + "").Split(' ').Where(c => !string.IsNullOrEmpty(c)).ToList();
 
-            var totalRow = reoGrid.CurrentWorksheet.UsedRange.EndRow-1;
+            var totalRow = reoGrid.CurrentWorksheet.UsedRange.EndRow - 1;
             var col = cell.Column;
 
             object[,] data = null;
             if (PosText == "PHẢI")
             {
 
-              
+
                 var insertcol = 1;
                 var insertrow = listObjCN.Count;
                 if (totalRow < (listObjCN.Count + cell.Row))
                 {
-                    insertrow = (totalRow -( cell.Row ))+1;
+                    insertrow = (totalRow - (cell.Row)) + 1;
                     insertcol = listObjCN.Count / insertrow;
                     if (listObjCN.Count % insertrow != 0)
                     {
@@ -1343,17 +1347,17 @@ namespace AppVietSo
                 var cnt = listObjCN.Count();
                 if ((reoGridControl1.CurrentWorksheet.UsedRange.EndRow - cell.Row - cnt) < 0)
                 {
-                    reoGridControl1.CurrentWorksheet.InsertColumns(col-1, (insertcol-1)*2);
+                    reoGridControl1.CurrentWorksheet.InsertColumns(col - 1, (insertcol - 1) * 2);
                     reoGridControl1.CurrentWorksheet.ScaleFactor += (float)0.000001;
 
                     reoGridControl1.ShowBolder(cbHideGridLine.Checked);
 
-                    for (int i = col - 1; i < col+(insertcol - 1) *2; i=i+2)
+                    for (int i = col - 1; i < col + (insertcol - 1) * 2; i = i + 2)
                     {
                         for (int j = 0; j <= totalRow; j++)
                         {
                             reoGrid.CurrentWorksheet.Cells[j, i].Comment = "SKIP_TextCN";
-                            reoGrid.CurrentWorksheet.Cells[j, i+1].Comment = "TextVN";
+                            reoGrid.CurrentWorksheet.Cells[j, i + 1].Comment = "TextVN";
                         }
                     }
                 }
@@ -1368,17 +1372,17 @@ namespace AppVietSo
                 ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
 
                 var STTI = 0;
-                var STTJ = insertcol-2;
+                var STTJ = insertcol - 2;
 
                 for (int i = 0; i < listObVN.Count; i++)
                 {
-                    if (cell.Row+STTI> totalRow)
+                    if (cell.Row + STTI > totalRow)
                     {
                         STTI = 0;
-                        STTJ= STTJ-2;
+                        STTJ = STTJ - 2;
                     }
-                    data[STTI, STTJ+ 0] = listObjCN[i];
-                    data[STTI, STTJ+ 1] = listObVN[i];
+                    data[STTI, STTJ + 0] = listObjCN[i];
+                    data[STTI, STTJ + 1] = listObVN[i];
                     //    ranger.EndRow = cell.Row+i;
                     STTI++;
                 }
@@ -1416,13 +1420,13 @@ namespace AppVietSo
                         for (int j = 0; j <= totalRow; j++)
                         {
                             reoGrid.CurrentWorksheet.Cells[j, i + 1].Comment = "SKIP_TextCN";
-                            reoGrid.CurrentWorksheet.Cells[j, i ].Comment = "TextVN";
+                            reoGrid.CurrentWorksheet.Cells[j, i].Comment = "TextVN";
                         }
                     }
                 }
                 insertcol = insertcol * 2;
 
-           
+
 
                 data = new object[insertrow, insertcol];
                 ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
@@ -1439,7 +1443,7 @@ namespace AppVietSo
                     }
                     data[STTI, STTJ + 1] = listObjCN[i];
                     data[STTI, STTJ + 0] = listObVN[i];
-                     STTI++;
+                    STTI++;
                 }
 
 
@@ -1451,7 +1455,7 @@ namespace AppVietSo
                 var insertcol = 1;
                 var insertrow = listObjCN.Count;
 
-                if (totalRow < (listObjCN.Count*2 + cell.Row))
+                if (totalRow < (listObjCN.Count * 2 + cell.Row))
                 {
                     insertrow = (totalRow - (cell.Row)) + 1;
                     insertcol = listObjCN.Count / insertrow;
@@ -1482,13 +1486,13 @@ namespace AppVietSo
                         }
                     }
                 }
-     //           insertrow = insertrow * 2;
+                //           insertrow = insertrow * 2;
 
 
                 col = col - 1;
 
                 data = new object[insertrow, insertcol];
-                ranger = new RangePosition(cell.Row, col,  insertrow, insertcol);
+                ranger = new RangePosition(cell.Row, col, insertrow, insertcol);
 
                 var STTI = 0;
                 var STTJ = insertcol - 2;
@@ -1500,8 +1504,8 @@ namespace AppVietSo
                         STTI = 0;
                         STTJ = STTJ - 2;
                     }
-                    data[ STTI  ,STTJ + 1] = listObjCN[i];
-                    data[  STTI,STTJ + 0] = listObVN[i];
+                    data[STTI, STTJ + 1] = listObjCN[i];
+                    data[STTI, STTJ + 0] = listObVN[i];
                     STTI++;
                 }
 
@@ -1568,7 +1572,7 @@ namespace AppVietSo
 
             //          item.Tag = cell;
 
-             if (Value.Contains("@") && rbSongNgu.Checked==false)
+            if (Value.Contains("@") && rbSongNgu.Checked == false)
             {
                 var cnt = (TextCN + "").Split(' ').Where(v => !string.IsNullOrEmpty(v)).Count();
                 if ((worksheet.UsedRange.EndRow - Row - cnt) < 0)
@@ -1578,7 +1582,7 @@ namespace AppVietSo
                     worksheet.ScaleFactor += (float)0.000001;
 
                     reoGridControl1.ShowBolder(cbHideGridLine.Checked);
-                 }
+                }
 
                 //           RenderStyle(item.Address);
             }
@@ -1589,7 +1593,7 @@ namespace AppVietSo
             //var action = new SetCellDataAction(item.Row, item.Column, text);
 
 
-          
+
             if (action)
             {
 
@@ -2001,8 +2005,8 @@ namespace AppVietSo
                 if (frmTinChu.keys.Contains(Tag) || Tag == "@tinchu" || Tag == "@hlinh")
                 {
                     var frm = new frmTinChu();
-                    var result=  frm.ShowDialog();
-                    if (result==DialogResult.OK)
+                    var result = frm.ShowDialog();
+                    if (result == DialogResult.OK)
                     {
                         ReLoad(sender, e);
                     }
@@ -2558,6 +2562,19 @@ namespace AppVietSo
         private void toolStripComboBox1_Click(object sender, EventArgs e)
         {
             toolStripButton4_Click(sender, e);
+        }
+
+        private void autoWidthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var sheet = reoGridControl1.CurrentWorksheet;
+            ReoGridExtentions.ChangeWidthSize(sheet, true);
+
+        }
+
+        private void checkBox1_CheckedChanged_2(object sender, EventArgs e)
+        {
+            ActiveData.Update("@khonggiancot", checkBox1.Checked.ToString());
+            ReLoad(sender, e);
         }
     }
 }
